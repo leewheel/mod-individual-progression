@@ -1,11 +1,11 @@
 /* Restore Ruby Shades to Haris Pilton */
 DELETE FROM `npc_vendor` WHERE `entry` = 18756 AND `item` = 38089 AND `ExtendedCost` = 0;
-INSERT INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `ExtendedCost`, `VerifiedBuild`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `ExtendedCost`, `VerifiedBuild`) VALUES
 (18756, 0, 38089, 1, 1800, 0, 0);
 
 /* Hide certain quests until the player has reached the progression tier for them */
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 19 AND `ConditionTypeOrReference` = 8 AND `SourceEntry` IN (11130, 11481, 11482);
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 --
 (19, 0, 11130, 0, 0, 8, 0, 66011, 0, 0, 0, 0, 0, '', 'Hide \'Oooh, Shinies!\' until the player reaches TBC T4'),
@@ -17,7 +17,7 @@ UPDATE `quest_template` SET `RequiredNpcOrGo1` = 22375, `RequiredNpcOrGoCount1` 
 UPDATE `quest_template_addon` SET `SpecialFlags` = 0 WHERE `ID` = 10879;
 
 DELETE FROM `smart_scripts` WHERE `entryorguid` = 22375 AND `source_type` = 0;
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -32,7 +32,7 @@ UPDATE `smart_scripts` SET `event_type` = 61 WHERE `entryorguid` = 22374 AND `so
 
 -- TBC battlemasters
 DELETE FROM `creature` WHERE `id` IN (20269, 20271, 20272, 20273, 20274, 20276, 20339, 20362, 20384, 20395);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
 `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 --
 (207610, 20269, 530, 0, 0, 1, 1, 1, -1971.8900, 5269.0400, -38.7644, 3.0718, 300, 0, 0, 1, 0, 0, 0, 0, 0, '', 0, 0, NULL),
@@ -64,11 +64,11 @@ UPDATE `creature` SET `MovementType` = 2, `currentwaypoint` = 1 WHERE `guid` = 6
 DELETE FROM `creature` WHERE `guid` = 66737;
 
 DELETE FROM `creature_addon` WHERE `guid` = 66736;
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (66736, 667360, 0, 0, 0, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` = 667360;
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (667360, 1, -2110.05, 5512.4, 49.4188, 5.98648, 60000, 0, 0, 100, 0),
 (667360, 2, -2118.73, 5500.46, 50.256, NULL, 0, 0, 0, 100, 0),
@@ -85,7 +85,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (667360, 13, -2110.05, 5512.4, 49.4188, NULL, 0, 0, 0, 100, 0);
 
 DELETE FROM `creature` WHERE `guid` IN (@CGUID+17, @CGUID+18, @CGUID+19, @CGUID+20, @CGUID+23, @CGUID+24, @CGUID+25, @CGUID+26);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
 `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 --
 (@CGUID+17, 18547, 530, 0, 0, 1, 1, 1, -2107.36, 5641.19, 50.31, 3.25, 300, 0, 0, 3611, 5875, 0, 0, 0, 0, '', 0, 0, NULL), -- Scryer Arcanist
@@ -106,7 +106,7 @@ DELETE FROM `creature` WHERE `guid` IN (68495, 68496, 68497, 68498, 68492, 68493
 
 DELETE FROM `creature` WHERE `id` IN (19346, 19377, 19378);
 DELETE FROM `creature` WHERE `guid` BETWEEN @CGUID+1 AND @CGUID+12;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
 `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 --
 (68962,     19346, 530, 0, 0, 1, 1, 0, -1764.84, 5726.25, 126.538, 4.27606, 300, 0, 0, 6986, 0, 2, 0, 0, 0, '', 0, 0, NULL),      -- Harbring Erothem
@@ -128,7 +128,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 
 DELETE FROM `creature_addon` WHERE `guid` IN (68962, 69109, 69110);
 DELETE FROM `creature_addon` WHERE `guid` BETWEEN @CGUID+1 AND @CGUID+12;
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
 --
 (68962,       689620, 0, 0, 1, 0, 0, ''),
 (69109,       691090, 0, 0, 1, 0, 0, ''),
@@ -149,7 +149,7 @@ INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `e
 
 DELETE FROM `waypoint_data` WHERE `id` IN (689620, 691090, 691100);
 DELETE FROM `waypoint_data` WHERE `id` BETWEEN @WPID+10 AND @WPID+120;
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (689620, 1, -1764.84, 5726.25, 126.538, 4.27606, 50000, 0, 0, 100, 0), -- Harbring Erothem
 (689620, 2, -1764.84, 5726.25, 126.538, 4.27606, 70000, 0, 0, 100, 0),
@@ -379,7 +379,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN (19153, 19337, 19390);
 DELETE FROM `smart_scripts` WHERE `entryorguid` IN (-672001, -672002, -672003, -672004, -672005, -672006, -672007, -672008, -672009, -672010, -672011, -672012);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, 
 `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
@@ -451,7 +451,7 @@ UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN (19346, 193
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN (19346, 19377, 19378);
 DELETE FROM `smart_scripts` WHERE `source_type` = 9 AND `entryorguid` IN (1934600, 1934601, 1934602, 1937700, 1937800, 1937801);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -524,7 +524,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 (1937801, 9, 6, 0, 0, 0, 100, 1, 10000, 10000, 0, 0, 0, 0, 1, 8, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,         'Script9 - Anchorite Nindumen Say Line 8');
 
 DELETE FROM `creature_text` WHERE `CreatureID` IN (18537, 19346, 19377);
-INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
+REPLACE INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
 (19346, 0, 0, 'Anchorite Nindumen, I have a request to make of you.', 12, 0, 100, 0, 0, 0, 16506, 0, 'Harbinger Erothem'),
 (19346, 1, 0, 'We\'ve just sent another inexperienced squad into Nagrand. Might you offer a prayer for them?', 12, 0, 100, 0, 0, 0, 16507, 0, 'Harbinger Erothem'),
 (19346, 2, 0, 'May it be so.', 12, 0, 100, 0, 0, 0, 16780, 0, 'Harbinger Erothem'),

@@ -6,7 +6,7 @@ UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN 
 (9045, 9096, 9817, 9818, 9819, 10083, 10317, 10318, 10319, 10366, 10371, 10372, 10509, 10814, 10899);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -100,7 +100,7 @@ DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN
 (9045, 9097, 9098, 9197, 9198, 9199, 9200, 9201, 9216, 9217, 9218, 9219, 9236, 9239, 9240, 9241, 9257, 9258, 9259, 
 9260, 9261, 9262, 9263, 9264, 9265, 9266, 9267, 9268, 9269, 9416, 9583, 9596, 9692, 9693, 9716, 9717, 10374, 10376, 10596);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -254,7 +254,7 @@ DELETE FROM `creature` WHERE `guid` IN
 DELETE FROM `creature` WHERE `guid` BETWEEN @CGUID+14 AND @CGUID+19;
 DELETE FROM `creature` WHERE `guid` BETWEEN @CGUID+31 AND @CGUID+36;
 
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
 (43560, 9241, 229, 0, 0, 1, 1, 1, -73.1897, -517.357, -7.14292, 0.00402808, 10800, 0, 0, 8097, 0, 0, 0, 0, 0, '', 0, 0, NULL),
 (43764, 9259, 229, 0, 0, 1, 1, 1, -61.9859, -406.51, -18.9337, 5.27176, 10800, 0, 0, 8097, 0, 0, 0, 0, 0, '', 0, 0, NULL),
@@ -332,7 +332,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 
 -- sitting / sleeping
 DELETE FROM `creature_addon` WHERE `guid` IN (43111, 43762, 43765, 44311, 44312, 44321, 44331, 44333, 44334, 45796, 52128, 52131);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (43111, 0, 0, 3, 1, 0, 0, NULL), -- sleeping
 (43762, 0, 0, 1, 1, 0, 0, NULL), -- sitting
 (43765, 0, 0, 3, 1, 0, 0, NULL), -- sleeping
@@ -349,7 +349,7 @@ INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `e
 UPDATE `creature_template` SET `flags_extra` = 134217728 WHERE `entry` IN (9259, 9261, 9583, 9693, 9717); -- DONT_OVERRIDE_SAI_ENTRY (134217728)
 
 DELETE FROM `smart_scripts` WHERE `entryorguid` IN (-43111, -43765, -44311, -44312, -44333, -44334, -45796, -52128, -52131);
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -382,25 +382,25 @@ DELETE FROM `waypoint_data` WHERE `id` = 926800;
 -- Bannok Grimaxe (9596), spawn locations
 DELETE FROM `creature` WHERE `guid` IN (44020, 44318); -- creatures placed in Bannok Grimaxe's spawn locations by AC
 DELETE FROM `creature` WHERE `id` IN (9596);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
 (@CGUID+11, 9596, 229, 0, 0, 1, 1, 1, -26.6918, -428.557, -18.935, 2.25881, 10800, 0, 0, 8883, 0, 0, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+12, 9596, 229, 0, 0, 1, 1, 1, -74.0576, -406.988, -18.935, 5.22526, 10800, 0, 0, 8883, 0, 0, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+13, 9596, 229, 0, 0, 1, 1, 1, -88.41, -463.18, -18.76, 2.93,        10800, 0, 0, 8883, 0, 0, 0, 0, 0, '', 0, 0, NULL);
 
 DELETE FROM `pool_creature` WHERE `pool_entry` IN (601051);
-INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
+REPLACE INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
 (@CGUID+11, 601051, 0, 'Bannok Grimaxe'),
 (@CGUID+12, 601051, 0, 'Bannok Grimaxe'),
 (@CGUID+13, 601051, 0, 'Bannok Grimaxe');
 
 DELETE FROM `pool_template` WHERE `entry` IN (601051);
-INSERT INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
+REPLACE INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
 (601051, 1, 'Bannok Grimaxe - LBRS');
 
 
 DELETE FROM `gameobject` WHERE `id` IN (175334, 175785);
-INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `rotation0`, `rotation1`, `rotation2`, `rotation3`, `spawntimesecs`, `animprogress`, `state`, `ScriptName`, `VerifiedBuild`, `Comment`) VALUES 
 --
 (@OGUID+1,  175334, 229, 0, 0, 1, 1, 33.7166, -466.067, -18.4651, 4.7473, 0, 0, -1, 0, 120, 0, 1, '', 0, NULL),   -- Bijou's Belongings
@@ -421,7 +421,7 @@ INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, 
 (@OGUID+24, 175785, 229, 0, 0, 1, 1, -16.1217, -492.558, 90.6585, 0, 0, 0, -1, 0, 300, 0, 1, '', 0, NULL);
 
 DELETE FROM `pool_gameobject` WHERE `guid` BETWEEN @OGUID+1 AND @OGUID+24;
-INSERT INTO `pool_gameobject` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
+REPLACE INTO `pool_gameobject` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
 (@OGUID+1,  601017, 0, 'Bijou\'s Belongings'),
 (@OGUID+2,  601017, 0, 'Bijou\'s Belongings'),
 (@OGUID+3,  601017, 0, 'Bijou\'s Belongings'),
@@ -440,13 +440,13 @@ INSERT INTO `pool_gameobject` (`guid`, `pool_entry`, `chance`, `description`) VA
 (@OGUID+24, 601018, 0, 'Important Blackrock Documents');
 
 DELETE FROM `pool_template` WHERE `entry` IN (601017, 601018);
-INSERT INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
+REPLACE INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
 (601017, 1, 'Bijou\'s Belongings - LBRS'),
 (601018, 1, 'Important Blackrock Documents - LBRS');
 
 -- fix missing patrols
 DELETE FROM `creature` WHERE `guid` IN (@CGUID+1, @CGUID+2, @CGUID+3, @CGUID+4, @CGUID+5, @CGUID+6, @CGUID+7, @CGUID+8,  @CGUID+9, @CGUID+21, @CGUID+22);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
 --
 (@CGUID+1, 9583, 229, 0, 0, 1, 1, 1, -138.983, -369.133, 58.079,  0, 10800, 0, 1, 8883, 0, 2, 0, 0, 0, '', 0, 0, NULL), -- Bloodaxe Veteran
@@ -464,7 +464,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (@CGUID+22, 9260, 229, 0, 0, 1, 1, 1, -139.017, -495.164, -18.4564, 0, 10800, 0, 1, 8352, 0, 2, 0, 0, 0, '', 0, 0, NULL); -- Firebrand Legionnaire
 
 DELETE FROM `creature_formations` WHERE `leaderGUID` IN (@CGUID+4, @CGUID+7);
-INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES
+REPLACE INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES
 (@CGUID+4, @CGUID+4, 0, 0, 515, 0, 0),
 (@CGUID+4, @CGUID+5, 3, 135, 515, 0, 0),
 (@CGUID+4, @CGUID+6, 3, 225, 515, 0, 0),
@@ -474,7 +474,7 @@ INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, 
 (@CGUID+7, @CGUID+9, 3, 225, 515, 0, 0);
 
 DELETE FROM `creature_addon` WHERE `guid` IN (@CGUID+1, @CGUID+2, @CGUID+3, @CGUID+4, @CGUID+7, @CGUID+21, @CGUID+22);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (@CGUID+1,  @WPID+10,  0, 0, 1, 0, 0, NULL),
 (@CGUID+2,  @WPID+20,  0, 0, 1, 0, 0, NULL),
 (@CGUID+3,  @WPID+30,  0, 0, 1, 0, 0, NULL),
@@ -484,7 +484,7 @@ INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `e
 (@CGUID+22, @WPID+220, 0, 0, 1, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` IN (@WPID+10, @WPID+20, @WPID+30, @WPID+40, @WPID+70, @WPID+210, @WPID+220);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (@WPID+10, 1, -138.983, -369.133, 58.079, 3.13493, 0, 0, 0, 100, 0),    -- Bloodaxe Veteran 1
 (@WPID+10, 2, -146.064, -369.086, 61.2936, 3.13493, 0, 0, 0, 100, 0),
@@ -591,7 +591,7 @@ UPDATE `gameobject` SET `animprogress` = 100, `state` = 1 WHERE `id` = 175533; -
 
 /* Bodley - Dungeon Set upgrade quest line */
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 19 AND `ConditionTypeOrReference` = 8 AND `SourceEntry` IN (8985);
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 --
 (19, 0, 8985, 0, 0, 8, 0, 8970, 0, 0, 0, 0, 0, '', 'Quest \'More Components of Importance\' requires \'I See Alcaz Island In Your Future...\' to be completed');

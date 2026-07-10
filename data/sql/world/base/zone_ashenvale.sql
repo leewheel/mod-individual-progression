@@ -11,7 +11,7 @@ DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN
 3917, 3919, 3921, 3922, 3923, 3924, 3925, 3926, 3931, 3940, 3941, 3942, 3943, 3944, 3987, 4054, 4273, 4619, 5314, 6072, 6073, 6115, 
 10640, 10641, 10642, 10643, 10644, 10647, 11680, 11681, 11682, 11683, 11697, 12037, 12474, 12475, 12476, 12676, 12677, 12678, 12759, 12856, 12858, 12896, 12897, 17300);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -325,7 +325,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 
 
 DELETE FROM `creature_text` WHERE `CreatureID` = 3816;
-INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
+REPLACE INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
 (3816, 0, 0, '%s charges!', 16, 0, 100, 0, 0, 0, 37643, 0, 'Wild Buck');
 
 UPDATE `creature` SET `spawntimesecs` = 75600, `MovementType` = 1, `wander_distance` = 5 WHERE `id` = 10642; -- Eck'alom
@@ -339,7 +339,7 @@ UPDATE `creature_loot_template` SET `Chance` = 4 WHERE `Item` = 5366;
 UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` = 12818;
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN (12818);
 DELETE FROM `smart_scripts` WHERE `source_type` = 9 AND `entryorguid` IN (1281801, 1281802);
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`,
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`,
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`,
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`,
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
@@ -372,7 +372,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 (1281802, 9, 2, 0, 0, 0, 100, 0, 4000, 4000, 0, 0, 0, 0, 12, 3926, 7, 60000, 1, 1, 0, 8, 0, 0, 0, 0, 3495.9, -526.57, 188.322, 4.62782,   'Ruul Snowhoof - Actionlist - Summon Creature Thistlefur Pathfinder');
 
 DELETE FROM `waypoints` WHERE `entry` = 12818;
-INSERT INTO `waypoints` (`entry`, `pointid`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `point_comment`) VALUES
+REPLACE INTO `waypoints` (`entry`, `pointid`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `point_comment`) VALUES
 (12818, 1, 3339.1, -693.613, 162.218, NULL, 0, 'Ruul Snowhoof'),
 (12818, 2, 3343.94, -682.272, 163.039, NULL, 0, 'Ruul Snowhoof'),
 (12818, 3, 3381.5, -659.834, 162.487, NULL, 0, 'Ruul Snowhoof'),
@@ -397,7 +397,7 @@ UPDATE `creature_template` SET `speed_run` = 0.8 WHERE `entry` IN (12858, 12859)
 -- formation not working for some reason, I don't understand it.
 -- when disabling the follow, the Splintertree Raiders don't move at all.
 /* DELETE FROM `creature_formations` WHERE `leaderGUID` IN (32373);
-INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES 
+REPLACE INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES 
 (32373, 32373, 0, 0, 515, 0, 0),       -- https://www.youtube.com/watch?v=RYpuzb5uYx0
 (32373, 32380, 4, 135, 515, 0, 0),
 (32373, 32378, 4, 180, 515, 0, 0),
@@ -405,7 +405,7 @@ INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, 
 
 UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN (12858, 12859);
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN (12858, 12859);
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 

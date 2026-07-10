@@ -7,7 +7,7 @@ DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN
 (8521, 8522, 8523, 8524, 8525, 8527, 8528, 8529, 8531, 8540, 8541, 8542, 8543, 8546, 8547, 8548, 8550, 8553, 8556, 8558, 8560, 8561, 8562, 8563, 8564, 8565, 8596, 8597, 8600, 8601, 8602, 8603, 8605, 8606, 8607,
 9447, 9448, 9449, 9450, 9451, 9452, 10817, 10821, 10822, 10823, 10824, 10825, 10826, 10827, 11290, 11878, 11885, 11896, 11897, 12248, 12250, 12322, 12337, 13118, 16184);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -195,7 +195,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 
 -- fix spawn locations, respawn and movement
 DELETE FROM `creature` WHERE `id` IN (10822, 10823, 10827);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
 `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 (86607,  10822, 0, 0, 0, 1, 1, 1, 3314, -4855.85, 167.322, 2.50322, 18000, 5, 0, 3876, 0, 1, 0, 0, 0, '', 0, 0,        'Warlord Thresh\'jin'),
 (695028, 10822, 0, 0, 0, 1, 1, 1, 3221.36, -4710.45, 158.034, 5.60277, 18000, 0, 0, 3876, 0, 0, 0, 0, 0, '', 0, 0,     'Warlord Thresh\'jin'), -- https://www.youtube.com/watch?v=1fU3H5dqXZI
@@ -206,14 +206,14 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (86755,  10827, 0, 0, 0, 1, 1, 1, 2606.22, -5504.18, 158.046, 0.176863, 18000, 0, 0, 2550, 5206, 0, 0, 0, 0, '', 0, 0, 'Deathspeaker Selendre'); -- https://www.youtube.com/watch?v=qFI1e0g6Rwg
 
 DELETE FROM `pool_creature` WHERE `pool_entry` IN (601014, 601015);
-INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
+REPLACE INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
 (86607,  601014, 0, 'Warlord Thresh\'jin - EPL'),
 (695028, 601014, 0, 'Warlord Thresh\'jin - EPL'),
 (86625,  601015, 0, 'Zul\'Brin Warpbranch - EPL'),
 (695030, 601015, 0, 'Zul\'Brin Warpbranch - EPL');
 
 DELETE FROM `pool_template` WHERE `entry` IN (601014, 601015);
-INSERT INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
+REPLACE INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
 (601014, 1, 'Warlord Thresh\'jin - EPL'),
 (601015, 1, 'Zul\'Brin Warpbranch - EPL');
     
@@ -223,7 +223,7 @@ UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Nathanos Blightcal
 -- Hide Argent Dawn token quests until Naxx40
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 15 AND `SourceGroup` = 3461 AND `ConditionValue1` = 66006;
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 19 AND `SourceGroup` = 0 AND `ConditionValue1` = 66006 AND `SourceEntry` BETWEEN 9221 AND 9228;
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 --
 (15, 3461, 2, 0, 0, 8, 0, 66006, 0, 0, 0, 0, 0, '', 'Miranda Breechlock - only show Gossip Menu Insignia Cost after player reaches Naxx40'),

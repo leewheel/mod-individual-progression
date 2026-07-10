@@ -7,7 +7,7 @@ DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN
 (7428, 7429, 7430, 7431, 7432, 7433, 7434, 7436, 7437, 7438, 7439, 7440, 7441, 7442, 7443, 7444, 7445, 7446, 7447, 7448, 7449, 7450, 7451, 7452, 7453, 7454, 7455, 7456, 7457, 7458, 7459, 
 7460, 7461, 7462, 7463, 7523, 7524, 10684, 10196, 10198, 10199, 10200, 10201, 10659, 10660, 10661, 10662, 10663, 10664, 10737, 10738, 10741, 10806, 10807, 10916, 14372);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -158,7 +158,7 @@ UPDATE `creature` SET `spawntimesecs` = 75600                                   
 
 
 DELETE FROM `creature_text` WHERE `CreatureID` IN (7451, 7454, 10200);
-INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
+REPLACE INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
 (7451,  0, 0, '%s becomes enraged!', 16, 0, 100, 0, 0, 0, 10677, 0, 'Raging Owlbeast enrage at 30%'),
 (7454,  0, 0, '%s becomes enraged!', 16, 0, 100, 0, 0, 0, 10677, 0, 'Berserk Owlbeast enrage at 30%'),
 (10200, 0, 0, '%s becomes enraged!', 16, 0, 100, 0, 0, 0, 10677, 0, 'Rak shiri enrage at 30%');

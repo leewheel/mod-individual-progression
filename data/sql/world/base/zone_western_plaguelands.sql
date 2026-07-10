@@ -6,7 +6,7 @@ UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN 
 (1783, 1784, 1785, 1787, 1788, 1789, 1791, 1793, 1794, 1795, 1796, 1802, 1804, 1805, 1806, 1808, 1812, 1813, 1815, 1816, 1817, 1821, 1822, 1824, 1826, 1827, 1831, 1832, 1833, 1834, 1835, 
 1839, 1844, 1845, 1846, 1847, 1848, 1850, 1851, 1852, 1883, 1884, 1885, 4472, 4474, 4493, 4494, 10580, 10605, 10801, 10836, 10943, 10996, 11022, 11023,  11611, 11613, 11614, 11873);
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -190,7 +190,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 
 
 DELETE FROM `creature_text` WHERE `CreatureID` IN (1832, 10943, 10996, 11611);
-INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
+REPLACE INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
 (1832, 0, 0, 'You carry the taint of the Scourge.  Prepare to enter the Twisting Nether.',                  12, 7, 100, 0, 0, 0, 2625, 0, 'Scarlet Magus'),
 (1832, 0, 1, 'There is no escape for you.  The Crusade shall destroy all who carry the Scourge\'s taint.',  12, 7, 100, 0, 0, 0, 2626, 0, 'Scarlet Magus'),
 (1832, 0, 2, 'The Light condemns all who harbor evil.  Now you will die!',                                  12, 7, 100, 0, 0, 0, 2627, 0, 'Scarlet Magus'),
@@ -210,14 +210,14 @@ DELETE FROM `creature_addon` WHERE `guid` = 52640;
 
 -- Lord Maldazzar, fix spawn locations, respawn and movement
 DELETE FROM `creature` WHERE `id` = 1848;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
 `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 (52725,  1848, 0, 0, 0, 1, 1, 1, 1061.03, -1912.26, 31.1128, 4.71571, 18000, 5, 0, 2915, 2163, 1, 0, 0, 0, '', 0, 0, NULL),
 (695026, 1848, 0, 0, 0, 1, 1, 1, 1123.73, -1714.49, 62.33, 0, 18000, 5, 0, 2915, 2163, 1, 0, 0, 0, '', 0, 0, NULL),          -- https://www.youtube.com/watch?v=pCwj-bglyV8
 (695027, 1848, 0, 0, 0, 1, 1, 1, 1071.86, -1766.24, 62.0725, 0.388769, 18000, 5, 0, 2915, 2163, 1, 0, 0, 0, '', 0, 0, NULL); -- https://www.youtube.com/watch?v=flejEU2n5EQ
 
 DELETE FROM `pool_creature` WHERE `pool_entry` = 368;
-INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
+REPLACE INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
 (52725,  368, 0, 'Lord Maldazzar Crypt'),
 (695026, 368, 0, 'Lord Maldazzar Sorrow hill'),
 (695027, 368, 0, 'Lord Maldazzar Sorrow hill');

@@ -17,7 +17,7 @@ SET @Ecton      := 125178;
 SET @Dirge      := 126393;
 
 DELETE FROM `creature_template` WHERE `entry` IN (@Stonehide, @Zarg, @Hola, @Bork, @Rachel, @Biggins, @Karter, @Clate, @Vixton, @Krixel, @Leeni, @Evee, @Ecton, @Dirge);
-INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `name`, `subname`, `IconName`, `gossip_menu_id`, 
+REPLACE INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `name`, `subname`, `IconName`, `gossip_menu_id`, 
 `minlevel`, `maxlevel`, `exp`, `faction`, `npcflag`, `speed_walk`, `speed_run`, `speed_swim`, `speed_flight`, `detection_range`, `rank`, `dmgschool`, `DamageModifier`, 
 `BaseAttackTime`, `RangeAttackTime`, `BaseVariance`, `RangeVariance`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, 
 `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `HoverHeight`, `HealthModifier`, `ManaModifier`, `ArmorModifier`, `ExperienceModifier`, `RacialLeader`, `movementId`, 
@@ -41,7 +41,7 @@ INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entr
 (@Dirge,0,0,0,0,0,'Captain Dirgehammer','Armor Quartermaster','',0,65,65,0,1078,4224,1,1.14286,1,1,18,0,0,2.2,2000,2000,1,1,1,0,2048,0,0,7,0,0,0,0,0,0,0,0,'',0,1,2,1,1.65,1,0,0,1,0,0,'',0);
 
 DELETE FROM `creature_template_addon` WHERE `entry` IN (@Bork, @Biggins, @Karter, @Clate, @Vixton, @Dirge, @Rachel);
-INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
+REPLACE INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
 (@Bork, 0, 0, 0, 0, 0, 0, NULL),
 (@Biggins, 0, 0, 0, 1, 0, 0, NULL),
 (@Karter, 0, 0, 0, 0, 0, 0, NULL),
@@ -51,7 +51,7 @@ INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `b
 (@Rachel, 0, 0, 0, 0, 0, 0, '5301');
 
 DELETE FROM `creature_equip_template` WHERE `CreatureID` IN (@Bork, @Biggins, @Clate, @Dirge, @Hola, @Rachel, @Stonehide, @Zarg);
-INSERT INTO `creature_equip_template` (`CreatureID`, `ID`, `ItemID1`, `ItemID2`, `ItemID3`, `VerifiedBuild`) VALUES 
+REPLACE INTO `creature_equip_template` (`CreatureID`, `ID`, `ItemID1`, `ItemID2`, `ItemID3`, `VerifiedBuild`) VALUES 
 (@Bork, 1, 10611, 0, 0, 18019),
 (@Biggins, 1, 12744, 0, 0, 18019),
 (@Clate, 1, 5288, 0, 0, 18019),
@@ -62,7 +62,7 @@ INSERT INTO `creature_equip_template` (`CreatureID`, `ID`, `ItemID1`, `ItemID2`,
 (@Zarg, 1, 21580, 0, 0, 18019);
 
 DELETE FROM `creature_template_locale` WHERE `entry` IN (@Stonehide, @Zarg, @Hola, @Bork, @Rachel, @Biggins, @Karter, @Clate, @Vixton, @Krixel, @Leeni, @Evee, @Ecton, @Dirge);
-INSERT INTO `creature_template_locale` (`entry`, `locale`, `Name`, `Title`, `VerifiedBuild`) VALUES
+REPLACE INTO `creature_template_locale` (`entry`, `locale`, `Name`, `Title`, `VerifiedBuild`) VALUES
 --
 (@Stonehide, 'deDE', 'Kriegerheldin Steinfell', 'Rüstmeisterin für Zubehör', 18019),
 (@Stonehide, 'esES', 'Valiente Piel Pétrea', 'Intendente de accesorios', 18019),
@@ -191,7 +191,7 @@ INSERT INTO `creature_template_locale` (`entry`, `locale`, `Name`, `Title`, `Ver
 (@Dirge, 'zhTW', '戴格哈默上尉', '護甲軍需官', 18019);
 
 DELETE FROM `creature_template_model` WHERE `CreatureID` IN (@Stonehide, @Zarg, @Hola, @Bork, @Rachel, @Biggins, @Karter, @Clate, @Vixton, @Krixel, @Leeni, @Evee, @Ecton, @Dirge);
-INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`, `DisplayScale`, `Probability`, `VerifiedBuild`) VALUES
+REPLACE INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`, `DisplayScale`, `Probability`, `VerifiedBuild`) VALUES
 --
 (@Stonehide, 0, 12675, 1, 1, 0),
 (@Zarg, 0, 12676, 1, 1, 0),
@@ -215,12 +215,12 @@ INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`,
 
 -- Brave Stonehide <Officer Accessories Quartermaster> - Vanilla
 DELETE FROM `npc_vendor` WHERE `entry` = @Stonehide;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 (@Stonehide, 15199, 1006), (@Stonehide, 18607, 386), (@Stonehide, 18839, 2354), (@Stonehide, 18841, 2354);
 
 -- Brave Stonehide <Officer Accessories Quartermaster> - TBC
 DELETE FROM `npc_vendor` WHERE `entry` = 12793;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (12793, 15197, 1007), (12793, 15199, 1006), (12793, 15200, 838),  (12793, 16335, 491),  (12793, 16341, 986),  (12793, 16486, 492),  (12793, 16497, 492),  (12793, 16532, 492), 
 (12793, 18427, 1050), (12793, 18428, 930),  (12793, 18429, 492),  (12793, 18430, 931),  (12793, 18432, 931),  (12793, 18434, 492),  (12793, 18435, 931),  (12793, 18436, 931), 
 (12793, 18437, 931),  (12793, 18461, 774),  (12793, 18607, 386),  (12793, 18834, 634),  (12793, 18839, 460),  (12793, 18841, 460),  (12793, 18845, 634),  (12793, 18846, 634), 
@@ -232,27 +232,27 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Stone Guard Zarg <Food and Drink>, Vanilla
 DELETE FROM `npc_vendor` WHERE `entry` = @Zarg; 
-INSERT INTO `npc_vendor` (`entry`, `item`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`) VALUES
 (@Zarg, 117),  (@Zarg, 159),  (@Zarg, 1179), (@Zarg, 1205), (@Zarg, 1645), (@Zarg, 1708), (@Zarg, 2287), (@Zarg, 2593), (@Zarg, 2594), (@Zarg, 2595), (@Zarg, 2596), (@Zarg, 2723),
 (@Zarg, 3770), (@Zarg, 3771), (@Zarg, 4536), (@Zarg, 4537), (@Zarg, 4538), (@Zarg, 4539), (@Zarg, 4540), (@Zarg, 4541), (@Zarg, 4542), (@Zarg, 4544), (@Zarg, 4599), (@Zarg, 4601),
 (@Zarg, 4602), (@Zarg, 4604), (@Zarg, 4605), (@Zarg, 4606), (@Zarg, 4607), (@Zarg, 4608), (@Zarg, 8766), (@Zarg, 8948), (@Zarg, 8950), (@Zarg, 8952), (@Zarg, 8953);
 
 -- Stone Guard Zarg <Weapons Quartermaster>, TBC
 DELETE FROM `npc_vendor` WHERE `entry` = 12794;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 (12794, 16345, 2291), (12794, 18826, 2291), (12794, 18828, 2291), (12794, 18831, 2257), (12794, 18835, 2291), (12794, 18837, 2291), (12794, 18840, 2291), 
 (12794, 18844, 2291), (12794, 18848, 2291), (12794, 18860, 2291), (12794, 18866, 2291), (12794, 18868, 2257), (12794, 18871, 2257), (12794, 18874, 2257), 
 (12794, 18877, 2257), (12794, 23464, 2291), (12794, 23465, 2257), (12794, 23466, 2291), (12794, 23467, 2291), (12794, 23468, 2291), (12794, 23469, 2291);
 
 -- First Sergeant Hola'mahi <Reagent Vendor> - Vanilla
 DELETE FROM `npc_vendor` WHERE `entry` = @Hola; 
-INSERT INTO `npc_vendor` (`entry`, `item`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`) VALUES
 (@Hola, 5565),  (@Hola, 16583), (@Hola, 17020), (@Hola, 17021), (@Hola, 17026), (@Hola, 17028), (@Hola, 17029), (@Hola, 17030),
 (@Hola, 17031), (@Hola, 17032), (@Hola, 17033), (@Hola, 17034), (@Hola, 17035), (@Hola, 17036), (@Hola, 17037), (@Hola, 17038);
 
 -- First Sergeant Hola'mahi <Armor Quartermaster> - TBC
 DELETE FROM `npc_vendor` WHERE `entry` = 12795;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (12795, 16533, 464), (12795, 16534, 542), (12795, 16535, 463), (12795, 16536, 465), (12795, 16539, 465), (12795, 16540, 541), (12795, 16541, 463), (12795, 16542, 464), (12795, 16543, 542), (12795, 16544, 465), 
 (12795, 16545, 465), (12795, 16548, 541), (12795, 16549, 463), (12795, 16550, 464), (12795, 16551, 465), (12795, 16552, 542), (12795, 16554, 465), (12795, 16555, 541), (12795, 16558, 465), (12795, 16560, 541), 
 (12795, 16561, 464), (12795, 16562, 465), (12795, 16563, 463), (12795, 16564, 542), (12795, 16565, 463), (12795, 16566, 464), (12795, 16567, 542), (12795, 16568, 465), (12795, 16569, 465), (12795, 16571, 541), 
@@ -267,16 +267,16 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Raider Bork <Mount Quartermaster>
 DELETE FROM `npc_vendor` WHERE `entry`= 12796;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 (12796, 18245, 423), (12796, 18246, 423), (12796, 18247, 423), (12796, 18248, 423), (12796, 34129, 423);
 
 DELETE FROM `npc_vendor` WHERE `entry`= @Bork;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 (@Bork, 18245, 423), (@Bork, 18246, 423), (@Bork, 18247, 423), (@Bork, 18248, 423);
 
 -- Sergeant Kien <Armor Quartermaster> - TBC Season 2
 DELETE FROM `npc_vendor` WHERE `entry` = 23447;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 (23447, 28805, 2259), (23447, 28806, 2261), (23447, 28807, 2263), (23447, 28808, 2265), (23447, 28809, 2267), (23447, 28811, 2261), (23447, 28812, 2263), (23447, 28813, 2265), 
 (23447, 28814, 2267), (23447, 28815, 2259), (23447, 28817, 2261), (23447, 28818, 2263), (23447, 28819, 2265), (23447, 28820, 2267), (23447, 28821, 2259), (23447, 28831, 2259), 
 (23447, 28832, 2261), (23447, 28833, 2263), (23447, 28834, 2265), (23447, 28835, 2267), (23447, 28836, 2261), (23447, 28837, 2263), (23447, 28838, 2265), (23447, 28839, 2267),
@@ -297,21 +297,21 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Sergeant Thunderhorn <Weapons Quartermaster> - vanilla
 DELETE FROM `npc_vendor` WHERE `entry` = 14581;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 (14581, 16345, 2291), (14581, 18826, 2291), (14581, 18828, 2291), (14581, 18831, 2257), (14581, 18835, 2291), (14581, 18837, 2291), (14581, 18840, 2291), 
 (14581, 18844, 2291), (14581, 18848, 2291), (14581, 18860, 2291), (14581, 18866, 2291), (14581, 18868, 2257), (14581, 18871, 2257), (14581, 18874, 2257), 
 (14581, 18877, 2257), (14581, 23464, 2291), (14581, 23465, 2257), (14581, 23466, 2291), (14581, 23467, 2291), (14581, 23468, 2291), (14581, 23469, 2291);
 
 -- Sergeant Thunderhorn <Weapons Quartermaster> - TBC
 DELETE FROM `npc_vendor` WHERE `entry` = 26396;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 (26396, 28293, 2237), (26396, 28917, 2237), (26396, 28918, 2237), (26396, 28919, 2237), (26396, 28920, 2239), (26396, 28921, 2240), (26396, 28922, 2240), 
 (26396, 28923, 2237), (26396, 28924, 2240), (26396, 28925, 2239), (26396, 28926, 2240), (26396, 28928, 2239), (26396, 28929, 2240), (26396, 28930, 2240), 
 (26396, 28931, 2238), (26396, 28933, 2237), (26396, 28935, 2237), (26396, 28937, 2239), (26396, 28938, 2242), (26396, 28939, 2242);
 
 -- Lady Palanseer <Armor Quartermaster> - vanilla
 DELETE FROM `npc_vendor` WHERE `entry`= 12792;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 -- boot 427, gloves 428, helm 444, pants 653, chest 652, shoulders 427
 (12792, 16485, 427), (12792, 16487, 428), (12792, 16489, 444), (12792, 16490, 653), (12792, 16491, 652), (12792, 16492, 427), -- mages, pre naxx
 (12792, 16494, 427), (12792, 16496, 428), (12792, 16501, 427), (12792, 16502, 653), (12792, 16503, 444), (12792, 16504, 652), -- druid, pre naxx
@@ -341,7 +341,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Lady Palanseer <Armor Quartermaster> - TBC Season 1
 DELETE FROM `npc_vendor` WHERE `entry`= 26397;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 (26397, 28805, 2259), (26397, 28806, 2261), (26397, 28807, 2263), (26397, 28808, 2265), (26397, 28809, 2267), (26397, 28811, 2261), (26397, 28812, 2263), (26397, 28813, 2265), 
 (26397, 28814, 2267), (26397, 28815, 2259), (26397, 28817, 2261), (26397, 28818, 2263), (26397, 28819, 2265), (26397, 28820, 2267), (26397, 28821, 2259), (26397, 28831, 2259), 
 (26397, 28832, 2261), (26397, 28833, 2263), (26397, 28834, 2265), (26397, 28835, 2267), (26397, 28836, 2261), (26397, 28837, 2263), (26397, 28838, 2265), (26397, 28839, 2267),
@@ -367,7 +367,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Lady Palanseer <Armor Quartermaster> - TBC Season 3
 DELETE FROM `npc_vendor` WHERE `entry`= 34039;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 (34039, 28805, 2259), (34039, 28806, 2261), (34039, 28807, 2263), (34039, 28808, 2265), (34039, 28809, 2267), (34039, 28811, 2261), (34039, 28812, 2263), (34039, 28813, 2265), 
 (34039, 28814, 2267), (34039, 28815, 2259), (34039, 28817, 2261), (34039, 28818, 2263), (34039, 28819, 2265), (34039, 28820, 2267), (34039, 28821, 2259), (34039, 28831, 2259), 
 (34039, 28832, 2261), (34039, 28833, 2263), (34039, 28834, 2265), (34039, 28835, 2267), (34039, 28836, 2261), (34039, 28837, 2263), (34039, 28838, 2265), (34039, 28839, 2267),
@@ -396,7 +396,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Lady Palanseer <Armor Quartermaster> - TBC Season 4
 DELETE FROM `npc_vendor` WHERE `entry`= 34040;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 (34040, 28805, 2259), (34040, 28806, 2261), (34040, 28807, 2263), (34040, 28808, 2265), (34040, 28809, 2267), (34040, 28811, 2261), (34040, 28812, 2263), (34040, 28813, 2265), 
 (34040, 28814, 2267), (34040, 28815, 2259), (34040, 28817, 2261), (34040, 28818, 2263), (34040, 28819, 2265), (34040, 28820, 2267), (34040, 28821, 2259), (34040, 28831, 2259), 
 (34040, 28832, 2261), (34040, 28833, 2263), (34040, 28834, 2265), (34040, 28835, 2267), (34040, 28836, 2261), (34040, 28837, 2263), (34040, 28838, 2265), (34040, 28839, 2267),
@@ -428,12 +428,12 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Master Sergeant Biggins <Officer Accessories Quartermaster> - Vanilla
 DELETE FROM `npc_vendor` WHERE `entry` = @Biggins;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 (@Biggins, 15198, 1006), (@Biggins, 18606, 386), (@Biggins, 18839, 2354), (@Biggins, 18841, 2354);
 
 -- Master Sergeant Biggins <Officer Accessories Quartermaster> - TBC
 DELETE FROM `npc_vendor` WHERE `entry` = 12781;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 (12781, 15196, 1007), (12781, 15198, 1006), (12781, 16342, 774),  (12781, 18440, 1050), (12781, 18441, 986),  (12781, 18442, 838),  (12781, 18443, 491),  (12781, 18444, 930),  (12781, 18445, 492), 
 (12781, 18447, 931),  (12781, 18448, 492),  (12781, 18449, 931),  (12781, 18452, 492),  (12781, 18453, 931),  (12781, 18454, 492),  (12781, 18455, 931),  (12781, 18456, 492),  (12781, 18457, 931), 
 (12781, 18606, 386),  (12781, 18839, 460),  (12781, 18841, 460),  (12781, 18854, 634),  (12781, 18856, 634),  (12781, 18857, 634),  (12781, 18858, 634),  (12781, 18859, 634),  (12781, 18862, 634), 
@@ -444,31 +444,31 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Officer Areyn <Accessories Quartermaster>
 DELETE FROM `npc_vendor` WHERE `entry` = 12805;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (12805, 18445, 492), (12805, 18447, 931), (12805, 18448, 492), (12805, 18449, 931),  (12805, 18454, 492),  (12805, 18455, 931), (12805, 18456, 492), (12805, 18457, 931), 
 (12805, 18664, 0),   (12805, 18854, 634), (12805, 18856, 634), (12805, 18858, 634),  (12805, 18859, 634),  (12805, 18862, 634), (12805, 18863, 634), (12805, 18864, 634), 
 (12805, 18442, 838), (12805, 18444, 930), (12805, 18443, 491), (12805, 15196, 1007), (12805, 18440, 1050), (12805, 18441, 986), (12805, 16342, 774); 
 
 -- Lieutenant Karter <War Mount Quartermaster> - Vanilla
 DELETE FROM `npc_vendor` WHERE `entry` = @Karter;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 (@Karter, 18241, 423), (@Karter, 18242, 423), (@Karter, 18243, 423), (@Karter, 18244, 423);
 
 -- Lieutenant Karter <War Mount Quartermaster> - TBC
 DELETE FROM `npc_vendor` WHERE `entry` = 12783;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 (12783, 18241, 423), (12783, 18242, 423), (12783, 18243, 423), (12783, 18244, 423), (12783, 35906, 423);
 
 -- Lieutenant Jackspring <Weapons Quartermaster> - TBC
 DELETE FROM `npc_vendor` WHERE `entry` = 12784;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 (12784, 12584, 565), (12784, 18825, 565), (12784, 18827, 565), (12784, 18830, 131), (12784, 18833, 567), (12784, 18836, 567), (12784, 18838, 565),
 (12784, 18843, 565), (12784, 18847, 565), (12784, 18855, 567), (12784, 18865, 565), (12784, 18867, 131), (12784, 18869, 131), (12784, 18873, 131),
 (12784, 18876, 131), (12784, 23451, 565), (12784, 23452, 567), (12784, 23453, 567), (12784, 23454, 565), (12784, 23455, 131), (12784, 23456, 565);
 
 -- Sergeant Major Clate <Food and Drink> - Vanilla
 DELETE FROM `npc_vendor` WHERE `entry` = @Clate;
-INSERT INTO `npc_vendor` (`entry`, `item`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`) VALUES 
 (@Clate, 117),  (@Clate, 159),  (@Clate, 1179), (@Clate, 1205), (@Clate, 1645), (@Clate, 1708), (@Clate, 2287), (@Clate, 2593), (@Clate, 2594),
 (@Clate, 2595), (@Clate, 2596), (@Clate, 2723), (@Clate, 3770), (@Clate, 3771), (@Clate, 4536), (@Clate, 4537), (@Clate, 4538), (@Clate, 4539), 
 (@Clate, 4540), (@Clate, 4541), (@Clate, 4542), (@Clate, 4544), (@Clate, 4599), (@Clate, 4601), (@Clate, 4602), (@Clate, 4604), (@Clate, 4605), 
@@ -476,7 +476,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`) VALUES
 
 -- Sergeant Major Clate <Armor Quartermaster> - TBC 
 DELETE FROM `npc_vendor` WHERE `entry` = 12785;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 (12785, 16437, 465), (12785, 16440, 541), (12785, 16441, 464), (12785, 16442, 542), (12785, 16443, 463), (12785, 16444, 465), (12785, 16446, 465), (12785, 16448, 541), (12785, 16449, 465),
 (12785, 16450, 542), (12785, 16451, 464), (12785, 16452, 463), (12785, 16453, 463), (12785, 16454, 541), (12785, 16455, 464), (12785, 16456, 542), (12785, 16457, 465), (12785, 16459, 465),
 (12785, 16462, 465), (12785, 16463, 541), (12785, 16465, 464), (12785, 16466, 463), (12785, 16467, 542), (12785, 16468, 465), (12785, 16471, 541), (12785, 16472, 465), (12785, 16473, 463),
@@ -492,7 +492,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Lieutenant Tristia <Armor Quartermaster> - TBC Season 2
 DELETE FROM `npc_vendor` WHERE `entry` = 23446;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 (23446, 28613, 2259), (23446, 28614, 2261), (23446, 28615, 2263), (23446, 28616, 2265), (23446, 28617, 2267), (23446, 28618, 2261), (23446, 28619, 2263), (23446, 28620, 2265), (23446, 28622, 2267), 
 (23446, 28623, 2259), (23446, 28624, 2261), (23446, 28625, 2263), (23446, 28626, 2265), (23446, 28627, 2267), (23446, 28628, 2259), (23446, 28679, 2259), (23446, 28680, 2261), (23446, 28681, 2263),
 (23446, 28683, 2267), (23446, 28684, 2261), (23446, 28685, 2263), (23446, 28686, 2265), (23446, 28687, 2267), (23446, 28688, 2259), (23446, 28689, 2259), (23446, 28690, 2261), (23446, 28691, 2263), 
@@ -512,14 +512,14 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Captain O'Neal <Weapons Quartermaster> - Vanilla
 DELETE FROM `npc_vendor` WHERE `entry` IN (12782, 26394);
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (26394, 12584, 2291), (26394, 18825, 2291), (26394, 18827, 2291), (26394, 18830, 2257), (26394, 18833, 2291), (26394, 18836, 2291), (26394, 18838, 2291),
 (26394, 18843, 2291), (26394, 18847, 2291), (26394, 18855, 2291), (26394, 18865, 2291), (26394, 18867, 2257), (26394, 18869, 2257), (26394, 18873, 2257), 
 (26394, 18876, 2257), (26394, 23451, 2291), (26394, 23452, 2257), (26394, 23453, 2291), (26394, 23454, 2291), (26394, 23455, 2291), (26394, 23456, 2291);
 
 -- Captain O'Neil <Weapons Quartermaster> - TBC
 DELETE FROM `npc_vendor` WHERE `entry` = 24671;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 (24671, 28940, 2242), (24671, 28941, 2242), (24671, 28942, 2237), (24671, 28943, 2237), (24671, 28944, 2239),
 (24671, 28945, 2237), (24671, 28946, 2240), (24671, 28947, 2240), (24671, 28948, 2237), (24671, 28949, 2237),
 (24671, 28950, 2240), (24671, 28951, 2239), (24671, 28952, 2240), (24671, 28953, 2239), (24671, 28954, 2240),
@@ -527,7 +527,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Captain Dirgehammer <Armor Quartermaster> - Vanilla
 DELETE FROM `npc_vendor` WHERE `entry` IN (12777, 26393);
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 -- boot 427, gloves 428, helm 444, pants 653, chest 652, shoulders 427
 (12777, 16369, 427), (12777, 16391, 428), (12777, 16413, 652), (12777, 16414, 653), (12777, 16416, 444), (12777, 16415, 427), -- mages, pre naxx
 (12777, 16423, 427), (12777, 16424, 444), (12777, 16422, 653), (12777, 16421, 652), (12777, 16393, 427), (12777, 16397, 428), -- druid, pre naxx
@@ -553,7 +553,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Captain Dirgehammer <Armor Quartermaster> - TBC Season 1
 DELETE FROM `npc_vendor` WHERE `entry` = 24672;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 (24672, 28613, 2259), (24672, 28614, 2261), (24672, 28615, 2263), (24672, 28616, 2265), (24672, 28617, 2267), (24672, 28618, 2261), (24672, 28619, 2263), (24672, 28620, 2265), (24672, 28622, 2267), 
 (24672, 28623, 2259), (24672, 28624, 2261), (24672, 28625, 2263), (24672, 28626, 2265), (24672, 28627, 2267), (24672, 28628, 2259), (24672, 28679, 2259), (24672, 28680, 2261), (24672, 28681, 2263),
 (24672, 28683, 2267), (24672, 28684, 2261), (24672, 28685, 2263), (24672, 28686, 2265), (24672, 28687, 2267), (24672, 28688, 2259), (24672, 28689, 2259), (24672, 28690, 2261), (24672, 28691, 2263), 
@@ -578,7 +578,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Captain Dirgehammer <Armor Quartermaster> - TBC Season 3
 DELETE FROM `npc_vendor` WHERE `entry` = 26393;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 (26393, 28613, 2259), (26393, 28614, 2261), (26393, 28615, 2263), (26393, 28616, 2265), (26393, 28617, 2267), (26393, 28618, 2261), (26393, 28619, 2263), (26393, 28620, 2265), (26393, 28622, 2267), 
 (26393, 28623, 2259), (26393, 28624, 2261), (26393, 28625, 2263), (26393, 28626, 2265), (26393, 28627, 2267), (26393, 28628, 2259), (26393, 28679, 2259), (26393, 28680, 2261), (26393, 28681, 2263),
 (26393, 28683, 2267), (26393, 28684, 2261), (26393, 28685, 2263), (26393, 28686, 2265), (26393, 28687, 2267), (26393, 28688, 2259), (26393, 28689, 2259), (26393, 28690, 2261), (26393, 28691, 2263), 
@@ -606,7 +606,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Captain Dirgehammer <Armor Quartermaster> - TBC Season 4
 DELETE FROM `npc_vendor` WHERE `entry` = @Dirge;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 (@Dirge, 28613, 2259), (@Dirge, 28614, 2261), (@Dirge, 28615, 2263), (@Dirge, 28616, 2265), (@Dirge, 28617, 2267), (@Dirge, 28618, 2261), (@Dirge, 28619, 2263), (@Dirge, 28620, 2265), (@Dirge, 28622, 2267), 
 (@Dirge, 28623, 2259), (@Dirge, 28624, 2261), (@Dirge, 28625, 2263), (@Dirge, 28626, 2265), (@Dirge, 28627, 2267), (@Dirge, 28628, 2259), (@Dirge, 28679, 2259), (@Dirge, 28680, 2261), (@Dirge, 28681, 2263),
 (@Dirge, 28683, 2267), (@Dirge, 28684, 2261), (@Dirge, 28685, 2263), (@Dirge, 28686, 2265), (@Dirge, 28687, 2267), (@Dirge, 28688, 2259), (@Dirge, 28689, 2259), (@Dirge, 28690, 2261), (@Dirge, 28691, 2263), 
@@ -637,7 +637,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Vixton Pinchwhistle - Season 1
 DELETE FROM `npc_vendor` WHERE `entry` = 20278;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (20278, 24544, 2285), (20278, 24545, 2285), (20278, 24546, 2288), (20278, 24547, 2285), (20278, 24549, 2286), (20278, 24550, 1664), (20278, 24552, 2285), (20278, 24553, 2285), (20278, 24554, 2288),
 (20278, 24555, 2285), (20278, 24556, 2286), (20278, 24557, 1664), (20278, 25830, 2285), (20278, 25831, 2285), (20278, 25832, 2288), (20278, 25833, 2285), (20278, 25834, 2286), (20278, 25854, 2288),
 (20278, 25855, 2285), (20278, 25856, 2285), (20278, 25857, 2286), (20278, 25858, 2285), (20278, 25997, 2285), (20278, 25998, 2285), (20278, 25999, 2288), (20278, 26000, 2286), (20278, 26001, 2285),
@@ -654,7 +654,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Vixton Pinchwhistle - Season 2
 DELETE FROM `npc_vendor` WHERE `entry` = @Vixton;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (@Vixton, 24544, 22),  (@Vixton, 24545, 22),  (@Vixton, 24546, 24), (@Vixton, 24547, 22), (@Vixton, 24549, 21), (@Vixton, 24550, 26),  (@Vixton, 24552, 22), (@Vixton, 24553, 22), (@Vixton, 24554, 24),
 (@Vixton, 24555, 22),  (@Vixton, 24556, 21),  (@Vixton, 24557, 26), (@Vixton, 25830, 22), (@Vixton, 25831, 22), (@Vixton, 25832, 24),  (@Vixton, 25833, 22), (@Vixton, 25834, 21), (@Vixton, 25854, 24),
 (@Vixton, 25855, 22),  (@Vixton, 25856, 22),  (@Vixton, 25857, 21), (@Vixton, 25858, 22), (@Vixton, 25997, 22), (@Vixton, 25998, 22),  (@Vixton, 25999, 24), (@Vixton, 26000, 21), (@Vixton, 26001, 22),
@@ -671,7 +671,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Krixel Pinchwhistle - Season 2
 DELETE FROM `npc_vendor` WHERE `entry` = 23396;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (23396, 30486, 2285), (23396, 30487, 2283), (23396, 30488, 2285), (23396, 30489, 2285), (23396, 30490, 2288), (23396, 31958, 2286), (23396, 31959, 1664), (23396, 31960, 2285), (23396, 31961, 2283),
 (23396, 31962, 2285), (23396, 31963, 2285), (23396, 31964, 2288), (23396, 31965, 2287), (23396, 31966, 1664), (23396, 31967, 2283), (23396, 31968, 2285), (23396, 31969, 2285), (23396, 31971, 2288),
 (23396, 31972, 2285), (23396, 31973, 2283), (23396, 31974, 2285), (23396, 31975, 2285), (23396, 31976, 2288), (23396, 31977, 2285), (23396, 31978, 2283), (23396, 31979, 2288), (23396, 31980, 2285),
@@ -689,7 +689,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Leeni Smalls - Season 3
 DELETE FROM `npc_vendor` WHERE `entry` = 24392;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 (24392, 33006, 2282), (24392, 33661, 1431), (24392, 33662, 1432), (24392, 33663, 2282), (24392, 33664, 2285), (24392, 33665, 2286), (24392, 33666, 2285), (24392, 33667, 2285), (24392, 33668, 1435),
 (24392, 33669, 1670), (24392, 33670, 2282), (24392, 33671, 2286), (24392, 33672, 2285), (24392, 33673, 2285), (24392, 33674, 1435), (24392, 33675, 2285), (24392, 33676, 2286), (24392, 33677, 2285),
 (24392, 33678, 2285), (24392, 33679, 1435), (24392, 33680, 2285), (24392, 33681, 1432), (24392, 33682, 1435), (24392, 33683, 2285), (24392, 33684, 2286), (24392, 33685, 2285), (24392, 33686, 2285),
@@ -708,7 +708,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Krixel Pinchwhistle - Season 3
 DELETE FROM `npc_vendor` WHERE `entry` = @Krixel;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (@Krixel, 30486, 22),  (@Krixel, 30487, 21),  (@Krixel, 30488, 22),  (@Krixel, 30489, 22),  (@Krixel, 30490, 24),  (@Krixel, 31958, 21), (@Krixel, 31959, 26), (@Krixel, 31960, 22),  (@Krixel, 31961, 21),
 (@Krixel, 31962, 22),  (@Krixel, 31963, 22),  (@Krixel, 31964, 24),  (@Krixel, 31965, 133), (@Krixel, 31966, 26),  (@Krixel, 31967, 21), (@Krixel, 31968, 22), (@Krixel, 31969, 22),  (@Krixel, 31971, 24),
 (@Krixel, 31972, 22),  (@Krixel, 31973, 21),  (@Krixel, 31974, 22),  (@Krixel, 31975, 22),  (@Krixel, 31976, 24),  (@Krixel, 31977, 22), (@Krixel, 31978, 21), (@Krixel, 31979, 24),  (@Krixel, 31980, 22),
@@ -726,7 +726,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Leeni Smalls - Season 4
 DELETE FROM `npc_vendor` WHERE `entry` = @Leeni;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (@Leeni, 33006, 2282), (@Leeni, 33661, 1431), (@Leeni, 33662, 1432), (@Leeni, 33663, 2282), (@Leeni, 33664, 2285), (@Leeni, 33665, 2286), (@Leeni, 33666, 2285), (@Leeni, 33667, 2285), (@Leeni, 33668, 1435),
 (@Leeni, 33669, 1670), (@Leeni, 33670, 2282), (@Leeni, 33671, 2286), (@Leeni, 33672, 2285), (@Leeni, 33673, 2285), (@Leeni, 33674, 1435), (@Leeni, 33675, 2285), (@Leeni, 33676, 2286), (@Leeni, 33677, 2285),
 (@Leeni, 33678, 2285), (@Leeni, 33679, 1435), (@Leeni, 33680, 2285), (@Leeni, 33681, 1432), (@Leeni, 33682, 1435), (@Leeni, 33683, 2285), (@Leeni, 33684, 2286), (@Leeni, 33685, 2285), (@Leeni, 33686, 2285),
@@ -745,7 +745,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Big Zokk Torquewrench - Season 4
 DELETE FROM `npc_vendor` WHERE `entry` = 26352;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (26352, 34985, 2339), (26352, 34986, 2364), (26352, 34987, 2360), (26352, 34988, 2363), (26352, 34989, 2360), (26352, 34990, 2337), (26352, 34991, 2342), (26352, 34992, 2365), (26352, 34993, 2366),
 (26352, 34994, 2359), (26352, 34995, 2363), (26352, 34996, 2362), (26352, 34997, 2360), (26352, 34998, 2342), (26352, 34999, 2365), (26352, 35000, 2366), (26352, 35001, 2359), (26352, 35002, 2337),
 (26352, 35003, 2342), (26352, 35004, 2365), (26352, 35005, 2366), (26352, 35006, 2359), (26352, 35007, 2337), (26352, 35008, 2363), (26352, 35009, 2359), (26352, 35010, 2365), (26352, 35011, 2342),
@@ -768,7 +768,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Leeni Smalls - Season 5
 DELETE FROM `npc_vendor` WHERE `entry` = 32354;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (32354, 40778, 2440), (32354, 40779, 2440), (32354, 40780, 2440), (32354, 40797, 2443), (32354, 40798, 2443), (32354, 40799, 2443), (32354, 40816, 2440), (32354, 40817, 2440), (32354, 40818, 2440),
 (32354, 40836, 2440), (32354, 40837, 2440), (32354, 40838, 2440), (32354, 40856, 2445), (32354, 40857, 2445), (32354, 40858, 2445), (32354, 40898, 2440), (32354, 40918, 2443), (32354, 40930, 2440),
 (32354, 40936, 2440), (32354, 40960, 2445), (32354, 40986, 2440), (32354, 40987, 2440), (32354, 40998, 2443), (32354, 41004, 2443), (32354, 41010, 2440), (32354, 41016, 2440), (32354, 41023, 2440),
@@ -781,7 +781,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Leeni Smalls - Season 6
 DELETE FROM `npc_vendor` WHERE `entry` = 33919;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (33919, 40781, 2440), (33919, 40782, 2440), (33919, 40783, 2440), (33919, 40801, 2441), (33919, 40802, 2441), (33919, 40803, 2441), (33919, 40819, 2440), (33919, 40820, 2440), (33919, 40821, 2440),
 (33919, 40840, 2440), (33919, 40841, 2440), (33919, 40842, 2440), (33919, 40859, 2445), (33919, 40860, 2445), (33919, 40861, 2445), (33919, 40904, 2440), (33919, 40925, 2441), (33919, 40931, 2440),
 (33919, 40937, 2440), (33919, 40961, 2445), (33919, 40988, 2440), (33919, 40989, 2440), (33919, 40999, 2441), (33919, 41005, 2441), (33919, 41011, 2440), (33919, 41017, 2440), (33919, 41025, 2440),
@@ -794,7 +794,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Leeni Smalls - Season 7
 DELETE FROM `npc_vendor` WHERE `entry` = 33930;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (33930, 40784, 2440), (33930, 40785, 2440), (33930, 40786, 2440), (33930, 40804, 2443), (33930, 40805, 2443), (33930, 40806, 2443), (33930, 40823, 2440), (33930, 40824, 2440), (33930, 40825, 2440),
 (33930, 40844, 2440), (33930, 40845, 2440), (33930, 40846, 2440), (33930, 40862, 2445), (33930, 40863, 2445), (33930, 40864, 2445), (33930, 40905, 2440), (33930, 40926, 2443), (33930, 40932, 2440),
 (33930, 40938, 2440), (33930, 40962, 2445), (33930, 40990, 2440), (33930, 40991, 2440), (33930, 41000, 2443), (33930, 41006, 2443), (33930, 41012, 2440), (33930, 41018, 2440), (33930, 41026, 2440),
@@ -807,7 +807,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Leeni Smalls - Season 8
 DELETE FROM `npc_vendor` WHERE `entry` = 33941;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (33941, 40787, 2959), (33941, 40788, 2959), (33941, 40789, 2959), (33941, 40807, 2960), (33941, 40808, 2960), (33941, 40809, 2960), (33941, 40826, 2959), (33941, 40827, 2959), (33941, 40828, 2959),
 (33941, 40847, 2958), (33941, 40848, 2958), (33941, 40849, 2958), (33941, 40866, 2958), (33941, 40868, 2958), (33941, 40869, 2958), (33941, 40907, 2959), (33941, 40927, 2960), (33941, 40933, 2959),
 (33941, 40939, 2958), (33941, 40963, 2958), (33941, 40992, 2959), (33941, 40993, 2959), (33941, 41001, 2960), (33941, 41007, 2960), (33941, 41013, 2959), (33941, 41019, 2959), (33941, 41027, 2958),
@@ -821,7 +821,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Big Zokk Torquewrench - Season 5
 DELETE FROM `npc_vendor` WHERE `entry` = 32355;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (32355, 40781, 2451), (32355, 40782, 2451), (32355, 40783, 2451), (32355, 40801, 2452), (32355, 40802, 2452), (32355, 40803, 2452), (32355, 40819, 2453), (32355, 40820, 2453), (32355, 40821, 2453),
 (32355, 40840, 2454), (32355, 40841, 2454), (32355, 40842, 2454), (32355, 40859, 2459), (32355, 40860, 2459), (32355, 40861, 2459), (32355, 40904, 2451), (32355, 40925, 2452), (32355, 40931, 2453),
 (32355, 40937, 2454), (32355, 40961, 2459), (32355, 40988, 2451), (32355, 40989, 2451), (32355, 40999, 2452), (32355, 41005, 2452), (32355, 41011, 2453), (32355, 41017, 2453), (32355, 41025, 2454),
@@ -834,7 +834,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Big Zokk Torquewrench - Season 6
 DELETE FROM `npc_vendor` WHERE `entry` = 33916;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (33916, 40784, 2611), (33916, 40785, 2611), (33916, 40786, 2611), (33916, 40804, 2609), (33916, 40805, 2609), (33916, 40806, 2609), (33916, 40823, 2612), (33916, 40824, 2612), (33916, 40825, 2612),
 (33916, 40844, 2610), (33916, 40845, 2610), (33916, 40846, 2610), (33916, 40862, 2613), (33916, 40863, 2613), (33916, 40864, 2613), (33916, 40905, 2611), (33916, 40926, 2609), (33916, 40932, 2612),
 (33916, 40938, 2610), (33916, 40962, 2613), (33916, 40990, 2611), (33916, 40991, 2611), (33916, 41000, 2609), (33916, 41006, 2609), (33916, 41012, 2612), (33916, 41018, 2612), (33916, 41026, 2610),
@@ -848,7 +848,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Big Zokk Torquewrench - Season 7
 DELETE FROM `npc_vendor` WHERE `entry` = 33932;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (33932, 40787, 2611), (33932, 40788, 2611), (33932, 40789, 2611), (33932, 40807, 2609), (33932, 40808, 2609), (33932, 40809, 2609), (33932, 40826, 2612), (33932, 40827, 2612), (33932, 40828, 2612),
 (33932, 40847, 2610), (33932, 40848, 2610), (33932, 40849, 2610), (33932, 40866, 2613), (33932, 40868, 2613), (33932, 40869, 2613), (33932, 40907, 2611), (33932, 40927, 2609), (33932, 40933, 2612),
 (33932, 40939, 2610), (33932, 40963, 2613), (33932, 40992, 2611), (33932, 40993, 2611), (33932, 41001, 2609), (33932, 41007, 2609), (33932, 41013, 2612), (33932, 41019, 2612), (33932, 41027, 2610),
@@ -862,7 +862,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Big Zokk Torquewrench - Season 8
 DELETE FROM `npc_vendor` WHERE `entry` = 33933;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (33933, 40790, 2956), (33933, 40791, 2956), (33933, 40792, 2956), (33933, 40810, 2957), (33933, 40811, 2957), (33933, 40812, 2957), (33933, 40829, 2956), (33933, 40830, 2956), (33933, 40831, 2956),
 (33933, 40850, 2956), (33933, 40851, 2956), (33933, 40852, 2956), (33933, 40870, 2955), (33933, 40871, 2955), (33933, 40872, 2955), (33933, 40910, 2956), (33933, 40928, 2957), (33933, 40934, 2956),
 (33933, 40940, 2956), (33933, 40964, 2955), (33933, 40994, 2956), (33933, 40995, 2956), (33933, 41002, 2957), (33933, 41008, 2957), (33933, 41014, 2956), (33933, 41020, 2956), (33933, 41028, 2956),
@@ -876,7 +876,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Kezzik the Striker - Season 5
 DELETE FROM `npc_vendor` WHERE `entry` = 32356;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (32356, 40784, 2462), (32356, 40785, 2462), (32356, 40786, 2462), (32356, 40804, 2463), (32356, 40805, 2463), (32356, 40806, 2463), (32356, 40823, 2464), (32356, 40824, 2464), (32356, 40825, 2464),
 (32356, 40844, 2465), (32356, 40845, 2465), (32356, 40846, 2465), (32356, 40862, 2470), (32356, 40863, 2470), (32356, 40864, 2470), (32356, 40905, 2462), (32356, 40926, 2463), (32356, 40932, 2464),
 (32356, 40938, 2465), (32356, 40962, 2470), (32356, 40990, 2462), (32356, 40991, 2462), (32356, 41000, 2463), (32356, 41006, 2463), (32356, 41012, 2464), (32356, 41018, 2464), (32356, 41026, 2465),
@@ -894,7 +894,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Kezzik the Striker - Season 6
 DELETE FROM `npc_vendor` WHERE `entry` = 33918;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (33918, 40787, 2622), (33918, 40788, 2622), (33918, 40789, 2622), (33918, 40807, 2621), (33918, 40808, 2621), (33918, 40809, 2621), (33918, 40826, 2629), (33918, 40827, 2629), (33918, 40828, 2629),
 (33918, 40847, 2340), (33918, 40848, 2340), (33918, 40849, 2340), (33918, 40866, 2470), (33918, 40868, 2470), (33918, 40869, 2470), (33918, 40907, 2622), (33918, 40927, 2621), (33918, 40933, 2629),
 (33918, 40939, 2340), (33918, 40963, 2470), (33918, 40992, 2622), (33918, 40993, 2622), (33918, 41001, 2621), (33918, 41007, 2621), (33918, 41013, 2629), (33918, 41019, 2629), (33918, 41027, 2340),
@@ -913,7 +913,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Kezzik the Striker - Season 7
 DELETE FROM `npc_vendor` WHERE `entry` = 33931;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (33931, 40790, 2688), (33931, 40791, 2688), (33931, 40792, 2688), (33931, 40810, 2689), (33931, 40811, 2689), (33931, 40812, 2689), (33931, 40829, 2690), (33931, 40830, 2690), (33931, 40831, 2690),
 (33931, 40850, 2691), (33931, 40851, 2691), (33931, 40852, 2691), (33931, 40870, 2692), (33931, 40871, 2692), (33931, 40872, 2692), (33931, 40910, 2688), (33931, 40928, 2689), (33931, 40934, 2690),
 (33931, 40940, 2691), (33931, 40964, 2692), (33931, 40994, 2688), (33931, 40995, 2688), (33931, 41002, 2689), (33931, 41008, 2689), (33931, 41014, 2690), (33931, 41020, 2690), (33931, 41028, 2691),
@@ -932,7 +932,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Kezzik the Striker - Season 8
 DELETE FROM `npc_vendor` WHERE `entry` = 33940;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (33940, 51388, 2936), (33940, 51390, 2936), (33940, 51392, 2936), (33940, 51394, 2936), (33940, 51396, 2950), (33940, 51397, 2943), (33940, 51400, 2936), (33940, 51402, 2936), (33940, 51404, 2936),
 (33940, 51406, 2943), (33940, 51407, 2950), (33940, 51408, 2950), (33940, 51409, 2950), (33940, 51410, 2951), (33940, 51411, 2936), (33940, 51413, 2952), (33940, 51414, 2954), (33940, 51415, 2949),
 (33940, 51416, 2953), (33940, 51417, 2951), (33940, 51418, 2948), (33940, 51419, 2952), (33940, 51420, 2954), (33940, 51421, 2949), (33940, 51422, 2953), (33940, 51423, 2951), (33940, 51424, 2948),
@@ -951,20 +951,20 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Grez Brainboiler - Season 6
 DELETE FROM `npc_vendor` WHERE `entry` = 34089;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (34089, 45937, 2632), (34089, 45938, 2632), (34089, 45939, 2632), (34089, 45948, 2632), (34089, 45949, 2632), (34089, 45950, 2632), (34089, 45951, 2632), (34089, 45952, 2632), (34089, 45953, 2632),
 (34089, 45954, 2632), (34089, 45955, 2632), (34089, 45956, 2632), (34089, 45957, 2634), (34089, 45958, 2634), (34089, 45959, 2634), (34089, 45960, 2634), (34089, 45961, 2635), (34089, 45962, 2635),
 (34089, 45963, 2635), (34089, 45964, 2635), (34089, 45965, 2635), (34089, 45966, 2635), (34089, 45967, 2635), (34089, 45968, 2635), (34089, 45969, 2634), (34089, 45970, 2633), (34089, 45971, 2633);
 
 -- Grez Brainboiler - Season 7
 DELETE FROM `npc_vendor` WHERE `entry` = 34091;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (34091, 48402, 2694), (34091, 48404, 2694), (34091, 48406, 2694), (34091, 48408, 2696), (34091, 48410, 2694), (34091, 48412, 2694), (34091, 48414, 2694), (34091, 48420, 2694), (34091, 48422, 2694),
 (34091, 48424, 2694), (34091, 48426, 2699), (34091, 48428, 2699), (34091, 48432, 2699);
 
 -- Grez Brainboiler - Season 8
 DELETE FROM `npc_vendor` WHERE `entry` = 34094;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (34094, 51389, 2939), (34094, 51391, 2939), (34094, 51393, 2939), (34094, 51395, 2939), (34094, 51398, 2940), (34094, 51399, 2940), (34094, 51401, 2939), (34094, 51403, 2939), (34094, 51405, 2939),
 (34094, 51412, 2939), (34094, 51432, 2939), (34094, 51440, 2947), (34094, 51442, 2947), (34094, 51444, 2947), (34094, 51446, 2947), (34094, 51448, 2947), (34094, 51450, 2939), (34094, 51454, 2940),
 (34094, 51457, 2939), (34094, 51481, 2939), (34094, 51516, 2944), (34094, 51518, 2944), (34094, 51520, 2944), (34094, 51522, 2944), (34094, 51524, 2944), (34094, 51526, 2947), (34094, 51528, 2947),
@@ -975,7 +975,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Evee Copperspring - Season 2
 DELETE FROM `npc_vendor` WHERE `entry` = @Evee;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (@Evee, 30486, 2285), (@Evee, 30487, 2283), (@Evee, 30488, 2285), (@Evee, 30489, 2285), (@Evee, 30490, 2288), (@Evee, 31958, 2286), (@Evee, 31959, 1664), (@Evee, 31960, 2285), (@Evee, 31961, 2283),
 (@Evee, 31962, 2285), (@Evee, 31963, 2285), (@Evee, 31964, 2288), (@Evee, 31965, 2287), (@Evee, 31966, 1664), (@Evee, 31967, 2283), (@Evee, 31968, 2285), (@Evee, 31969, 2285), (@Evee, 31971, 2288),
 (@Evee, 31972, 2285), (@Evee, 31973, 2283), (@Evee, 31974, 2285), (@Evee, 31975, 2285), (@Evee, 31976, 2288), (@Evee, 31977, 2285), (@Evee, 31978, 2283), (@Evee, 31979, 2288), (@Evee, 31980, 2285),
@@ -993,7 +993,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Evee Copperspring - Season 3
 DELETE FROM `npc_vendor` WHERE `entry` = 25177;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 (25177, 33006, 2282), (25177, 33661, 1431), (25177, 33662, 1432), (25177, 33663, 2282), (25177, 33664, 2285), (25177, 33665, 2286), (25177, 33666, 2285), (25177, 33667, 2285), (25177, 33668, 1435),
 (25177, 33669, 1670), (25177, 33670, 2282), (25177, 33671, 2286), (25177, 33672, 2285), (25177, 33673, 2285), (25177, 33674, 1435), (25177, 33675, 2285), (25177, 33676, 2286), (25177, 33677, 2285),
 (25177, 33678, 2285), (25177, 33679, 1435), (25177, 33680, 2285), (25177, 33681, 1432), (25177, 33682, 1435), (25177, 33683, 2285), (25177, 33684, 2286), (25177, 33685, 2285), (25177, 33686, 2285),
@@ -1012,7 +1012,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Evee Copperspring - Season 4
 DELETE FROM `npc_vendor` WHERE `entry` = 26378;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (26378, 33006, 2282), (26378, 33661, 1431), (26378, 33662, 1432), (26378, 33663, 2282), (26378, 33664, 2285), (26378, 33665, 2286), (26378, 33666, 2285), (26378, 33667, 2285), (26378, 33668, 1435),
 (26378, 33669, 1670), (26378, 33670, 2282), (26378, 33671, 2286), (26378, 33672, 2285), (26378, 33673, 2285), (26378, 33674, 1435), (26378, 33675, 2285), (26378, 33676, 2286), (26378, 33677, 2285),
 (26378, 33678, 2285), (26378, 33679, 1435), (26378, 33680, 2285), (26378, 33681, 1432), (26378, 33682, 1435), (26378, 33683, 2285), (26378, 33684, 2286), (26378, 33685, 2285), (26378, 33686, 2285),
@@ -1031,7 +1031,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Evee Copperspring - Season 5
 DELETE FROM `npc_vendor` WHERE `entry` = 32362;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (32362, 40778, 2440), (32362, 40779, 2440), (32362, 40780, 2440), (32362, 40797, 2443), (32362, 40798, 2443), (32362, 40799, 2443), (32362, 40816, 2440), (32362, 40817, 2440), (32362, 40818, 2440),
 (32362, 40836, 2440), (32362, 40837, 2440), (32362, 40838, 2440), (32362, 40856, 2445), (32362, 40857, 2445), (32362, 40858, 2445), (32362, 40898, 2440), (32362, 40918, 2443), (32362, 40930, 2440),
 (32362, 40936, 2440), (32362, 40960, 2445), (32362, 40986, 2440), (32362, 40987, 2440), (32362, 40998, 2443), (32362, 41004, 2443), (32362, 41010, 2440), (32362, 41016, 2440), (32362, 41023, 2440),
@@ -1044,7 +1044,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Evee Copperspring - Season 6
 DELETE FROM `npc_vendor` WHERE `entry` = 33920;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (33920, 40781, 2440), (33920, 40782, 2440), (33920, 40783, 2440), (33920, 40801, 2441), (33920, 40802, 2441), (33920, 40803, 2441), (33920, 40819, 2440), (33920, 40820, 2440), (33920, 40821, 2440),
 (33920, 40840, 2440), (33920, 40841, 2440), (33920, 40842, 2440), (33920, 40859, 2445), (33920, 40860, 2445), (33920, 40861, 2445), (33920, 40904, 2440), (33920, 40925, 2441), (33920, 40931, 2440),
 (33920, 40937, 2440), (33920, 40961, 2445), (33920, 40988, 2440), (33920, 40989, 2440), (33920, 40999, 2441), (33920, 41005, 2441), (33920, 41011, 2440), (33920, 41017, 2440), (33920, 41025, 2440),
@@ -1057,7 +1057,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Evee Copperspring - Season 7
 DELETE FROM `npc_vendor` WHERE `entry` = 33928;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (33928, 40784, 2440), (33928, 40785, 2440), (33928, 40786, 2440), (33928, 40804, 2443), (33928, 40805, 2443), (33928, 40806, 2443), (33928, 40823, 2440), (33928, 40824, 2440), (33928, 40825, 2440),
 (33928, 40844, 2440), (33928, 40845, 2440), (33928, 40846, 2440), (33928, 40862, 2445), (33928, 40863, 2445), (33928, 40864, 2445), (33928, 40905, 2440), (33928, 40926, 2443), (33928, 40932, 2440),
 (33928, 40938, 2440), (33928, 40962, 2445), (33928, 40990, 2440), (33928, 40991, 2440), (33928, 41000, 2443), (33928, 41006, 2443), (33928, 41012, 2440), (33928, 41018, 2440), (33928, 41026, 2440),
@@ -1070,7 +1070,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Evee Copperspring - Season 8
 DELETE FROM `npc_vendor` WHERE `entry` = 33935;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (33935, 40787, 2959), (33935, 40788, 2959), (33935, 40789, 2959), (33935, 40807, 2960), (33935, 40808, 2960), (33935, 40809, 2960), (33935, 40826, 2959), (33935, 40827, 2959), (33935, 40828, 2959),
 (33935, 40847, 2958), (33935, 40848, 2958), (33935, 40849, 2958), (33935, 40866, 2958), (33935, 40868, 2958), (33935, 40869, 2958), (33935, 40907, 2959), (33935, 40927, 2960), (33935, 40933, 2959),
 (33935, 40939, 2958), (33935, 40963, 2958), (33935, 40992, 2959), (33935, 40993, 2959), (33935, 41001, 2960), (33935, 41007, 2960), (33935, 41013, 2959), (33935, 41019, 2959), (33935, 41027, 2958),
@@ -1084,7 +1084,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Ecton Brasstumbler - Season 3
 DELETE FROM `npc_vendor` WHERE `entry` = @Ecton;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (@Ecton, 30486, 22),  (@Ecton, 30487, 21),  (@Ecton, 30488, 22),  (@Ecton, 30489, 22),  (@Ecton, 30490, 24),  (@Ecton, 31958, 21), (@Ecton, 31959, 26), (@Ecton, 31960, 22),  (@Ecton, 31961, 21),
 (@Ecton, 31962, 22),  (@Ecton, 31963, 22),  (@Ecton, 31964, 24),  (@Ecton, 31965, 133), (@Ecton, 31966, 26),  (@Ecton, 31967, 21), (@Ecton, 31968, 22), (@Ecton, 31969, 22),  (@Ecton, 31971, 24),
 (@Ecton, 31972, 22),  (@Ecton, 31973, 21),  (@Ecton, 31974, 22),  (@Ecton, 31975, 22),  (@Ecton, 31976, 24),  (@Ecton, 31977, 22), (@Ecton, 31978, 21), (@Ecton, 31979, 24),  (@Ecton, 31980, 22),
@@ -1102,7 +1102,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Ecton Brasstumbler - Season 4
 DELETE FROM `npc_vendor` WHERE `entry` = 25178;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (25178, 34985, 2339), (25178, 34986, 2364), (25178, 34987, 2360), (25178, 34988, 2363), (25178, 34989, 2360), (25178, 34990, 2337), (25178, 34991, 2342), (25178, 34992, 2365), (25178, 34993, 2366),
 (25178, 34994, 2359), (25178, 34995, 2363), (25178, 34996, 2362), (25178, 34997, 2360), (25178, 34998, 2342), (25178, 34999, 2365), (25178, 35000, 2366), (25178, 35001, 2359), (25178, 35002, 2337),
 (25178, 35003, 2342), (25178, 35004, 2365), (25178, 35005, 2366), (25178, 35006, 2359), (25178, 35007, 2337), (25178, 35008, 2363), (25178, 35009, 2359), (25178, 35010, 2365), (25178, 35011, 2342),
@@ -1122,7 +1122,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Ecton Brasstumbler - Season 5
 DELETE FROM `npc_vendor` WHERE `entry` = 32360;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (32360, 40781, 2451), (32360, 40782, 2451), (32360, 40783, 2451), (32360, 40801, 2452), (32360, 40802, 2452), (32360, 40803, 2452), (32360, 40819, 2453), (32360, 40820, 2453), (32360, 40821, 2453),
 (32360, 40840, 2454), (32360, 40841, 2454), (32360, 40842, 2454), (32360, 40859, 2459), (32360, 40860, 2459), (32360, 40861, 2459), (32360, 40904, 2451), (32360, 40925, 2452), (32360, 40931, 2453),
 (32360, 40937, 2454), (32360, 40961, 2459), (32360, 40988, 2451), (32360, 40989, 2451), (32360, 40999, 2452), (32360, 41005, 2452), (32360, 41011, 2453), (32360, 41017, 2453), (32360, 41025, 2454),
@@ -1135,7 +1135,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Ecton Brasstumbler - Season 6
 DELETE FROM `npc_vendor` WHERE `entry` = 33917;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (33917, 40784, 2611), (33917, 40785, 2611), (33917, 40786, 2611), (33917, 40804, 2609), (33917, 40805, 2609), (33917, 40806, 2609), (33917, 40823, 2612), (33917, 40824, 2612), (33917, 40825, 2612),
 (33917, 40844, 2610), (33917, 40845, 2610), (33917, 40846, 2610), (33917, 40862, 2613), (33917, 40863, 2613), (33917, 40864, 2613), (33917, 40905, 2611), (33917, 40926, 2609), (33917, 40932, 2612),
 (33917, 40938, 2610), (33917, 40962, 2613), (33917, 40990, 2611), (33917, 40991, 2611), (33917, 41000, 2609), (33917, 41006, 2609), (33917, 41012, 2612), (33917, 41018, 2612), (33917, 41026, 2610),
@@ -1149,7 +1149,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Ecton Brasstumbler - Season 7
 DELETE FROM `npc_vendor` WHERE `entry` = 33929;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (33929, 40787, 2611), (33929, 40788, 2611), (33929, 40789, 2611), (33929, 40807, 2609), (33929, 40808, 2609), (33929, 40809, 2609), (33929, 40826, 2612), (33929, 40827, 2612), (33929, 40828, 2612),
 (33929, 40847, 2610), (33929, 40848, 2610), (33929, 40849, 2610), (33929, 40866, 2613), (33929, 40868, 2613), (33929, 40869, 2613), (33929, 40907, 2611), (33929, 40927, 2609), (33929, 40933, 2612),
 (33929, 40939, 2610), (33929, 40963, 2613), (33929, 40992, 2611), (33929, 40993, 2611), (33929, 41001, 2609), (33929, 41007, 2609), (33929, 41013, 2612), (33929, 41019, 2612), (33929, 41027, 2610),
@@ -1163,7 +1163,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Ecton Brasstumbler - Season 8
 DELETE FROM `npc_vendor` WHERE `entry` = 33934;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (33934, 40790, 2956), (33934, 40791, 2956), (33934, 40792, 2956), (33934, 40810, 2957), (33934, 40811, 2957), (33934, 40812, 2957), (33934, 40829, 2956), (33934, 40830, 2956), (33934, 40831, 2956),
 (33934, 40850, 2956), (33934, 40851, 2956), (33934, 40852, 2956), (33934, 40870, 2955), (33934, 40871, 2955), (33934, 40872, 2955), (33934, 40910, 2956), (33934, 40928, 2957), (33934, 40934, 2956),
 (33934, 40940, 2956), (33934, 40964, 2955), (33934, 40994, 2956), (33934, 40995, 2956), (33934, 41002, 2957), (33934, 41008, 2957), (33934, 41014, 2956), (33934, 41020, 2956), (33934, 41028, 2956),
@@ -1177,7 +1177,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Argex Irongut - Season 5
 DELETE FROM `npc_vendor` WHERE `entry` = 32359;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (32359, 40784, 2462), (32359, 40785, 2462), (32359, 40786, 2462), (32359, 40804, 2463), (32359, 40805, 2463), (32359, 40806, 2463), (32359, 40823, 2464), (32359, 40824, 2464), (32359, 40825, 2464),
 (32359, 40844, 2465), (32359, 40845, 2465), (32359, 40846, 2465), (32359, 40862, 2470), (32359, 40863, 2470), (32359, 40864, 2470), (32359, 40905, 2462), (32359, 40926, 2463), (32359, 40932, 2464),
 (32359, 40938, 2465), (32359, 40962, 2470), (32359, 40990, 2462), (32359, 40991, 2462), (32359, 41000, 2463), (32359, 41006, 2463), (32359, 41012, 2464), (32359, 41018, 2464), (32359, 41026, 2465),
@@ -1195,7 +1195,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Argex Irongut - Season 6
 DELETE FROM `npc_vendor` WHERE `entry` = 33915;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (33915, 40787, 2622), (33915, 40788, 2622), (33915, 40789, 2622), (33915, 40807, 2621), (33915, 40808, 2621), (33915, 40809, 2621), (33915, 40826, 2629), (33915, 40827, 2629), (33915, 40828, 2629),
 (33915, 40847, 2340), (33915, 40848, 2340), (33915, 40849, 2340), (33915, 40866, 2470), (33915, 40868, 2470), (33915, 40869, 2470), (33915, 40907, 2622), (33915, 40927, 2621), (33915, 40933, 2629),
 (33915, 40939, 2340), (33915, 40963, 2470), (33915, 40992, 2622), (33915, 40993, 2622), (33915, 41001, 2621), (33915, 41007, 2621), (33915, 41013, 2629), (33915, 41019, 2629), (33915, 41027, 2340),
@@ -1214,7 +1214,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Argex Irongut - Season 7
 DELETE FROM `npc_vendor` WHERE `entry` = 33924;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (33924, 40790, 2688), (33924, 40791, 2688), (33924, 40792, 2688), (33924, 40810, 2689), (33924, 40811, 2689), (33924, 40812, 2689), (33924, 40829, 2690), (33924, 40830, 2690), (33924, 40831, 2690),
 (33924, 40850, 2691), (33924, 40851, 2691), (33924, 40852, 2691), (33924, 40870, 2692), (33924, 40871, 2692), (33924, 40872, 2692), (33924, 40910, 2688), (33924, 40928, 2689), (33924, 40934, 2690),
 (33924, 40940, 2691), (33924, 40964, 2692), (33924, 40994, 2688), (33924, 40995, 2688), (33924, 41002, 2689), (33924, 41008, 2689), (33924, 41014, 2690), (33924, 41020, 2690), (33924, 41028, 2691),
@@ -1233,7 +1233,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Argex Irongut - Season 8
 DELETE FROM `npc_vendor` WHERE `entry` = 33939;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (33939, 51388, 2936), (33939, 51390, 2936), (33939, 51392, 2936), (33939, 51394, 2936), (33939, 51396, 2950), (33939, 51397, 2943), (33939, 51400, 2936), (33939, 51402, 2936), (33939, 51404, 2936),
 (33939, 51406, 2943), (33939, 51407, 2950), (33939, 51408, 2950), (33939, 51409, 2950), (33939, 51410, 2951), (33939, 51411, 2936), (33939, 51413, 2952), (33939, 51414, 2954), (33939, 51415, 2949),
 (33939, 51416, 2953), (33939, 51417, 2951), (33939, 51418, 2948), (33939, 51419, 2952), (33939, 51420, 2954), (33939, 51421, 2949), (33939, 51422, 2953), (33939, 51423, 2951), (33939, 51424, 2948),
@@ -1252,20 +1252,20 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES
 
 -- Blazzek the Biter - Season 6
 DELETE FROM `npc_vendor` WHERE `entry` = 34088;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (34088, 45937, 2632), (34088, 45938, 2632), (34088, 45939, 2632), (34088, 45948, 2632), (34088, 45949, 2632), (34088, 45950, 2632), (34088, 45951, 2632), (34088, 45952, 2632), (34088, 45953, 2632),
 (34088, 45954, 2632), (34088, 45955, 2632), (34088, 45956, 2632), (34088, 45957, 2634), (34088, 45958, 2634), (34088, 45959, 2634), (34088, 45960, 2634), (34088, 45961, 2635), (34088, 45962, 2635),
 (34088, 45963, 2635), (34088, 45964, 2635), (34088, 45965, 2635), (34088, 45966, 2635), (34088, 45967, 2635), (34088, 45968, 2635), (34088, 45969, 2634), (34088, 45970, 2633), (34088, 45971, 2633);
 
 -- Blazzek the Biter - Season 7
 DELETE FROM `npc_vendor` WHERE `entry` = 34090;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (34090, 48402, 2694), (34090, 48404, 2694), (34090, 48406, 2694), (34090, 48408, 2696), (34090, 48410, 2694), (34090, 48412, 2694), (34090, 48414, 2694), (34090, 48420, 2694), (34090, 48422, 2694),
 (34090, 48424, 2694), (34090, 48426, 2699), (34090, 48428, 2699), (34090, 48432, 2699);
 
 -- Blazzek the Biter - Season 8
 DELETE FROM `npc_vendor` WHERE `entry` = 34093;
-INSERT INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `ExtendedCost`) VALUES 
 (34093, 51389, 2939), (34093, 51391, 2939), (34093, 51393, 2939), (34093, 51395, 2939), (34093, 51398, 2940), (34093, 51399, 2940), (34093, 51401, 2939), (34093, 51403, 2939), (34093, 51405, 2939),
 (34093, 51412, 2939), (34093, 51432, 2939), (34093, 51440, 2947), (34093, 51442, 2947), (34093, 51444, 2947), (34093, 51446, 2947), (34093, 51448, 2947), (34093, 51450, 2939), (34093, 51454, 2940),
 (34093, 51457, 2939), (34093, 51481, 2939), (34093, 51516, 2944), (34093, 51518, 2944), (34093, 51520, 2944), (34093, 51522, 2944), (34093, 51524, 2944), (34093, 51526, 2947), (34093, 51528, 2947),
@@ -1312,7 +1312,7 @@ UPDATE `item_template` SET `RequiredReputationFaction` = 510, `RequiredReputatio
 -- AB is an exception. all AB items are unique to either faction
 
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 23 AND `SourceGroup` IN (13216, 13217, 13218, 13219, 14753, 14754);
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `ConditionTypeOrReference`, `ConditionValue1`, `ConditionValue2`, `Comment`) VALUES 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `ConditionTypeOrReference`, `ConditionValue1`, `ConditionValue2`, `Comment`) VALUES 
 -- Gaelden Hammersmith <Stormpike Supply Officer>
 (23, 13216, 17349, 5, 730, 16 + 32 + 64 + 128, 'Vanilla PvP Gear Conditions'),
 (23, 13216, 17352, 5, 730, 16 + 32 + 64 + 128, 'Vanilla PvP Gear Conditions'),

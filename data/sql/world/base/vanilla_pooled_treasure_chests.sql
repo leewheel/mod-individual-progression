@@ -5,7 +5,7 @@
 */
 
 DELETE FROM `pool_template` WHERE `entry` BETWEEN 66001 AND 66006;
-INSERT INTO `pool_template` (`entry`,`max_limit`,`description`) VALUES
+REPLACE INTO `pool_template` (`entry`,`max_limit`,`description`) VALUES
 (66001, 1, 'Treasures - Thousand Needles'),
 (66002, 1, 'Treasures - Winterspring'),
 (66003, 1, 'Treasures - Winterspring'),
@@ -29,7 +29,7 @@ DELETE FROM `pool_gameobject` WHERE `guid` IN (
 33193, 33206, 33207                                     -- Alterac Mountains 
 );
 
-INSERT INTO `pool_gameobject` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
+REPLACE INTO `pool_gameobject` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
 --
 (16718, 66001, 0, 'Solid Chest, Camp E\'thok, node 1'),
 (85670, 66001, 0, 'Solid Chest, Camp E\'thok, node 2'),

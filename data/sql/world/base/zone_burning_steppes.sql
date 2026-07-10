@@ -7,7 +7,7 @@ DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN
 (7025, 7026, 7027, 7028, 7029, 7033, 7034, 7035, 7036, 7037, 7038, 7039, 7040, 7041, 7042, 7043, 7044, 7045, 7046, 7055, 
 8977, 8978, 8979, 8981, 9176, 9690, 9695, 9697, 9698, 9779, 10077, 10078, 10119, 16043);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -99,7 +99,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 
 -- fix spawn locations
 DELETE FROM `creature` WHERE `id` IN (8977);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
 --
 (4596,   8977, 0, 0, 0, 1, 1, 1, -7958.56, -2603.77, 173.694, 5.76038, 500, 0, 0, 2634, 2041, 0, 0, 0, 0, '', 0, 0, NULL), -- Krom'Grul
@@ -108,12 +108,12 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (695093, 8977, 0, 0, 0, 1, 1, 1, -7962.19, -2659.41, 168.874, 2.29284, 500, 0, 0, 2634, 2041, 0, 0, 0, 0, '', 0, 0, NULL);
 
 DELETE FROM `pool_creature` WHERE `pool_entry` IN (601050);
-INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
+REPLACE INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
 (8977,   601050, 0, 'Krom\'Grul'),
 (695091, 601050, 0, 'Krom\'Grul'),
 (695092, 601050, 0, 'Krom\'Grul'),
 (695093, 601050, 0, 'Krom\'Grul');
 
 DELETE FROM `pool_template` WHERE `entry` IN (601050);
-INSERT INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
+REPLACE INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
 (601050, 1, 'Krom\'Grul - Burning Steppes');

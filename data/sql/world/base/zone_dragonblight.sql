@@ -3,11 +3,11 @@ UPDATE `creature_template` SET `MovementType` = 0 WHERE `entry` = 27003;
 UPDATE `creature` SET `position_x` =  3671.979, `position_y` = -497.5903, `position_z` = 157.9536, `MovementType` = 2, `currentwaypoint` = 1 WHERE `id` = 27003;
 
 DELETE FROM `creature_addon` WHERE `guid` = 107239;
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (107239, 1072390, 0, 0, 0, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` = 1072390;
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (1072390, 1, 3671.979, -497.5903, 157.9536, NULL, 0, 0, 0, 0, 0),
 (1072390, 2, 3693.592, -472.8958, 163.496, NULL, 0, 0, 0, 0, 0),

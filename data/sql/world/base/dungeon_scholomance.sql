@@ -4,7 +4,7 @@ UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN 
 (10469, 10470, 10471, 10472, 10477, 10478, 10485, 10486, 10487, 10488, 10489, 10491, 10495, 10498, 10499, 10500, 10678, 11257, 11551, 11622, 11636, 11637, 14511);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -94,15 +94,15 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 UPDATE `creature_text` SET `TextRange` = 1 WHERE `CreatureID` = 1853;
 
 DELETE FROM `creature_text` WHERE `CreatureID` IN (11636, 11637);
-INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
-(11636, 0, 0, 'I don\'t get paid enough for this!', 12, 0, 100, 0, 0, 0, 7150, 0,    'Servant of Weldon Barov'),
-(11636, 0, 1, 'Time to take out the trash!', 12, 0, 100, 0, 0, 0, 7151,  0,          'Servant of Weldon Barov'),
-(11636, 0, 2, 'I\'m going to dust you into oblivion!', 12, 0, 100, 0, 0, 0, 7152, 0, 'Servant of Weldon Barov'),
-(11636, 0, 3, 'How dare you?!', 12, 0, 100, 0, 0, 0, 7153,  0,                       'Servant of Weldon Barov'),
-(11636, 0, 4, 'Spot of tea, gov\'na?', 12, 0, 100, 0, 0, 0, 7154, 0,                 'Servant of Weldon Barov'),
+REPLACE INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
+(11636, 0, 0, '才这么点报酬，真亏！', 12, 0, 100, 0, 0, 0, 7150, 0,    'Servant of Weldon Barov'),
+(11636, 0, 1, '是清理这些垃圾的时候了！', 12, 0, 100, 0, 0, 0, 7151,  0,          'Servant of Weldon Barov'),
+(11636, 0, 2, '我会让你灰飞烟灭！', 12, 0, 100, 0, 0, 0, 7152, 0, 'Servant of Weldon Barov'),
+(11636, 0, 3, '大胆！', 12, 0, 100, 0, 0, 0, 7153,  0,                       'Servant of Weldon Barov'),
+(11636, 0, 4, '红茶，要吗？', 12, 0, 100, 0, 0, 0, 7154, 0,                 'Servant of Weldon Barov'),
 --
-(11637, 0, 0, 'I don\'t get paid enough for this!', 12, 0, 100, 0, 0, 0, 7150, 0,    'Servant of Alexi Barov'),
-(11637, 0, 1, 'Time to take out the trash!', 12, 0, 100, 0, 0, 0, 7151,  0,          'Servant of Alexi Barov'),
-(11637, 0, 2, 'I\'m going to dust you into oblivion!', 12, 0, 100, 0, 0, 0, 7152, 0, 'Servant of Alexi Barov'),
-(11637, 0, 3, 'How dare you?!', 12, 0, 100, 0, 0, 0, 7153,  0,                       'Servant of Alexi Barov'),
-(11637, 0, 4, 'Spot of tea, gov\'na?', 12, 0, 100, 0, 0, 0, 7154, 0,                 'Servant of Alexi Barov');
+(11637, 0, 0, '才这么点报酬，真亏！', 12, 0, 100, 0, 0, 0, 7150, 0,    'Servant of Alexi Barov'),
+(11637, 0, 1, '是清理这些垃圾的时候了！', 12, 0, 100, 0, 0, 0, 7151,  0,          'Servant of Alexi Barov'),
+(11637, 0, 2, '我会让你灰飞烟灭！', 12, 0, 100, 0, 0, 0, 7152, 0, 'Servant of Alexi Barov'),
+(11637, 0, 3, '大胆！', 12, 0, 100, 0, 0, 0, 7153,  0,                       'Servant of Alexi Barov'),
+(11637, 0, 4, '红茶，要吗？', 12, 0, 100, 0, 0, 0, 7154, 0,                 'Servant of Alexi Barov');

@@ -5,7 +5,7 @@ UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN 
 (95, 98, 115, 117, 121, 122, 123, 124, 125, 126, 127, 154, 157, 171, 199, 391, 449, 452, 453, 456, 458, 462, 500, 501, 504, 506, 513, 517, 519, 520, 547, 573, 589, 590, 832, 834, 846, 1065, 1236, 1424, 7051);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -124,7 +124,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 
 -- Restore Defias Pillager to original Fireball spell (was nerfed in 2.3)
 DELETE FROM `creature_template_spell` WHERE `CreatureID` = 589 AND `Index` = 0;
-INSERT INTO `creature_template_spell` (`CreatureID`, `Index`, `Spell`, `VerifiedBuild`) VALUES (589, 0, 19816, 12340);
+REPLACE INTO `creature_template_spell` (`CreatureID`, `Index`, `Spell`, `VerifiedBuild`) VALUES (589, 0, 19816, 12340);
 
 -- Quest line 'A Swift Message' should be for humans only.
 UPDATE `quest_template` SET `AllowableRaces` = 1 WHERE `ID` IN (6181, 6261, 6281, 6285);

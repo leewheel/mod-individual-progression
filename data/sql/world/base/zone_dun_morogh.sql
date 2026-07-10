@@ -4,7 +4,7 @@ UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN 
 (706, 808, 1115, 1116, 1117, 1118, 1119, 1120, 1121, 1122, 1123, 1124, 1125, 1126, 1127, 1130, 1134, 1135, 1137, 1196, 1211, 1260, 1271, 1397, 1689, 1961, 6123, 6124, 6221, 7843, 8503);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -108,10 +108,10 @@ UPDATE `creature` SET `spawntimesecs` = 270  WHERE `id` = 6124; -- Captain Beld
 
 -- Beginnings (Warlock)
 DELETE FROM `creature_questender` WHERE `id` = 460 AND `quest` = 1599;
-INSERT INTO `creature_questender` (`id`, `quest`) VALUES (460, 1599);
+REPLACE INTO `creature_questender` (`id`, `quest`) VALUES (460, 1599);
 
 DELETE FROM `creature_queststarter` WHERE `id` = 460 AND `quest` = 1599;
-INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES (460, 1599);
+REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES (460, 1599);
 
 UPDATE `quest_template` SET `Flags` = 8 WHERE `ID` = 1599;
 UPDATE `quest_template_addon` SET `SpecialFlags` = 0 WHERE `ID` = 1599;

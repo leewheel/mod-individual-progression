@@ -7,7 +7,7 @@ DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN
 (7092, 7093, 7097, 7098, 7099, 7100, 7101, 7104, 7105, 7106, 7107, 7108, 7109, 7110, 7111, 7112, 7113, 7114, 7115, 7118, 7120, 7125, 7132, 7136, 7139, 7153, 7154, 7155, 7156, 7157, 7158,
 8957, 8958, 8959, 8960, 8961, 9454, 9462, 9464, 9516, 9517, 9518, 9860, 9861, 9862, 9877, 9878, 10648, 14340, 14342, 14343, 14344, 14345);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -135,7 +135,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 
 
 DELETE FROM `creature_text` WHERE `CreatureID` IN (14344);
-INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
+REPLACE INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
 (14344, 0, 0, '$s becomes enraged!', 16, 0, 100, 0, 0, 0, 10677, 0, 'Mongress enrage at 30%');
 
 -- Ragepaw, fix movement
@@ -145,7 +145,7 @@ UPDATE `creature` SET `MovementType` = 1, `wander_distance` = 5 WHERE `id` = 143
 SET @IPPPHASE := 65536;
 
 DELETE FROM `creature` WHERE `id` IN (14524, 14525, 14526);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
 `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 (614524, 14524, 1, 0, 0, 1, @IPPPHASE, 0, 6194.55, -1176.35, 369.056, 1.1098,  600, 0, 0, 3331, 0, 0, 0, 0, 0, '', 0, 0, NULL),
 (614525, 14525, 1, 0, 0, 1, @IPPPHASE, 0, 6197.12, -1135.42, 366.31,  5.28025, 600, 0, 0, 3331, 0, 0, 0, 0, 0, '', 0, 0, NULL),
@@ -154,16 +154,16 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 
 -- fix Withered Protector waypoints
 DELETE FROM `creature` WHERE `id` IN (7149);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
 `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 (39489, 7149, 1, 0, 0, 1, 1, 0, 6177, -1322.46, 376.746, 5.71257, 300, 0, 1, 4318, 0, 2, 0, 0, 0, '', 0, 0, NULL);
 
 DELETE FROM `creature_addon` WHERE `guid` IN (39489);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (39489, 394890, 0, 0, 0, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` IN (394890);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (394890, 1, 6185.15, -1343.8, 376.725, NULL, 0, 0, 0, 100, 0),
 (394890, 2, 6200.33, -1366.76, 376.234, NULL, 0, 0, 0, 100, 0),

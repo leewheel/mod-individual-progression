@@ -19,7 +19,7 @@
 
 -- Custom Spells
 DELETE FROM `spell_dbc` WHERE `ID` BETWEEN 90001 AND 90008;
-INSERT INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attributes`, `AttributesEx`, `AttributesEx2`, `AttributesEx3`, `AttributesEx4`, `AttributesEx5`, `AttributesEx6`, `AttributesEx7`, `ShapeshiftMask`, 
+REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attributes`, `AttributesEx`, `AttributesEx2`, `AttributesEx3`, `AttributesEx4`, `AttributesEx5`, `AttributesEx6`, `AttributesEx7`, `ShapeshiftMask`, 
 `unk_320_2`, `ShapeshiftExclude`, `unk_320_3`, `Targets`, `TargetCreatureType`, `RequiresSpellFocus`, `FacingCasterFlags`, `CasterAuraState`, `TargetAuraState`, `ExcludeCasterAuraState`, `ExcludeTargetAuraState`, 
 `CasterAuraSpell`, `TargetAuraSpell`, `ExcludeCasterAuraSpell`, `ExcludeTargetAuraSpell`, `CastingTimeIndex`, `RecoveryTime`, `CategoryRecoveryTime`, `InterruptFlags`, `AuraInterruptFlags`, `ChannelInterruptFlags`, 
 `ProcTypeMask`, `ProcChance`, `ProcCharges`, `MaxLevel`, `BaseLevel`, `SpellLevel`, `DurationIndex`, `PowerType`, `ManaCost`, `ManaCostPerLevel`, `ManaPerSecond`, `ManaPerSecondPerLevel`, `RangeIndex`, `Speed`, 
@@ -115,63 +115,63 @@ NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, 0,
 
 -- Update target of spell 90003, summon Sewage Slime
 DELETE FROM `spell_target_position` WHERE (`ID` = 90003);
-INSERT INTO `spell_target_position` (`ID`, `EffectIndex`, `MapID`, `PositionX`, `PositionY`, `PositionZ`, `Orientation`, `VerifiedBuild`) VALUES
+REPLACE INTO `spell_target_position` (`ID`, `EffectIndex`, `MapID`, `PositionX`, `PositionY`, `PositionZ`, `Orientation`, `VerifiedBuild`) VALUES
 (90003, 0, 533, 3128.96, -3312.96, 293.25, 0.0, 0);
 
 -- Unholy Staff, reduce radius from 45yd to 20yd
 DELETE FROM `spell_script_names` WHERE `spell_id` = 28450;
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28450, 'spell_unholy_staff_arcane_explosion_40');
+REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28450, 'spell_unholy_staff_arcane_explosion_40');
 
 -- Sewage Slime
 -- 28153 Disease cloud 600->300
 DELETE FROM `spell_script_names` WHERE `spell_id` = 28153;
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28153, 'spell_disease_cloud_damage_40');
+REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28153, 'spell_disease_cloud_damage_40');
 
 -- Sapphiron
 -- 28522 Icebolt: Reduce damage ~7125 to ~2625
 DELETE FROM `spell_script_names` WHERE `spell_id` = 28522;
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28522, 'spell_sapphiron_icebolt_40');
+REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28522, 'spell_sapphiron_icebolt_40');
 
 -- 28531 Frost Aura 1200->600
 DELETE FROM `spell_script_names` WHERE `spell_id` = 28531;
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28531, 'spell_sapphiron_frost_aura_40');
+REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28531, 'spell_sapphiron_frost_aura_40');
 
 -- 28547 Chill (Blizzard)
 DELETE FROM `spell_script_names` WHERE `spell_id` = 28547;
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28547, 'spell_sapphiron_chill_40');
+REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28547, 'spell_sapphiron_chill_40');
 
 -- 60960 War Stomp: Increase damage 500 to ~1000
 DELETE FROM `spell_script_names` WHERE `spell_id` = 60960;
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (60960, 'spell_patchwork_golem_war_stomp_40');
+REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (60960, 'spell_patchwork_golem_war_stomp_40');
 
 -- Anub'Arak
 -- Locust Swarm: Reduce damage ~1500 to ~1000, increase radius 25yd to 30yd
 DELETE FROM `spell_script_names` WHERE `spell_id` = 28785;
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28785, 'spell_anub_locust_swarm_aura_40');
+REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28785, 'spell_anub_locust_swarm_aura_40');
 
 -- Kel'Thuzad
 -- Dark Blast: Reduce damage ~3.5k to ~2k
 DELETE FROM `spell_script_names` WHERE `spell_id` = 28457;
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28457, 'spell_kelthuzad_dark_blast_40');
+REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28457, 'spell_kelthuzad_dark_blast_40');
 
 -- Frostbolt: Reduce damage ~4.5k to ~2550
 DELETE FROM `spell_script_names` WHERE `spell_id` = 28479;
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28479, 'spell_kelthuzad_frostbolt_40');
+REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28479, 'spell_kelthuzad_frostbolt_40');
 
 -- Thaddius
 -- Feugen - Static Field: Change to mana drain
 DELETE FROM `spell_script_names` WHERE `spell_id` = 28135;
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28135, 'spell_feugen_static_field_40');
+REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28135, 'spell_feugen_static_field_40');
 
 -- Razuvious
 -- Mana Burn - alternative for Disrupting Shout
 DELETE FROM `spell_script_names` WHERE `spell_id` = 26046;
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (26046, 'spell_razuvious_disrupting_shout_40');
+REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (26046, 'spell_razuvious_disrupting_shout_40');
 
 -- Generic Spell Submerge
 -- relinquery of souls and eye stalk TC: https://github.com/search?q=repo%3ATrinityCore%2FTrinityCore%20spell_reliquary_of_souls_submerge&type=code
 DELETE FROM `spell_script_names` WHERE `spell_id` IN (26234, 28819);
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES
+REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES
 (26234, 'spell_submerge_visual_aura'),
 (28819, 'spell_submerge_visual_aura');
 
@@ -181,32 +181,32 @@ UPDATE `spell_target_position` SET `PositionX`=2917.43, `PositionY`=-3769.18, `P
 -- Grobbulus
 -- Poison damage by Poison Cloud ~3k to ~1k
 DELETE FROM `spell_script_names` WHERE `spell_id` = 28241;
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28241, 'spell_grobbulus_poison_cloud_poison_damage_40');
+REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28241, 'spell_grobbulus_poison_cloud_poison_damage_40');
 
 -- Heigan
 -- Plague Cloud
 DELETE FROM `spell_script_names` WHERE `spell_id` = 29350;
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (29350, 'spell_heigan_plague_cloud_aura_40');
+REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (29350, 'spell_heigan_plague_cloud_aura_40');
 -- Eruption
 DELETE FROM `spell_script_names` WHERE `spell_id` = 29371;
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (29371, 'spell_heigan_eruption_40');
+REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (29371, 'spell_heigan_eruption_40');
 
 -- Noth
 -- Wrath of the Plaguebringer, damage if failed to decurse
 DELETE FROM `spell_script_names` WHERE `spell_id` = 29213;
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (29213, 'spell_noth_curse_of_the_plaguebringer_aura_40');
+REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (29213, 'spell_noth_curse_of_the_plaguebringer_aura_40');
 
 -- Loatheb
 -- Corrupted Mind
 DELETE FROM `spell_script_names` WHERE `spell_id` = 29201;
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (29201, 'spell_loatheb_corrupted_mind_40');
+REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (29201, 'spell_loatheb_corrupted_mind_40');
 
 -- Corrupted Mind check - Druid
 DELETE FROM `spell_script_names` WHERE `ScriptName` = 'isAllowedToCastSpell' AND `spell_id` IN 
 (740, 774, 1058, 1430, 2090, 2091, 2782, 2893, 3627, 5185, 5186, 5187, 5188, 5189, 6778, 8903, 8910, 8918, 8936, 8938, 8939, 8940, 8941, 8946, 
 9750, 9758, 9839, 9840, 9841, 9856, 9857, 9858, 9862, 9863, 9888, 9889, 18562, 25297, 25299, 26978, 26979, 26980, 26981, 26982, 26983, 33763);
 
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES 
+REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES 
 (740,  'isAllowedToCastSpell'), (774,  'isAllowedToCastSpell'), (1058, 'isAllowedToCastSpell'), (1430, 'isAllowedToCastSpell'), (2090, 'isAllowedToCastSpell'), (2091, 'isAllowedToCastSpell'),
 (2782, 'isAllowedToCastSpell'), (2893, 'isAllowedToCastSpell'), (3627, 'isAllowedToCastSpell'), (5185, 'isAllowedToCastSpell'), (5186, 'isAllowedToCastSpell'), (5187, 'isAllowedToCastSpell'),
 (5188, 'isAllowedToCastSpell'), (5189, 'isAllowedToCastSpell'), (6778, 'isAllowedToCastSpell'), (8903, 'isAllowedToCastSpell'), (8910, 'isAllowedToCastSpell'), (8918, 'isAllowedToCastSpell'),
@@ -222,7 +222,7 @@ DELETE FROM `spell_script_names` WHERE `ScriptName` = 'isAllowedToCastSpell' AND
 10898, 10899, 10900, 10901, 10915, 10916, 10917, 10927, 10928, 10929, 10960, 10961, 10963, 10964, 10965, 15229, 15237, 15286, 15430, 15431, 19236, 19238, 19240, 19241, 19242, 19243, 
 25210, 25213, 25217, 25218, 25221, 25222, 25233, 25235, 25308, 25314, 25315, 25316, 25331, 25437, 27799, 27800, 27801, 32546, 33076, 34865, 34866);
 
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES 
+REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES 
 (17,   'isAllowedToCastSpell'), (139,  'isAllowedToCastSpell'), (527,  'isAllowedToCastSpell'), (528,  'isAllowedToCastSpell'), (552,  'isAllowedToCastSpell'), (592,  'isAllowedToCastSpell'),
 (596,  'isAllowedToCastSpell'), (600,  'isAllowedToCastSpell'), (988,  'isAllowedToCastSpell'), (996,  'isAllowedToCastSpell'), (2050, 'isAllowedToCastSpell'), (2052, 'isAllowedToCastSpell'),
 (2053, 'isAllowedToCastSpell'), (2054, 'isAllowedToCastSpell'), (2055, 'isAllowedToCastSpell'), (2060, 'isAllowedToCastSpell'), (2061, 'isAllowedToCastSpell'), (3747, 'isAllowedToCastSpell'),
@@ -241,7 +241,7 @@ INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES
 DELETE FROM `spell_script_names` WHERE `ScriptName` = 'isAllowedToCastSpell' AND `spell_id` IN 
 (633, 635, 639, 647, 1026, 1042, 1152, 2800, 3472, 4987, 10310, 10328, 10329, 19750, 19939, 19940, 19941, 19942, 19943, 20473, 20929, 20930, 25292, 27135, 27136, 27137, 27154, 27174, 33072);
 
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES 
+REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES 
 (633, 'isAllowedToCastSpell'), (635, 'isAllowedToCastSpell'), (639, 'isAllowedToCastSpell'), (647, 'isAllowedToCastSpell'), (1026, 'isAllowedToCastSpell'), (1042, 'isAllowedToCastSpell'), 
 (1152, 'isAllowedToCastSpell'), (2800, 'isAllowedToCastSpell'), (3472, 'isAllowedToCastSpell'), (4987, 'isAllowedToCastSpell'), (10310, 'isAllowedToCastSpell'), (10328, 'isAllowedToCastSpell'), 
 (10329, 'isAllowedToCastSpell'), (19750, 'isAllowedToCastSpell'), (19939, 'isAllowedToCastSpell'), (19940, 'isAllowedToCastSpell'), (19941, 'isAllowedToCastSpell'), (19942, 'isAllowedToCastSpell'), 
@@ -252,7 +252,7 @@ INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES
 DELETE FROM `spell_script_names` WHERE `ScriptName` = 'isAllowedToCastSpell' AND `spell_id` IN 
 (331, 332, 526, 547, 913, 939, 959, 974, 1064, 8004, 8005, 8008, 8010, 10395, 10396, 10466, 10467, 10468, 10622, 10623, 25357, 25391, 25396, 25420, 25422, 25423, 32593, 32594, 51886); 
 
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES 
+REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES 
 (331, 'isAllowedToCastSpell'), (332, 'isAllowedToCastSpell'), (526, 'isAllowedToCastSpell'), (547, 'isAllowedToCastSpell'), 
 (913, 'isAllowedToCastSpell'), (939, 'isAllowedToCastSpell'), (959, 'isAllowedToCastSpell'), (974, 'isAllowedToCastSpell'), 
 (1064, 'isAllowedToCastSpell'),  (8004, 'isAllowedToCastSpell'), (8005, 'isAllowedToCastSpell'), (8008, 'isAllowedToCastSpell'), (8010, 'isAllowedToCastSpell'), 

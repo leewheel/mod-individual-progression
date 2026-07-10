@@ -6,7 +6,7 @@ UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN
 (3976, 4280, 4281, 4282, 4283, 4284, 4285, 4286, 4287, 4288, 4289, 4290, 4291, 4292, 4293, 4294, 4295, 4296, 4297, 4298, 4299, 4300, 4301, 4302, 4303, 4306, 4540, 4543, 6426, 6488, 6489, 6490);
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN 
 (3976, 4280, 4281, 4282, 4283, 4284, 4285, 4286, 4287, 4288, 4289, 4290, 4291, 4292, 4293, 4294, 4295, 4296, 4297, 4298, 4299, 4300, 4301, 4302, 4303, 4306, 4540, 4543, 6426, 6488, 6489, 6490);
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -192,7 +192,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 
 DELETE FROM `creature` WHERE `guid` IN (40068, 40070);
 DELETE FROM `creature` WHERE `guid` BETWEEN 695001 AND 695007;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
 `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 --
 (40068, 4288, 189, 0, 0, 1, 1, 1, 201.223, -232.896, 18.5307, 3.14066, 86400, 0, 1, 3489, 0, 2, 0, 0, 0, '', 0, 0, NULL), -- Scarlet Beastmaster
@@ -207,7 +207,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (695007, 4293, 189, 0, 0, 1, 1, 1, 1807.84, 1165.98, 6.90374, 1.51844, 86400, 0, 0, 2865, 0, 0, 0, 0, 0, '', 0, 0, NULL);
 
 DELETE FROM `pool_creature` WHERE `pool_entry` BETWEEN 601001 AND 601007;
-INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
+REPLACE INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
 (27440,  601001, 0, 'Scarlet Torturer'),
 (695001, 601001, 0, 'Scarlet Scryer'),
 (27446,  601002, 0, 'Scarlet Torturer'),
@@ -224,7 +224,7 @@ INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALU
 (695007, 601007, 0, 'Scarlet Scryer');
 
 DELETE FROM `pool_template` WHERE `entry` BETWEEN 601001 AND 601007;
-INSERT INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
+REPLACE INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
 (601001, 1, 'Scarlet Scryer or Torturer - Scarlet Monastery'),
 (601002, 1, 'Scarlet Scryer or Torturer - Scarlet Monastery'),
 (601003, 1, 'Scarlet Scryer or Torturer - Scarlet Monastery'),
@@ -234,11 +234,11 @@ INSERT INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES
 (601007, 1, 'Scarlet Scryer or Torturer - Scarlet Monastery');
 
 DELETE FROM `creature_addon` WHERE `guid` = 695001;
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (695001, 6950010, 0, 0, 0, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` = 6950010;
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 (6950010, 1, 1759.54, 1121.24, 7.49103, NULL, 0, 0, 0, 100, 0),
 (6950010, 2, 1781.73, 1122.83, 7.49103, NULL, 0, 0, 0, 100, 0),
 (6950010, 3, 1782.84, 1160.14, 7.49103, NULL, 0, 0, 0, 100, 0),
@@ -251,40 +251,40 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 
 
 DELETE FROM `creature_text` WHERE `CreatureID` IN (4280, 4281, 4282, 4284, 4285, 4293, 4306);
-INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
+REPLACE INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
 --
-(4280, 0, 0, 'You carry the taint of the Scourge. Prepare to enter the Twisting Nether.', 12, 7, 100, 0, 0, 0, 2625, 0,                 'Scarlet Preserver'),
-(4280, 0, 1, 'There is no escape for you. The Crusade shall destroy all who carry the Scourge\'s taint.', 12, 7, 100, 0, 0, 0, 2626, 0, 'Scarlet Preserver'),
-(4280, 0, 2, 'The Light condemns all who harbor evil. Now you will die!', 12, 7, 100, 0, 0, 0, 2627, 0,                                 'Scarlet Preserver'),
-(4280, 0, 3, 'The Scarlet Crusade shall smite the wicked and drive evil from these lands!', 12, 7, 100, 0, 0, 0, 2628, 0,               'Scarlet Preserver'),
-(4281, 0, 0, 'You carry the taint of the Scourge. Prepare to enter the Twisting Nether.', 12, 7, 100, 0, 0, 0, 2625, 0,                 'Scarlet Scout'),
-(4281, 0, 1, 'There is no escape for you. The Crusade shall destroy all who carry the Scourge\'s taint.', 12, 7, 100, 0, 0, 0, 2626, 0, 'Scarlet Scout'),
-(4281, 0, 2, 'The Light condemns all who harbor evil. Now you will die!', 12, 7, 100, 0, 0, 0, 2627, 0,                                 'Scarlet Scout'),
-(4281, 0, 3, 'The Scarlet Crusade shall smite the wicked and drive evil from these lands!', 12, 7, 100, 0, 0, 0, 2628, 0,               'Scarlet Scout'),
-(4282, 0, 0, 'You carry the taint of the Scourge. Prepare to enter the Twisting Nether.', 12, 7, 100, 0, 0, 0, 2625, 0,                 'Scarlet Magician'),
-(4282, 0, 1, 'There is no escape for you. The Crusade shall destroy all who carry the Scourge\'s taint.', 12, 7, 100, 0, 0, 0, 2626, 0, 'Scarlet Magician'),
-(4282, 0, 2, 'The Light condemns all who harbor evil. Now you will die!', 12, 7, 100, 0, 0, 0, 2627, 0,                                 'Scarlet Magician'),
-(4282, 0, 3, 'The Scarlet Crusade shall smite the wicked and drive evil from these lands!', 12, 7, 100, 0, 0, 0, 2628, 0,               'Scarlet Magician'),
-(4284, 0, 0, 'You carry the taint of the Scourge. Prepare to enter the Twisting Nether.', 12, 7, 100, 0, 0, 0, 2625, 0,                 'Scarlet Augur'),
-(4284, 0, 1, 'There is no escape for you. The Crusade shall destroy all who carry the Scourge\'s taint.', 12, 7, 100, 0, 0, 0, 2626, 0, 'Scarlet Augur'),
-(4284, 0, 2, 'The Light condemns all who harbor evil. Now you will die!', 12, 7, 100, 0, 0, 0, 2627, 0,                                 'Scarlet Augur'),
-(4284, 0, 3, 'The Scarlet Crusade shall smite the wicked and drive evil from these lands!', 12, 7, 100, 0, 0, 0, 2628, 0,               'Scarlet Augur'),
-(4285, 0, 0, 'You carry the taint of the Scourge. Prepare to enter the Twisting Nether.', 12, 7, 100, 0, 0, 0, 2625, 0,                 'Scarlet Disciple'),
-(4285, 0, 1, 'There is no escape for you. The Crusade shall destroy all who carry the Scourge\'s taint.', 12, 7, 100, 0, 0, 0, 2626, 0, 'Scarlet Disciple'),
-(4285, 0, 2, 'The Light condemns all who harbor evil. Now you will die!', 12, 7, 100, 0, 0, 0, 2627, 0,                                 'Scarlet Disciple'),
-(4285, 0, 3, 'The Scarlet Crusade shall smite the wicked and drive evil from these lands!', 12, 7, 100, 0, 0, 0, 2628, 0,               'Scarlet Disciple'),
-(4293, 0, 0, 'Confess and we shall set you free.', 12, 7, 100, 0, 0, 0, 2570, 0,                                                        'Scarlet Scryer'),
-(4293, 0, 1, 'You will talk eventually.  You might as well spill it now.', 12, 7, 100, 0, 0, 0, 2569, 0,                                'Scarlet Scryer'),
-(4293, 0, 2, 'What?  Oh no, I don\'t care what you have to say.  I just enjoy inflicting pain.', 14, 7, 100, 0, 0, 0, 2571, 0,          'Scarlet Scryer'),
-(4293, 0, 3, 'The Scarlet Crusade shall smite the wicked and drive evil from these lands!', 12, 7, 100, 0, 0, 0, 2628, 0,               'Scarlet Scryer'),
-(4293, 1, 1, 'The light condemns all who harbor evil. Now you will die!', 12, 7, 100, 0, 0, 0, 2570, 0,                                 'Scarlet Scryer'),
-(4293, 1, 2, 'There is no escape for you. The Crusade shall destroy all who carry the scourge\'s taint.', 12, 7, 100, 0, 0, 0, 0, 0,    'Scarlet Scryer'),
-(4293, 1, 3, 'You carry the taint of the scourge. Prepare to enter the twisting nether.', 12, 7, 100, 0, 0, 0, 0, 0,                    'Scarlet Scryer'),
-(4306, 0, 0, 'Confess and we shall set you free.', 12, 7, 100, 0, 0, 0, 2570, 0,                                                        'Scarlet Torturer'),
-(4306, 0, 1, 'You will talk eventually.  You might as well spill it now.', 12, 7, 100, 0, 0, 0, 2569, 0,                                'Scarlet Torturer'),
-(4306, 0, 2, 'What?  Oh no, I don\'t care what you have to say.  I just enjoy inflicting pain.', 14, 7, 100, 0, 0, 0, 2571, 0,          'Scarlet Torturer'),
-(4306, 0, 3, 'The Scarlet Crusade shall smite the wicked and drive evil from these lands!', 12, 7, 100, 0, 0, 0, 2628, 0,               'Scarlet Torturer'),
-(4306, 1, 1, 'The light condemns all who harbor evil. Now you will die!', 12, 7, 100, 0, 0, 0, 2570, 0,                                 'Scarlet Torturer'),
-(4306, 1, 2, 'There is no escape for you. The Crusade shall destroy all who carry the scourge\'s taint.', 12, 7, 100, 0, 0, 0, 0, 0,    'Scarlet Torturer'),
-(4306, 1, 3, 'You carry the taint of the scourge. Prepare to enter the twisting nether.', 12, 7, 100, 0, 0, 0, 0, 0,                    'Scarlet Torturer');
+(4280, 0, 0, '你受到了天灾军团的污染。准备进入扭曲虚空。', 12, 7, 100, 0, 0, 0, 2625, 0,                 'Scarlet Preserver'),
+(4280, 0, 1, '你无处可逃。十字军将消灭所有携带天灾病毒的人。', 12, 7, 100, 0, 0, 0, 2626, 0, 'Scarlet Preserver'),
+(4280, 0, 2, '圣光将会惩罚所有心怀不轨的人。你死定了！', 12, 7, 100, 0, 0, 0, 2627, 0,                                 'Scarlet Preserver'),
+(4280, 0, 3, '血色十字军将会消灭一切邪恶的力量，把它们彻底赶出这片领地！', 12, 7, 100, 0, 0, 0, 2628, 0,               'Scarlet Preserver'),
+(4281, 0, 0, '你受到了天灾军团的污染。准备进入扭曲虚空。', 12, 7, 100, 0, 0, 0, 2625, 0,                 'Scarlet Scout'),
+(4281, 0, 1, '你无处可逃。十字军将消灭所有携带天灾病毒的人。', 12, 7, 100, 0, 0, 0, 2626, 0, 'Scarlet Scout'),
+(4281, 0, 2, '圣光将会惩罚所有心怀不轨的人。你死定了！', 12, 7, 100, 0, 0, 0, 2627, 0,                                 'Scarlet Scout'),
+(4281, 0, 3, '血色十字军将会消灭一切邪恶的力量，把它们彻底赶出这片领地！', 12, 7, 100, 0, 0, 0, 2628, 0,               'Scarlet Scout'),
+(4282, 0, 0, '你受到了天灾军团的污染。准备进入扭曲虚空。', 12, 7, 100, 0, 0, 0, 2625, 0,                 'Scarlet Magician'),
+(4282, 0, 1, '你无处可逃。十字军将消灭所有携带天灾病毒的人。', 12, 7, 100, 0, 0, 0, 2626, 0, 'Scarlet Magician'),
+(4282, 0, 2, '圣光将会惩罚所有心怀不轨的人。你死定了！', 12, 7, 100, 0, 0, 0, 2627, 0,                                 'Scarlet Magician'),
+(4282, 0, 3, '血色十字军将会消灭一切邪恶的力量，把它们彻底赶出这片领地！', 12, 7, 100, 0, 0, 0, 2628, 0,               'Scarlet Magician'),
+(4284, 0, 0, '你受到了天灾军团的污染。准备进入扭曲虚空。', 12, 7, 100, 0, 0, 0, 2625, 0,                 'Scarlet Augur'),
+(4284, 0, 1, '你无处可逃。十字军将消灭所有携带天灾病毒的人。', 12, 7, 100, 0, 0, 0, 2626, 0, 'Scarlet Augur'),
+(4284, 0, 2, '圣光将会惩罚所有心怀不轨的人。你死定了！', 12, 7, 100, 0, 0, 0, 2627, 0,                                 'Scarlet Augur'),
+(4284, 0, 3, '血色十字军将会消灭一切邪恶的力量，把它们彻底赶出这片领地！', 12, 7, 100, 0, 0, 0, 2628, 0,               'Scarlet Augur'),
+(4285, 0, 0, '你受到了天灾军团的污染。准备进入扭曲虚空。', 12, 7, 100, 0, 0, 0, 2625, 0,                 'Scarlet Disciple'),
+(4285, 0, 1, '你无处可逃。十字军将消灭所有携带天灾病毒的人。', 12, 7, 100, 0, 0, 0, 2626, 0, 'Scarlet Disciple'),
+(4285, 0, 2, '圣光将会惩罚所有心怀不轨的人。你死定了！', 12, 7, 100, 0, 0, 0, 2627, 0,                                 'Scarlet Disciple'),
+(4285, 0, 3, '血色十字军将会消灭一切邪恶的力量，把它们彻底赶出这片领地！', 12, 7, 100, 0, 0, 0, 2628, 0,               'Scarlet Disciple'),
+(4293, 0, 0, '坦白交待了，我们就放你走。', 12, 7, 100, 0, 0, 0, 2570, 0,                                                        'Scarlet Scryer'),
+(4293, 0, 1, '你终究是要说的，还不如现在就说了。', 12, 7, 100, 0, 0, 0, 2569, 0,                                'Scarlet Scryer'),
+(4293, 0, 2, '什么？哦，好吧，我不在乎你说什么。我只是喜欢这样。', 14, 7, 100, 0, 0, 0, 2571, 0,          'Scarlet Scryer'),
+(4293, 0, 3, '血色十字军将会消灭一切邪恶的力量，把它们彻底赶出这片领地！', 12, 7, 100, 0, 0, 0, 2628, 0,               'Scarlet Scryer'),
+(4293, 1, 1, '圣光将会惩罚所有心怀不轨的人。你死定了！', 12, 7, 100, 0, 0, 0, 2570, 0,                                 'Scarlet Scryer'),
+(4293, 1, 2, '你无处可逃。十字军将消灭所有携带天灾病毒的人。', 12, 7, 100, 0, 0, 0, 0, 0,    'Scarlet Scryer'),
+(4293, 1, 3, '你受到了天灾军团的污染。准备进入扭曲虚空。', 12, 7, 100, 0, 0, 0, 0, 0,                    'Scarlet Scryer'),
+(4306, 0, 0, '坦白交待了，我们就放你走。', 12, 7, 100, 0, 0, 0, 2570, 0,                                                        'Scarlet Torturer'),
+(4306, 0, 1, '你终究是要说的，还不如现在就说了。', 12, 7, 100, 0, 0, 0, 2569, 0,                                'Scarlet Torturer'),
+(4306, 0, 2, '什么？哦，好吧，我不在乎你说什么。我只是喜欢这样。', 14, 7, 100, 0, 0, 0, 2571, 0,          'Scarlet Torturer'),
+(4306, 0, 3, '血色十字军将会消灭一切邪恶的力量，把它们彻底赶出这片领地！', 12, 7, 100, 0, 0, 0, 2628, 0,               'Scarlet Torturer'),
+(4306, 1, 1, '圣光将会惩罚所有心怀不轨的人。你死定了！', 12, 7, 100, 0, 0, 0, 2570, 0,                                 'Scarlet Torturer'),
+(4306, 1, 2, '你无处可逃。十字军将消灭所有携带天灾病毒的人。', 12, 7, 100, 0, 0, 0, 0, 0,    'Scarlet Torturer'),
+(4306, 1, 3, '你受到了天灾军团的污染。准备进入扭曲虚空。', 12, 7, 100, 0, 0, 0, 0, 0,                    'Scarlet Torturer');
 

@@ -37,7 +37,7 @@ public:
 
             if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_5)) // death knights
             {
-                handler.PSendSysMessage("Your progression level is too high.");
+                handler.PSendSysMessage("您的进度等级过高。");
                 allowed = false;
             }
 
@@ -46,14 +46,14 @@ public:
                 if (player->GetQuestStatus(NAXX40_ENTRANCE_FLAG) == QUEST_STATUS_COMPLETE) {}
                 else
                 {
-                    handler.PSendSysMessage("You need to enter through Stratholme first. (RequireNaxxStrathEntrance is enabled)");
+                    handler.PSendSysMessage("您需要先从斯坦索姆进入。（RequireNaxxStrathEntrance 已启用）");
                     allowed = false;
                 }
             }
 
             if (!sIndividualProgression->isAttuned(player))
             {
-                handler.PSendSysMessage("You are not attuned to Naxxramas.");
+                handler.PSendSysMessage("您尚未与纳克萨玛斯绑定。");
                 allowed = false;
             }
 
@@ -87,32 +87,32 @@ public:
                         if (member->GetQuestStatus(NAXX40_ENTRANCE_FLAG) == QUEST_STATUS_COMPLETE) {}
                         else
                         {
-                            handler.PSendSysMessage("|cff00ffff{}|r needs to enter through Stratholme first. (RequireNaxxStrathEntrance is enabled)", member->GetName());
+                            handler.PSendSysMessage("|cff00ffff{}|r 需要先从斯坦索姆进入。（RequireNaxxStrathEntrance 已启用）", member->GetName());
                             allowed = false;
                         }
                     }
 
                     if (sIndividualProgression->hasPassedProgression(member, PROGRESSION_TBC_TIER_5)) // death knights
                     {
-                        handler.PSendSysMessage("|cff00ffff{}|r progression level is too high.", member->GetName());
+                        handler.PSendSysMessage("|cff00ffff{}|r 进度等级过高。", member->GetName());
                         allowed = false;
                     }
 
                     if (!sIndividualProgression->isAttuned(member))
                     {
-                        handler.PSendSysMessage("|cff00ffff{}|r is not attuned to Naxxramas.", member->GetName());
+                        handler.PSendSysMessage("|cff00ffff{}|r 尚未与纳克萨玛斯绑定。", member->GetName());
                         allowed = false;
                     }
 
                     if (member->IsGameMaster())
                     {
-                        handler.PSendSysMessage("|cff00ffff{}|r is a GM.", member->GetName());
+                        handler.PSendSysMessage("|cff00ffff{}|r 是管理员。", member->GetName());
                         allowed = true;
                     }
 
                     if (allowed)
                     {
-                        handler.PSendSysMessage("|cff00ffff{}|r is allowed to enter.", member->GetName());
+                        handler.PSendSysMessage("|cff00ffff{}|r 被允许进入。", member->GetName());
                         member->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
 
                         if (player->GetDistance(member) <= 30.0f && member->GetMapId() != 533) // teleport only if the player is close enough and not already in naxxramas
@@ -127,7 +127,7 @@ public:
         }
         else
         {
-            handler.PSendSysMessage("You need to be level 70 or below to enter this version of Naxxramas.");
+            handler.PSendSysMessage("您需要达到70级或以下才能进入此版本的纳克萨玛斯。");
         }
 
         return false;

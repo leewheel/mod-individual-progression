@@ -5,7 +5,7 @@ UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN 
 (5833, 5839, 5840, 5844, 5846, 5852, 5854, 5855, 5856, 5857, 5858, 5860, 5861, 5862, 8279, 8280, 8282, 8283, 8637, 9318, 14621);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -70,7 +70,7 @@ UPDATE `creature_template` SET `flags_extra` = 0  WHERE `entry` = 8400; -- Obsid
 
 DELETE FROM `smart_scripts` WHERE `source_type` = 9 AND `entryorguid` IN (839101);
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN (8391, 8400);
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -114,14 +114,14 @@ UPDATE `creature` SET `id` = 8504 WHERE `guid` = 6832;
 UPDATE `creature` SET `id` = 8504 WHERE `guid` = 5846;
 
 DELETE FROM `creature` WHERE `guid` IN (608504, 608505);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
 `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 (608504, 8504, 0, 0, 0, 1, 1, 1, -6630.98, -1233.1, 209.809, 1.29509, 300, 0, 0, 4950, 0, 0, 0, 0, 0, '', NULL, 0, NULL),
 (608505, 8504, 0, 0, 0, 1, 1, 1, -7023.45, -1283.97, 258.302, 4.8895, 300, 0, 0, 4950, 0, 0, 0, 0, 0, '', NULL, 0, NULL); -- 4th tower Dark Iron Sentry
 
 /* Group Maltorius together with the 2 sentries */
 DELETE FROM `creature_formations` WHERE `leaderGUID` = 5845;
-INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES 
+REPLACE INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES 
 (5845, 5845, 0, 0, 3, 0, 0),
 (5845, 5846, 0, 0, 3, 0, 0),
 (5845, 608504, 0, 0, 3, 0, 0);

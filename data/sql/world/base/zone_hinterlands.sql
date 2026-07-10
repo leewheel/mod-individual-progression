@@ -7,7 +7,7 @@ DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN
 (2639, 2640, 2641, 2642, 2643, 2644, 2645, 2646, 2647, 2648, 2651, 2652, 2653, 2658, 2659, 2681, 2686, 2691, 2692, 2693, 2694, 2707, 2925, 2926, 2928, 2929, 
 4465, 4466, 4467, 4468, 4469, 7995, 8214, 8215, 8218, 10802);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -119,16 +119,16 @@ UPDATE `creature` SET `spawntimesecs` = 37800, `MovementType` = 1, `wander_dista
 
 -- Grimungous, fix spawn and waypoints
 DELETE FROM `creature` WHERE `guid` = 77480;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
 `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 (77480, 8215, 0, 0, 0, 1, 1, 0, 45.1769, -4277.32, 122.17, 4.22167, 115200, 0, 1, 6645, 0, 2, 0, 0, 0, '', 0, 0, NULL);
 
 DELETE FROM `creature_addon` WHERE `guid` = 77480;
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (77480, 774800, 0, 0, 0, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` = 774800;
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 (774800, 1, 33.8661, -4294.99, 119.191, 4.13916, 0, 0, 0, 100, 0),
 (774800, 2, 15.5674, -4323.33, 126.081, 4.13916, 0, 0, 0, 100, 0),
 (774800, 3, 9.06412, -4344.8, 133.54, 4.41641, 0, 0, 0, 100, 0),

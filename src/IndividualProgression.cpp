@@ -184,15 +184,15 @@ void IndividualProgression::UpdateAccountReputation(uint32 factionId, uint32 acc
             newRep = repAmount;
     }
 
-    ChatHandler(player->GetSession()).PSendSysMessage("Current {} Rep = {} ({})", factionId, curRep, factionName);
-    ChatHandler(player->GetSession()).PSendSysMessage("Highest {} Rep = {} ({})", factionId, newRep, factionName);
+    ChatHandler(player->GetSession()).PSendSysMessage("当前 {} 声望 = {} ({})", factionId, curRep, factionName);
+    ChatHandler(player->GetSession()).PSendSysMessage("最高 {} 声望 = {} ({})", factionId, newRep, factionName);
 
     if (newRep > curRep)
     {
         uint32 addRep = newRep - curRep;
 
         player->GetReputationMgr().ModifyReputation(sFactionStore.LookupEntry(factionId), addRep);
-        // ChatHandler(player->GetSession()).PSendSysMessage("Reputation with {} increased by {}.", factionName, addRep);
+        // ChatHandler(player->GetSession()).PSendSysMessage("{} 声望增加了 {}。", factionName, addRep);
     }
 }
 
@@ -221,7 +221,7 @@ void IndividualProgression::UpdateGroupAttunement(Player* player, std::string lo
 
                 if (member->GetLevel() < 50)
                 {
-                    ChatHandler(player->GetSession()).PSendSysMessage("|cff00ffff{}|r needs to be at least level 50.", member->GetName());
+                    ChatHandler(player->GetSession()).PSendSysMessage("|cff00ffff{}|r 需要至少达到50级。", member->GetName());
                     continue;
                 }
 
@@ -229,19 +229,19 @@ void IndividualProgression::UpdateGroupAttunement(Player* player, std::string lo
                 {
                     if (member->HasItemCount(ITEM_DRAKEFIRE_AMULET, 1, true))
                     {
-                        ChatHandler(player->GetSession()).PSendSysMessage("|cff00ffff{}|r has the Drakefire Amulet in their bank.", member->GetName());
+                        ChatHandler(player->GetSession()).PSendSysMessage("|cff00ffff{}|r 的银行中有龙火护符。", member->GetName());
                         continue;
                     }
 
                     member->AddItem(ITEM_DRAKEFIRE_AMULET, 1);
-                    ChatHandler(player->GetSession()).PSendSysMessage("|cff00ffff{}|r received the Drakefire Amulet.", member->GetName());
+                    ChatHandler(player->GetSession()).PSendSysMessage("|cff00ffff{}|r 获得了龙火护符。", member->GetName());
                 }
             }
             return;
         }
         else
         {
-            ChatHandler(player->GetSession()).PSendSysMessage("You must have the Drakefire Amulet in your inventory to use this command.");
+            ChatHandler(player->GetSession()).PSendSysMessage("您必须携带龙火护符才能使用此命令。");
             return;
         }
     }
@@ -257,13 +257,13 @@ void IndividualProgression::UpdateGroupAttunement(Player* player, std::string lo
 
                 if (member->GetLevel() < 70)
                 {
-                    ChatHandler(player->GetSession()).PSendSysMessage("|cff00ffff{}|r needs to be at least level 70.", member->GetName());
+                    ChatHandler(player->GetSession()).PSendSysMessage("|cff00ffff{}|r 需要至少达到70级。", member->GetName());
                     continue;
                 }
 
                 if (isBeforeProgression(member, PROGRESSION_TBC_TIER_2))
                 {
-                    ChatHandler(player->GetSession()).PSendSysMessage("|cff00ffff{}|r needs to have progression level 10 (TBC Tier 2).", member->GetName());
+                    ChatHandler(player->GetSession()).PSendSysMessage("|cff00ffff{}|r 需要达到进度等级 10（TBC第2阶段）。", member->GetName());
                     continue;
                 }
 
@@ -271,19 +271,19 @@ void IndividualProgression::UpdateGroupAttunement(Player* player, std::string lo
                 {
                     if (member->HasItemCount(ITEM_MEDALLION_OF_KARABOR, 1, true) || member->HasItemCount(ITEM_BLESSED_MEDALLION_OF_KARABOR, 1, true))
                     {
-                        ChatHandler(player->GetSession()).PSendSysMessage("|cff00ffff{}|r has the Medallion of Karabor in their bank.", member->GetName());
+                        ChatHandler(player->GetSession()).PSendSysMessage("|cff00ffff{}|r 的银行中有卡拉波勋章。", member->GetName());
                         continue;
                     }
 
                     member->AddItem(ITEM_MEDALLION_OF_KARABOR, 1);
-                    ChatHandler(player->GetSession()).PSendSysMessage("|cff00ffff{}|r received the Medallion of Karabor.", member->GetName());
+                    ChatHandler(player->GetSession()).PSendSysMessage("|cff00ffff{}|r 获得了卡拉波勋章。", member->GetName());
                 }
             }
             return;
         }
         else
         {
-            ChatHandler(player->GetSession()).PSendSysMessage("You must have the Medallion of Karabor in your inventory to use this command.");
+            ChatHandler(player->GetSession()).PSendSysMessage("您必须携带卡拉波勋章才能使用此命令。");
             return;
         }
     }
@@ -353,6 +353,14 @@ bool IndividualProgression::isBotAccount(Player* player)
     if (!player)
         return false;
 
+    //By leewheel 2026-07-07
+    //优先使用session的IsBot()判断，覆盖所有类型的机器人（包括RNDBot和ALTbot）
+    //ALTbot是通过+bot命令添加的玩家自己的机器人，它们与玩家同账号，账号名正则无法匹配
+    //使用IsBot()可以可靠地识别所有类型的机器人，确保它们不受个人进度系统限制
+    if (player->GetSession() && player->GetSession()->IsBot())
+        return true;
+    //End By leewheel
+
     std::string accountName;
     bool accountNameFound = AccountMgr::GetName(player->GetSession()->GetAccountId(), accountName);
     std::regex botAccountsRegex(sIndividualProgression->botAccountsRegex);
@@ -404,7 +412,12 @@ void IndividualProgression::SyncBotsProgressionToLeader(Group* group)
         if (!member || isNormalAccount(member))
             continue;
 
-        ForceUpdateProgressionState(member, static_cast<ProgressionState>(refProgress));
+        //By leewheel 2026-07-07
+        //仅在机器人进度与队长不一致时才执行同步，避免不必要的任务操作开销
+        uint8 memberProgress = GetPlayerProgressionFromQuests(member);
+        if (memberProgress != refProgress)
+            ForceUpdateProgressionState(member, static_cast<ProgressionState>(refProgress));
+        //End By leewheel
     }
 }
 
@@ -412,6 +425,43 @@ void IndividualProgression::checkIPPhasing(Player* player, uint32 newArea)
 {
     if (!player || !player->IsInWorld())
         return;
+
+    //By leewheel 2026-07-07
+    //机器人不受个人进度相位系统限制
+    //机器人在队伍中时直接复制队长的相位光环，确保看到与队长相同的世界状态
+    //机器人不在队伍中时清除所有相位光环
+    if (isBotAccount(player))
+    {
+        player->RemoveAura(IPP_PHASE);
+        player->RemoveAura(IPP_PHASE_II);
+        player->RemoveAura(IPP_PHASE_III);
+        player->RemoveAura(IPP_PHASE_IV);
+        player->RemoveAura(IPP_PHASE_V);
+        player->RemoveAura(IPP_PHASE_VI);
+
+        Group* group = player->GetGroup();
+        if (group)
+        {
+            Player* leader = ObjectAccessor::FindPlayer(group->GetLeaderGUID());
+            if (leader && leader->IsInWorld() && isNormalAccount(leader))
+            {
+                if (leader->HasAura(IPP_PHASE))
+                    player->CastSpell(player, IPP_PHASE, false);
+                if (leader->HasAura(IPP_PHASE_II))
+                    player->CastSpell(player, IPP_PHASE_II, false);
+                if (leader->HasAura(IPP_PHASE_III))
+                    player->CastSpell(player, IPP_PHASE_III, false);
+                if (leader->HasAura(IPP_PHASE_IV))
+                    player->CastSpell(player, IPP_PHASE_IV, false);
+                if (leader->HasAura(IPP_PHASE_V))
+                    player->CastSpell(player, IPP_PHASE_V, false);
+                if (leader->HasAura(IPP_PHASE_VI))
+                    player->CastSpell(player, IPP_PHASE_VI, false);
+            }
+        }
+        return;
+    }
+    //End By leewheel
 
     player->RemoveAura(IPP_PHASE);
     player->RemoveAura(IPP_PHASE_II);
@@ -1116,7 +1166,11 @@ public:
         if (sIndividualProgression->DisableQuestMarkers)
         {
             sWorld->setBoolConfig(CONFIG_OBJECT_QUEST_MARKERS, false);
-            sWorld->setBoolConfig(CONFIG_OBJECT_SPARKLES, false);
+            //By leewheel 2026-07-08 借鉴参考项目，不再关闭 CONFIG_OBJECT_SPARKLES
+            //关闭该配置会导致所有任务物品（如北郡"米莉的葡萄"任务中的葡萄桶）丧失闪光效果
+            //任务标记（小地图上的感叹号/问号）可以关闭，但闪光效果必须保留
+            //sWorld->setBoolConfig(CONFIG_OBJECT_SPARKLES, false);
+            //End By leewheel
         }
     }
 };

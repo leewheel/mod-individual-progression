@@ -1,34 +1,34 @@
-UPDATE `creature_template` SET `subname` = 'Journeyman Blacksmith'    WHERE `entry` = 957;   -- Dane Lindgren <Apprentice Blacksmith>
-UPDATE `creature_template` SET `subname` = 'Journeyman Tailor'        WHERE `entry` = 1300;  -- Lawrence Schneider <Apprentice Tailor>
-UPDATE `creature_template` SET `subname` = 'Expert Enchanter'         WHERE `entry` = 1317;  -- Lucan Cordell <Enchanting Trainer>
-UPDATE `creature_template` SET `subname` = 'Artisan Tailor'           WHERE `entry` = 1346;  -- Georgio Bolero <Artisan Tailor>
-UPDATE `creature_template` SET `subname` = 'Journeyman Engineer'      WHERE `entry` = 11026; -- Sprite Jumpsprocket <Apprentice Engineer>
-UPDATE `creature_template` SET `subname` = 'Journeyman Enchanter'     WHERE `entry` = 11068; -- Betty Quin <Apprentice Enchanter>
-UPDATE `creature_template` SET `subname` = 'Journeyman Leatherworker' WHERE `entry` = 11096; -- Randal Worth <Apprentice Leatherworker>
+UPDATE `creature_template` SET `subname` = '初级铁匠'    WHERE `entry` = 957;   -- Dane Lindgren <Apprentice Blacksmith>
+UPDATE `creature_template` SET `subname` = '初级裁缝'        WHERE `entry` = 1300;  -- Lawrence Schneider <Apprentice Tailor>
+UPDATE `creature_template` SET `subname` = '专家附魔师'         WHERE `entry` = 1317;  -- Lucan Cordell <Enchanting Trainer>
+UPDATE `creature_template` SET `subname` = '大师级裁缝'           WHERE `entry` = 1346;  -- Georgio Bolero <Artisan Tailor>
+UPDATE `creature_template` SET `subname` = '初级工程师'      WHERE `entry` = 11026; -- Sprite Jumpsprocket <Apprentice Engineer>
+UPDATE `creature_template` SET `subname` = '初级附魔师'     WHERE `entry` = 11068; -- Betty Quin <Apprentice Enchanter>
+UPDATE `creature_template` SET `subname` = '初级制皮师' WHERE `entry` = 11096; -- Randal Worth <Apprentice Leatherworker>
 
 UPDATE `creature_template` SET `npcflag` = 81 WHERE `entry` IN (957, 1300, 11026, 11068, 11096); -- `trainer_type` = 2
 UPDATE `creature_template` SET `type_flags` = 134217728 WHERE `entry` = 5567; -- Sellandus <Expert Tailor>
 
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 15 AND `SourceEntry` = 0 AND `ConditionTypeOrReference` = 7 AND `SourceGroup` IN (581, 4146, 4161, 4201, 4203, 4344, 4353); 
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `ConditionTypeOrReference`, `ConditionValue1`, `ConditionValue2`, `Comment`) VALUES 
-(15, 581,  0, 7, 164, 50,  'Show menu if blacksmithing is 50 or higher'),  -- Therum Deepforge <Expert Blacksmith>
-(15, 4146, 0, 7, 202, 50,  'Show menu if engineering is 50 or higher'),    -- Lilliam Sparkspindle <Expert Engineer>
-(15, 4161, 0, 7, 333, 50,  'Show menu if enchanting is 50 or higher'),     -- Lucan Cordell <Expert Enchanter>
-(15, 4201, 0, 7, 171, 50,  'Show menu if alchemy is 50 or higher'),        -- Lilyssia Nightbreeze <Expert Alchemist>
-(15, 4203, 0, 7, 165, 50,  'Show menu if leatherworking is 50 or higher'), -- Simon Tanner <Expert Leatherworker>
-(15, 4344, 0, 7, 197, 50,  'Show menu if tailoring is 50 or higher'),      -- Sellandus <Expert Tailor>
-(15, 4353, 0, 7, 197, 125, 'Show menu if tailoring is 125 or higher');     -- Georgio Bolero <Artisan Tailor>
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `ConditionTypeOrReference`, `ConditionValue1`, `ConditionValue2`, `Comment`) VALUES 
+(15, 581,  0, 7, 164, 50,  '如果锻造技能达到50级或更高则显示菜单'),  -- Therum Deepforge <Expert Blacksmith>
+(15, 4146, 0, 7, 202, 50,  '如果工程学技能达到50级或更高则显示菜单'),    -- Lilliam Sparkspindle <Expert Engineer>
+(15, 4161, 0, 7, 333, 50,  '如果附魔技能达到50级或更高则显示菜单'),     -- Lucan Cordell <Expert Enchanter>
+(15, 4201, 0, 7, 171, 50,  '如果炼金术技能达到50级或更高则显示菜单'),        -- Lilyssia Nightbreeze <Expert Alchemist>
+(15, 4203, 0, 7, 165, 50,  '如果制皮技能达到50级或更高则显示菜单'), -- Simon Tanner <Expert Leatherworker>
+(15, 4344, 0, 7, 197, 50,  '如果裁缝技能达到50级或更高则显示菜单'),      -- Sellandus <Expert Tailor>
+(15, 4353, 0, 7, 197, 125, '如果裁缝技能达到125级或更高则显示菜单');     -- Georgio Bolero <Artisan Tailor>
 
 UPDATE `creature_template` SET `minlevel` = 63, `maxlevel` = 63, `ScriptName` = 'npc_king_varian_wrynn' WHERE `entry` = 29611; -- King Varian Wrynn
 UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_pre_wotlk' WHERE `entry` = 1747; -- Anduin Wrynn
 
-UPDATE `creature_template` SET `subname` = 'Arcane Goods Vendor' WHERE `entry` = 1257; -- Keldric Boucher <Alchemy Supplies & Reagents>
-UPDATE `creature_template` SET `subname` = 'Reagent Vendor'      WHERE `entry` = 1275; -- Kyra Boucher <Reagents>
-UPDATE `creature_template` SET `subname` = 'Trade Supplier'      WHERE `entry` = 1286; -- Edna Mullby <Trade Supplies>
-UPDATE `creature_template` SET `subname` = 'Reagent Vendor'      WHERE `entry` = 1308; -- Owen Vaughn <Reagents>
-UPDATE `creature_template` SET `subname` = 'Poison Supplier'     WHERE `entry` = 1326; -- Sloan McCoy <Poison Supplier>
-UPDATE `creature_template` SET `subname` = 'Reagent Vendor'      WHERE `entry` = 1351; -- Brother Cassius <Reagents>
-UPDATE `creature_template` SET `subname` = 'Weapon Crafter'      WHERE `entry` = 7232; -- Borgus Steelhand <Weapon Crafter>
+UPDATE `creature_template` SET `subname` = '奥术用品商人' WHERE `entry` = 1257; -- Keldric Boucher <Alchemy Supplies & Reagents>
+UPDATE `creature_template` SET `subname` = '施法材料商人'      WHERE `entry` = 1275; -- Kyra Boucher <Reagents>
+UPDATE `creature_template` SET `subname` = '贸易供应品商人'      WHERE `entry` = 1286; -- Edna Mullby <Trade Supplies>
+UPDATE `creature_template` SET `subname` = '施法材料商人'      WHERE `entry` = 1308; -- Owen Vaughn <Reagents>
+UPDATE `creature_template` SET `subname` = '毒药供应商'     WHERE `entry` = 1326; -- Sloan McCoy <Poison Supplier>
+UPDATE `creature_template` SET `subname` = '施法材料商人'      WHERE `entry` = 1351; -- Brother Cassius <Reagents>
+UPDATE `creature_template` SET `subname` = '武器制造者'      WHERE `entry` = 7232; -- Borgus Steelhand <Weapon Crafter>
 
 SET @Rachel     := 112778; -- Lieutenant Rachel Vaccar
 SET @Biggins    := 112781; -- Master Sergeant Biggins <Officer Accessories Quartermaster>, Vanilla
@@ -41,9 +41,9 @@ SET @Dirge      := 126393; -- Captain Dirgehammer - Season 4
 
 SET @CGUID      := 659000;
 
-UPDATE `creature_template` SET `subname` = 'Mount Vendor' WHERE `entry` = 12783;
-UPDATE `creature_template` SET `subname` = 'Weapons Quartermaster' WHERE `entry` = 12784; 
-UPDATE `creature_template` SET `subname` = 'Armor Quartermaster' WHERE `entry` IN (12785, 34073, 34074);
+UPDATE `creature_template` SET `subname` = '坐骑商人' WHERE `entry` = 12783;
+UPDATE `creature_template` SET `subname` = '武器军需官' WHERE `entry` = 12784; 
+UPDATE `creature_template` SET `subname` = '护甲军需官' WHERE `entry` IN (12785, 34073, 34074);
 
 UPDATE `creature_template` SET `npcflag` = 4224 WHERE `entry` IN (24671, 24672);
 
@@ -54,7 +54,7 @@ DELETE FROM `creature` WHERE `id`  IN (7410, 7798, 12779, 12780, 12805, 14981, 1
 DELETE FROM `creature` WHERE `guid` BETWEEN @CGUID+21 AND @CGUID+38;
 DELETE FROM `creature` WHERE `guid` BETWEEN @CGUID+121 AND @CGUID+142;
 
-INSERT INTO `creature` (`guid`, `id`, `map`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`) VALUES 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`) VALUES 
 --
 (@CGUID+121, @Biggins, 0, 1, -8777.4, 417.124, 103.921, 6.23553, 180),  -- Master Sergeant Biggins <Officer Accessories Quartermaster>, Vanilla
 (@CGUID+122, 12781, 0, 1, -8777.4, 417.124, 103.921, 6.23553, 180),     -- Master Sergeant Biggins <Officer Accessories Quartermaster>, TBC
@@ -119,13 +119,13 @@ UPDATE `creature_template` SET `minlevel` = 55, `maxlevel` = 55 WHERE `entry` IN
 UPDATE `creature_template` SET `minlevel` = 65, `maxlevel` = 65 WHERE `entry` IN (26393, 34075);
 
 DELETE FROM `creature_addon` WHERE `guid` IN (@CGUID+122, @CGUID+127, 133926, 133928);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
 (@CGUID+122, 0, 0, 0, 1, 0, 0, NULL), -- Master Sergeant Biggins
 (@CGUID+127, 0, 0, 0, 1, 0, 0, NULL); -- Lieutenant Jackspring
 
 /* Hide certain vendor items until the player has reached the progression tier for them */
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 23 AND `SourceGroup` IN (12777, 12782, 12783, 26394) AND `ConditionValue1` IN (66002, 66006, 66008);
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 --
 (23, 12777, 16369, 0, 0, 8, 0, 66006, 0, 0, 1, 0, 0, '', 'Captain Dirgehammer will only sell Knight-Lieutenants Silk Boots if the player has NOT completed PROGRESSION_AQ'), -- mage
@@ -301,7 +301,7 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 
 -- Quest: Alicia's Poem (11451)
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 19 AND `SourceEntry` = 11451;
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`,
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`,
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES
 (19, 0, 11451, 0, 0, 8, 0, 66008, 0, 0, 0, 0, 0, '', 'Quest \'Alicia\'s Poem\' only available after the player has reached PROGRESSION_TBC_TIER_1');
 
@@ -317,12 +317,12 @@ DELETE FROM `npc_vendor` WHERE `entry`= 5193 AND `item` IN (15197, 15199, 19031,
 
 -- Summon Felsteed (Warlock)
 DELETE FROM `quest_offer_reward` WHERE `ID` = 4488;
-INSERT INTO `quest_offer_reward` (`ID`, `RewardText`) VALUES 
-(4488, 'So, you\'ve decided to grace my presence again. How kind of you.$b$bMy acolytes wondered if you\'d ever show up. I told them there was no doubt. When power is concerned, you are drawn in like a moth to the flame.');
+REPLACE INTO `quest_offer_reward` (`ID`, `RewardText`) VALUES 
+(4488, '所以你决定再次让我见识你的存在。你真是客气。$B$B我的学徒们还在怀疑你究竟会不会出现。我告诉他们不必怀疑。当涉及到力量的时候，就像飞蛾扑火一样，你都会被吸引过来。');
 
 -- A Meal Served Cold
 UPDATE `quest_template` SET `Flags` = 9, 
-`LogDescription` = 'Kill a Cold Eye Basilisk, get a Chilled Basilisk Haunch, and return it to Angus Stern in the Blue Recluse.$B$B<You must not release your spirit to succeed in this quest.>' 
+`LogDescription` = '杀一只冷眼蜥蜴，获得冷冻的蜥蜴腿肉，然后把它交给蓝隐旅馆的安格斯·斯特恩。$B$B<想要成功完成这个任务，你绝不能释放灵魂。>' 
 WHERE `ID` = 212;
 
 -- Chillwind Camp
@@ -332,14 +332,14 @@ UPDATE `quest_template` SET `LogTitle` = 'Chillwind Point' WHERE `ID` = 8415;
 UPDATE `quest_template_addon` SET `PrevQuestID` = 0 WHERE `ID` = 1716;
 
 DELETE FROM `creature_text` WHERE `CreatureID` IN (12739);
-INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
+REPLACE INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
 (12739, 0, 0, '$s becomes enraged!', 16, 0, 100, 0, 0, 0, 10677, 0, 'Onyxias Elite Guard enrage at 30%');
 
 -- smart scripts
 UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN (1284, 12739);
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN (1284, 12739);
 DELETE FROM `smart_scripts` WHERE `event_type` = 10 AND `target_type` = 7 AND `entryorguid` = 28347;
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 

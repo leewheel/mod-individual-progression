@@ -6,6 +6,40 @@
 
 using namespace Acore::ChatCommands;
 
+void checkLearnedPetSpells(Player* player, const std::string& playerClass, uint32 petSpell, std::initializer_list<uint32> dummyIds)
+{
+    if (!player || !petSpell)
+        return;
+
+    if (player->getClass() != CLASS_HUNTER && player->getClass() != CLASS_WARLOCK)
+        return;
+
+    if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_5))
+        return;
+
+    const SpellEntry* spellInfo = sSpellStore.LookupEntry(petSpell);
+    std::string SpellName = spellInfo ? spellInfo->SpellName[0] : std::to_string(petSpell);
+
+    ChatHandler(player->GetSession()).PSendSysMessage("--");
+    ChatHandler(player->GetSession()).PSendSysMessage("# {}：", SpellName);
+
+    for (uint32 id : dummyIds)
+    {
+        if (!player->HasSpell(id))
+            continue;
+
+        uint32 spellID = id - 600000;
+        uint8 SpellRank = 1;
+
+        QueryResult result = WorldDatabase.Query("SELECT sr.rank FROM spell_ranks sr WHERE sr.spell_id = {};", spellID);
+
+        if (result)
+            SpellRank = (*result)[0].Get<uint8>();
+        
+        ChatHandler(player->GetSession()).PSendSysMessage("+ 等级 {}", SpellRank);
+    }
+};
+
 class individualProgression_commandscript : public CommandScript
 {
 public:
@@ -17,6 +51,7 @@ public:
         {
             { "get",    HandleGetIndividualProgressionCommand,    SEC_GAMEMASTER,    Console::Yes },
             { "set",    HandleSetIndividualProgressionCommand,    SEC_GAMEMASTER,    Console::Yes },
+            { "pet",    HandlePetIndividualProgressionCommand,    SEC_GAMEMASTER,    Console::Yes },
             { "tele",   HandleTeleIndividualProgressionCommand,   SEC_GAMEMASTER,    Console::Yes },
             { "setbot", HandleSetBotIndividualProgressionCommand, SEC_GAMEMASTER,    Console::Yes },
             { "setrep", HandleSetRepIndividualProgressionCommand, SEC_GAMEMASTER,    Console::Yes },
@@ -72,7 +107,7 @@ public:
 
         if (!player)
         {
-            handler->SendSysMessage("Player not found.");
+            handler->SendSysMessage("未找到玩家。");
             return false;
         }
 
@@ -80,13 +115,13 @@ public:
         Player* target = player->GetConnectedPlayer();
         if (!target)
         {
-            handler->PSendSysMessage("Player |cff00ffff{}|r is not online.", playername);
+            handler->PSendSysMessage("玩家 |cff00ffff{}|r 不在线。", playername);
             return false;
         }
 
         uint32 progressionLevel = sIndividualProgression->GetPlayerProgressionFromQuests(target);
 
-        handler->PSendSysMessage("Progression Level for |cff00ffff{}|r = |cff00ffff{}|r", playername, progressionLevel);
+        handler->PSendSysMessage("|cff00ffff{}|r 的进度等级 = |cff00ffff{}|r", playername, progressionLevel);
         return true;
     }
 
@@ -97,7 +132,7 @@ public:
 
         if ((progressionLevel > PROGRESSION_WOTLK_TIER_5) || progressionLevel == 11)
         {
-            handler->SendSysMessage("Invalid Progression Level.");
+            handler->SendSysMessage("无效的进度等级。");
             return false;
         }
 
@@ -115,7 +150,7 @@ public:
         sIndividualProgression->ForceUpdateProgressionState(target, static_cast<ProgressionState>(progressionLevel));
         sIndividualProgression->checkIPPhasing(target, currentArea);
 
-        handler->PSendSysMessage("Updated Progression Level for |cff00ffff{}|r = |cff00ffff{}|r", playername, progressionLevel);
+        handler->PSendSysMessage("已更新 |cff00ffff{}|r 的进度等级 = |cff00ffff{}|r", playername, progressionLevel);
         return true;
     }
 
@@ -125,7 +160,7 @@ public:
 
         if (!player)
         {
-            handler->SendSysMessage("Player not found.");
+            handler->SendSysMessage("未找到玩家。");
             return false;
         }
 
@@ -137,7 +172,7 @@ public:
 
         if (!group)
         {
-            handler->SendSysMessage("You need to be in a group to use this command.");
+            handler->SendSysMessage("您需要在队伍中才能使用此命令。");
             return false;
         }
 
@@ -152,7 +187,7 @@ public:
             sIndividualProgression->checkIPPhasing(member, currentArea);
         }
 
-        handler->PSendSysMessage("Updated Progression Level for all RND bots = |cff00ffff{}|r", currentState);
+        handler->PSendSysMessage("已更新所有随机机器人的进度等级 = |cff00ffff{}|r", currentState);
         return true;
     }
 
@@ -168,13 +203,13 @@ public:
         
         if (!sIndividualProgression->EnableSetRepCommand)
         {
-            handler->SendSysMessage("The .ip setrep command is currently disabled.");
+            handler->SendSysMessage("The .ip setrep 命令目前已禁用。");
             return false;
         }
         
         if (!group)
         {
-            ChatHandler(player->GetSession()).PSendSysMessage("You need to be in a group to use this command.");
+            ChatHandler(player->GetSession()).PSendSysMessage("您需要在队伍中才能使用此命令。");
             return false;
         }
 
@@ -330,11 +365,235 @@ public:
         return true;
     }
 
+    static bool HandlePetIndividualProgressionCommand(ChatHandler* handler, Optional<PlayerIdentifier> player, std::string pet)
+    {
+        if (pet.empty())
+            return false;
+
+        if (!player)
+            player = PlayerIdentifier::FromTargetOrSelf(handler);
+
+        if (!player)
+        {
+            handler->SendSysMessage("未找到玩家。");
+            return false;
+        }
+
+        std::string playername = player->GetName();
+        Player* target = player->GetConnectedPlayer();
+        if (!target)
+        {
+            handler->PSendSysMessage("玩家 |cff00ffff{}|r 不在线。", playername);
+            return false;
+        }
+
+        // normalize to lowercase
+        for (char& c : pet)
+            c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+
+        // Helper to invoke checkLearnedPetSpells with a list
+        auto check = [&](uint32 realSpell, std::initializer_list<uint32> ids)
+            {
+                checkLearnedPetSpells(target, "", realSpell, ids);
+            };
+
+        // Hunter families
+        if (pet == "wolf")
+        {
+            check(17253, { 617253, 617255, 617256, 617257, 617258, 617259, 617260, 617261, 627050 }); // Bite
+            check(24604, { 624604, 664491, 664492, 664493 }); // Furious Howl
+            check(61684, { 661684 }); // Dash
+            return true;
+        }
+        else if (pet == "cat")
+        {
+            check(16827, { 616827, 616828, 616829, 616830, 616831, 616832, 603010, 603009, 627049 }); // Claw
+            check(24450, { 624450, 624452, 624453 }); // Prowl
+            check(61684, { 661684 }); // Dash
+            return true;
+        }
+        else if (pet == "spider")
+        {
+            check(17253, { 617253, 617255, 617256, 617257, 617258, 617259, 617260, 617261, 627050 }); // Bite
+            return true;
+        }
+        else if (pet == "bear")
+        {
+            check(17253, { 617253, 617255, 617256, 617257, 617258, 617259, 617260, 617261, 627050 }); // Bite
+            check(16827, { 616827, 616828, 616829, 616830, 616831, 616832, 603010, 603009, 627049 }); // Claw
+            return true;
+        }
+        else if (pet == "boar")
+        {
+            check(17253, { 617253, 617255, 617256, 617257, 617258, 617259, 617260, 617261, 627050 }); // Bite
+            check(61685, { 661685 }); // Charge
+            check(61684, { 661684 }); // Dash
+
+            // Gore depends on progression (matches logic in IndividualProgressionSpells.cpp)
+            if (sIndividualProgression->hasPassedProgression(target, PROGRESSION_PRE_TBC))
+                check(35290, { 635290, 635291, 635292, 635293, 635294 }); // Gore
+            return true;
+        }
+        else if (pet == "crocolisk" || pet == "croc")
+        {
+            check(17253, { 617253, 617255, 617256, 617257, 617258, 617259, 617260, 617261, 627050 }); // Bite
+            return true;
+        }
+        else if (pet == "carrion" || pet == "carrion bird" || pet == "carrionbird")
+        {
+            check(16827, { 616827, 616828, 616829, 616830, 616831, 616832, 603010, 603009, 627049 }); // Claw
+            check(23145, { 623145 }); // Dive
+            check(24423, { 624423, 624577, 624578, 624579, 627051 }); // Screech
+            return true;
+        }
+        else if (pet == "crab")
+        {
+            check(16827, { 616827, 616828, 616829, 616830, 616831, 616832, 603010, 603009, 627049 }); // Claw
+            return true;
+        }
+        else if (pet == "gorilla")
+        {
+            check(17253, { 617253, 617255, 617256, 617257, 617258, 617259, 617260, 617261, 627050 }); // Bite
+            check(26090, { 626090 }); // Thunderstomp
+            return true;
+        }
+        else if (pet == "raptor")
+        {
+            check(17253, { 617253, 617255, 617256, 617257, 617258, 617259, 617260, 617261, 627050 }); // Bite
+            check(16827, { 616827, 616828, 616829, 616830, 616831, 616832, 603010, 603009, 627049 }); // Claw
+            return true;
+        }
+        else if (pet == "tallstrider")
+        {
+            check(17253, { 617253, 617255, 617256, 617257, 617258, 617259, 617260, 617261, 627050 }); // Bite
+            check(61684, { 661684 }); // Dash
+            return true;
+        }
+        else if (pet == "scorpid")
+        {
+            check(16827, { 616827, 616828, 616829, 616830, 616831, 616832, 603010, 603009, 627049 }); // Claw
+            check(24640, { 624640, 624583, 624586, 624587, 627060 }); // Scorpid Poison
+            return true;
+        }
+        else if (pet == "turtle")
+        {
+            check(17253, { 617253, 617255, 617256, 617257, 617258, 617259, 617260, 617261, 627050 }); // Bite
+            check(26064, { 626064 }); // Shell Shield
+            return true;
+        }
+        else if (pet == "bat")
+        {
+            check(17253, { 617253, 617255, 617256, 617257, 617258, 617259, 617260, 617261, 627050 }); // Bite
+            check(23145, { 623145 }); // Dive
+            check(24423, { 624423, 624577, 624578, 624579, 627051 }); // Screech
+            return true;
+        }
+        else if (pet == "hyena")
+        {
+            check(17253, { 617253, 617255, 617256, 617257, 617258, 617259, 617260, 617261, 627050 }); // Bite
+            check(61684, { 661684 }); // Dash
+            return true;
+        }
+        else if (pet == "birdofprey" || pet == "bird of prey")
+        {
+            check(16827, { 616827, 616828, 616829, 616830, 616831, 616832, 603010, 603009, 627049 }); // Claw
+            check(23145, { 623145 }); // Dive
+            check(24423, { 624423, 624577, 624578, 624579, 627051 }); // Screech
+            return true;
+        }
+        else if (pet == "windserpent" || pet == "wind serpent")
+        {
+            check(17253, { 617253, 617255, 617256, 617257, 617258, 617259, 617260, 617261, 627050 }); // Bite
+            check(24844, { 624844, 625008, 625009, 625010, 625011, 625012 }); // Lightning Breath
+            check(23145, { 623145 }); // Dive
+            return true;
+        }
+        else if (pet == "dragonhawk")
+        {
+            check(17253, { 617253, 617255, 617256, 617257, 617258, 617259, 617260, 617261, 627050 }); // Bite
+            check(34889, { 634889, 635323 }); // Fire Breath
+            check(23145, { 623145 }); // Dive
+            return true;
+        }
+        else if (pet == "ravager")
+        {
+            check(17253, { 617253, 617255, 617256, 617257, 617258, 617259, 617260, 617261, 627050 }); // Bite
+            check(35290, { 635290, 635291, 635292, 635293, 635294 }); // Gore
+            check(61684, { 661684 }); // Dash
+            return true;
+        }
+        else if (pet == "warpstalker" || pet == "warp stalker")
+        {
+            check(17253, { 617253, 617255, 617256, 617257, 617258, 617259, 617260, 617261, 627050 }); // Bite
+            check(16827, { 616827, 616828, 616829, 616830, 616831, 616832, 603010, 603009, 627049 }); // Claw
+            check(35346, { 635346 }); // Warp
+            return true;
+        }
+        else if (pet == "sporebat")
+        {
+            check(17253, { 617253, 617255, 617256, 617257, 617258, 617259, 617260, 617261, 627050 }); // Bite
+            check(23145, { 623145 }); // Dive
+            return true;
+        }
+        else if (pet == "netherray" || pet == "nether ray")
+        {
+            check(17253, { 617253, 617255, 617256, 617257, 617258, 617259, 617260, 617261, 627050 }); // Bite
+            check(23145, { 623145 }); // Dive
+            return true;
+        }
+
+        // Warlock demons
+        else if (pet == "imp")
+        {
+            check(7799, { 603110, 607799, 607800, 607801, 607802, 611762, 611763, 627267 }); // Firebolt
+            check(6307, { 606307, 607804, 607805, 611766, 611767, 627268 }); // Blood Pact
+            check(2947, { 602947, 608316, 608317, 611770, 611771, 627269 }); // Fire Shield
+            check(4511, { 604511 }); // Phase Shift
+            return true;
+        }
+        else if (pet == "voidwalker" || pet == "void")
+        {
+            check(7809, { 603716, 607809, 607810, 607811, 611774, 611775, 627270 }); // Torment
+            check(7812, { 607812, 619438, 619440, 619441, 619442, 619443, 627273 }); // Sacrifice
+            check(17767, { 617767, 617850, 617851, 617852, 617853, 617854, 627272 }); // Consume Shadows
+            check(17735, { 617735, 617750, 617751, 617752, 627271, 633701 }); // Suffering
+            return true;
+        }
+        else if (pet == "succubus")
+        {
+            check(7814, { 607814, 607815, 607816, 611778, 611779, 611780, 627274 }); // Lash of Pain
+            check(6360, { 606360, 607813, 611784, 611785, 627275 }); // Soothing Kiss
+            check(6358, { 606358 }); // Seduction
+            check(7870, { 607870 }); // Lesser Invisibility
+            return true;
+        }
+        else if (pet == "felhunter")
+        {
+            check(19505, { 619505, 619731, 619734, 619736, 627276, 627277 }); // Devour Magic / Shadow Bite
+            check(20429, { 620429, 620430, 620431, 620432, 627497 }); // Tainted Blood / Fel Intelligence
+            check(19244, { 619244, 619647 }); // Spell Lock
+            check(19481, { 619481 }); // Paranoia
+            return true;
+        }
+        else if (pet == "felguard")
+        {
+            check(30151, { 630154, 630199, 630200 }); // Intercept
+            check(30213, { 630214, 630222, 630224 }); // Cleave
+            check(33704, { 633704, 633705, 633706 }); // Anguish
+            check(32234, { 632234 }); // Avoidance
+            check(32852, { 632852 }); // Demonic Frenzy
+            return true;
+        }
+
+        handler->PSendSysMessage("|cff00ffff{}|r 不是此命令支持的宠物类型。", pet);
+        return false;
+    }
+
     static bool HandleTeleIndividualProgressionCommand(ChatHandler* handler, Optional<PlayerIdentifier> player, std::string location)
     {
         if (location != "naxx40" && location != "onyxia40" && location != "naxx" && location != "onyxia")
         {
-            handler->PSendSysMessage("|cff00ffff{}|r is not a valid teleport location.", location);
+            handler->PSendSysMessage("|cff00ffff{}|r 不是有效的传送位置。", location);
             return false;
         }
 
@@ -361,13 +620,13 @@ public:
                 }
                 else
                 {
-                    handler->PSendSysMessage("|cff00ffff{}|r has not completed the Naxxramas attunement quest.", playername);
+                    handler->PSendSysMessage("|cff00ffff{}|r 尚未完成纳克萨玛斯绑定任务。", playername);
                     return false;
                 }
             }
             else
             {
-                handler->PSendSysMessage("|cff00ffff{}|r is not allowed to teleport to |cff00ffff{}|r.", playername, location);
+                handler->PSendSysMessage("|cff00ffff{}|r 不被允许传送到 |cff00ffff{}|r。", playername, location);
                 return false;
             }
         }
@@ -389,13 +648,13 @@ public:
                 }
                 else
                 {
-                    handler->PSendSysMessage("|cff00ffff{}|r does not have a Drakefire Amulet.", playername);
+                    handler->PSendSysMessage("|cff00ffff{}|r 没有龙火护符。", playername);
                     return false;
                 }
             }
             else
             {
-                handler->PSendSysMessage("|cff00ffff{}|r is not allowed to teleport to |cff00ffff{}|r.", playername, location);
+                handler->PSendSysMessage("|cff00ffff{}|r 不被允许传送到 |cff00ffff{}|r。", playername, location);
                 return false;
             }
         }
@@ -409,7 +668,7 @@ public:
 
         if (!player)
         {
-            handler->SendSysMessage("Player not found.");
+            handler->SendSysMessage("未找到玩家。");
             return false;
         }
 
@@ -418,7 +677,7 @@ public:
         
         if (location != "onyxia40" && location != "onyxia" && location != "bt" && location != "blacktemple")
         {
-            handler->PSendSysMessage("|cff00ffff{}|r is not a valid attunement.", location);
+            handler->PSendSysMessage("|cff00ffff{}|r 不是有效的绑定。", location);
             return false;
         }
 
@@ -434,7 +693,7 @@ public:
 
         if (!player)
         {
-            handler->SendSysMessage("Player not found.");
+            handler->SendSysMessage("未找到玩家。");
             return false;
         }
 
@@ -442,7 +701,7 @@ public:
         Player* target = player->GetConnectedPlayer();
         if (!target)
         {
-            handler->PSendSysMessage("Player |cff00ffff{}|r is not online.", playername);
+            handler->PSendSysMessage("玩家 |cff00ffff{}|r 不在线。", playername);
             return false;
         }
 
@@ -494,27 +753,27 @@ public:
 
         if (nextPvPRank == -1)
         {
-            handler->PSendSysMessage("|cff00ffff{}|r has achieved the highest PvP rank and currently has {} honorable kills.", playername, kills);
+            handler->PSendSysMessage("|cff00ffff{}|r 已达到最高PvP等级，目前有 {} 次荣誉击杀。", playername, kills);
             return true;
         }
         else if (highestTitle == -1)
         {
-            handler->PSendSysMessage("|cff00ffff{}|r has not achieved any PvP rank and currently has {} honorable kills.", playername, kills);
-            handler->PSendSysMessage("|cff00ffff{}|r needs {} more honorable kills for rank 1.", playername, killsToNextRank);
+            handler->PSendSysMessage("|cff00ffff{}|r 尚未达到任何PvP等级，目前有 {} 次荣誉击杀。", playername, kills);
+            handler->PSendSysMessage("|cff00ffff{}|r 还需要 {} 次荣誉击杀才能达到等级1。", playername, killsToNextRank);
             return true;
         }
         else
         {
             if (teamId == TEAM_ALLIANCE)
             {
-                handler->PSendSysMessage("PvP rank for |cff00ffff{}|r = |cff00ffff{}|r", playername, highestTitle + ALLIANCE_PVP_RANK_OFFSET);
-                handler->PSendSysMessage("|cff00ffff{}|r needs {} more honorable kills for rank {}.", playername, killsToNextRank, nextPvPRank + ALLIANCE_PVP_RANK_OFFSET);
+                handler->PSendSysMessage("|cff00ffff{}|r 的PvP等级 = |cff00ffff{}|r", playername, highestTitle + ALLIANCE_PVP_RANK_OFFSET);
+                handler->PSendSysMessage("|cff00ffff{}|r 还需要 {} 次荣誉击杀才能达到等级 {}。", playername, killsToNextRank, nextPvPRank + ALLIANCE_PVP_RANK_OFFSET);
                 return true;
             }
             else // teamId == TEAM_HORDE
             {
-                handler->PSendSysMessage("PvP rank for |cff00ffff{}|r = |cff00ffff{}|r", playername, highestTitle - HORDE_PVP_RANK_OFFSET);
-                handler->PSendSysMessage("|cff00ffff{}|r needs {} more honorable kills for rank {}.", playername, killsToNextRank, nextPvPRank - HORDE_PVP_RANK_OFFSET);
+                handler->PSendSysMessage("|cff00ffff{}|r 的PvP等级 = |cff00ffff{}|r", playername, highestTitle - HORDE_PVP_RANK_OFFSET);
+                handler->PSendSysMessage("|cff00ffff{}|r 还需要 {} 次荣誉击杀才能达到等级 {}。", playername, killsToNextRank, nextPvPRank - HORDE_PVP_RANK_OFFSET);
                 return true;
             }
         }

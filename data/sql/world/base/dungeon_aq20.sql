@@ -4,7 +4,7 @@ UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN 
 (15318, 15319, 15320, 15323, 15324, 15333, 15335, 15336, 15343, 15344, 15385, 15386, 15387, 15388, 15389, 15390, 15391, 15392, 15461, 15462);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -115,7 +115,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 
 /* fix loot tables */
 DELETE FROM `reference_loot_template` WHERE `Entry` IN (30411, 30420, 30421, 30422, 30423, 30424, 30425, 30426, 30427, 30428, 30429, 30430, 30431, 30432, 30433, 30434, 30435, 30436);
-INSERT INTO `reference_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
+REPLACE INTO `reference_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
 (30411, 20727, 0, 0, 0, 1, 1, 1, 1, 'Formula: Enchant Gloves - Shadow Power'),
 (30411, 20728, 0, 0, 0, 1, 1, 1, 1, 'Formula: Enchant Gloves - Frost Power'),
 (30411, 20729, 0, 0, 0, 1, 1, 1, 1, 'Formula: Enchant Gloves - Fire Power'),
@@ -293,7 +293,7 @@ INSERT INTO `reference_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `
 
 
 DELETE FROM `creature_loot_template` WHERE `entry` IN (15339, 15340, 15341, 15348, 15369, 15370);
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
 --
 (15339, 20884, 0,     10,  0, 1, 0, 1, 1, 'Ossirian the Unscarred - Qiraji Magisterial Ring'),
 (15339, 21220, 0,     100, 0, 1, 0, 1, 1, 'Ossirian the Unscarred - Head of Ossirian the Unscarred'),
@@ -349,7 +349,7 @@ https://www.azerothcore.org/wiki/loot_template#loot_template-Entry
 reference_loot_template 	*_loot_template.reference
 
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 1 AND `SourceGroup` IN (30423, 30429, 30435, 30436); 
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 --
 (1, 30423, 21453, 0, 0, 6, 0, 469, 0, 0, 0, 0, 0, '', 'Mantle of the Horusath will only drop for Alliance'),        -- Ossirian the Unscarred

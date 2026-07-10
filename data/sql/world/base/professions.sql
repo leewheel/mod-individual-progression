@@ -20,7 +20,7 @@ DELETE FROM `trainer_spell` WHERE `SpellID` IN (7929, 10840, 27032, 27033);
 DELETE FROM `trainer_spell` WHERE `SpellID` IN (54254, 10847, 54255);
 UPDATE `quest_template` SET `RewardItem3` = 16085, `RewardAmount3` = 1 WHERE `ID` IN (6624, 6622);
 UPDATE `item_template` SET `description` = 'Teaches you advanced first aid, allowing a maximum of 300 first aid skill.' WHERE `entry` = 16085;
-INSERT IGNORE INTO `item_template_locale` (`ID`, `locale`, `Name`, `Description`, `VerifiedBuild`) VALUES 
+REPLACE INTO `item_template_locale` (`ID`, `locale`, `Name`, `Description`, `VerifiedBuild`) VALUES 
 (16085, 'frFR', 'Artisan en premiers soins - Se soigner seul', 'Vous apprend des techniques avancées en Premiers soins et vous permet d''augmenter votre compétence jusqu''à un maximum de 300.', 0);
 
 -- TBC First Aid vendors
@@ -41,7 +41,7 @@ UPDATE `quest_template` SET `RewardItem1` = 16073, `RewardAmount1` = 1 WHERE id 
 UPDATE `item_template` SET `spellid_1` = 19887, `spellcharges_1` = -1, `spellppmRate_1` = -1 WHERE `entry` = 16073;
 
 DELETE FROM `item_template_locale` WHERE `ID` = 16073;
-INSERT INTO `item_template_locale` (`ID`, `locale`, `Name`, `Description`, `VerifiedBuild`) VALUES 
+REPLACE INTO `item_template_locale` (`ID`, `locale`, `Name`, `Description`, `VerifiedBuild`) VALUES 
 (16073, 'deDE', 'Fachmannkochbuch', '', 0),
 (16073, 'frFR', 'Livre de cuisine pour artisan', '', 0);
 
@@ -80,7 +80,7 @@ DELETE FROM npc_vendor WHERE entry = 5175  AND item = 16042;
 DELETE FROM npc_vendor WHERE entry = 11185 AND item = 16047;
 DELETE FROM npc_vendor WHERE entry = 2685  AND item = 18651;
 
-INSERT INTO npc_vendor (entry, slot, item) VALUES 
+REPLACE INTO npc_vendor (entry, slot, item) VALUES 
 (2685, 0, 18651), 
 (3413, 0, 16041),
 (3413, 0, 16042),
@@ -125,7 +125,7 @@ DELETE FROM creature WHERE `id` IN
 DELETE FROM `trainer_spell` WHERE `SpellID` IN (28905, 34590, 28903, 28914, 28925, 28910, 28917, 28916, 28950, 28903);
 
 DELETE FROM npc_vendor WHERE item IN (23131, 28596, 23148, 23137, 23144, 23135, 23141, 23140, 23152, 23130);
-INSERT INTO npc_vendor (entry, slot, item) VALUES
+REPLACE INTO npc_vendor (entry, slot, item) VALUES
 (18751, 0, 23131),
 (18774, 0, 23131),
 (18751, 0, 28596),
@@ -158,7 +158,7 @@ SET @Grikka  := 121087;
 
 /* Add copies with script npc_ipp_tbc_pre_t4 */
 DELETE FROM `creature_template` WHERE `entry` IN (@Darmari, @Barim, @Brumman, @Grikka);
-INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `name`, `subname`, `IconName`, `gossip_menu_id`, 
+REPLACE INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `name`, `subname`, `IconName`, `gossip_menu_id`, 
 `minlevel`, `maxlevel`, `exp`, `faction`, `npcflag`, `speed_walk`, `speed_run`, `speed_swim`, `speed_flight`, `detection_range`, `rank`, `dmgschool`, `DamageModifier`, 
 `BaseAttackTime`, `RangeAttackTime`, `BaseVariance`, `RangeVariance`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, 
 `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `HoverHeight`, `HealthModifier`, `ManaModifier`, `ArmorModifier`, `ExperienceModifier`, `RacialLeader`, `movementId`, 
@@ -170,14 +170,14 @@ INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entr
 (@Grikka,0,0,0,0,0,'Grikka','Master Leatherworking Trainer',NULL,0,60,60,0,1735,80,1.125,1.14286,1,1,20,0,0,1,2000,2000,1,1,1,4608,2048,0,0,7,0,0,0,0,0,0,0,0,'',1,1,1.25,1,1,1,0,0,1,0,2,'npc_ipp_tbc_pre_t3',0);
     
 DELETE FROM `creature_template_addon` WHERE `entry` IN (@Darmari, @Barim, @Brumman, @Grikka);
-INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (@Darmari, 0, 0, 0, 1, 0, 0, NULL),
 (@Barim, 0, 0, 0, 1, 0, 0, NULL),
 (@Brumman, 0, 0, 1, 1, 0, 0, NULL),
 (@Grikka, 0, 0, 0, 1, 0, 0, NULL);
 
 DELETE FROM `creature_template_locale` WHERE `entry` IN (@Darmari, @Barim, @Brumman, @Grikka);
-INSERT INTO `creature_template_locale` (`entry`, `locale`, `Name`, `Title`, `VerifiedBuild`) VALUES
+REPLACE INTO `creature_template_locale` (`entry`, `locale`, `Name`, `Title`, `VerifiedBuild`) VALUES
 (@Darmari, 'deDE', 'Darmari', 'Lederverarbeitungslehrerin', 18019),
 (@Darmari, 'esES', 'Darmari', 'Instructora de peletería', 18019),
 (@Darmari, 'esMX', 'Darmari', 'Instructora de peletería', 18019),
@@ -212,27 +212,27 @@ INSERT INTO `creature_template_locale` (`entry`, `locale`, `Name`, `Title`, `Ver
 (@Grikka, 'zhTW', '葛利卡', '製皮訓練師', 18019);
 
 DELETE FROM `creature_template_model` WHERE `CreatureID` IN (@Darmari, @Barim, @Brumman, @Grikka);
-INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`, `DisplayScale`, `Probability`, `VerifiedBuild`) VALUES 
+REPLACE INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`, `DisplayScale`, `Probability`, `VerifiedBuild`) VALUES 
 (@Darmari, 0, 18630, 1, 1, 12340),
 (@Barim, 0, 18176, 1, 1, 12340),
 (@Brumman, 0, 18177, 1, 1, 12340),
 (@Grikka, 0, 20059, 1, 1, 12340);
 
 DELETE FROM `creature` WHERE `id` IN (@Darmari, @Barim, @Brumman, @Grikka);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 (619187, @Darmari, 530, 0, 0, 1, 1, 1, -2060.92, 5256.68, -38.3819, 0.767945, 300, 0, 0, 3498, 0, 0, 0, 0, 0, '', 0, 0, NULL),
 (618754, @Barim, 530, 0, 0, 1, 1, 1, 148.588, 2636.02, 86.018, 1.27409, 300, 0, 0, 3113, 0, 0, 0, 0, 0, '', 0, 0, NULL),
 (618771, @Brumman, 530, 0, 0, 1, 1, 1, -721.657, 2745.26, 94.0548, 3.45575, 300, 0, 0, 3113, 0, 0, 0, 0, 0, '', 0, 0, NULL),
 (621087, @Grikka, 530, 0, 0, 1, 1, 0, 2039.82, 4675.43, 150.074, 0.977384, 300, 0, 0, 3815, 0, 0, 0, 0, 0, '', 0, 0, NULL);
 
 DELETE FROM `creature_equip_template` WHERE `CreatureID` IN (@Darmari, @Barim, @Brumman);
-INSERT INTO `creature_equip_template` (`CreatureID`, `ID`, `ItemID1`, `ItemID2`, `ItemID3`, `VerifiedBuild`) VALUES 
+REPLACE INTO `creature_equip_template` (`CreatureID`, `ID`, `ItemID1`, `ItemID2`, `ItemID3`, `VerifiedBuild`) VALUES 
 (@Darmari, 1, 2184, 0, 0, 18019),
 (@Barim, 1, 10616, 0, 0, 18019),
 (@Brumman, 1, 10616, 0, 0, 18019);
 
 DELETE FROM `npc_vendor` WHERE `entry` IN (@Barim, @Brumman);
-INSERT INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `ExtendedCost`, `VerifiedBuild`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `ExtendedCost`, `VerifiedBuild`) VALUES 
 (@Barim, 0, 2320, 0, 0, 0, 0), (@Barim, 0, 2321, 0, 0, 0, 0), (@Barim, 0, 2325, 0, 0, 0, 0), (@Barim, 0, 2604, 0, 0, 0, 0), (@Barim, 0, 2605, 0, 0, 0, 0), 
 (@Barim, 0, 4289, 0, 0, 0, 0), (@Barim, 0, 4291, 0, 0, 0, 0), (@Barim, 0, 4340, 0, 0, 0, 0), (@Barim, 0, 4341, 0, 0, 0, 0), (@Barim, 0, 4342, 0, 0, 0, 0),
 (@Barim, 0, 6260, 0, 0, 0, 0), (@Barim, 0, 6261, 0, 0, 0, 0), (@Barim, 0, 7005, 0, 0, 0, 0), (@Barim, 0, 8343, 0, 0, 0, 0), (@Barim, 0, 10290, 0, 0, 0, 0),
@@ -248,7 +248,7 @@ INSERT INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `Exte
 SET @TRAINER_ID   := 600;
 
 DELETE FROM `trainer` WHERE `Id` BETWEEN @TRAINER_ID+11 AND @TRAINER_ID+51;
-INSERT INTO `trainer` (`Id`, `Type`, `Requirement`, `Greeting`, `VerifiedBuild`) VALUES 
+REPLACE INTO `trainer` (`Id`, `Type`, `Requirement`, `Greeting`, `VerifiedBuild`) VALUES 
 --
 (@TRAINER_ID+11, 2, 0, 'With alchemy you can turn found herbs into healing and other types of potions.', 0),
 (@TRAINER_ID+12, 2, 0, 'With alchemy you can turn found herbs into healing and other types of potions.', 0),
@@ -288,7 +288,7 @@ INSERT INTO `trainer` (`Id`, `Type`, `Requirement`, `Greeting`, `VerifiedBuild`)
 /* Crafting Professions */
 
 DELETE FROM `trainer_spell` WHERE `TrainerId` IN (@TRAINER_ID+11, @TRAINER_ID+12, @TRAINER_ID+13);
-INSERT INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES
+REPLACE INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES
 -- Journeyman Alchemist
 (@TRAINER_ID+11, 2275, 10, 0, 0, 5),
 (@TRAINER_ID+11, 3170, 50, 171, 15, 0),
@@ -352,7 +352,7 @@ INSERT INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`
 
 DELETE FROM `creature_default_trainer` WHERE `CreatureId` IN 
 (1215, 1246, 1470, 2132, 2391, 2837, 3009, 3184, 3347, 3603, 3964, 4160, 4609, 4611, 4900, 5177, 5499, 5500, 11041, 11042, 11044, 11046, 11047, 16161, 16642, 16723);
-INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
+REPLACE INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
 --
 (1215,  @TRAINER_ID+11), -- Alchemist Mallory <Journeyman Alchemist>
 (1246,  @TRAINER_ID+11), -- Vosur Brakthel <Journeyman Alchemist>
@@ -384,7 +384,7 @@ INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
 (4611,  @TRAINER_ID+13); -- Doctor Herbert Halsey <Artisan Alchemist>
 
 DELETE FROM `trainer_spell` WHERE `TrainerId` IN (@TRAINER_ID+16,  @TRAINER_ID+17,  @TRAINER_ID+18);
-INSERT INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES
+REPLACE INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES
 -- Journeyman Blacksmith
 (@TRAINER_ID+16, 2020, 10, 0, 0, 5),
 (@TRAINER_ID+16, 2662, 50, 164, 1, 0),
@@ -525,7 +525,7 @@ INSERT INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`
 
 DELETE FROM `creature_default_trainer` WHERE `CreatureId` IN 
 (514, 957, 1241, 1383, 2998, 3136, 3174, 3355, 3478, 3557, 4258, 4596, 4605, 5511, 6299, 10266, 10276, 10277, 10278, 15400, 16669, 16724, 17245);
-INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
+REPLACE INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
 --
 (514,   @TRAINER_ID+16), -- Smith Argus <Journeyman Blacksmith>
 (957,   @TRAINER_ID+16), -- Dane Lindgren <Journeyman Blacksmith>
@@ -554,7 +554,7 @@ INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
 (4258,  @TRAINER_ID+18); -- Bengus Deepforge <Artisan Blacksmith>
 
 DELETE FROM `trainer_spell` WHERE `TrainerId` IN (@TRAINER_ID+21, @TRAINER_ID+22, @TRAINER_ID+23);
-INSERT INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES
+REPLACE INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES
 -- Journeyman Enchanter
 (@TRAINER_ID+21, 7414, 10, 0, 0, 5),
 (@TRAINER_ID+21, 14293, 50, 333, 10, 0),
@@ -655,7 +655,7 @@ INSERT INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`
 
 DELETE FROM `creature_default_trainer` WHERE `CreatureId` IN 
 (1317, 3011, 3345, 3606, 4213, 4616, 5157, 5695, 7949, 11065, 11066, 11067, 11068, 11070, 11071, 11072, 11074, 16160, 16633, 16725, 19251);
-INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
+REPLACE INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
 --
 (3606,  @TRAINER_ID+21), -- Alanna Raveneye <Journeyman Enchanter>
 (5695,  @TRAINER_ID+21), -- Vance Undergloom <Journeyman Enchanter>
@@ -682,7 +682,7 @@ INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
 (11074, @TRAINER_ID+23); -- Hgarth <Artisan Enchanter>
 
 DELETE FROM `trainer_spell` WHERE `TrainerId` IN (@TRAINER_ID+26, @TRAINER_ID+27, @TRAINER_ID+28);
-INSERT INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES
+REPLACE INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES
 -- Journeyman Engineering
 (@TRAINER_ID+26, 4039, 10, 0, 0, 5),
 (@TRAINER_ID+26, 3922, 115, 202, 30, 0),
@@ -787,7 +787,7 @@ INSERT INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`
 
 DELETE FROM `creature_default_trainer` WHERE `CreatureId` IN 
 (1676, 1702, 2857, 3290, 3412, 3494, 4586, 5174, 5518, 10993, 11017, 11025, 11026, 11028, 11029, 11031, 11037, 16667, 16726, 17222);
-INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
+REPLACE INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
 --
 (1702,  @TRAINER_ID+26), -- Bronk Guzzlegear <Journeyman Engineer>
 (2857,  @TRAINER_ID+26), -- Thund <Journeyman Engineer>
@@ -813,7 +813,7 @@ INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
 (11017, @TRAINER_ID+28); -- Roxxik <Artisan Engineer>
 
 DELETE FROM `trainer_spell` WHERE `TrainerId` IN (@TRAINER_ID+31, @TRAINER_ID+32,@TRAINER_ID+33);
-INSERT INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES
+REPLACE INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES
 -- Journeyman Leatherworking
 (@TRAINER_ID+31, 2155, 10, 0, 0, 5),
 (@TRAINER_ID+31, 2153, 50, 165, 15, 0),
@@ -927,7 +927,7 @@ INSERT INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`
 
 DELETE FROM `creature_default_trainer` WHERE `CreatureId` IN 
 (223, 1385, 1466, 1632, 3007, 3008, 3069, 3365, 3549, 3605, 3703, 3967, 4212, 4588, 5127, 5564, 5784, 5811, 8153, 11081, 11083, 11084, 11096, 16278, 16688, 16728, 17442);
-INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
+REPLACE INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
 --
 (223,   @TRAINER_ID+31), -- Dan Golthas <Journeyman Leatherworker>
 (1466,  @TRAINER_ID+31), -- Gretta Finespindle <Journeyman Leatherworker>
@@ -960,7 +960,7 @@ INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
 (4212,  @TRAINER_ID+33); -- Telonis <Artisan Leatherworker>
 
 DELETE FROM `trainer_spell` WHERE `TrainerId` IN (@TRAINER_ID+36, @TRAINER_ID+37, @TRAINER_ID+38);
-INSERT INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES
+REPLACE INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES
 -- Journeyman Tailoring
 (@TRAINER_ID+36, 3911, 10, 0, 0, 5),
 (@TRAINER_ID+36, 2393, 25, 197, 1, 0),
@@ -1106,7 +1106,7 @@ INSERT INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`
 
 DELETE FROM `creature_default_trainer` WHERE `CreatureId` IN 
 (1103, 1300, 1346, 1703, 2627, 2855, 3004, 3363, 3484, 3523, 3704, 4159, 4193, 4576, 5153, 5567, 11048, 11049, 11050, 11051, 16366, 16640, 16729, 17487);
-INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
+REPLACE INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
 --
 (1103,  @TRAINER_ID+36), -- Eldrin <Journeyman Tailor>
 (1300,  @TRAINER_ID+36), -- Lawrence Schneider <Journeyman Tailor>
@@ -1140,14 +1140,14 @@ INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
 
 -- Herbalism
 DELETE FROM `trainer_spell` WHERE `TrainerId` = @TRAINER_ID+41;
-INSERT INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES
+REPLACE INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES
 (@TRAINER_ID+41, 2372, 10, 0, 0, 1),
 (@TRAINER_ID+41, 2373, 500, 182, 50, 1),
 (@TRAINER_ID+41, 3571, 5000, 182, 125, 10),
 (@TRAINER_ID+41, 11994, 50000, 182, 200, 25);
 
 DELETE FROM `creature_default_trainer` WHERE `CreatureId` IN (2114, 3013, 3185);
-INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
+REPLACE INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
 --
 (2114, @TRAINER_ID+41), -- Faruza <Apprentice Herbalist>
 (3013, @TRAINER_ID+41), -- Komin Winterhoof <Herbalism Trainer>
@@ -1155,7 +1155,7 @@ INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
 
 -- Mining
 DELETE FROM `trainer_spell` WHERE `TrainerId` = @TRAINER_ID+42;
-INSERT INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES
+REPLACE INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES
 (@TRAINER_ID+42, 2581, 10, 186, 0, 1),
 (@TRAINER_ID+42, 2582, 500, 186, 50, 1),
 (@TRAINER_ID+42, 2658, 200, 186, 75, 0),
@@ -1171,7 +1171,7 @@ INSERT INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`
 (@TRAINER_ID+42, 16153, 20000, 186, 250, 0);
 
 DELETE FROM `creature_default_trainer` WHERE `CreatureId` IN (3001, 3175, 3357, 5513);
-INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
+REPLACE INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
 --
 (3001, @TRAINER_ID+42), -- Brek Stonehoof <Mining Trainer>
 (3175, @TRAINER_ID+42), -- Krunn <Miner>
@@ -1180,14 +1180,14 @@ INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
 
 -- Skinning
 DELETE FROM `trainer_spell` WHERE `TrainerId` = @TRAINER_ID+43;
-INSERT INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES
+REPLACE INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES
 (@TRAINER_ID+43, 8615, 10, 0, 0, 1),
 (@TRAINER_ID+43, 8619, 500, 393, 50, 1),
 (@TRAINER_ID+43, 8620, 5000, 393, 125, 10),
 (@TRAINER_ID+43, 10769, 50000, 393, 200, 25);
 
 DELETE FROM `creature_default_trainer` WHERE `CreatureId` IN (6289, 6290, 6387, 7088, 7089);
-INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
+REPLACE INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
 --
 (6289, @TRAINER_ID+43), -- Rand Rhobart <Skinner>
 (6290, @TRAINER_ID+43), -- Yonn Deepcut <Skinner>
@@ -1200,7 +1200,7 @@ INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
 
 -- Cooking
 DELETE FROM `trainer_spell` WHERE `TrainerId` = @TRAINER_ID+44;
-INSERT INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES
+REPLACE INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES
 (@TRAINER_ID+44, 2551, 100, 0, 0, 5),
 (@TRAINER_ID+44, 2539, 50, 185, 10, 0),
 (@TRAINER_ID+44, 2541, 100, 185, 50, 0),
@@ -1212,7 +1212,7 @@ INSERT INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`
 (@TRAINER_ID+44, 21175, 4000, 185, 200, 0);
 
 DELETE FROM `creature_default_trainer` WHERE `CreatureId` IN (1430, 3026, 3399, 5482, 8306);
-INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
+REPLACE INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
 --
 (1430, @TRAINER_ID+44), -- Tomas <Cook>
 (3026, @TRAINER_ID+44), -- Aska Mistrunner <Cooking Trainer>
@@ -1222,7 +1222,7 @@ INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
 
 -- First Aid
 DELETE FROM `trainer_spell` WHERE `TrainerId` IN (@TRAINER_ID+45, @TRAINER_ID+46);
-INSERT INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES
+REPLACE INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES
 --
 (@TRAINER_ID+45, 3279, 100, 0, 0, 1),
 (@TRAINER_ID+45, 3276, 100, 129, 40, 0),
@@ -1237,7 +1237,7 @@ INSERT INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`
 (@TRAINER_ID+46, 18632, 0, 129, 290, 35);
 
 DELETE FROM `creature_default_trainer` WHERE `CreatureId` IN (2326, 2327, 2329, 2798, 3181, 3373, 4211, 4591, 5150, 5759, 5939, 5943, 6094, 16272, 16662, 16731, 17214, 17424, 19184, 19478, 22477, 12920, 12939);
-INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
+REPLACE INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
 --
 (2326,  @TRAINER_ID+45), -- Thamner Pol <Physician> 
 (2327,  @TRAINER_ID+45), -- Shaina Fuller <First Aid Trainer>
@@ -1268,12 +1268,12 @@ UPDATE `creature_template` SET `npcflag` = 83 WHERE `entry` IN (12920, 12939);
 
 -- Fishing
 DELETE FROM `trainer_spell` WHERE `TrainerId` = @TRAINER_ID+47;
-INSERT INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES
+REPLACE INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES
 (@TRAINER_ID+47, 7733, 100, 0, 0, 5),
 (@TRAINER_ID+47, 7734, 500, 356, 50, 10);
 
 DELETE FROM `creature_default_trainer` WHERE `CreatureId` IN (1651, 3028, 3332, 5493, 5690, 5938);
-INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
+REPLACE INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
 --
 (1651, @TRAINER_ID+47), -- Lee Brown <Fisherman>, Elwynn Forest
 (3028, @TRAINER_ID+47), -- Kah Mistrunner <Fishing Trainer>
@@ -1284,7 +1284,7 @@ INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
 
 -- pre_t4 Leatherworking trainer
 DELETE FROM `trainer_spell` WHERE `TrainerId` = @TRAINER_ID+51;
-INSERT INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES
+REPLACE INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES
 --
 (@TRAINER_ID+51, 32454, 10000, 165, 300, 0),
 (@TRAINER_ID+51, 32456, 15000, 165, 300, 0),
@@ -1309,7 +1309,7 @@ INSERT INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`
 (@TRAINER_ID+51, 44970, 50000, 165, 350, 0);
 
 DELETE FROM `creature_default_trainer` WHERE `CreatureId` IN (@Darmari, @Barim, @Brumman, @Grikka);
-INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
+REPLACE INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
 --
 (@Darmari, @TRAINER_ID+51),
 (@Barim,   @TRAINER_ID+51),
@@ -1323,7 +1323,7 @@ DELETE FROM `gossip_menu_option` WHERE `MenuID` IN
 (2742, 2745, 2747, 2748, 2750, 2761, 2782, 4110, 4112, 4114, 4116, 4118, 4119, 4121, 4125, 4128, 4130, 4137, 4139, 4143, 4144, 4147, 4148, 
 4151, 4153, 4154, 4155, 4157, 4158, 4159, 4160, 4161, 4165, 4169, 4173, 4181, 4182, 4183, 4187, 4188, 4204, 4207, 4241, 4242, 4262, 4264, 4265, 4266, 4268, 4269, 4344, 4351, 4352);
 
-INSERT INTO `gossip_menu_option` (`MenuID`, `OptionID`, `OptionIcon`, `OptionText`, `OptionBroadcastTextID`, `OptionType`, `OptionNpcFlag`) VALUES
+REPLACE INTO `gossip_menu_option` (`MenuID`, `OptionID`, `OptionIcon`, `OptionText`, `OptionBroadcastTextID`, `OptionType`, `OptionNpcFlag`) VALUES
 (2742, 0, 3, 'Train me.', 3266, 5, 16), -- Groum Stonebeard <Journeyman Blacksmith>
 (2745, 0, 3, 'Train me.', 3266, 5, 16), -- Dane Lindgren <Journeyman Blacksmith>
 (2747, 0, 3, 'Train me.', 3266, 5, 16), -- Ug'thok <Journeyman Blacksmith>

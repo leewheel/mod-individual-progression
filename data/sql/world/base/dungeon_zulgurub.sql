@@ -4,7 +4,7 @@ UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN 
 (11338, 11339, 11340, 11350, 11351, 11352, 11353, 11356, 11357, 11359, 11360, 11365, 11368, 11370, 11371, 11372, 11374, 11830, 11831, 14532, 14821, 14825, 14882, 15043, 15111);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -115,11 +115,11 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 
 
 DELETE FROM `creature_text` WHERE `CreatureID` IN (11338);
-INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
-(11338, 0, 0, 'Killing you be easy.',                         12, 0, 100, 0, 0, 0, 1909,  0, 'Hakkari Shadowcaster'),
-(11338, 0, 1, 'Troll mojo da strongest mojo!',                12, 0, 100, 0, 0, 0, 10437, 0, 'Hakkari Shadowcaster'),
-(11338, 0, 2, 'Your skull gonna decorate our ritual altars!', 12, 0, 100, 0, 0, 0, 10436, 0, 'Hakkari Shadowcaster'),
-(11338, 0, 3, 'I gonna make you into mojo!',                  12, 0, 100, 0, 0, 0, 10435, 0, 'Hakkari Shadowcaster'),
-(11338, 0, 4, 'Feel da big bad voodoo!',                      12, 0, 100, 0, 0, 0, 10438, 0, 'Hakkari Shadowcaster'),
-(11338, 0, 5, 'My weapon be thirsty!',                        12, 0, 100, 0, 0, 0, 1908,  0, 'Hakkari Shadowcaster'),
-(11338, 0, 6, 'You be dead soon!',                            12, 0, 100, 0, 0, 0, 10434, 0, 'Hakkari Shadowcaster');
+REPLACE INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
+(11338, 0, 0, '杀死你简直是易如反掌。',                         12, 0, 100, 0, 0, 0, 1909,  0, 'Hakkari Shadowcaster'),
+(11338, 0, 1, '巨魔的魔精是最好的！',                12, 0, 100, 0, 0, 0, 10437, 0, 'Hakkari Shadowcaster'),
+(11338, 0, 2, '你的头骨将用于装饰我们的祭坛！', 12, 0, 100, 0, 0, 0, 10436, 0, 'Hakkari Shadowcaster'),
+(11338, 0, 3, '我要把你的魔精抽干！',                  12, 0, 100, 0, 0, 0, 10435, 0, 'Hakkari Shadowcaster'),
+(11338, 0, 4, '尝尝巫毒的力量！',                      12, 0, 100, 0, 0, 0, 10438, 0, 'Hakkari Shadowcaster'),
+(11338, 0, 5, '我渴望战斗！',                        12, 0, 100, 0, 0, 0, 1908,  0, 'Hakkari Shadowcaster'),
+(11338, 0, 6, '你很快就会没命了！',                            12, 0, 100, 0, 0, 0, 10434, 0, 'Hakkari Shadowcaster');

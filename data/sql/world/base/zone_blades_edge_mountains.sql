@@ -2,7 +2,7 @@
 UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN  (19948, 19952, 19957, 19992, 19993, 19994, 19998, 20765, 22160, 22384, 24039);
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN (19948, 19952, 19957, 19992, 19993, 19994, 19998, 20765, 22160, 22384, 24039);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -67,11 +67,11 @@ UPDATE `smart_scripts` SET `target_type` = 1 WHERE `entryorguid` = 19747 AND `ev
 UPDATE `creature` SET `MovementType` = 2, `currentwaypoint` = 1, `position_x` = 1582.5800, `position_y` = 5299.3701, `position_z` = 267.8560 WHERE `id` = 21032;
 
 DELETE FROM `creature_addon` WHERE `guid` IN (73837);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (73837, 738370, 0, 0, 0, 0, 0, '');
 
 DELETE FROM `waypoint_data` WHERE `id` IN (738370);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (738370, 1, 1582.58, 5299.37, 267.856, 5.8294, 0, 0, 0, 100, 0), -- Cast Intangible Presence, 90 seconds delay
 (738370, 2, 1598.22, 5292.21, 265.504, 5.52629, 0, 0, 0, 100, 0),

@@ -7,7 +7,7 @@ SET @WPID   := 6570000;
 
 -- TBC Patrols - Yeti Caves
 DELETE FROM `creature_addon` WHERE `guid` IN (@CGUID+88, @CGUID+89, @CGUID+105, @CGUID+106, @CGUID+114, @CGUID+133, @CGUID+138, @CGUID+139);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (@CGUID+088, @WPID+880, 0, 0, 0, 0, 0, NULL),
 (@CGUID+089, @WPID+890, 0, 0, 0, 0, 0, NULL),
 (@CGUID+105, @WPID+1050, 0, 0, 0, 0, 0, NULL),
@@ -19,7 +19,7 @@ INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `e
 
 -- WOTLK Patrols - Yeti Caves
 DELETE FROM `creature_addon` WHERE `guid` IN (@CGUID+164, @CGUID+165, @CGUID+181, @CGUID+182, @CGUID+190, @CGUID+209, @CGUID+214, @CGUID+215);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (@CGUID+164, @WPID+880, 0, 0, 0, 0, 0, NULL),
 (@CGUID+165, @WPID+890, 0, 0, 0, 0, 0, NULL),
 (@CGUID+181, @WPID+1050, 0, 0, 0, 0, 0, NULL),
@@ -30,7 +30,7 @@ INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `e
 (@CGUID+215, @WPID+1390, 0, 0, 0, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` IN (@WPID+880, @WPID+890, @WPID+1050, @WPID+1060, @WPID+1140, @WPID+1330, @WPID+1380, @WPID+1390);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 (@WPID+880, 1, 107.532, 91.634, 3.44018, NULL, 0, 0, 0, 100, 0),
 (@WPID+880, 2, 135.909, 68.6533, 3.74254, NULL, 0, 0, 0, 100, 0),
 (@WPID+880, 3, 173.596, 71.678, 13.3575, NULL, 0, 0, 0, 100, 0),
@@ -100,7 +100,7 @@ DELETE FROM `creature_formations` WHERE `leaderGUID` IN
  @CGUID+732, @CGUID+734, @CGUID+736, @CGUID+738, @CGUID+740, @CGUID+742, @CGUID+744, @CGUID+745, @CGUID+746, @CGUID+747, @CGUID+748, @CGUID+749,
  @CGUID+751, @CGUID+753, @CGUID+755, @CGUID+757, @CGUID+759, @CGUID+761, @CGUID+763);
 
-INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES
+REPLACE INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES
 -- alliance
 (@CGUID+630, @CGUID+630, 0, 0, 515, 0, 0),    
 (@CGUID+630, @CGUID+631, 3, 135, 515, 0, 0),
@@ -183,7 +183,7 @@ DELETE FROM `creature_addon` WHERE `guid` IN
  @CGUID+408, @CGUID+409, @CGUID+412, @CGUID+732, @CGUID+734, @CGUID+736, @CGUID+738, @CGUID+740, @CGUID+742, @CGUID+744, @CGUID+745, 
  @CGUID+746, @CGUID+747, @CGUID+748, @CGUID+749, @CGUID+751, @CGUID+753, @CGUID+755, @CGUID+757, @CGUID+759, @CGUID+761, @CGUID+763);
 
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 -- alliance
 (@CGUID+301, @WPID+3010, 14577, 0, 0, 0, 0, NULL),
 (@CGUID+307, @WPID+3070, 14577, 0, 0, 0, 0, NULL),
@@ -235,7 +235,7 @@ INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `e
 (@CGUID+763, @WPID+7630, 0, 0, 0, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` IN (@WPID+3010, @WPID+3070, @WPID+3090, @WPID+3100, @WPID+3120, @WPID+3150, @WPID+4080, @WPID+4090, @WPID+4120, @WPID+4150);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (@WPID+3010, 1, 653.598, -115.267, 49.6462, 0.943236, 0, 0, 0, 100, 0), -- Commander Mortimer
 (@WPID+3010, 2, 655.92, -111.943, 50.4109, 0.966798, 0, 0, 0, 100, 0),
@@ -460,7 +460,7 @@ DELETE FROM `waypoint_data` WHERE `id` IN
 (@WPID+6260, @WPID+6270, @WPID+6280, @WPID+6290, @WPID+6300, @WPID+6450, @WPID+6470, @WPID+6490,
  @WPID+6510, @WPID+6530, @WPID+6550, @WPID+6570, @WPID+6590, @WPID+6610, @WPID+6620, @WPID+6830, @WPID+6840);
 
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (@WPID+6260, 1, -46.7636, -346.977, 11.2494, 2.83604, 0, 0, 0, 100, 0),
 (@WPID+6260, 2, -59.8211, -342.915, 12.237, 2.59649, 0, 0, 0, 100, 0),
@@ -766,7 +766,7 @@ DELETE FROM `waypoint_data` WHERE `id` IN
 (@WPID+7320, @WPID+7340, @WPID+7360, @WPID+7380, @WPID+7400, @WPID+7420, @WPID+7440, @WPID+7450, @WPID+7460, @WPID+7470, 
  @WPID+7480, @WPID+7490, @WPID+7510, @WPID+7530, @WPID+7550, @WPID+7570, @WPID+7590, @WPID+7610, @WPID+7630);
 
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (@WPID+7320, 1, -932.92, -391.729, 49.0348, 3.46048, 0, 0, 0, 100, 0),
 (@WPID+7320, 2, -967.582, -400.531, 49.2425, 3.35839, 0, 0, 0, 100, 0),
@@ -1092,7 +1092,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+7630, 25, -537.784, -245.572, 57.0883, 1.41127, 0, 0, 0, 100, 0);
 
 DELETE FROM `creature_formations` WHERE `leaderGUID` IN (@CGUID+521, @CGUID+525);
-INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES
+REPLACE INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES
 --
 (@CGUID+521, @CGUID+521, 0, 0, 515, 0, 0), -- Primalist Thurloga
 (@CGUID+521, @CGUID+522, 3, 110, 515, 0, 0),
@@ -1105,7 +1105,7 @@ INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, 
 (@CGUID+525, @CGUID+528, 3, 250, 515, 0, 0);
 
 DELETE FROM `creature_addon` WHERE `guid` IN (@CGUID+518, @CGUID+519, @CGUID+521, @CGUID+525);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
 (@CGUID+518, @WPID+5180, 0, 0, 0, 0, 0, NULL), -- NPC_LOKHOLAR_THE_ICE_LORD
 (@CGUID+519, @WPID+5190, 0, 0, 0, 0, 0, NULL), -- NPC_IVUS_THE_FOREST_LORD
 --
@@ -1113,7 +1113,7 @@ INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `e
 (@CGUID+525, @WPID+5250, 0, 0, 0, 0, 0, NULL); -- Arch Druid Renferal
 
 DELETE FROM `waypoint_data` WHERE `id` IN (@WPID+5180, @WPID+5190, @WPID+5210, @WPID+5220, @WPID+5210, @WPID+5250);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (@WPID+5180, 1, -252.564, -298.18, 6.66753, 0, 0, 0, 0, 100, 0), -- NPC_LOKHOLAR_THE_ICE_LORD
 (@WPID+5180, 2, -218.383, -313.258, 6.66753, 0, 0, 0, 0, 100, 0),
@@ -1299,7 +1299,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 
 -- Wolf/Ram Rider Commanders
 DELETE FROM `creature_formations` WHERE `leaderGUID` IN (@CGUID+351, @CGUID+451);
-INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES
+REPLACE INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES
 --
 (@CGUID+351, @CGUID+351, 0, 0, 515, 0, 0), -- Ram Rider Commander
 (@CGUID+351, @CGUID+340, 3, 180, 515, 0, 0),
@@ -1326,13 +1326,13 @@ INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, 
 (@CGUID+451, @CGUID+449, 9, 190, 515, 0, 0);
 
 DELETE FROM `creature_addon` WHERE `guid` IN (@CGUID+351, @CGUID+451);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 --
 (@CGUID+351, @WPID+3510, 2786, 0, 0, 0, 0, NULL),
 (@CGUID+451, @WPID+4510, 1166, 0, 0, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` IN (@WPID+3510, @WPID+4510);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (@WPID+3510, 0, 600.03, -2.92, 41.99, 0, 0, 1, 0, 100, 0), -- Ram Rider Commander
 (@WPID+3510, 1, 606.04, -21.78, 43.02, 0, 0, 1, 0, 100, 0),
@@ -1514,7 +1514,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 
 -- Wing Commanders (waypoints / sitting / sleeping)
 DELETE FROM `creature_addon` WHERE `guid` IN (@CGUID+313, @CGUID+314, @CGUID+315, @CGUID+413, @CGUID+414, @CGUID+415);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 --
 (@CGUID+313, @WPID+3130, 0, 1, 0, 0, 0, NULL),
 (@CGUID+314, @WPID+3140, 0, 0, 0, 0, 0, NULL),
@@ -1524,7 +1524,7 @@ INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `e
 (@CGUID+415, @WPID+4150, 0, 3, 0, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` IN (@WPID+3130, @WPID+3140, @WPID+3150, @WPID+4130, @WPID+4140, @WPID+4150);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (@WPID+4130, 1, 197.457, -376.12, 49.2678, 0, 3000, 1, 0, 100, 0), -- Wing Commander Guse
 (@WPID+4130, 2, 201.609, -373.264, 49.2678, 0, 0, 1, 0, 100, 0),
@@ -2024,7 +2024,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 DELETE FROM `creature_queststarter` WHERE `id` = 12096 AND `quest` = 7122;
 DELETE FROM `creature_queststarter` WHERE `id` = 12097 AND `quest` = 7124;
 DELETE FROM `creature_queststarter` WHERE `id` IN (13153, 13154, 13319, 13320, 13377, 13447, 13448, 13597, 13598, 14185, 14186, 14187, 14188);
-INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES
+REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES
 (12096, 7122), -- Capture a Mine (alliance)
 (12097, 7124), -- Capture a Mine (horde)
 (13153, 7302), -- Fallen Sky Lords (Commander Mulfort, horde)
@@ -2051,12 +2051,12 @@ INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES
 (14188, 7424); -- What the Hoof? (repeatable)
 
 DELETE FROM `gameobject_queststarter` WHERE `quest` IN (7401, 7402);
-INSERT INTO `gameobject_queststarter` (`id`, `quest`) VALUES 
+REPLACE INTO `gameobject_queststarter` (`id`, `quest`) VALUES 
 (179438, 7401), -- Wanted: Dwarves!
 (179437, 7402); -- WANTED: Orcs!
 
 DELETE FROM `creature_questender` WHERE `id` IN (13153, 13154, 13319, 13320, 13377, 13447, 13448, 13597, 13598, 14185, 14186, 14187, 14188);
-INSERT INTO `creature_questender` (`id`, `quest`) VALUES
+REPLACE INTO `creature_questender` (`id`, `quest`) VALUES
 (13153, 7302), -- Fallen Sky Lords (Commander Mulfort, horde)
 (13154, 7281), -- Brotherly Love (Commander Louis Philips, horde)
 (13154, 7363), -- The Human Condition
@@ -2098,7 +2098,7 @@ UPDATE `quest_template_addon` SET `PrevQuestID` = 7402 WHERE `ID` = 7428; -- Wan
 DELETE FROM `disables` WHERE `sourceType` = 1 AND `entry` IN (7181, 7202, 7381, 7382); -- Korrak quests
 
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 19 AND `SourceEntry` IN (7181, 7202, 7381, 7382, 8271, 8272);
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 --
 (19, 0, 7181, 0, 0, 8, 0, 66005, 0, 0, 1, 0, 0, '', 'Quest: \'The Legend of Korrak\' only available before patch 1.10'),
@@ -2116,7 +2116,7 @@ UPDATE `quest_template_addon` SET `PrevQuestID` = 7202 WHERE `ID` = 7382;
 UPDATE `quest_template_addon` SET `SpecialFlags` = 0   WHERE `ID` IN (7081, 7082, 7181, 7381, 7202, 7382);
 
 DELETE FROM `player_loot_template` WHERE `Item` IN (17306, 17423, 18142, 18143, 18144, 18145, 18146, 18147, 18206, 18207);
-INSERT INTO `player_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
+REPLACE INTO `player_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
 --
 (1, 17306, 0, 85, 0, 1, 0, 1, 1, 'Alterac Valley - Alliance - Stormpike Soldiers Blood'),
 (0, 17423, 0, 85, 0, 1, 0, 1, 1, 'Alterac Valley - Horde - Storm Crystal'),
@@ -2130,7 +2130,7 @@ INSERT INTO `player_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `Que
 (0, 18207, 0, 25, 0, 1, 2, 1, 1, 'Alterac Valley - Horde - Orc Tooth');
 
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 17 AND `SourceEntry` IN (21355, 21370, 21371, 21728, 21729, 21730);
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES
 (17, 0, 21355, 0, 0, 29, 0, @CENTRY+1, 5, 0, 0, 60, 0, '', 'Guse''s Beacon only within 5 yd of the east crater'),
 (17, 0, 21370, 0, 0, 29, 0, @CENTRY+2, 5, 0, 0, 60, 0, '', 'Jeztor''s Beacon only within 5 yd of the west crater'),
@@ -2140,7 +2140,7 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 (17, 0, 21730, 0, 0, 29, 0, @CENTRY+2, 5, 0, 0, 60, 0, '', 'Vipore''s Beacon only within 5 yd of the west crater');
 
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 28 AND `SourceEntry` IN (17306, 17423, 18142, 18143, 18144, 18145, 18146, 18147, 18206, 18207);
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 --
 (28, 1, 17306, 0, 1, 22, 0, 30, 0, 0, 0, 0, 0, '',   'Stormpike Soldiers Blood only drops inside Alterac Valley Battleground'),
@@ -2166,7 +2166,7 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 
 -- only drop Stormpike Soldiers Blood from alliance creatures + correct drop rate and amount
 DELETE FROM `creature_loot_template` WHERE `Item` = 17306;
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 --
 (11949, 17306, 0, 100, 0, 1, 0, 1, 1, 'Stormpike Soldiers Blood'),
 (12047, 17306, 0, 100, 0, 1, 0, 1, 1, 'Stormpike Soldiers Blood'),
@@ -2224,7 +2224,7 @@ INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `Q
 
 -- only drop Storm Crystals from horde creatures + correct drop rate and amount
 DELETE FROM `creature_loot_template` WHERE `Item` = 17423;
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 --
 (13798, 17423, 0, 100, 0, 1, 0, 1, 1, 'Storm Crystal'),
 (13597, 17423, 0, 100, 0, 1, 0, 1, 1, 'Storm Crystal'),
@@ -2286,66 +2286,66 @@ DELETE FROM `creature_template` WHERE `entry` IN
  122766, 131978, 132089, 113256, 113419, 112050, 122690, 132091, 112053, 122674, 131981, 113236, 113284, 113442, 113443, 113441, 113577);
 
 DELETE FROM `creature_template` WHERE `entry` BETWEEN @CENTRY+1 AND @CENTRY+9;
-INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `name`, `subname`, `IconName`, `gossip_menu_id`, 
+REPLACE INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `name`, `subname`, `IconName`, `gossip_menu_id`, 
 `minlevel`, `maxlevel`, `exp`, `faction`, `npcflag`, `speed_walk`, `speed_run`, `speed_swim`, `speed_flight`, `detection_range`, `rank`, `dmgschool`, `DamageModifier`, 
 `BaseAttackTime`, `RangeAttackTime`, `BaseVariance`, `RangeVariance`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, 
 `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `HoverHeight`, `HealthModifier`, `ManaModifier`, `ArmorModifier`, `ExperienceModifier`, `RacialLeader`, `movementId`, 
 `RegenHealth`, `CreatureImmunitiesId`, `flags_extra`, `ScriptName`, `VerifiedBuild`) VALUES
 --
-(@CENTRY+1,0,0,0,0,0,'Air Strike Target','East Crater',NULL,0,60,60,0,35,0,1,1.14286,1,1,20,0,0,1,2000,2000,1,1,1,33555202,2048,0,0,10,0,0,0,0,0,0,0,0,'SmartAI',0,1,1,1,1,1,0,0,1,0,2,'',0),
-(@CENTRY+2,0,0,0,0,0,'Air Strike Target','West Crater',NULL,0,60,60,0,35,0,1,1.14286,1,1,20,0,0,1,2000,2000,1,1,1,33555202,2048,0,0,10,0,0,0,0,0,0,0,0,'SmartAI',0,1,1,1,1,1,0,0,1,0,2,'',0),
-(@CENTRY+3,0,0,0,0,0,'Air Strike Target','Snowfall Graveyard',NULL,0,60,60,0,35,0,1,1.14286,1,1,20,0,0,1,2000,2000,1,1,1,33555202,2048,0,0,10,0,0,0,0,0,0,0,0,'SmartAI',0,1,1,1,1,1,0,0,1,0,2,'',0),
+(@CENTRY+1,0,0,0,0,0,'空袭目标','东部矿坑',NULL,0,60,60,0,35,0,1,1.14286,1,1,20,0,0,1,2000,2000,1,1,1,33555202,2048,0,0,10,0,0,0,0,0,0,0,0,'SmartAI',0,1,1,1,1,1,0,0,1,0,2,'',0),
+(@CENTRY+2,0,0,0,0,0,'空袭目标','西部矿坑',NULL,0,60,60,0,35,0,1,1.14286,1,1,20,0,0,1,2000,2000,1,1,1,33555202,2048,0,0,10,0,0,0,0,0,0,0,0,'SmartAI',0,1,1,1,1,1,0,0,1,0,2,'',0),
+(@CENTRY+3,0,0,0,0,0,'空袭目标','雪落墓地',NULL,0,60,60,0,35,0,1,1.14286,1,1,20,0,0,1,2000,2000,1,1,1,33555202,2048,0,0,10,0,0,0,0,0,0,0,0,'SmartAI',0,1,1,1,1,1,0,0,1,0,2,'',0),
 --
-(@CENTRY+4,0,0,0,0,0,'Guse''s Beacon Trigger',NULL,NULL,0,60,60,0,35,0,1,1.14286,1,1,20,0,0,1,2000,2000,1,1,1,33555202,2048,0,0,10,0,0,0,0,0,0,0,0,'SmartAI',0,1,1,1,1,1,0,0,1,0,2,'',0),
-(@CENTRY+5,0,0,0,0,0,'Jeztor''s Beacon Trigger',NULL,NULL,0,60,60,0,35,0,1,1.14286,1,1,20,0,0,1,2000,2000,1,1,1,33555202,2048,0,0,10,0,0,0,0,0,0,0,0,'SmartAI',0,1,1,1,1,1,0,0,1,0,2,'',0),
-(@CENTRY+6,0,0,0,0,0,'Mulverick''s Beacon Trigger',NULL,NULL,0,60,60,0,35,0,1,1.14286,1,1,20,0,0,1,2000,2000,1,1,1,33555202,2048,0,0,10,0,0,0,0,0,0,0,0,'SmartAI',0,1,1,1,1,1,0,0,1,0,2,'',0),
-(@CENTRY+7,0,0,0,0,0,'Ichman''s Beacon Trigger',NULL,NULL,0,60,60,0,35,0,1,1.14286,1,1,20,0,0,1,2000,2000,1,1,1,33555202,2048,0,0,10,0,0,0,0,0,0,0,0,'SmartAI',0,1,1,1,1,1,0,0,1,0,2,'',0),
-(@CENTRY+8,0,0,0,0,0,'Slidore''s Beacon Trigger',NULL,NULL,0,60,60,0,35,0,1,1.14286,1,1,20,0,0,1,2000,2000,1,1,1,33555202,2048,0,0,10,0,0,0,0,0,0,0,0,'SmartAI',0,1,1,1,1,1,0,0,1,0,2,'',0),
-(@CENTRY+9,0,0,0,0,0,'Vipore''s Beacon Trigger',NULL,NULL,0,60,60,0,35,0,1,1.14286,1,1,20,0,0,1,2000,2000,1,1,1,33555202,2048,0,0,10,0,0,0,0,0,0,0,0,'SmartAI',0,1,1,1,1,1,0,0,1,0,2,'',0),
+(@CENTRY+4,0,0,0,0,0,'古斯的信标触发器',NULL,NULL,0,60,60,0,35,0,1,1.14286,1,1,20,0,0,1,2000,2000,1,1,1,33555202,2048,0,0,10,0,0,0,0,0,0,0,0,'SmartAI',0,1,1,1,1,1,0,0,1,0,2,'',0),
+(@CENTRY+5,0,0,0,0,0,'杰斯托的信标触发器',NULL,NULL,0,60,60,0,35,0,1,1.14286,1,1,20,0,0,1,2000,2000,1,1,1,33555202,2048,0,0,10,0,0,0,0,0,0,0,0,'SmartAI',0,1,1,1,1,1,0,0,1,0,2,'',0),
+(@CENTRY+6,0,0,0,0,0,'穆维里克的信标触发器',NULL,NULL,0,60,60,0,35,0,1,1.14286,1,1,20,0,0,1,2000,2000,1,1,1,33555202,2048,0,0,10,0,0,0,0,0,0,0,0,'SmartAI',0,1,1,1,1,1,0,0,1,0,2,'',0),
+(@CENTRY+7,0,0,0,0,0,'艾克曼的信标触发器',NULL,NULL,0,60,60,0,35,0,1,1.14286,1,1,20,0,0,1,2000,2000,1,1,1,33555202,2048,0,0,10,0,0,0,0,0,0,0,0,'SmartAI',0,1,1,1,1,1,0,0,1,0,2,'',0),
+(@CENTRY+8,0,0,0,0,0,'斯里多尔的信标触发器',NULL,NULL,0,60,60,0,35,0,1,1.14286,1,1,20,0,0,1,2000,2000,1,1,1,33555202,2048,0,0,10,0,0,0,0,0,0,0,0,'SmartAI',0,1,1,1,1,1,0,0,1,0,2,'',0),
+(@CENTRY+9,0,0,0,0,0,'维波里的信标触发器',NULL,NULL,0,60,60,0,35,0,1,1.14286,1,1,20,0,0,1,2000,2000,1,1,1,33555202,2048,0,0,10,0,0,0,0,0,0,0,0,'SmartAI',0,1,1,1,1,1,0,0,1,0,2,'',0),
 --
-(113441,0,0,0,0,0,'Frostwolf Wolf Rider Commander',NULL,NULL,0,60,60,0,1214,1,1,1.14286,1,1,20,1,0,5.45,2000,2000,1,1,1,4160,2048,0,0,7,0,13441,0,0,0,0,1,886,'SmartAI',1,1,8,1,1.1,1,0,0,1,-386,0,'',0),
-(113577,0,0,0,0,0,'Stormpike Ram Rider Commander',NULL,NULL,0,60,60,0,1216,1,1,1.14286,1,1,20,1,0,4,2000,2000,1,1,1,4160,2048,0,0,7,0,13577,0,0,0,0,1,886,'SmartAI',1,1,8,1,1.1,1,0,0,1,-386,0,'',0),
+(113441,0,0,0,0,0,'霜狼骑兵指挥官',NULL,NULL,0,60,60,0,1214,1,1,1.14286,1,1,20,1,0,5.45,2000,2000,1,1,1,4160,2048,0,0,7,0,13441,0,0,0,0,1,886,'SmartAI',1,1,8,1,1.1,1,0,0,1,-386,0,'',0),
+(113577,0,0,0,0,0,'雷矛山羊骑兵指挥官',NULL,NULL,0,60,60,0,1216,1,1,1.14286,1,1,20,1,0,4,2000,2000,1,1,1,4160,2048,0,0,7,0,13577,0,0,0,0,1,886,'SmartAI',1,1,8,1,1.1,1,0,0,1,-386,0,'',0),
 --
-(113179,0,0,0,0,0,'Wing Commander Guse',NULL,NULL,0,59,59,0,1215,3,1,1.14286,1,1,40,1,0,2,2000,2000,1,1,1,4928,2048,0,0,7,0,13179,0,0,0,0,1,858,'SmartAI',1,1,10,1,1.05,1,0,0,1,-386,2,'',0),
-(113180,0,0,0,0,0,'Wing Commander Jeztor',NULL,NULL,0,58,58,0,1215,3,1,1.14286,1,1,40,1,0,2,2000,2000,1,1,1,4160,2048,0,0,7,0,13180,0,0,0,0,1,817,'SmartAI',1,1,10,1,1,1,0,0,1,-386,2,'',0),
-(113181,0,0,0,0,0,'Wing Commander Mulverick',NULL,NULL,0,60,60,0,1215,3,1,1.14286,1,1,40,1,0,2,2000,2000,1,1,1,4928,2048,0,0,7,0,13181,0,0,0,0,152,3035,'SmartAI',1,1,10,1,1.1,1,0,0,1,-386,2,'',0),
-(113437,0,0,0,0,0,'Wing Commander Ichman',NULL,NULL,0,60,60,0,1217,3,1,1.14286,1,1,40,1,0,5,2000,2000,1,1,1,4928,2048,0,0,7,0,13437,0,0,0,0,152,761,'SmartAI',1,1,10,1,1.1,1,0,0,1,-386,2,'',0),
-(113438,0,0,0,0,0,'Wing Commander Slidore',NULL,NULL,0,58,58,0,1217,3,1,1.14286,1,1,40,1,0,5,2000,2000,1,1,1,4160,2048,0,0,7,0,13438,0,0,0,0,1,858,'SmartAI',1,1,10,1,1,1,0,0,1,-386,2,'',0),
-(113439,0,0,0,0,0,'Wing Commander Vipore',NULL,NULL,0,59,59,0,1217,3,1,1.14286,1,1,40,1,0,5,2000,2000,1,1,1,4928,2048,0,0,7,0,13439,0,0,0,0,1,830,'SmartAI',1,1,10,1,1.05,1,0,0,1,-386,2,'',0),
+(113179,0,0,0,0,0,'空军指挥官古斯',NULL,NULL,0,59,59,0,1215,3,1,1.14286,1,1,40,1,0,2,2000,2000,1,1,1,4928,2048,0,0,7,0,13179,0,0,0,0,1,858,'SmartAI',1,1,10,1,1.05,1,0,0,1,-386,2,'',0),
+(113180,0,0,0,0,0,'空军指挥官杰斯托',NULL,NULL,0,58,58,0,1215,3,1,1.14286,1,1,40,1,0,2,2000,2000,1,1,1,4160,2048,0,0,7,0,13180,0,0,0,0,1,817,'SmartAI',1,1,10,1,1,1,0,0,1,-386,2,'',0),
+(113181,0,0,0,0,0,'空军指挥官穆维里克',NULL,NULL,0,60,60,0,1215,3,1,1.14286,1,1,40,1,0,2,2000,2000,1,1,1,4928,2048,0,0,7,0,13181,0,0,0,0,152,3035,'SmartAI',1,1,10,1,1.1,1,0,0,1,-386,2,'',0),
+(113437,0,0,0,0,0,'空军指挥官艾克曼',NULL,NULL,0,60,60,0,1217,3,1,1.14286,1,1,40,1,0,5,2000,2000,1,1,1,4928,2048,0,0,7,0,13437,0,0,0,0,152,761,'SmartAI',1,1,10,1,1.1,1,0,0,1,-386,2,'',0),
+(113438,0,0,0,0,0,'空军指挥官斯里多尔',NULL,NULL,0,58,58,0,1217,3,1,1.14286,1,1,40,1,0,5,2000,2000,1,1,1,4160,2048,0,0,7,0,13438,0,0,0,0,1,858,'SmartAI',1,1,10,1,1,1,0,0,1,-386,2,'',0),
+(113439,0,0,0,0,0,'空军指挥官维波里',NULL,NULL,0,59,59,0,1217,3,1,1.14286,1,1,40,1,0,5,2000,2000,1,1,1,4928,2048,0,0,7,0,13439,0,0,0,0,1,830,'SmartAI',1,1,10,1,1.05,1,0,0,1,-386,2,'',0),
 --
-(113256,0,0,0,0,0,'Lokholar the Ice Lord - Dummy',NULL,NULL,0,61,61,0,1214,0,4,2.14286,1,1,20,3,0,3.85,2000,2000,1,1,2,0,2048,0,0,4,8,13256,0,0,0,0,1,886,'',0,1,50,8,1.75,1,0,196,1,-288,0,'',0),
-(113419,0,0,0,0,0,'Ivus the Forest Lord - Dummy',NULL,NULL,0,61,61,0,1594,0,4,2.14286,1,1,20,3,0,5.3,2000,1255,1,1,2,0,2048,0,0,7,8,13419,0,0,0,0,505,2525,'',1,1,50,15,1.7,1,0,196,1,-273,0,'',0),
+(113256,0,0,0,0,0,'冰雪之王洛克霍拉 - 假人',NULL,NULL,0,61,61,0,1214,0,4,2.14286,1,1,20,3,0,3.85,2000,2000,1,1,2,0,2048,0,0,4,8,13256,0,0,0,0,1,886,'',0,1,50,8,1.75,1,0,196,1,-288,0,'',0),
+(113419,0,0,0,0,0,'森林之王伊弗斯 - 假人',NULL,NULL,0,61,61,0,1594,0,4,2.14286,1,1,20,3,0,5.3,2000,1255,1,1,2,0,2048,0,0,7,8,13419,0,0,0,0,505,2525,'',1,1,50,15,1.7,1,0,196,1,-273,0,'',0),
 --
-(113236,0,0,0,0,0,'Primalist Thurloga',NULL,NULL,0,60,60,0,1214,0,1,1.14286,1,1,20,1,0,4,2000,2000,1,1,2,4160,2048,0,0,7,0,13236,0,0,0,0,1,886,'',1,1,12,12,1,1,0,0,1,-386,0,'',0),
-(113284,0,0,0,0,0,'Frostwolf Shaman',NULL,NULL,0,58,58,0,1214,0,1,1.14286,1,1,20,1,0,3.5,2000,2000,1,1,2,4160,2048,0,0,7,0,13284,0,0,0,0,157,786,'',1,1,8,8,1,1,0,0,1,0,0,'',0),
-(113442,0,0,0,0,0,'Arch Druid Renferal',NULL,NULL,0,60,60,0,1216,0,1,1.14286,1,1,20,1,0,4,2000,2000,1,1,2,4160,2048,0,0,7,0,13442,0,0,0,0,1,844,'',1,1,12,12,1,1,0,0,1,-386,0,'',0),
-(113443,0,0,0,0,0,'Druid of the Grove',NULL,NULL,0,60,60,0,1216,0,1,1.14286,1,1,20,1,0,3.5,2000,2000,1,1,2,4160,2048,0,0,7,0,13443,0,0,0,0,162,812,'',1,1,8,8,1,1,0,0,1,0,0,'',0),
+(113236,0,0,0,0,0,'指挥官瑟鲁加',NULL,NULL,0,60,60,0,1214,0,1,1.14286,1,1,20,1,0,4,2000,2000,1,1,2,4160,2048,0,0,7,0,13236,0,0,0,0,1,886,'',1,1,12,12,1,1,0,0,1,-386,0,'',0),
+(113284,0,0,0,0,0,'霜狼萨满祭司',NULL,NULL,0,58,58,0,1214,0,1,1.14286,1,1,20,1,0,3.5,2000,2000,1,1,2,4160,2048,0,0,7,0,13284,0,0,0,0,157,786,'',1,1,8,8,1,1,0,0,1,0,0,'',0),
+(113442,0,0,0,0,0,'大德鲁伊雷弗拉尔',NULL,NULL,0,60,60,0,1216,0,1,1.14286,1,1,20,1,0,4,2000,2000,1,1,2,4160,2048,0,0,7,0,13442,0,0,0,0,1,844,'',1,1,12,12,1,1,0,0,1,-386,0,'',0),
+(113443,0,0,0,0,0,'树林德鲁伊',NULL,NULL,0,60,60,0,1216,0,1,1.14286,1,1,20,1,0,3.5,2000,2000,1,1,2,4160,2048,0,0,7,0,13443,0,0,0,0,162,812,'',1,1,8,8,1,1,0,0,1,0,0,'',0),
 --
-(110981,0,0,0,0,0,'Frostwolf',NULL,NULL,0,50,51,0,1275,0,1,2.57143,1,1,18,0,0,1,2000,2000,1,1,1,0,2048,0,1,1,1,10981,0,10981,13040,0,0,0,'',1,1,1.02,1,1,1,0,0,1,0,0,'',0),
-(110990,0,0,0,0,0,'Alterac Ram',NULL,NULL,0,50,51,0,1274,0,1,2.57143,1,1,18,0,0,1,2000,2000,1,1,1,0,2048,0,0,1,0,10990,0,10990,0,0,63,316,'',1,1,1.3,1,1,1,0,0,1,0,0,'',0),
-(112051,0,0,0,0,0,'Frostwolf Legionnaire',NULL,NULL,0,57,57,0,1214,0,1,1.14286,1,1,18,0,0,1.7,2000,2000,1,1,1,4096,2048,0,0,7,0,12051,0,0,0,0,83,416,'',1,1,0.6,1,1,1,0,0,1,0,0,'',0),
-(112127,0,0,0,0,0,'Stormpike Guardsman',NULL,NULL,0,57,57,0,1216,0,1,1.14286,1,1,18,0,0,1.6,2000,2000,1,1,1,4096,2048,0,0,7,0,12127,0,0,0,0,83,772,'',0,1,0.6,1,1,1,0,0,1,0,0,'',0),
-(114282,0,0,0,0,0,'Frostwolf Bloodhound',NULL,NULL,0,53,54,0,1214,0,1,1.14286,1,1,18,0,0,1,2000,2000,1,1,1,4096,2048,0,1,1,0,14282,0,14282,0,0,0,0,'',1,1,0.4,1,1,1,0,0,1,0,0,'',0),
-(114283,0,0,0,0,0,'Stormpike Owl',NULL,NULL,0,53,54,0,1216,0,1,1.14286,1,1,18,0,0,1,2000,2000,1,1,1,4096,2048,0,26,1,1,14283,0,100003,13264,0,63,316,'',0,1,0.4,1,1,1,0,0,1,0,0,'',0),
-(114284,0,0,0,0,0,'Stormpike Battleguard',NULL,NULL,0,61,61,0,1216,0,1,1.14286,1,1,20,1,0,7.4,2000,2000,1,1,1,4608,2048,0,0,7,0,14284,0,0,0,0,432,569,'',1,1,6,1,1,1,0,0,1,0,0,'',0),
-(113358,122766,132089,0,0,0,'Stormpike Bowman',NULL,NULL,0,59,60,0,1216,0,1,1.14286,1,1,80,0,0,2.3,2000,2000,1,1,1,4608,2048,0,0,7,0,13358,0,0,0,0,65,648,'',0,1,1.5,1.5,1,1,0,0,1,0,0,'',0),
-(113359,122739,131978,0,0,0,'Frostwolf Bowman',NULL,NULL,0,59,60,0,1214,0,1,1.14286,1,1,80,0,0,2.3,2000,2000,1,1,1,4608,2048,0,0,7,0,13359,0,0,0,0,65,765,'',1,1,1.5,1.5,1,1,0,0,1,0,0,'',0),
+(110981,0,0,0,0,0,'霜狼',NULL,NULL,0,50,51,0,1275,0,1,2.57143,1,1,18,0,0,1,2000,2000,1,1,1,0,2048,0,1,1,1,10981,0,10981,13040,0,0,0,'',1,1,1.02,1,1,1,0,0,1,0,0,'',0),
+(110990,0,0,0,0,0,'奥特兰克山羊',NULL,NULL,0,50,51,0,1274,0,1,2.57143,1,1,18,0,0,1,2000,2000,1,1,1,0,2048,0,0,1,0,10990,0,10990,0,0,63,316,'',1,1,1.3,1,1,1,0,0,1,0,0,'',0),
+(112051,0,0,0,0,0,'霜狼军团士兵',NULL,NULL,0,57,57,0,1214,0,1,1.14286,1,1,18,0,0,1.7,2000,2000,1,1,1,4096,2048,0,0,7,0,12051,0,0,0,0,83,416,'',1,1,0.6,1,1,1,0,0,1,0,0,'',0),
+(112127,0,0,0,0,0,'雷矛卫兵',NULL,NULL,0,57,57,0,1216,0,1,1.14286,1,1,18,0,0,1.6,2000,2000,1,1,1,4096,2048,0,0,7,0,12127,0,0,0,0,83,772,'',0,1,0.6,1,1,1,0,0,1,0,0,'',0),
+(114282,0,0,0,0,0,'霜狼血犬',NULL,NULL,0,53,54,0,1214,0,1,1.14286,1,1,18,0,0,1,2000,2000,1,1,1,4096,2048,0,1,1,0,14282,0,14282,0,0,0,0,'',1,1,0.4,1,1,1,0,0,1,0,0,'',0),
+(114283,0,0,0,0,0,'雷矛猫头鹰',NULL,NULL,0,53,54,0,1216,0,1,1.14286,1,1,18,0,0,1,2000,2000,1,1,1,4096,2048,0,26,1,1,14283,0,100003,13264,0,63,316,'',0,1,0.4,1,1,1,0,0,1,0,0,'',0),
+(114284,0,0,0,0,0,'雷矛战地卫士',NULL,NULL,0,61,61,0,1216,0,1,1.14286,1,1,20,1,0,7.4,2000,2000,1,1,1,4608,2048,0,0,7,0,14284,0,0,0,0,432,569,'',1,1,6,1,1,1,0,0,1,0,0,'',0),
+(113358,122766,132089,0,0,0,'联盟弓箭手',NULL,NULL,0,59,60,0,1216,0,1,1.14286,1,1,80,0,0,2.3,2000,2000,1,1,1,4608,2048,0,0,7,0,13358,0,0,0,0,65,648,'',0,1,1.5,1.5,1,1,0,0,1,0,0,'',0),
+(113359,122739,131978,0,0,0,'霜狼弓箭手',NULL,NULL,0,59,60,0,1214,0,1,1.14286,1,1,80,0,0,2.3,2000,2000,1,1,1,4608,2048,0,0,7,0,13359,0,0,0,0,65,765,'',1,1,1.5,1.5,1,1,0,0,1,0,0,'',0),
 --
-(122739,0,0,0,0,0,'Frostwolf Bowman (1)','',NULL,0,69,70,0,1214,0,1.27,1.14286,1,1,80,0,0,1,2000,2000,1,1,1,4608,2048,0,0,7,0,13359,0,0,0,0,524,694,'',1,1,1.5,1.5,1,1,0,0,1,0,0,'',0), -- TBC
-(122766,0,0,0,0,0,'Stormpike Bowman (1)','',NULL,0,69,70,0,1216,0,1.27,1.14286,1,1,80,0,0,1,2000,2000,1,1,1,4608,2048,0,0,7,0,13358,0,0,0,0,520,688,'',0,1,1.5,1.5,1,1,0,0,1,0,0,'',0),
-(131978,0,0,0,0,0,'Frostwolf Bowman (2)','','',0,79,80,0,1214,0,1.27,1.14286,1,1,80,0,0,1,2000,2000,1,1,1,4608,2048,0,0,7,0,13359,0,0,0,0,0,0,'',1,1,1.95,1.5,1,1,0,0,1,0,0,'',0), -- WOTLK
-(132089,0,0,0,0,0,'Stormpike Bowman (2)','','',0,79,80,0,1216,0,1.27,1.14286,1,1,80,0,0,1,2000,2000,1,1,1,4608,2048,0,0,7,0,13358,0,0,0,0,0,0,'',0,1,1.95,1.5,1,1,0,0,1,0,0,'',0),
+(122739,0,0,0,0,0,'霜狼弓箭手(1)','',NULL,0,69,70,0,1214,0,1.27,1.14286,1,1,80,0,0,1,2000,2000,1,1,1,4608,2048,0,0,7,0,13359,0,0,0,0,524,694,'',1,1,1.5,1.5,1,1,0,0,1,0,0,'',0), -- TBC
+(122766,0,0,0,0,0,'联盟弓箭手(1)','',NULL,0,69,70,0,1216,0,1.27,1.14286,1,1,80,0,0,1,2000,2000,1,1,1,4608,2048,0,0,7,0,13358,0,0,0,0,520,688,'',0,1,1.5,1.5,1,1,0,0,1,0,0,'',0),
+(131978,0,0,0,0,0,'霜狼弓箭手(2)','','',0,79,80,0,1214,0,1.27,1.14286,1,1,80,0,0,1,2000,2000,1,1,1,4608,2048,0,0,7,0,13359,0,0,0,0,0,0,'',1,1,1.95,1.5,1,1,0,0,1,0,0,'',0), -- WOTLK
+(132089,0,0,0,0,0,'联盟弓箭手(2)','','',0,79,80,0,1216,0,1.27,1.14286,1,1,80,0,0,1,2000,2000,1,1,1,4608,2048,0,0,7,0,13358,0,0,0,0,0,0,'',0,1,1.95,1.5,1,1,0,0,1,0,0,'',0),
 --
-(112050,122690,132091,0,0,0,'Stormpike Defender',NULL,NULL,0,58,58,0,1216,0,1,1.14286,1,1,18,0,0,2.8,2000,2000,1,1,1,4096,2048,0,0,7,0,12050,12050,0,0,0,70,604,'',1,1,0.4,1,1.35,1,0,0,1,0,0,'',0), -- Vanilla
-(122690,0,0,0,0,0,'Stormpike Defender (1)','',NULL,0,68,68,0,1216,0,1.26,1.14286,1,1,20,0,0,1,2000,2000,1,1,1,4096,2048,0,0,7,0,12050,0,0,0,0,306,408,'',1,1,0.4,1,1,1,0,0,1,0,0,'',0), -- TBC
-(132091,0,0,0,0,0,'Stormpike Defender (2)','','',0,78,78,0,1216,0,1.26,1.14286,1,1,20,0,0,1,2000,2000,1,1,1,4096,2048,0,0,7,0,12050,0,0,0,0,0,0,'',1,1,0.52,1,1,1,0,0,1,0,0,'',0), -- WOTLK
+(112050,122690,132091,0,0,0,'雷矛防御者',NULL,NULL,0,58,58,0,1216,0,1,1.14286,1,1,18,0,0,2.8,2000,2000,1,1,1,4096,2048,0,0,7,0,12050,12050,0,0,0,70,604,'',1,1,0.4,1,1.35,1,0,0,1,0,0,'',0), -- Vanilla
+(122690,0,0,0,0,0,'雷矛防御者(1)','',NULL,0,68,68,0,1216,0,1.26,1.14286,1,1,20,0,0,1,2000,2000,1,1,1,4096,2048,0,0,7,0,12050,0,0,0,0,306,408,'',1,1,0.4,1,1,1,0,0,1,0,0,'',0), -- TBC
+(132091,0,0,0,0,0,'雷矛防御者(2)','','',0,78,78,0,1216,0,1.26,1.14286,1,1,20,0,0,1,2000,2000,1,1,1,4096,2048,0,0,7,0,12050,0,0,0,0,0,0,'',1,1,0.52,1,1,1,0,0,1,0,0,'',0), -- WOTLK
 --
-(112053,122674,131981,0,0,0,'Frostwolf Guardian',NULL,NULL,0,58,58,0,1214,0,1,1.14286,1,1,18,0,0,2.8,2000,2000,1,1,1,4096,2048,0,0,7,0,12053,0,0,0,0,70,352,'',1,1,0.4,1,1.35,1,0,0,1,0,0,'',0),  -- Vanilla
-(122674,0,0,0,0,0,'Frostwolf Guardian (1)','',NULL,0,68,68,0,1214,0,1.26,1.14286,1,1,20,0,0,1,2000,2000,1,1,1,4096,2048,0,0,7,0,12053,0,0,0,0,300,402,'',1,1,0.4,1,1,1,0,0,1,0,0,'',0), -- TBC
-(131981,0,0,0,0,0,'Frostwolf Guardian (2)','','',0,78,78,0,1214,0,1.26,1.14286,1,1,20,0,0,1,2000,2000,1,1,1,4096,2048,0,0,7,0,12053,0,0,0,0,0,0,'',1,1,0.52,1,1,1,0,0,1,0,0,'',0); -- WOTLK
+(112053,122674,131981,0,0,0,'霜狼守卫者',NULL,NULL,0,58,58,0,1214,0,1,1.14286,1,1,18,0,0,2.8,2000,2000,1,1,1,4096,2048,0,0,7,0,12053,0,0,0,0,70,352,'',1,1,0.4,1,1.35,1,0,0,1,0,0,'',0),  -- Vanilla
+(122674,0,0,0,0,0,'霜狼守卫者(1)','',NULL,0,68,68,0,1214,0,1.26,1.14286,1,1,20,0,0,1,2000,2000,1,1,1,4096,2048,0,0,7,0,12053,0,0,0,0,300,402,'',1,1,0.4,1,1,1,0,0,1,0,0,'',0), -- TBC
+(131981,0,0,0,0,0,'霜狼守卫者(2)','','',0,78,78,0,1214,0,1.26,1.14286,1,1,20,0,0,1,2000,2000,1,1,1,4096,2048,0,0,7,0,12053,0,0,0,0,0,0,'',1,1,0.52,1,1,1,0,0,1,0,0,'',0); -- WOTLK
 
 DELETE FROM `creature_template_addon` WHERE `entry` IN (113358, 113359, 122739, 122766, 131978, 132089);
-INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (113358, 0, 0, 0, 2, 0, 0, NULL),
 (113359, 0, 0, 0, 2, 0, 0, NULL),
 (122739, 0, 0, 0, 2, 0, 0, NULL),
@@ -2356,7 +2356,7 @@ INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `b
 DELETE FROM `creature_template_locale` WHERE `entry` IN 
 (110981, 110990, 112050, 112051, 112053, 112127, 113179, 113180, 113181, 113236, 113256, 113284, 113358, 113359, 113419, 113437, 113438, 113439, 113441, 113442, 113443, 113577, 114282, 114283, 114284);
 
-INSERT INTO `creature_template_locale` (`entry`, `locale`, `Name`, `Title`, `VerifiedBuild`) VALUES
+REPLACE INTO `creature_template_locale` (`entry`, `locale`, `Name`, `Title`, `VerifiedBuild`) VALUES
 --
 (113441, 'deDE', 'Wolfsreiterkommandant der Frostwölfe', '', 18019),
 (113441, 'esES', 'Comandante jinete de lobos Lobo Gélido', '', 18019),
@@ -2568,7 +2568,7 @@ DELETE FROM `creature_template_model` WHERE `CreatureID` IN
  122739, 122766, 131978, 132089, 113256, 113419,  112050, 122690, 132091, 112053, 122674, 131981, 113236, 113284, 113442, 113443);
 
 DELETE FROM `creature_template_model` WHERE `CreatureID` BETWEEN @CENTRY+1 AND @CENTRY+9;
-INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`, `DisplayScale`, `Probability`, `VerifiedBuild`) VALUES
+REPLACE INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`, `DisplayScale`, `Probability`, `VerifiedBuild`) VALUES
 --
 (@CENTRY+1, 0, 11686, 1, 1, 0),
 (@CENTRY+2, 0, 11686, 1, 1, 0),
@@ -2666,7 +2666,7 @@ INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`,
 DELETE FROM `creature_equip_template` WHERE `CreatureID` IN 
 (112051, 112127, 113358, 113359, 114284, 113179, 113180, 113181, 113437, 113438, 113439, 122739, 122766, 131978, 132089, 112050, 112053, 113236, 113284, 113442, 113443, 113441, 113577);
 
-INSERT INTO `creature_equip_template` (`CreatureID`, `ID`, `ItemID1`, `ItemID2`, `ItemID3`, `VerifiedBuild`) VALUES 
+REPLACE INTO `creature_equip_template` (`CreatureID`, `ID`, `ItemID1`, `ItemID2`, `ItemID3`, `VerifiedBuild`) VALUES 
 --
 (113236, 1, 3361, 13628, 0, 18019),
 (113284, 1, 12629, 13319, 0, 18019),
@@ -2699,7 +2699,7 @@ INSERT INTO `creature_equip_template` (`CreatureID`, `ID`, `ItemID1`, `ItemID2`,
 
 -- Airstrikes
 DELETE FROM `creature_addon` WHERE `guid` IN (@CGUID+331, @CGUID+332, @CGUID+333, @CGUID+431, @CGUID+432, @CGUID+433);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
 (@CGUID+331, 0, 1148, 0, 1, 0, 0, NULL),
 (@CGUID+332, 0, 1148, 0, 1, 0, 0, NULL),
 (@CGUID+333, 0, 1148, 0, 1, 0, 0, NULL),
@@ -2708,7 +2708,7 @@ INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `e
 (@CGUID+433, 0, 11012, 0, 1, 0, 0, NULL);
 
 DELETE FROM `creature_movement_override` WHERE `SpawnId` IN (@CGUID+331, @CGUID+332, @CGUID+333, @CGUID+431, @CGUID+432, @CGUID+433);
-INSERT INTO `creature_movement_override` (`SpawnId`, `Ground`, `Swim`, `Flight`, `Rooted`) VALUES
+REPLACE INTO `creature_movement_override` (`SpawnId`, `Ground`, `Swim`, `Flight`, `Rooted`) VALUES
 (@CGUID+331, 1, 0, 2, 0),
 (@CGUID+332, 1, 0, 2, 0),
 (@CGUID+333, 1, 0, 2, 0),
@@ -2722,7 +2722,7 @@ INSERT INTO `creature_movement_override` (`SpawnId`, `Ground`, `Swim`, `Flight`,
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN (13179, 13180, 13181, 13437, 13438, 13439, 113179, 113180, 113181, 113437, 113438, 113439);
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` BETWEEN @CENTRY+1 AND @CENTRY+9;
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN (-(@CGUID+331), -(@CGUID+332), -(@CGUID+333), -(@CGUID+431), -(@CGUID+432), -(@CGUID+433));
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
 --
 (@CENTRY+1, 0, 0, 0, 11, 0, 100, 0, 0, 0, 0, 0, 0, 0, 47, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                 'Air Strike Target (East Crater) - On Respawn - Set Invisible'),
 (@CENTRY+2, 0, 0, 0, 11, 0, 100, 0, 0, 0, 0, 0, 0, 0, 47, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                 'Air Strike Target (West Crater) - On Respawn - Set Invisible'),
@@ -2868,7 +2868,7 @@ UPDATE `gameobject_template` SET `AIName` = 'SmartGameObjectAI' WHERE `entry` IN
 DELETE FROM `smart_scripts` WHERE `source_type` = 1 AND `entryorguid` IN (-657971, -657972, 178465, 178670);
 DELETE FROM `smart_scripts` WHERE `source_type` = 9 AND `entryorguid` IN (11325601, 11325602, 11325603, 11341901, 11341902, 11341903);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -3089,51 +3089,51 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 
 
 /* MISC */
-UPDATE `creature_template` SET `name` = 'Commander Dardosh' WHERE `entry` = 13140;
-UPDATE `creature_template` SET `name` = 'Lieutenant Murp' WHERE `entry` = 13146;
+UPDATE `creature_template` SET `name` = '指挥官达多什' WHERE `entry` = 13140;
+UPDATE `creature_template` SET `name` = '莫普中尉' WHERE `entry` = 13146;
 UPDATE `creature_template` SET `speed_walk` = 2, `flags_extra` = 0 WHERE entry IN (13256, 13419); -- remove CREATURE_FLAG_EXTRA_INSTANCE_BIND for elemental bosses
 UPDATE `creature_template` SET `unit_flags` = 4160 WHERE `entry` IN (13577, 13441); -- enable pvp flag for cavalry commanders
 UPDATE `creature_template` SET `gossip_menu_id` = 65701 WHERE `entry` = 113441; -- Frostwolf Wolf Rider Commander
 UPDATE `creature_template` SET `gossip_menu_id` = 65702 WHERE `entry` = 113577; -- Stormpike Ram Rider Commander
 
 DELETE FROM `gossip_menu` WHERE `MenuID` IN (65701, 65702);
-INSERT INTO `gossip_menu` (`MenuID`, `TextID`) VALUES
+REPLACE INTO `gossip_menu` (`MenuID`, `TextID`) VALUES
 (65701, 65701),
 (65702, 65702);
 
 DELETE FROM `gossip_menu_option` WHERE `MenuID` IN (65701, 65702);
-INSERT INTO `gossip_menu_option` (`MenuID`, `OptionID`, `OptionIcon`, `OptionText`, `OptionBroadcastTextID`, `OptionType`, `OptionNpcFlag`, `ActionMenuID`, `ActionPoiID`, `BoxCoded`, `BoxMoney`, `BoxText`, `BoxBroadcastTextID`, `VerifiedBuild`) VALUES
-(65701, 0, 0, 'Unleash the cavalry!', 8870, 1, 1, 0, 0, 0, 0, '', 0, 0),
-(65702, 0, 0, 'YAW! Er, to the front lines with you!', 8903, 1, 1, 0, 0, 0, 0, '', 0, 0);
+REPLACE INTO `gossip_menu_option` (`MenuID`, `OptionID`, `OptionIcon`, `OptionText`, `OptionBroadcastTextID`, `OptionType`, `OptionNpcFlag`, `ActionMenuID`, `ActionPoiID`, `BoxCoded`, `BoxMoney`, `BoxText`, `BoxBroadcastTextID`, `VerifiedBuild`) VALUES
+(65701, 0, 0, '骑兵们，冲锋！', 8870, 1, 1, 0, 0, 0, 0, '', 0, 0),
+(65702, 0, 0, '哟！呃，跟你一起去前线！', 8903, 1, 1, 0, 0, 0, 0, '', 0, 0);
 
 DELETE FROM `npc_text` WHERE `ID` IN (65701, 65702);
-INSERT INTO `npc_text` (`ID`, `text0_0`, `BroadcastTextID0`, `Probability0`) VALUES 
-(65701, 'We ride on your command!', 8902, 1),
-(65702, 'You have done an exceptional job, soldier! The cavalry is ready to ride on your command.', 8871, 1);
+REPLACE INTO `npc_text` (`ID`, `text0_0`, `BroadcastTextID0`, `Probability0`) VALUES 
+(65701, '听从你的指令！', 8902, 1),
+(65702, '士兵，你做得棒极了！骑兵们已整装待发，就听你的指令了。', 8871, 1);
 
 -- UPDATE `gossip_menu` SET `TextID` = 6066 WHERE `MenuID` IN (5021, 5124);
 UPDATE `gameobject_template` SET `Data0` = 1 WHERE `entry` IN (178465, 178670); -- only 1 player needed for elemental boss summoning ritual
 
 -- Creature Text for NPC_LOKHOLAR_THE_ICE_LORD and NPC_IVUS_THE_FOREST_LORD
 DELETE FROM `creature_text` WHERE `CreatureID` IN (13256, 13419);
-INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
+REPLACE INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
 --
-(13256, 0, 0, 'WHO DARES SUMMON LOKHOLAR?', 14, 0, 100, 0, 0, 0, 8616, 0, 'Lokholar the Ice Lord - Just Summoned'),
-(13256, 1, 0, 'The blood of a thousand Alliance soldiers I shall spill... None shall stand against the might of the Ice Lord!', 14, 0, 100, 0, 0, 0, 8617, 0, 'Lokholar the Ice Lord - Left Field of Strife'),
-(13256, 2, 0, 'I drink in your suffering, mortal. Let your essence congeal with Lokholar!', 14, 0, 100, 0, 0, 0, 8618, 0, 'Lokholar the Ice Lord - Killed Enemy'),
-(13256, 3, 0, 'Your base is forfeit, puny mortals!', 14, 0, 100, 0, 0, 0, 8740, 0, 'Lokholar the Ice Lord - Reached Enemy Base'),
+(13256, 0, 0, '谁敢召唤冰雪之王洛克霍拉？', 14, 0, 100, 0, 0, 0, 8616, 0, 'Lokholar the Ice Lord - Just Summoned'),
+(13256, 1, 0, '就算流尽一千名联盟士兵的鲜血……也不能战胜强大的冰雪之王！', 14, 0, 100, 0, 0, 0, 8617, 0, 'Lokholar the Ice Lord - Left Field of Strife'),
+(13256, 2, 0, '让我结束你的痛苦吧。让你的精华和洛克霍拉一起冻结！', 14, 0, 100, 0, 0, 0, 8618, 0, 'Lokholar the Ice Lord - Killed Enemy'),
+(13256, 3, 0, '你们的根据地已经丧失了，渺小的人类！', 14, 0, 100, 0, 0, 0, 8740, 0, 'Lokholar the Ice Lord - Reached Enemy Base'),
 --
-(13419, 0, 0, 'Wicked, wicked, mortals! The forest weeps. The elements recoil at the destruction. Ivus must purge you from this world!', 14, 0, 100, 0, 0, 0, 8736, 0, 'Ivus the Forest Lord - Just Summoned'),
-(13419, 1, 0, 'I come to raze your bases, Frost Wolf clan. Ivus punishes you for your treachery!', 14, 0, 100, 0, 0, 0, 8737, 0, 'Ivus the Forest Lord - Left Field of Strife'),
+(13419, 0, 0, '邪恶，太邪恶了，你们这些凡人！森林在哭泣，元素的力量在毁灭面前颤抖。伊弗斯必须把你们从这世上清除！', 14, 0, 100, 0, 0, 0, 8736, 0, 'Ivus the Forest Lord - Just Summoned'),
+(13419, 1, 0, '我是来铲平你的基地的，霜狼氏族。你们的背叛将受到伊弗斯的惩罚！', 14, 0, 100, 0, 0, 0, 8737, 0, 'Ivus the Forest Lord - Left Field of Strife'),
 -- (13419, 2, 0, 'The forest weeps. The elements recoil at the destruction. Ivus must purge you from this world!', 14, 0, 100, 0, 0, 0, 8738, 0, 'Ivus the Forest Lord - Killed Enemy'),
-(13419, 3, 0, 'Your base is forfeit, mortals! From its ashes shall rise life!', 14, 0, 100, 0, 0, 0, 8739, 0, 'Ivus the Forest Lord - Reached Enemy Base');
+(13419, 3, 0, '你们的根据地已经丧失了！生命将因它化为废墟而延续！', 14, 0, 100, 0, 0, 0, 8739, 0, 'Ivus the Forest Lord - Reached Enemy Base');
 
 
 UPDATE `item_template` SET `spellcategorycooldown_1` = 10000 WHERE `entry` IN (17323, 17324, 17325, 17505, 17506, 17507); -- 10 seconds cooldown for beacons
 
 -- beacon now summons a helper npc that will activate the wing commander above.
 DELETE FROM `spell_dbc` WHERE `ID` IN (21355,21370,21371,21728,21729,21730);
-INSERT INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attributes`, `AttributesEx`, `AttributesEx2`, `AttributesEx3`, `AttributesEx4`, `AttributesEx5`, `AttributesEx6`, `AttributesEx7`, `ShapeshiftMask`, 
+REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attributes`, `AttributesEx`, `AttributesEx2`, `AttributesEx3`, `AttributesEx4`, `AttributesEx5`, `AttributesEx6`, `AttributesEx7`, `ShapeshiftMask`, 
 `unk_320_2`, `ShapeshiftExclude`, `unk_320_3`, `Targets`, `TargetCreatureType`, `RequiresSpellFocus`, `FacingCasterFlags`, `CasterAuraState`, `TargetAuraState`, `ExcludeCasterAuraState`, `ExcludeTargetAuraState`, 
 `CasterAuraSpell`, `TargetAuraSpell`, `ExcludeCasterAuraSpell`, `ExcludeTargetAuraSpell`, `CastingTimeIndex`, `RecoveryTime`, `CategoryRecoveryTime`, `InterruptFlags`, `AuraInterruptFlags`, `ChannelInterruptFlags`, 
 `ProcTypeMask`, `ProcChance`, `ProcCharges`, `MaxLevel`, `BaseLevel`, `SpellLevel`, `DurationIndex`, `PowerType`, `ManaCost`, `ManaCostPerLevel`, `ManaPerSecond`, `ManaPerSecondPerLevel`, `RangeIndex`, `Speed`, 
@@ -3160,30 +3160,30 @@ INSERT INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attributes
 --
 (21355,951,0,0,16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,0,0,15,0,0,0,101,0,0,0,0,1,0,0,0,0,0,12,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,
 0,0,28,0,0,0,0,0,0.0,0.0,0.0,0,0,0,0,0,0,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.0,0.0,0.0,0,0,0,0,0,0,@CENTRY+4,0,0,64,0,0,0,0,0,0.0,0.0,0.0,0,0,0,0,0,0,0,0,0,353,0,1,0,0,
-'Planting Guse\'s Beacon','','','','','','','','','','','','','','','',16712190,'','','','','','','','','','','','','','','','',16712188,499235,
+'放置古斯的信标','','','','','','','','','','','','','','','',16712190,'','','','','','','','','','','','','','','','',16712188,499235,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16712190,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16712188,0,0,0,0,0,0,0,0,0,0,0,0,1.0,0.0,0.0,0,0,0,0,0,0,1,0,0,0,1.0,1.0,1.0,0,0),
 --
 (21370,951,0,0,16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,0,0,15,0,0,0,101,0,0,0,0,1,0,0,0,0,0,12,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,
 0,0,28,0,0,0,0,0,0.0,0.0,0.0,0,0,0,0,0,0,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.0,0.0,0.0,0,0,0,0,0,0,@CENTRY+5,0,0,64,0,0,0,0,0,0.0,0.0,0.0,0,0,0,0,0,0,0,0,0,353,0,1,0,0,
-'Planting Jeztor\'s Beacon','','','','','','','','','','','','','','','',16712190,'','','','','','','','','','','','','','','','',16712188,499479,
+'放置杰斯托的信标','','','','','','','','','','','','','','','',16712190,'','','','','','','','','','','','','','','','',16712188,499479,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16712190,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16712188,0,0,0,0,0,0,0,0,0,0,0,0,1.0,0.0,0.0,0,0,0,0,0,0,1,0,0,0,1.0,1.0,1.0,0,0),
 --
 (21371,951,0,0,16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,0,0,15,0,0,0,101,0,0,0,0,1,0,0,0,0,0,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,
 0,0,28,0,0,0,0,0,0.0,0.0,0.0,0,0,0,0,0,0,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.0,0.0,0.0,0,0,0,0,0,0,@CENTRY+6,0,0,64,0,0,0,0,0,0.0,0.0,0.0,0,0,0,0,0,0,0,0,0,353,0,1,0,0,
-'Planting Mulverick\'s Beacon','','','','','','','','','','','','','','','',16712190,'','','','','','','','','','','','','','','','',16712188,499570,
+'放置穆维里克的信标','','','','','','','','','','','','','','','',16712190,'','','','','','','','','','','','','','','','',16712188,499570,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16712190,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16712188,0,0,0,0,0,0,0,0,0,0,0,0,1.0,0.0,0.0,0,0,0,0,0,0,1,0,0,0,1.0,1.0,1.0,0,0),
 --
 (21728,951,0,0,16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,0,0,15,0,0,0,101,0,0,0,0,1,0,0,0,0,0,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,
 0,0,28,0,0,0,0,0,0.0,0.0,0.0,0,0,0,0,0,0,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.0,0.0,0.0,0,0,0,0,0,0,@CENTRY+7,0,0,64,0,0,0,0,0,0.0,0.0,0.0,0,0,0,0,0,0,0,0,0,353,0,1,0,0,
-'Planting Ichman\'s Beacon','','','','','','','','','','','','','','','',16712190,'','','','','','','','','','','','','','','','',16712188,499570,
+'放置艾克曼的信标','','','','','','','','','','','','','','','',16712190,'','','','','','','','','','','','','','','','',16712188,499570,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16712190,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16712188,0,0,0,0,0,0,0,0,0,0,0,0,1.0,1.0,1.0,0,0,0,0,0,0,1,0,0,0,1.0,1.0,1.0,0,0),
 --
 (21729,951,0,0,16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,0,0,15,0,0,0,101,0,0,0,0,1,0,0,0,0,0,12,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,
 0,0,28,0,0,0,0,0,0.0,0.0,0.0,0,0,0,0,0,0,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.0,0.0,0.0,0,0,0,0,0,0,@CENTRY+8,0,0,64,0,0,0,0,0,0.0,0.0,0.0,0,0,0,0,0,0,0,0,0,353,0,1,0,0,
-'Planting Slidore\'s Beacon','','','','','','','','','','','','','','','',16712190,'','','','','','','','','','','','','','','','',16712188,503816,
+'放置斯里多尔的信标','','','','','','','','','','','','','','','',16712190,'','','','','','','','','','','','','','','','',16712188,503816,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16712190,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16712188,0,0,0,0,0,0,0,0,0,0,0,0,1.0,0.0,0.0,0,0,0,0,0,0,1,0,0,0,1.0,1.0,1.0,0,0),
 --
 (21730,951,0,0,16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,0,0,15,0,0,0,101,0,0,0,0,1,0,0,0,0,0,12,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,
 0,0,28,0,0,0,0,0,0.0,0.0,0.0,0,0,0,0,0,0,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.0,0.0,0.0,0,0,0,0,0,0,@CENTRY+9,0,0,64,0,0,0,0,0,0.0,0.0,0.0,0,0,0,0,0,0,0,0,0,353,0,1,0,0,
-'Planting Vipore\'s Beacon','','','','','','','','','','','','','','','',16712190,'','','','','','','','','','','','','','','','',16712188,499479,
+'放置维波里的信标','','','','','','','','','','','','','','','',16712190,'','','','','','','','','','','','','','','','',16712188,499479,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16712190,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16712188,0,0,0,0,0,0,0,0,0,0,0,0,1.0,0.0,0.0,0,0,0,0,0,0,1,0,0,0,1.0,1.0,1.0,0,0);

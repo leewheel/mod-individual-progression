@@ -21,7 +21,7 @@ UPDATE `creature_addon` SET `bytes2` = 2 WHERE `guid` IN
 UPDATE `creature` SET `orientation` = 3.74933 WHERE `guid` = 93949;
 
 DELETE FROM `creature_queststarter` WHERE `id` IN (24932, 24965, 24967, 24975, 25034, 25046, 25057, 25061, 25069, 25088, 25108, 25112, 25133, 25163);
-INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES 
+REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES 
 (24932, 11513), -- Intercepting the Mana Cells
 (24932, 11514), -- Maintaining the Sunwell Portal (repeatable)
 (24965, 11524), -- Erratic Behavior
@@ -52,7 +52,7 @@ INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES
 (25163, 11549); -- A Magnanimous Benefactor
 
 DELETE FROM `creature_questender` WHERE `id` IN (24932, 24965, 24967, 24975, 25034, 25046, 25057, 25061, 25069, 25088, 25108, 25112, 25133, 25163);
-INSERT INTO `creature_questender` (`id`, `quest`) VALUES 
+REPLACE INTO `creature_questender` (`id`, `quest`) VALUES 
 (24932, 11513), -- Intercepting the Mana Cells
 (24932, 11514), -- Maintaining the Sunwell Portal (repeatable)
 (24932, 11517), -- Report to Nasuun
@@ -106,7 +106,7 @@ UPDATE `quest_template_addon` SET `PrevQuestID` = 11545 WHERE `ID` = 11548;
 UPDATE `quest_template_addon` SET `PrevQuestID` = 11513 WHERE `ID` = 11547;
 
 DELETE FROM `npc_vendor` WHERE `entry` IN (24975, 25046, 25950);
-INSERT INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `ExtendedCost`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `ExtendedCost`) VALUES
 --
 (24975, 0, 3371, 0, 0, 0),
 (24975, 0, 3372, 0, 0, 0),
@@ -235,7 +235,7 @@ SET @IPPPHASE_V   := 1048576;
 
 DELETE FROM `creature` WHERE `id` IN (25001, 25002, 25003);
 DELETE FROM `creature` WHERE `guid` BETWEEN @CGUID+2 AND @CGUID+5;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 --
 (@CGUID+1,  25003, 530, 0, 0, 1, 1, 1, 12583.2998, -6916.2798, 4.6855, 6.2606, 300, 0, 1, 7084, 0, 2, 0, 0, 0, '', NULL, 0, NULL), -- Emissary of Hate
 --
@@ -291,7 +291,7 @@ UPDATE `creature` SET `phaseMask` = @IPPPHASE_V   WHERE `guid` IN (@CGUID+34, @C
 UPDATE `creature_template` SET `CreatureImmunitiesId` = 0 WHERE `entry` = 25001; -- can't be immune to fire, else Abyssal Transformation won't work
 
 DELETE FROM `creature_addon` WHERE `guid` IN (@CGUID+1, @CGUID+2, @CGUID+3, @CGUID+4, @CGUID+5, @CGUID+24, @CGUID+25, @CGUID+26);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 --
 (@CGUID+1,  @WPID+10,  0, 0, 1, 0, 0, NULL),
 (@CGUID+2,  @WPID+20,  0, 0, 1, 0, 0, NULL),
@@ -303,7 +303,7 @@ INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `e
 (@CGUID+26, @WPID+260, 0, 0, 0, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` IN (@WPID+10, @WPID+20, @WPID+40, @WPID+240, @WPID+250, @WPID+260);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (@WPID+10, 1, 12612.6, -6916.94, 4.72594, NULL, 0, 0, 0, 100, 0),
 (@WPID+10, 2, 12639.3, -6917.03, 4.72594, NULL, 8000, 0, 0, 100, 0),
@@ -359,14 +359,14 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 
 -- hide shop menu until after the player has helped the npc
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 15 AND `SourceGroup` IN (9087, 9198) AND `ConditionTypeOrReference` = 8;
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES
 (15, 9087, 0, 0, 0, 8, 0, 11535, 0, 0, 0, 0, 0, '', 'Trade Option requires quest \'Making Ready\' to be complete'),
 (15, 9198, 0, 0, 0, 8, 0, 11520, 0, 0, 0, 0, 0, '', 'Trade Option requires quest \'Discovering Your Roots\' to be complete');
 
 -- Shattered Sun Warriors coming out of the portal AFTER phase 2
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN (-673002, -673003, -673004, -673005);
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -401,7 +401,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 (-673005, 0, 6, 0, 11, 0, 100, 0, 0, 0, 0, 0, 0, 0, 88, 2511540, 2511543, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Shattered Sun Warrior - On Respawn - Run Random Script');
 
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN (24918);
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -414,7 +414,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 (24918, 0, 5, 0, 1, 0, 100, 0, 0, 0, 15000, 45000, 0, 0, 11, 46319, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,         'Felblood Initiate - Out of Combat - Cast \'Felblood Channel\'');
 
 DELETE FROM `creature_text` WHERE `CreatureID` = 24918;
-INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES
+REPLACE INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES
 --
 (24918, 0, 0, 'Unparalleled power... I... crave... more!', 14, 0, 100, 0, 0, 0, 23984, 0,                                  'Felblood Initiate - Random Yell OOC'),
 (24918, 0, 1, 'Fel energy... courses through my veins!', 14, 0, 100, 0, 0, 0, 23985, 0,                                    'Felblood Initiate - Random Yell OOC'),
@@ -432,7 +432,7 @@ DELETE FROM `creature_addon` WHERE `guid` BETWEEN 97073 AND 97081;
 
 DELETE FROM `creature` WHERE `guid` BETWEEN @CGUID+171 AND @CGUID+175;
 DELETE FROM `creature` WHERE `id` IN (22323, 24918, 24919);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
 `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 --
 (@CGUID+101, 22323, 530, 0, 0, 1, 1, 0, 779.805, 2025.520, 272.724, 2.082, 300, 5, 0, 6986, 0, 1, 0, 0, 0, '', 0, 0, NULL),
@@ -507,7 +507,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 
 DELETE FROM `creature_addon` WHERE `guid` BETWEEN @CGUID+124 AND @CGUID+129;
 DELETE FROM `creature_addon` WHERE `guid` BETWEEN @CGUID+158 AND @CGUID+162;
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 --
 (@CGUID+124, @WPID+1240, 0, 0, 0, 0, 0, NULL),
 (@CGUID+125, @WPID+1250, 0, 0, 0, 0, 0, NULL),
@@ -524,7 +524,7 @@ INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `e
 
 DELETE FROM `waypoint_data` WHERE `id` BETWEEN @WPID+1240 AND @WPID+1290;
 DELETE FROM `waypoint_data` WHERE `id` BETWEEN @WPID+1580 AND @WPID+1620;
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (@WPID+1240, 1, 810.844, 2123.51, 271.518, NULL, 0, 0, 0, 100, 0),
 (@WPID+1240, 2, 808.251, 2120.05, 270.703, NULL, 0, 0, 0, 100, 0),

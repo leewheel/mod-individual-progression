@@ -7,7 +7,7 @@ DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN
 (3988, 3989, 3991, 3992, 3993, 3999, 4003, 4004, 4005, 4006, 4007, 4009, 4012, 4016, 4017, 4018, 4019, 4020, 4021, 4022, 4023, 4024, 4027, 4028, 4030, 4031, 4036, 4037, 4038, 4041, 4042, 4044, 
 4050, 4051, 4052, 4053, 4057, 4061, 4067, 4070, 4202, 4409, 5916, 5928, 5931, 5932, 8518, 11910, 11911, 11912, 11913, 11914, 11915, 11917, 11918, 11920, 11921, 12579);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -161,7 +161,7 @@ UPDATE `creature` SET `MovementType` = 1, `Wander_distance` = 5 WHERE `guid` = 5
 
 -- fix waypoints, spawn locations and respawn times
 DELETE FROM `creature` WHERE `id` IN (4202, 5916, 11921);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 --
 (29254,  4202, 1, 0, 0, 1, 1, 1, 1605.99, 96.7067, 98.6662, 0.191986, 300, 0, 0, 840, 0, 0, 0, 0, 0, '', 0, 0, NULL),     -- Gerenzo Wrenchwhistle
@@ -176,7 +176,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 
 
 DELETE FROM `pool_creature` WHERE `pool_entry` IN (601029, 601030);
-INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
+REPLACE INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
 (29254,  601029, 0, 'Gerenzo Wrenchwhistle'),
 (695116, 601029, 0, 'Gerenzo Wrenchwhistle'),
 (29447,  601030, 0, 'Besseleth'),
@@ -185,16 +185,16 @@ INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALU
 (695114, 601030, 0, 'Besseleth');
 
 DELETE FROM `pool_template` WHERE `entry` IN (601029, 601030);
-INSERT INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
+REPLACE INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
 (601029, 1, 'Gerenzo Wrenchwhistle - Stonetalon Mountains'),
 (601030, 1, 'Besseleth - Stonetalon Mountains');
 
 DELETE FROM `creature_addon` WHERE `guid` = 51888;
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (51888, 518880, 0, 0, 0, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` = 518880;
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (518880, 1, 2413.89, 1675.03, 316.675, NULL, 0, 0, 0, 100, 0),
 (518880, 2, 2421.39, 1677.82, 315.579, NULL, 0, 0, 0, 100, 0),

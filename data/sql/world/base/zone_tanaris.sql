@@ -7,7 +7,7 @@ DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN
 (5421, 5427, 5441, 5450, 5451, 5452, 5453, 5454, 5455, 5456, 5457, 5465, 5490, 5471, 5472, 5473, 5474, 5475, 5481, 5485, 5615, 5616, 5617, 5618, 5623, 
 7847, 7855, 7856, 7857, 7858, 7883, 8201, 8202, 8205, 9397, 12046);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -96,7 +96,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 
 /* Caverns of Time Door */
 DELETE FROM `gameobject` WHERE `guid` = 2993000;
-INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, 
+REPLACE INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, 
 `orientation`, `rotation0`, `rotation1`, `rotation2`, `rotation3`, `spawntimesecs`, `animprogress`, `state`, `ScriptName`, `VerifiedBuild`) VALUES
 (2993000, 176996, 1, 0, 0, 1, 1, -8173.02, -4747.2, 34.2107, 1.80084, -0, -0, -0.783588, -0.621281, 0, 0, 0, '', 0);
 
@@ -111,13 +111,13 @@ UPDATE `creature` SET `map` = 1 WHERE `guid` IN (152280, 152281);
 UPDATE `creature_loot_template` SET `Chance` = 10 WHERE `Item` = 8428;
 
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 19 AND `ConditionTypeOrReference` = 8 AND `SourceEntry` IN (5065, 10445);
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 -- (19, 0, 5065, 0, 0, 8, 0, 66003, 0, 0, 0, 0, 0, '', 'Prospector Ironboot - Hide \'The Lost Tablets of Mosh\'aru\' until the player reaches Pre-AQ'),
 (19, 0, 10445, 0, 0, 8, 0, 66009, 0, 0, 0, 0, 0, '', 'Soridormi - Hide \'The Vials of Eternity\' until the player reaches TBC T2');
     
 DELETE FROM `creature_text` WHERE `CreatureID` IN (5465, 5471, 5472, 5473, 5474, 5475);
-INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
+REPLACE INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
 --
 (5465, 0, 0, '$s becomes enraged!',                               16, 0, 100, 0, 0, 0, 10677, 0, 'Land Rager'),
 (5471, 0, 0, 'I\'ll crush you!',                                  12, 0, 100, 0, 0, 0, 1925, 0, 'Dunemaul Ogre'),
@@ -147,7 +147,7 @@ DELETE FROM `creature` WHERE `guid` IN (@CGUID+41, @CGUID+42);
 DELETE FROM `creature` WHERE `id` IN (25177, 25178, 26378, @Evee, @Ecton);
 DELETE FROM `creature` WHERE `id` IN (32359, 32360, 32362, 32407, 33915, 33917, 33920, 33924, 33928, 33929, 33934, 33935, 33939, 34088, 34090, 34093);
 
-INSERT INTO `creature` (`guid`, `id`, `map`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`) VALUES 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`) VALUES 
 --
 (@CGUID+41, 20278,   1, -7119.02, -3779.06, 8.78404, 0, 180),     -- Vixton Pinchwhistle, WotLK Season 1
 (@CGUID+42, @Vixton, 1, -7119.02, -3779.06, 8.78404, 0, 180),     -- Vixton Pinchwhistle, WotLK Season 2
@@ -188,7 +188,7 @@ UPDATE `creature` SET `ScriptName` = 'npc_ipp_wotlk_S7' WHERE `guid` IN (@CGUID+
 UPDATE `creature` SET `ScriptName` = 'npc_ipp_wotlk_S8' WHERE `guid` IN (@CGUID+49, @CGUID+55, @CGUID+59, @CGUID+62);
 
 DELETE FROM `creature_addon` WHERE `guid` BETWEEN @CGUID+41 AND @CGUID+62;
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (@CGUID+41, 0, 0, 0, 1, 0, 0, NULL),
 (@CGUID+42, 0, 0, 0, 1, 0, 0, NULL),
 (@CGUID+43, 0, 0, 0, 1, 0, 0, NULL),

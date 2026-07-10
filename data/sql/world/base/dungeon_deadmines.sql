@@ -4,7 +4,7 @@ UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN 
 (594, 598 ,619, 622, 623, 624, 625, 634, 639, 641, 642, 644, 645, 647, 657, 1725, 1727, 1729, 1731, 1732, 1763, 3586, 3947, 4416, 4417, 4418);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -99,7 +99,7 @@ SET @IPPPHASE_III := 262144;
 
 DELETE FROM `creature` WHERE guid IN 
 (79139, 79144, 79151, 79152, 79170, 79171, 79177, 79188, 79189, 79207, 79229, 79230, 79233, 79244, 79245, 79273, 79277, 79280, 79281, 79283, 79284, 79285, 79373, 79374, 79376, 79377);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
 `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 --
 (79244, 634,  36, 0, 0, 1, @IPPPHASE, 1, -90.571, -400.149, 58.4755, 3.20291, 86400, 0, 1, 1158, 0,   2, 0, 0, 0, '', 0, 0, NULL),
@@ -129,7 +129,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 DELETE FROM `linked_respawn` WHERE `guid` IN (79151, 79273, 79280, 79281, 79376, 79377);
 
 DELETE FROM `creature_formations` WHERE `leaderGUID` IN (79170, 79244, 79283, 79373, 79230);
-INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES 
+REPLACE INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES 
 --
 (79170, 79170, 0, 0,   515, 0, 0),
 (79170, 79171, 2, 200, 515, 0, 0),
@@ -142,7 +142,7 @@ INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, 
 (79283, 79285, 2, 225, 515, 0, 0);
 
 DELETE FROM `creature_addon` WHERE `guid` IN (79139, 79144, 79152, 79170, 79177, 79188, 79189, 79207, 79229, 79230, 79233, 79244, 79245, 79273, 79277, 79280, 79283, 79373, 79374, 79376);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 --
 (79139, 791390, 0, 0, 1, 0, 0, ''),
 (79144, 791440, 0, 0, 1, 0, 0, ''),
@@ -161,7 +161,7 @@ INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `e
 (79283, 792830, 0, 0, 1, 0, 0, ''); -- active after Gilnid dies
 
 DELETE FROM `waypoint_data` WHERE `id` IN (791390, 791440, 791520, 791700, 791770, 791880, 791890, 792070, 792290, 792300, 792330, 792440, 792450, 792730, 792770, 792800, 792830, 793730, 793740, 793760);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (792440, 1, -105.885, -386.061, 57.0374, 5.40025, 0, 0, 0, 100, 0), -- Rhahk'Zor patrol
 (792440, 2, -99.1898, -380.021, 58.7239, 0.375672, 0, 0, 0, 100, 0),

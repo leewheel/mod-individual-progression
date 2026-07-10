@@ -37,7 +37,7 @@ DELETE FROM `spell_dbc` WHERE `ID` IN
  635346,  -- Warp
  626064); -- Shell Shield
 
-INSERT INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attributes`, `AttributesEx`, `AttributesEx2`, `AttributesEx3`, `AttributesEx4`, `AttributesEx5`, `AttributesEx6`, `AttributesEx7`, `ShapeshiftMask`, 
+REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attributes`, `AttributesEx`, `AttributesEx2`, `AttributesEx3`, `AttributesEx4`, `AttributesEx5`, `AttributesEx6`, `AttributesEx7`, `ShapeshiftMask`, 
 `unk_320_2`, `ShapeshiftExclude`, `unk_320_3`, `Targets`, `TargetCreatureType`, `RequiresSpellFocus`, `FacingCasterFlags`, `CasterAuraState`, `TargetAuraState`, `ExcludeCasterAuraState`, `ExcludeTargetAuraState`, 
 `CasterAuraSpell`, `TargetAuraSpell`, `ExcludeCasterAuraSpell`, `ExcludeTargetAuraSpell`, `CastingTimeIndex`, `RecoveryTime`, `CategoryRecoveryTime`, `InterruptFlags`, `AuraInterruptFlags`, `ChannelInterruptFlags`, 
 `ProcTypeMask`, `ProcChance`, `ProcCharges`, `MaxLevel`, `BaseLevel`, `SpellLevel`, `DurationIndex`, `PowerType`, `ManaCost`, `ManaCostPerLevel`, `ManaPerSecond`, `ManaPerSecondPerLevel`, `RangeIndex`, `Speed`, 
@@ -724,7 +724,7 @@ UPDATE `creature_template` SET `PetSpellDataId` = 12993 WHERE `entry` = 27946;
 
 -- update `creaturespelldata_dbc` with TBC values
 DELETE FROM `creaturespelldata_dbc` WHERE `ID` BETWEEN 5525 AND 12993;
-INSERT INTO `creaturespelldata_dbc` (`ID`, `Spells_1`, `Spells_2`, `Spells_3`, `Spells_4`, 
+REPLACE INTO `creaturespelldata_dbc` (`ID`, `Spells_1`, `Spells_2`, `Spells_3`, `Spells_4`, 
 `Availability_1`, `Availability_2`, `Availability_3`, `Availability_4`) VALUES
 -- 24605, 24603, 64493 -- 64491, 64492, 64493
 (5525,24450,0,0,0,100,0,0,0),

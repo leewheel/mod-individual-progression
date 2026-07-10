@@ -8,7 +8,7 @@ UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN 
 (15634, 15740, 15741, 15742, 15758, 15810, 15813, 15818);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -33,21 +33,21 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 
 
 DELETE FROM `creature_text` WHERE `CreatureID` IN (15813, 15818);
-INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
-(15813, 0, 0, 'Kneel before me, mortal! Kneel before Zod!', 12, 7, 100, 0, 0, 0, 11471, 0, 'Qiraji Officer Zod'),
-(15818, 0, 0, 'Burn in hate, $r.', 12, 7, 100, 0, 0, 0, 11475, 0, 'Lieutenant General Nokhor'); -- need to check language, set to common, currently can't understand it. 
+REPLACE INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
+(15813, 0, 0, '在我面前屈服吧，凡人！在佐德面前屈服吧！', 12, 7, 100, 0, 0, 0, 11471, 0, 'Qiraji Officer Zod'),
+(15818, 0, 0, '在仇恨中燃烧吧，$r。', 12, 7, 100, 0, 0, 0, 11475, 0, 'Lieutenant General Nokhor'); -- need to check language, set to common, currently can't understand it.
 
 DELETE FROM `creature_text` WHERE `CreatureID`= 15693;
-INSERT INTO `creature_text` (`CreatureID`,`GroupID`,`ID`,`Text`,`Type`,`Language`,`Probability`,`Emote`,`Duration`,`Sound`,`BroadcastTextId`, `TextRange`, `comment`) VALUES
-(15693, 0, 0, '$n, Champion of the Bronze Dragonflight, has rung the Scarab Gong. The ancient gates of Ahn\'Qiraj open, revealing the horrors of a forgotten war...', 16, 0, 100, 1, 0, 0, 11427, 4, 'EMOTE_AQ_GONG_1'),
-(15693, 1, 0, 'Massive Qiraji resonating crystals break through the earthen crust of Kalimdor. Colossal creatures made of obsidian stone breach the freshly broken land...', 16, 0, 100, 1, 0, 0, 11432, 4, 'EMOTE_AQ_GONG_2'),
-(15693, 2, 0, 'Colossus of Zora casts its massive shadow upon the whole of Silithus.', 16, 0, 100, 1, 0, 0, 0, 4, 'EMOTE_AQ_GONG_3'),
-(15693, 3, 0, 'Colossus of Ashi breaks free of its cocoon beneath Hive\'Ashi.', 16, 0, 100, 1, 0, 0, 0, 4, 'EMOTE_AQ_GONG_4'),
-(15693, 4, 0, 'Colossus of Regal hears the call to battle and rises to serve its master.', 16, 0, 100, 1, 0, 0, 0, 4, 'EMOTE_AQ_GONG_5');
+REPLACE INTO `creature_text` (`CreatureID`,`GroupID`,`ID`,`Text`,`Type`,`Language`,`Probability`,`Emote`,`Duration`,`Sound`,`BroadcastTextId`, `TextRange`, `comment`) VALUES
+(15693, 0, 0, '青铜龙的勇士$n已经敲响甲虫之墙上的铜锣。古老的安其拉之门打开了，那场被遗忘的战争的恐怖气息再一次弥漫了希利苏斯……', 16, 0, 100, 1, 0, 0, 11427, 4, 'EMOTE_AQ_GONG_1'),
+(15693, 1, 0, '巨大的其拉共鸣水晶穿破了卡利姆多的地壳，由黑曜石构成的巨大生物来到了这片刚刚破碎的大陆。', 16, 0, 100, 1, 0, 0, 11432, 4, 'EMOTE_AQ_GONG_2'),
+(15693, 2, 0, '佐拉巨甲虫巨大的阴影笼罩了整个希利苏斯。', 16, 0, 100, 1, 0, 0, 0, 4, 'EMOTE_AQ_GONG_3'),
+(15693, 3, 0, '亚什巨甲虫从亚什虫巢下的茧中挣脱出来。', 16, 0, 100, 1, 0, 0, 0, 4, 'EMOTE_AQ_GONG_4'),
+(15693, 4, 0, '雷戈巨甲虫听到了战斗的召唤，起身侍奉它的主人。', 16, 0, 100, 1, 0, 0, 0, 4, 'EMOTE_AQ_GONG_5');
 
 -- add bosses to Silithus and Darkshore 
 DELETE FROM `creature` WHERE `guid` BETWEEN @CGUID+101 AND @CGUID+140;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`) VALUES
 (@CGUID+101,15810,1,0,0,1,@IPPPHASE,0,4386.996582, 550.179260, 54.762119, 0.581150,1800,5,0,0,0,1,0,0,0,'',0),
 (@CGUID+102,15810,1,0,0,1,@IPPPHASE,0,4388.178711, 513.457581, 53.590897, 3.921458,1800,5,0,0,0,1,0,0,0,'',0),
@@ -111,12 +111,12 @@ UPDATE `creature_template` SET `maxgold` = 23909 WHERE `entry` = 15758; -- previ
 UPDATE `creature_text` SET `TextRange` = 4 WHERE `CreatureID` = 15341 AND `GroupID` = 12;
 
 DELETE FROM `pool_template` WHERE `entry` IN (601053, 601054); 
-INSERT INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES
+REPLACE INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES
 (601053, 1, "AQ War Event Darkshore Boss"),
 (601054, 1, "AQ War Event Silithus Boss");
 
 DELETE FROM `pool_creature` WHERE `pool_entry` IN (15813, 15818, 601053, 601054); -- 15813, 15818 need to be removed later on
-INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES
+REPLACE INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES
 (@CGUID+105, 601053, 0, 'AQ War Event Darkshore Boss'),
 (@CGUID+110, 601053, 0, 'AQ War Event Darkshore Boss'),
 (@CGUID+115, 601053, 0, 'AQ War Event Darkshore Boss'),
@@ -126,7 +126,7 @@ INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALU
 
 -- add Resonating Crystal Formations to Silithus and Darkshore
 DELETE FROM `gameobject` WHERE `guid` BETWEEN @OGUID+101 AND @OGUID+106;
-INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, `rotation0`, `rotation1`, `rotation2`, `rotation3`, `spawntimesecs`, `animprogress`, `state`, `ScriptName`, `VerifiedBuild`) VALUES
+REPLACE INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, `rotation0`, `rotation1`, `rotation2`, `rotation3`, `spawntimesecs`, `animprogress`, `state`, `ScriptName`, `VerifiedBuild`) VALUES
 (@OGUID+101, 180810, 1, 0, 0, 1, 1, 6431.208496, 7.873897, 25.929821, 6.005887, 0, 0, -1, 0, 3600, 255, 1, 'gobject_ipp_aqwar', 0),
 (@OGUID+102, 180810, 1, 0, 0, 1, 1, 5070.317383, 106.293625, 42.326523, 3.869612, 0, 0, -1, 0, 3600, 255, 1, 'gobject_ipp_aqwar', 0),
 (@OGUID+103, 180810, 1, 0, 0, 1, 1, 4370.228027, 540.763245, 59.281170, 6.165329, 0, 0, -1, 0, 3600, 255, 1, 'gobject_ipp_aqwar', 0),
@@ -139,7 +139,7 @@ UPDATE `gameobject_template_addon` SET `flags` = 16 WHERE `entry` = 180810;
 
 -- add loot to Colossus of Zora, Regal and Ashi
 DELETE FROM `creature_loot_template` WHERE `entry` = 15740;
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 (15740, 14555, 0, 0, 0, 1, 1, 1, 1, 'Colossus of Zora, Regal, Ashi - Epic'),
 (15740, 3475, 0, 0, 0, 1, 1, 1, 1, 'Colossus of Zora, Regal, Ashi - Epic'),
 (15740, 1728, 0, 0, 0, 1, 1, 1, 1, 'Colossus of Zora, Regal, Ashi - Epic'),

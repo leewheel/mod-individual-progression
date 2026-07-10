@@ -7,7 +7,7 @@ DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN
 (2554, 2555, 2556, 2558, 2560, 2561, 2562, 2563, 2564, 2565, 2566, 2567, 2569, 2570, 2571, 2573, 2574, 2580, 2581, 2582, 2583, 2584, 2585, 2586, 2587, 2588, 2589, 
 2590, 2591, 2595, 2596, 2598, 2604, 2606, 2607, 2611, 2764, 2765, 2779, 2793, 4063, 4479, 4480, 4481);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -144,7 +144,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 
 -- multiple spawn locations for Prince Nazjak
 DELETE FROM `creature` WHERE `id` IN (2779);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
 --
 (84713, 2779, 0, 0, 0, 1, 1, 1, -2316.75, -1582.54, -36.352, 4.89399, 115200, 5, 0, 1902, 0, 1, 0, 0, 0, '', 0, 0, NULL),
@@ -157,7 +157,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (695108, 2779, 0, 0, 0, 1, 1, 1, -2266.25, -1614.29, -63.013, 3.3215, 115200, 5, 0, 1902, 0, 1, 0, 0, 0, '', 0, 0, NULL);
 
 DELETE FROM `pool_creature` WHERE `pool_entry` IN (601048);
-INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
+REPLACE INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
 (84713,  601048, 0, 'Prince Nazjak'),
 (695102, 601048, 0, 'Prince Nazjak'),
 (695103, 601048, 0, 'Prince Nazjak'),
@@ -168,11 +168,11 @@ INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALU
 (695108, 601048, 0, 'Prince Nazjak');
 
 DELETE FROM `pool_template` WHERE `entry` IN (601048);
-INSERT INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
+REPLACE INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
 (601048, 1, 'Prince Nazjak - Arathi Highlands');
 
 DELETE FROM `gossip_menu_option` WHERE `MenuID` IN (5381);
-INSERT INTO `gossip_menu_option` (`MenuID`, `OptionID`, `OptionIcon`, `OptionText`, `OptionBroadcastTextID`, `OptionType`, `OptionNpcFlag`) VALUES
+REPLACE INTO `gossip_menu_option` (`MenuID`, `OptionID`, `OptionIcon`, `OptionText`, `OptionBroadcastTextID`, `OptionType`, `OptionNpcFlag`) VALUES
 (5381, 0, 3, 'Train me.', 3266, 5, 16); -- Doctor Gregory Victor <Trauma Surgeon>
 
 -- misplaced ogre at Boulderfirst Outpost (under the surface)

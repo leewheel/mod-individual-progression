@@ -4,7 +4,7 @@ SET @WPID    := 6530000;
 
 -- Dusty Tomes
 DELETE FROM `gameobject` WHERE `id` = 179548;
-INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `rotation0`, `rotation1`, `rotation2`, `rotation3`, `spawntimesecs`, `animprogress`, `state`, `ScriptName`, `VerifiedBuild`, `Comment`) VALUES
 --
 (@OGUID+1, 179548, 429, 0, 0, 1, 1, 4.36356, -436.696, 16.4123, 0.995107, 0, 0, 0.477277, 0.878753, 7200, 255, 1, '', 0, NULL),
@@ -20,7 +20,7 @@ INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, 
 (@OGUID+11, 179548, 429, 0, 0, 1, 1, -86.3983, 569.308, 28.6079, 1.78023, 0, 0, 0, 1, 7200, 255, 1, '', 0, NULL);
 
 DELETE FROM `pool_gameobject` WHERE `pool_entry` IN (601019);
-INSERT INTO `pool_gameobject` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
+REPLACE INTO `pool_gameobject` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
 (@OGUID+1,  601019, 0, 'A Dusty Tome'),
 (@OGUID+2,  601019, 0, 'A Dusty Tome'),
 (@OGUID+3,  601019, 0, 'A Dusty Tome'),
@@ -34,7 +34,7 @@ INSERT INTO `pool_gameobject` (`guid`, `pool_entry`, `chance`, `description`) VA
 (@OGUID+11, 601019, 0, 'A Dusty Tome');
 
 DELETE FROM `pool_template` WHERE `entry` IN (601019);
-INSERT INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
+REPLACE INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
 (601019, 1, 'A Dusty Tome - Dire Maul');
 
 -- fix quest POI and Quest Completion Logs
@@ -42,21 +42,22 @@ UPDATE `quest_poi` SET `WorldMapAreaId` = 121 WHERE `id` = 0 AND `QuestID` IN (5
 UPDATE `quest_poi_points` SET `X` = -4474, `Y` = 1333 WHERE `Idx1` = 0 AND `QuestID` IN (5518, 5519, 7461, 7463, 7507, 7508, 7509, 7649, 7650, 7651, 7703, 7877);
 
 DELETE FROM `quest_poi_points` WHERE `Idx1` = 0 AND `QuestID` IN (7483, 7484, 7485);
-INSERT INTO `quest_poi_points` (`QuestID`, `Idx1`, `Idx2`, `X`, `Y`, `VerifiedBuild`) VALUES
+REPLACE INTO `quest_poi_points` (`QuestID`, `Idx1`, `Idx2`, `X`, `Y`, `VerifiedBuild`) VALUES
 (7483, 0, 0, -4474, 1333, 0),
 (7484, 0, 0, -4474, 1333, 0),
 (7485, 0, 0, -4474, 1333, 0);
 
 DELETE FROM `quest_poi` WHERE `id` = 0 AND `QuestID` IN (7483, 7484, 7485);
-INSERT INTO `quest_poi` (`QuestID`, `id`, `ObjectiveIndex`, `MapID`, `WorldMapAreaId`, `Floor`, `Priority`, `Flags`, `VerifiedBuild`) VALUES 
+REPLACE INTO `quest_poi` (`QuestID`, `id`, `ObjectiveIndex`, `MapID`, `WorldMapAreaId`, `Floor`, `Priority`, `Flags`, `VerifiedBuild`) VALUES 
 (7483, 0, -1, 1, 121, 0, 0, 1, 0),
 (7484, 0, -1, 1, 121, 0, 0, 1, 0),
 (7485, 0, -1, 1, 121, 0, 0, 1, 0);
 
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Knot Thimblejack in Dire Maul.'  WHERE `ID` IN (5518, 5519);
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Lorekeeper Lydros in Dire Maul.' WHERE `ID` IN (7463, 7483, 7484, 7485, 7507, 7508, 7509, 7649, 7650, 7651);
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Captain Kromcrush in Dire Maul.' WHERE `ID` IN (7703);
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to the Athenaeum in Dire Maul.'     WHERE `ID` IN (7877);
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找厄运之槌的诺特·希姆加克。'  WHERE `ID` = 5518;
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找奥特兰克山脉的诺特·希姆加克。' WHERE `ID` = 5519;
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找厄运之槌的博学者莱德罗斯。' WHERE `ID` IN (7463, 7483, 7484, 7485, 7509);
+UPDATE `quest_template` SET `QuestCompletionLog` = '去银松森林找厄运之槌的克罗卡斯。' WHERE `ID` IN (7703);
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找厄运之槌的图书馆。' WHERE `ID` IN (7877);
 
 
 /* ---- Dire Maul North ----- */
@@ -67,7 +68,7 @@ UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN 
 (11441, 11444, 11445, 11448, 11450, 11501, 11859, 13036, 13160, 14321, 14322, 14323, 14326);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -180,7 +181,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 -- fix Captain Kromcrush
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN (14325);
 DELETE FROM `smart_scripts` WHERE `source_type` = 9 AND `entryorguid` IN (1432501, 1432502);
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -219,7 +220,7 @@ DELETE FROM `creature` WHERE `guid` IN
 (248093, 248094, 248095, 248096, 248097, 248098, 248099, 248100, 248101, 248106, 248107, 248108, 248131, 248132, 
 248135, 248136, 248137, 248138, 248145, 248146, 248147, 248155, 248163, 248164, 248171, 248176, 248179, 248180, 248186); -- 248155, 248186, 248101 (not used anymore)
 
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
 --
 (248093, 13036, 429, 0, 0, 1, 1, 0, 346.936, -43.3005, -25.6162, 1.12652,  7200, 3, 0, 3758, 0, 1, 0, 0, 0, '', 0, 0, NULL),
@@ -256,7 +257,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (248180, 13036, 429, 0, 0, 1, 1, 0, 417.935, 27.8456, -25.04, 3.39019,     7200, 3, 0, 3758, 0, 1, 0, 0, 0, '', 0, 0, NULL);
 
 DELETE FROM `creature_formations` WHERE `leaderGUID` IN (248106, 248135, 248145);
-INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES
+REPLACE INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES
 (248106, 248106, 0, 0, 515, 0, 0),
 (248106, 248107, 3, 135, 515, 0, 0),
 (248106, 248108, 3, 225, 515, 0, 0),
@@ -271,13 +272,13 @@ INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, 
 (248145, 248147, 3, 225, 515, 0, 0);
 
 DELETE FROM `creature_addon` WHERE `guid` IN (248106, 248135, 248145);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (248106, 2481060, 0, 0, 0, 0, 0, NULL),
 (248135, 2481350, 0, 0, 0, 0, 0, NULL),
 (248145, 2481450, 0, 0, 0, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` IN (2481060, 2481350, 2481450);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (2481060, 1, 366.174, -33.3632, -24.9979, 2.33611, 0, 0, 0, 100, 0),
 (2481060, 2, 353.044, -10.6431, -24.9653, 2.52462, 0, 0, 0, 100, 0),
@@ -349,7 +350,7 @@ UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN 
 (11458, 11459, 11466, 11467, 11469, 11470, 11471, 11472, 11473, 11475, 11476, 11477, 11480, 11483, 11484, 11486, 11487, 11488, 11489, 11496, 14303, 14308, 14398, 14399, 14400, 14566);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -467,7 +468,7 @@ DELETE FROM `creature` WHERE `guid` IN (247932, 247933); -- unused Eldreth Phant
 DELETE FROM `creature` WHERE `guid` IN (247915, 247925);
 DELETE FROM `creature` WHERE `guid` IN (@CGUID+21, @CGUID+22, @CGUID+23, @CGUID+24, @CGUID+25, @CGUID+26);
 
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
 --
 (247820, 11459, 429, 0, 0, 1, 1, 0, -92.0732, 344.012, -4.98579, 4.65212,     7200, 0, 1, 16704, 0, 2, 0, 0, 0, '', 0, 0, NULL), -- Ironbark Protector
@@ -516,7 +517,7 @@ DELETE FROM `creature_addon` WHERE `guid` IN (247820, 247821, 247822, 247823, 24
 DELETE FROM `creature_addon` WHERE `guid` IN 
 (@CGUID+1, @CGUID+2, @CGUID+3, @CGUID+4, @CGUID+5, @CGUID+6, @CGUID+7, @CGUID+8, @CGUID+9, @CGUID+10, @CGUID+11, @CGUID+12, @CGUID+13, @CGUID+14, @CGUID+15, @CGUID+16, @CGUID+17, @CGUID+18);
 
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 --
 (247820, 2478200, 0, 0, 1, 0, 0, ''), -- Ironbark Protector
 (247821, 2478210, 0, 0, 1, 0, 0, ''),
@@ -551,7 +552,7 @@ DELETE FROM `waypoint_data` WHERE `id` IN
 (@WPID+10, @WPID+20, @WPID+30, @WPID+40, @WPID+50, @WPID+60, @WPID+70, @WPID+80, @WPID+90, 
 @WPID+100, @WPID+110, @WPID+120, @WPID+130, @WPID+140, @WPID+150, @WPID+160, @WPID+170, @WPID+180);
 
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (2478200, 1, -92.0732, 344.012, -4.98579, 4.65212, 0, 0, 0, 100, 0),  -- Ironbark Protector 1
 (2478200, 2, -90.2285, 208.421, -4.98579, 6.24254, 0, 0, 0, 100, 0),
@@ -984,7 +985,7 @@ UPDATE `creature_template` SET `unit_flags` = 514, `flags_extra` = 2 WHERE `entr
 UPDATE `gameobject_template` SET `AIName`= 'SmartGameObjectAI' WHERE `entry` IN (179672, 179673, 179674);
 DELETE FROM `smart_scripts` WHERE `source_type` = 1 AND `entryorguid` IN (179672, 179673, 179674);
 DELETE FROM `smart_scripts` WHERE `source_type` = 9 AND `entryorguid` IN (17967200, 17967300, 17967400);
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
@@ -1091,7 +1092,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 
 UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN (14482, 14483, 14500, 14501, 14502, 14504, 14506);
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN (14482, 14483, 14500, 14501, 14502, 14504, 14506);
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
@@ -1137,7 +1138,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 (14506, 0, 4, 0, 54, 0, 100, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                      'Lord Hel\'nurath - On Just Summoned - Say text 0');
 
 DELETE FROM `smart_scripts` WHERE `source_type` = 9 AND `entryorguid` IN (1450002);
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
@@ -1159,21 +1160,21 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 (1450002, 9, 14, 0, 0, 0, 100, 512, 0, 0, 0, 0, 0, 0, 2, 35, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                                           'J\'eevee - Script - Set Faction Friendly');
 
 DELETE FROM `creature_text` WHERE `CreatureID` IN (14500, 14506); 
-INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES
+REPLACE INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES
 --
-(14500, 0, 0, 'Ah, here we are! Well let\'s get to work, shall we...?', 12, 0, 100, 0, 0, 0, 9769, 0, 'J\'eevee'),
-(14500, 1, 0, 'Oh, right! Over here now...', 12, 0, 100, 0, 0, 0, 9770, 0, 'J\'eevee'),
-(14500, 2, 0, 'And now... the final step!', 12, 0, 100, 0, 0, 0, 9771, 0, 'J\'eevee'),
-(14500, 3, 0, 'I\'m finished. The parchment is made. Now, return to Gorzeeki...', 12, 0, 100, 0, 0, 0, 9742, 0, 'J\'eevee'),
-(14500, 4, 0, 'Ah, freedom!  Although brief, so sweet it is...', 14, 0, 100, 0, 0, 0, 9705, 0, 'J\'eevee'),
-(14500, 5, 0, 'Well duties call, yes?  First, the bell... to give you vigor!', 12, 0, 100, 0, 0, 0, 9702, 0, 'J\'eevee'),
-(14500, 6, 0, "Next, I'll place the wheel... to protect you from harm.", 12, 0, 100, 0, 0, 0, 9703, 0, 'J\'eevee'),
-(14500, 7, 0, "And finally the candle... to burn those who would thwart you!", 12, 0, 100, 0, 0, 0, 9704, 0, 'J\'eevee'),
-(14500, 8, 0, "$n, my duties are complete and I shall now take my leave.  Luck to you my $g fellow:lady;, and remember to keep the Bell, Wheel and Candle working!", 12, 0, 100, 0, 0, 0, 9706, 0, 'J\'eevee'),
-(14506, 0, 0, "Who dares steal my precious mount?  You will pay for your insolence, mortal!", 14, 0, 100, 0, 0, 0, 9727, 0, 'Lord Hel\'nurath');
+(14500, 0, 0, '啊，我们到了！让我们开始工作，好吗……？', 12, 0, 100, 0, 0, 0, 9769, 0, 'J\'eevee'),
+(14500, 1, 0, '哦，对！就在这儿……', 12, 0, 100, 0, 0, 0, 9770, 0, 'J\'eevee'),
+(14500, 2, 0, '现在……最后一步！', 12, 0, 100, 0, 0, 0, 9771, 0, 'J\'eevee'),
+(14500, 3, 0, '完成啦。羊皮纸终于做好啦。现在回到戈瑟奇那儿去吧……', 12, 0, 100, 0, 0, 0, 9742, 0, 'J\'eevee'),
+(14500, 4, 0, '啊，自由！虽然短暂，却如此甜美……', 14, 0, 100, 0, 0, 0, 9705, 0, 'J\'eevee'),
+(14500, 5, 0, '嗯，要开始了，是吗？首先，钟……给你活力！', 12, 0, 100, 0, 0, 0, 9702, 0, 'J\'eevee'),
+(14500, 6, 0, "接下来，我会用车轮……来保护你。", 12, 0, 100, 0, 0, 0, 9703, 0, 'J\'eevee'),
+(14500, 7, 0, "最终，蜡烛……烧死那些碍手碍脚的家伙！", 12, 0, 100, 0, 0, 0, 9704, 0, 'J\'eevee'),
+(14500, 8, 0, "$n，我完成了我的职责，我得走啦。祝你好运，$g先生:女士;，记得保持铃铛、书籍和蜡烛一直生效！", 12, 0, 100, 0, 0, 0, 9706, 0, 'J\'eevee'),
+(14506, 0, 0, "谁敢盗走我心爱的坐骑？你会为自己的傲慢付出代价的，凡人！", 14, 0, 100, 0, 0, 0, 9727, 0, 'Lord Hel\'nurath');
 
 DELETE FROM `event_scripts` WHERE `id` = 8420;
-INSERT INTO `event_scripts` (`id`, `delay`, `command`, `datalong`, `datalong2`, `dataint`, `x`, `y`, `z`, `o`) VALUES
+REPLACE INTO `event_scripts` (`id`, `delay`, `command`, `datalong`, `datalong2`, `dataint`, `x`, `y`, `z`, `o`) VALUES
 --
 (8420,   0, 10, 14500, 1445000, 0, -38.8, 812.69, -29.53, 0),  -- J\'eevee
 (8420,   0, 10, 14501, 1445000, 0, -37.94, 812.81, -29.45, 0), -- Warlock Mount Ritual Mob - 1445,000 ms despawn
@@ -1287,7 +1288,7 @@ INSERT INTO `event_scripts` (`id`, `delay`, `command`, `datalong`, `datalong2`, 
 (8420, 445, 10, 23837, 1000000, 0, 0, 0, 0, 0);                            -- ELM General Purpose Bunny - 1000,000 ms despawn time
 
 DELETE FROM `event_scripts` WHERE `id` = 8428;
-INSERT INTO `event_scripts` (`id`, `delay`, `command`, `datalong`, `datalong2`, `dataint`, `x`, `y`, `z`, `o`) VALUES
+REPLACE INTO `event_scripts` (`id`, `delay`, `command`, `datalong`, `datalong2`, `dataint`, `x`, `y`, `z`, `o`) VALUES
 (8428, 0, 9, 99783, 15, 0, 0, 0, 0, 0),
 (8428, 10, 10, 14502, 9000000, 0, -38.94, 812.85, -29.5359, 4.90495);
 
@@ -1295,7 +1296,7 @@ DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 13 AND `SourceGroup` 
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 22 AND `SourceGroup` IN (1, 8) AND `SourceEntry` = 14500 AND `SourceId` = 0;
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 17 AND `SourceGroup` = 0 AND `SourceEntry` IN (23136, 23152) AND `SourceId` = 0;
 
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`,
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`,
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES
 --
 (13, 1, 23120, 0, 2, 31, 0, 4, 0, 0, 0, 0, 0, '',          'Black March Blessing targets Player'),
@@ -1314,7 +1315,7 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 -- fix locations Symbols and Dreadsteed Portal
 DELETE FROM `gameobject` WHERE `guid` BETWEEN 99774 AND 99783;
 DELETE FROM `gameobject` WHERE `guid` BETWEEN @OGUID+101 AND @OGUID+118;
-INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `rotation0`, `rotation1`, `rotation2`, `rotation3`, `spawntimesecs`, `animprogress`, `state`, `ScriptName`, `VerifiedBuild`, `Comment`) VALUES 
 --
 (99774, 179671, 429, 0, 0, 1, 1, -33.5439, 799.742, -29.5359, 2.00921, 0, 0, 0.84395, 0.536422, -900, 0, 1, '', 0, NULL), -- Quest Symbol
@@ -1357,7 +1358,7 @@ UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN 
 (11451, 11452, 11453, 11454, 11456, 11457, 11461, 11462, 11464, 11465, 11490, 13021, 13022, 13197, 13276, 13280, 13285, 14327, 14349);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 

@@ -6,7 +6,7 @@ DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN
 (10381, 10382, 10383, 10390, 10391, 10393, 10394, 10398, 10400, 10405, 10406, 10407, 10408, 10409, 10412, 10413, 10414, 10416, 10417, 10418, 10419, 
 10420, 10421, 10422, 10423, 10424, 10425, 10426, 10437, 10438, 10439, 10463, 10464, 10516, 10558, 10809, 10811, 10812, 10997, 11032, 11043, 16387);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -213,20 +213,20 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 
 
 DELETE FROM `creature_text` WHERE `CreatureID` = 16387;
-INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
-(16387, 0, 0, '%s drops it\'s weapon.', 16, 0, 100, 0, 0, 0, 12338, 0, 'Atiesh');
+REPLACE INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
+(16387, 0, 0, '%s扔掉武器。', 16, 0, 100, 0, 0, 0, 12338, 0, 'Atiesh');
 
 DELETE FROM `spell_script_names` WHERE `spell_id` = 28352;
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28352, 'spell_atiesh_breath_of_sargeras');
+REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (28352, 'spell_atiesh_breath_of_sargeras');
 
 DELETE FROM `gameobject_template` WHERE `entry` = 181207;
-INSERT INTO `gameobject_template` (`entry`, `type`, `displayId`, `name`, `IconName`, `castBarCaption`, `unk1`, `size`, 
+REPLACE INTO `gameobject_template` (`entry`, `type`, `displayId`, `name`, `IconName`, `castBarCaption`, `unk1`, `size`, 
 `Data0`, `Data1`, `Data2`, `Data3`, `Data4`, `Data5`, `Data6`, `Data7`, `Data8`, `Data9`, `Data10`, `Data11`, `Data12`, `Data13`, `Data14`, 
 `Data15`, `Data16`, `Data17`, `Data18`, `Data19`, `Data20`, `Data21`, `Data22`, `Data23`, `AIName`, `ScriptName`, `VerifiedBuild`) VALUES 
-(181207, 3, 4175, 'Runed Demonic Blade', '', '', '', 1, 93, 622736, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 1);
+(181207, 3, 4175, '符文恶魔之刃', '', '', '', 1, 93, 622736, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 1);
 
 DELETE FROM `gameobject_loot_template` WHERE `Entry` = 622736;
-INSERT INTO `gameobject_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
+REPLACE INTO `gameobject_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
 (622736, 22736, 0, 100, 0, 1, 0, 1, 1, 'Andonisus Reaper of Souls');
 
 
@@ -258,7 +258,7 @@ UPDATE `creature_loot_template` SET `Chance` = 3    WHERE `entry` = 11043 AND `i
 
 -- fix The Unforgiven and Timmy the Cruel spawns
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN (10516, 10808, -54069);
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
@@ -295,11 +295,11 @@ UPDATE `creature_template` SET `MovementType` = 0 WHERE `entry` = 10808; -- not 
 
 -- fix waypoints Timmy the Cruel
 DELETE FROM `creature_addon` WHERE `guid` IN (247227);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (247227, 2472270, 0, 0, 0, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` IN (2472270);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (2472270, 1, 3614.7, -3187.64, 131.406, NULL, 0, 0, 0, 100, 0),
 (2472270, 2, 3614.7, -3187.64, 131.406, NULL, 0, 0, 0, 100, 0),
@@ -335,7 +335,7 @@ SET @WPID     := 3290000; -- waypoint ID
 DELETE FROM `creature_addon` WHERE `guid` = 53854; -- remove old data, we creating new creatures
 
 DELETE FROM `creature` WHERE `id` IN (10408, 10409, 10809);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
 `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 --
 (52147,    10809, 329, 0, 0, 1, 1, 0, 4058.86, -3530.33, 122.247, 0, 86400, 0, 1, 15260, 0, 2, 0, 0, 0, '', 0, 0, NULL), -- Stonespine
@@ -357,7 +357,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (@CGUID+17, 10409, 329, 0, 0, 1, 1, 0, 4058.86, -3530.33, 122.247, 0, 86400, 0, 1, 8097, 0, 2, 0, 0, 0, '', 0, 0, NULL);
 
 DELETE FROM `pool_creature` WHERE `pool_entry` BETWEEN 601021 AND 601027;
-INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
+REPLACE INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
 (@CGUID+1,  601021, 0, 'Rockwing Gargoyle'),
 (@CGUID+11, 601021, 0, 'Rockwing Screecher'),
 (@CGUID+2,  601022, 0, 'Rockwing Gargoyle'),
@@ -374,7 +374,7 @@ INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALU
 (@CGUID+17, 601027, 0, 'Rockwing Screecher');
 
 DELETE FROM `pool_template` WHERE `entry` BETWEEN 601021 AND 601027;
-INSERT INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
+REPLACE INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
 (601021, 1, 'Rockwing Gargoyle or Screecher'),
 (601022, 1, 'Rockwing Gargoyle or Screecher'),
 (601023, 1, 'Rockwing Gargoyle or Screecher'),
@@ -385,7 +385,7 @@ INSERT INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES
 
 DELETE FROM `creature_addon` WHERE `guid` = 52147;
 DELETE FROM `creature_addon` WHERE `guid` BETWEEN @CGUID+1 AND @CGUID+17;
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (52147, 521470, 0, 0, 0, 0, 0, NULL),
 --
 (@CGUID+1,  @WPID+10, 0, 0, 0, 0, 0, NULL),
@@ -405,7 +405,7 @@ INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `e
 (@CGUID+17, @WPID+70, 0, 0, 0, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` IN (521470, @WPID+10, @WPID+20, @WPID+30, @WPID+40, @WPID+50, @WPID+60, @WPID+70);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (521470, 1, 4034.63, -3522.79, 121.984, NULL, 0, 1, 0, 100, 0), -- Stonespine
 (521470, 2, 4011.73, -3544.6, 123.323, NULL, 0, 1, 0, 100, 0),

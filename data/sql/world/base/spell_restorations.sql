@@ -1,13 +1,13 @@
 /* Restore Detect Magic - situation spell removed in 2.3 when enemy buffs became part of the base UI; restore for flavor even though not useful */
 DELETE FROM `trainer_spell` WHERE `TrainerId` = 16 AND `SpellID` = 2855;
-INSERT INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES (16, 2855, 1500, 0, 0, 16);
+REPLACE INTO `trainer_spell` (`TrainerId`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES (16, 2855, 1500, 0, 0, 16);
 
 /* Optional - give Detect Magic a new effect to tell user of enemy's resistance levels. About the same level of useful as original spell */
 DELETE FROM `spell_script_names` WHERE `spell_id`=2855 AND `ScriptName`='spell_detect_magic';
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (2855, 'spell_detect_magic');
+REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (2855, 'spell_detect_magic');
 
 DELETE FROM `spell_dbc` WHERE `ID` IN (8137, 16449, 16805, 16806, 37469, 48403);
-INSERT INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attributes`, `AttributesEx`, `AttributesEx2`, `AttributesEx3`, `AttributesEx4`, `AttributesEx5`, `AttributesEx6`, `AttributesEx7`, `ShapeshiftMask`, 
+REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attributes`, `AttributesEx`, `AttributesEx2`, `AttributesEx3`, `AttributesEx4`, `AttributesEx5`, `AttributesEx6`, `AttributesEx7`, `ShapeshiftMask`, 
 `unk_320_2`, `ShapeshiftExclude`, `unk_320_3`, `Targets`, `TargetCreatureType`, `RequiresSpellFocus`, `FacingCasterFlags`, `CasterAuraState`, `TargetAuraState`, `ExcludeCasterAuraState`, `ExcludeTargetAuraState`, 
 `CasterAuraSpell`, `TargetAuraSpell`, `ExcludeCasterAuraSpell`, `ExcludeTargetAuraSpell`, `CastingTimeIndex`, `RecoveryTime`, `CategoryRecoveryTime`, `InterruptFlags`, `AuraInterruptFlags`, `ChannelInterruptFlags`, 
 `ProcTypeMask`, `ProcChance`, `ProcCharges`, `MaxLevel`, `BaseLevel`, `SpellLevel`, `DurationIndex`, `PowerType`, `ManaCost`, `ManaCostPerLevel`, `ManaPerSecond`, `ManaPerSecondPerLevel`, `RangeIndex`, `Speed`, 

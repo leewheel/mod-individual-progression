@@ -5,7 +5,7 @@ UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN 
 (193, 6116, 6117, 6118, 6125, 6126, 6127, 6131, 6140, 6146, 6147, 6148, 6187, 6188, 6189, 6190, 6193, 6194, 6195, 6196, 6198, 6199, 6200, 6201, 6202, 6350, 6372, 6377, 6378, 6379, 6380, 6647, 6648, 7885, 7886, 8408, 8578, 8660, 8761, 8762);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -137,7 +137,7 @@ UPDATE `creature_loot_template` SET `Chance` = 15 WHERE `Item` = 13815;
 DELETE FROM `creature_loot_template` WHERE `item`= 20023 AND `entry` IN (6377, 6378, 6379, 6380, 8762); -- remove quest drops TBC version
 
 UPDATE `quest_template` SET 
-`QuestDescription` = 'Lord Ravenholdt has asked a favor of us both. He wishes to remove the enchantment from this bag.$b$b
-Unfortunately, some of my books on the subject of dispelling were taken recently, only to be destroyed by savages.  The remains of my books are still valuable to me.$b$b
-If you can bring me enough of the encoded fragments, I can piece them back together.  Your best chance is to kill forest oozes, since they have a tendency to pick up just about anything.  
-You\'ll find them in northeast Azshara.' WHERE `ID` = 8235;
+`QuestDescription` = '拉文霍德公爵有件事需要我们帮忙。他希望我解除这只袋子的魔法。$b$b
+不幸的是，我关于解除魔法的一些书籍最近被野蛮人抢走了，并且已经被销毁了。但是这些书剩下的部分对我来说仍然很有价值。$b$b
+如果你能给我带足够的加密碎片，我就能将它们重新拼凑起来。你最好的选择是去杀森林软泥怪，因为它们似乎什么东西都会吞下去。  
+你可以在艾萨拉的东北部找到它们。' WHERE `ID` = 8235;

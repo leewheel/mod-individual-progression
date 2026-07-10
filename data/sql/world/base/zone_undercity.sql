@@ -1,70 +1,72 @@
-UPDATE `creature_template` SET `npcflag` = 81, `subname` = 'Journeyman Leatherworker'     WHERE `entry` = 223;   -- Dan Golthas <Journeyman Leatherworker> -- `trainer_type` = 2
-UPDATE `creature_template` SET `npcflag` = 83, `subname` = 'Journeyman Engineer'          WHERE `entry` = 4586;  -- Graham Van Talen <Journeyman Engineer>  -- `trainer_type` = 2
-UPDATE `creature_template` SET `npcflag` = 81, `subname` = 'Journeyman Blacksmith'        WHERE `entry` = 4605;  -- Basil Frye <Journeyman Blacksmith> -- `trainer_type` = 2
-UPDATE `creature_template` SET `npcflag` = 81, `subname` = 'Expert Alchemist'             WHERE `entry` = 4609;  -- Doctor Marsh <Expert Alchemist> -- `trainer_type` = 2
-UPDATE `creature_template` SET `npcflag` = 81, `subname` = 'Journeyman Alchemist Trainer' WHERE `entry` = 11044; -- Doctor Martin Felben <Journeyman Alchemist Trainer> -- `trainer_type` = 2
-UPDATE `creature_template` SET `npcflag` = 81, `subname` = 'Journeyman Tailor'            WHERE `entry` = 11048; -- Victor Ward <Journeyman Tailor> -- `trainer_type` = 2
-UPDATE `creature_template` SET `npcflag` = 81, `subname` = 'Expert Tailor'                WHERE `entry` = 11049; -- Rhiannon Davis <Expert Tailor> -- `trainer_type` = 2
-UPDATE `creature_template` SET `npcflag` = 81, `subname` = 'Journeyman Enchanter'         WHERE `entry` = 11067; -- Malcomb Wynn <Journeyman Enchanter> -- `trainer_type` = 2
+-- By leewheel 2026-07-07 翻译NPC副标题为中文
+UPDATE `creature_template` SET `npcflag` = 81, `subname` = '初级制皮师'     WHERE `entry` = 223;   -- 丹·戈萨斯 <初级制皮师> -- `trainer_type` = 2
+UPDATE `creature_template` SET `npcflag` = 83, `subname` = '初级技师'         WHERE `entry` = 4586;  -- 格拉哈姆·范·塔伦 <初级技师>  -- `trainer_type` = 2
+UPDATE `creature_template` SET `npcflag` = 81, `subname` = '初级铁匠'        WHERE `entry` = 4605;  -- 巴兹尔·弗莱伊 <初级铁匠> -- `trainer_type` = 2
+UPDATE `creature_template` SET `npcflag` = 81, `subname` = '初级炼金师'             WHERE `entry` = 4609;  -- 马尔什医生 <初级炼金师> -- `trainer_type` = 2
+UPDATE `creature_template` SET `npcflag` = 81, `subname` = '初级炼金师' WHERE `entry` = 11044; -- 马丁·费尔本 <初级炼金师> -- `trainer_type` = 2
+UPDATE `creature_template` SET `npcflag` = 81, `subname` = '初级裁缝'            WHERE `entry` = 11048; -- 维克多·瓦德 <初级裁缝> -- `trainer_type` = 2
+UPDATE `creature_template` SET `npcflag` = 81, `subname` = '初级裁缝'                WHERE `entry` = 11049; -- 雷安诺·戴维斯 <初级裁缝> -- `trainer_type` = 2
+UPDATE `creature_template` SET `npcflag` = 81, `subname` = '初级附魔师'         WHERE `entry` = 11067; -- 玛考布·维恩 <初级附魔师> -- `trainer_type` = 2
+-- End By leewheel
 
 UPDATE `creature_template` SET `type_flags` = 134217728 WHERE `entry` IN (4609, 11049);
 
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId`=15 AND `SourceEntry`=0 AND `ConditionTypeOrReference`=7 AND `SourceGroup` IN (1022, 4130, 4132, 4166, 4210, 4352, 4354);
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `ConditionTypeOrReference`, `ConditionValue1`, `ConditionValue2`, `Comment`) VALUES
-(15, 4130, 0, 7, 171, 50,  'Show menu if alchemy is 50 or higher'),        -- Doctor Marsh <Expert Alchemist>
-(15, 4132, 0, 7, 171, 125, 'Show menu if alchemy is 125 or higher'),       -- Doctor Herbert Halsey <Artisan Alchemist>
-(15, 1022, 0, 7, 164, 50,  'Show menu if blacksmithing is 50 or higher'),  -- James Van Brunt <Expert Blacksmith>
-(15, 4166, 0, 7, 333, 50,  'Show menu if enchanting is 50 or higher'),     -- Lavinia Crowe <Expert Enchanter>
-(15, 4210, 0, 7, 165, 50,  'Show menu if leatherworking is 50 or higher'), -- Arthur Moore <Expert Leatherworker>
-(15, 4352, 0, 7, 197, 50,  'Show menu if tailoring is 50 or higher'),      -- Rhiannon Davis <Expert Tailor>
-(15, 4354, 0, 7, 197, 125, 'Show menu if tailoring is 125 or higher');     -- Josef Gregorian <Artisan Tailor>
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `ConditionTypeOrReference`, `ConditionValue1`, `ConditionValue2`, `Comment`) VALUES
+(15, 4130, 0, 7, 171, 50,  '炼金术达到50及以上时显示菜单'),        -- 马尔什医生 <专家级炼金师>
+(15, 4132, 0, 7, 171, 125, '炼金术达到125及以上时显示菜单'),       -- 赫伯特·哈尔西医生 <大师级炼金师>
+(15, 1022, 0, 7, 164, 50,  '锻造达到50及以上时显示菜单'),  -- 詹姆斯·范·布鲁特 <专家级铁匠>
+(15, 4166, 0, 7, 333, 50,  '附魔达到50及以上时显示菜单'),     -- 拉维尼亚·克劳 <专家级附魔师>
+(15, 4210, 0, 7, 165, 50,  '制皮达到50及以上时显示菜单'), -- 亚瑟·摩尔 <专家级制皮师>
+(15, 4352, 0, 7, 197, 50,  '裁缝达到50及以上时显示菜单'),      -- 瑞安娜·戴维斯 <专家级裁缝>
+(15, 4354, 0, 7, 197, 125, '裁缝达到125及以上时显示菜单');     -- 约瑟夫·格雷戈里安 <大师级裁缝>
 
 DELETE FROM `gossip_menu_option` WHERE (`MenuID`) IN (2847, 2848, 2849);
-INSERT INTO `gossip_menu_option` (`MenuID`, `OptionID`, `OptionIcon`, `OptionText`, `OptionBroadcastTextID`, `OptionType`, `OptionNpcFlag`, 
+REPLACE INTO `gossip_menu_option` (`MenuID`, `OptionID`, `OptionIcon`, `OptionText`, `OptionBroadcastTextID`, `OptionType`, `OptionNpcFlag`, 
             `ActionMenuID`, `ActionPoiID`, `BoxCoded`, `BoxMoney`, `BoxText`, `BoxBroadcastTextID`, `VerifiedBuild`) VALUES
-(2847, 0, 0, 'Alchemy', 3460, 1, 1, 2834, 336, 0, 0, NULL, 0, 0),
-(2847, 1, 0, 'Blacksmithing', 3461, 1, 1, 2835, 337, 0, 0, NULL, 0, 0),
-(2847, 2, 0, 'Cooking', 3462, 1, 1, 2836, 338, 0, 0, NULL, 0, 0),
-(2847, 3, 0, 'Enchanting', 3463, 1, 1, 2837, 339, 0, 0, NULL, 0, 0),
-(2847, 4, 0, 'Engineering', 4976, 1, 1, 2838, 340, 0, 0, NULL, 0, 0),
-(2847, 5, 0, 'First Aid', 3464, 1, 1, 2839, 341, 0, 0, NULL, 0, 0),
-(2847, 6, 0, 'Fishing', 3465, 1, 1, 2840, 342, 0, 0, NULL, 0, 0),
-(2847, 7, 0, 'Herbalism', 3466, 1, 1, 2841, 343, 0, 0, NULL, 0, 0),
-(2847, 8, 0, 'Inscription', 48811, 1, 1, 10019, 344, 0, 0, NULL, 0, 0),
-(2847, 9, 0, 'Leatherworking', 3467, 1, 1, 2842, 345, 0, 0, NULL, 0, 0),
-(2847, 10, 0, 'Mining', 3468, 1, 1, 2843, 347, 0, 0, NULL, 0, 0),
-(2847, 11, 0, 'Skinning', 3471, 1, 1, 2844, 346, 0, 0, NULL, 0, 0),
-(2847, 12, 0, 'Tailoring', 3469, 1, 1, 2845, 348, 0, 0, NULL, 0, 0),
-(2848, 0, 0, 'Mage', 3448, 1, 1, 2821, 331, 0, 0, NULL, 0, 0),
-(2848, 2, 0, 'Priest', 3449, 1, 1, 2829, 332, 0, 0, NULL, 0, 0),
-(2848, 3, 0, 'Rogue', 4885, 1, 1, 2830, 333, 0, 0, NULL, 0, 0),
-(2848, 4, 0, 'Warlock', 4886, 1, 1, 2832, 334, 0, 0, NULL, 0, 0),
-(2848, 5, 0, 'Warrior', 2910, 1, 1, 2833, 335, 0, 0, NULL, 0, 0),
-(2849, 0, 0, 'The bank', 4888, 1, 1, 2822, 319, 0, 0, NULL, 0, 0),
-(2849, 1, 0, 'The bat handler', 6790, 1, 1, 2823, 321, 0, 0, NULL, 0, 0),
-(2849, 2, 0, 'The guild master', 3428, 1, 1, 2824, 323, 0, 0, NULL, 0, 0),
-(2849, 3, 0, 'The inn', 5090, 1, 1, 2825, 324, 0, 0, NULL, 0, 0),
-(2849, 4, 0, 'The mailbox', 5514, 1, 1, 2826, 326, 0, 0, NULL, 0, 0),
-(2849, 5, 0, 'The auction house', 5515, 1, 1, 2827, 318, 0, 0, NULL, 0, 0),
-(2849, 6, 0, 'The zeppelin master', 5518, 1, 1, 2828, 451, 0, 0, NULL, 0, 0),
-(2849, 7, 0, 'The weapon master', 7253, 1, 1, 3726, 328, 0, 0, NULL, 0, 0),
-(2849, 8, 0, 'The stable master', 8508, 1, 1, 4906, 327, 0, 0, NULL, 0, 0),
-(2849, 9, 0, 'The battlemaster', 10359, 1, 1, 6334, 322, 0, 0, NULL, 0, 0),
-(2849, 10, 0, 'A class trainer', 5338, 1, 1, 2848, 0, 0, 0, NULL, 0, 0),
-(2849, 11, 0, 'A profession trainer', 6635, 1, 1, 2847, 0, 0, 0, NULL, 0, 0);
+(2847, 0, 0, '炼金术', 3460, 1, 1, 2834, 336, 0, 0, NULL, 0, 0),
+(2847, 1, 0, '锻造', 3461, 1, 1, 2835, 337, 0, 0, NULL, 0, 0),
+(2847, 2, 0, '烹饪', 3462, 1, 1, 2836, 338, 0, 0, NULL, 0, 0),
+(2847, 3, 0, '附魔', 3463, 1, 1, 2837, 339, 0, 0, NULL, 0, 0),
+(2847, 4, 0, '工程学', 4976, 1, 1, 2838, 340, 0, 0, NULL, 0, 0),
+(2847, 5, 0, '急救', 3464, 1, 1, 2839, 341, 0, 0, NULL, 0, 0),
+(2847, 6, 0, '钓鱼', 3465, 1, 1, 2840, 342, 0, 0, NULL, 0, 0),
+(2847, 7, 0, '草药学', 3466, 1, 1, 2841, 343, 0, 0, NULL, 0, 0),
+(2847, 8, 0, '铭文', 48811, 1, 1, 10019, 344, 0, 0, NULL, 0, 0),
+(2847, 9, 0, '制皮', 3467, 1, 1, 2842, 345, 0, 0, NULL, 0, 0),
+(2847, 10, 0, '采矿', 3468, 1, 1, 2843, 347, 0, 0, NULL, 0, 0),
+(2847, 11, 0, '剥皮', 3471, 1, 1, 2844, 346, 0, 0, NULL, 0, 0),
+(2847, 12, 0, '裁缝', 3469, 1, 1, 2845, 348, 0, 0, NULL, 0, 0),
+(2848, 0, 0, '法师', 3448, 1, 1, 2821, 331, 0, 0, NULL, 0, 0),
+(2848, 2, 0, '牧师', 3449, 1, 1, 2829, 332, 0, 0, NULL, 0, 0),
+(2848, 3, 0, '潜行者', 4885, 1, 1, 2830, 333, 0, 0, NULL, 0, 0),
+(2848, 4, 0, '术士', 4886, 1, 1, 2832, 334, 0, 0, NULL, 0, 0),
+(2848, 5, 0, '战士', 2910, 1, 1, 2833, 335, 0, 0, NULL, 0, 0),
+(2849, 0, 0, '银行', 4888, 1, 1, 2822, 319, 0, 0, NULL, 0, 0),
+(2849, 1, 0, '蝙蝠管理员', 6790, 1, 1, 2823, 321, 0, 0, NULL, 0, 0),
+(2849, 2, 0, '公会管理员', 3428, 1, 1, 2824, 323, 0, 0, NULL, 0, 0),
+(2849, 3, 0, '旅店', 5090, 1, 1, 2825, 324, 0, 0, NULL, 0, 0),
+(2849, 4, 0, '邮箱', 5514, 1, 1, 2826, 326, 0, 0, NULL, 0, 0),
+(2849, 5, 0, '拍卖行', 5515, 1, 1, 2827, 318, 0, 0, NULL, 0, 0),
+(2849, 6, 0, '飞艇管理员', 5518, 1, 1, 2828, 451, 0, 0, NULL, 0, 0),
+(2849, 7, 0, '武器大师', 7253, 1, 1, 3726, 328, 0, 0, NULL, 0, 0),
+(2849, 8, 0, '兽栏管理员', 8508, 1, 1, 4906, 327, 0, 0, NULL, 0, 0),
+(2849, 9, 0, '战场军官', 10359, 1, 1, 6334, 322, 0, 0, NULL, 0, 0),
+(2849, 10, 0, '职业训练师', 5338, 1, 1, 2848, 0, 0, 0, NULL, 0, 0),
+(2849, 11, 0, '专业训练师', 6635, 1, 1, 2847, 0, 0, 0, NULL, 0, 0);
 
--- Batllemasters
+-- 战场军官
 DELETE FROM `creature` WHERE `id` IN (347, 2804, 15007, 20386);
-INSERT INTO `creature` (`guid`, `id`, `map`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`) VALUES
+REPLACE INTO `creature` (`guid`, `id`, `map`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`) VALUES
 (600347, 347, 0, 1331.94, 334.713, -63.6249, 3.40339, 900),
 (602804, 2804, 0, 1262.97, 353.389, -63.6165, 5.46288, 900),
 (615007, 15007, 0, 1282.43, 284.592, -63.6281, 1.27409, 900),
 (620386, 20386, 0, 1252.89, 314.549, -63.6294, 0.31416, 900);
 
--- remove vanilla battlemasters placed by AC from game events
+-- 从游戏事件中移除AC放置的经典战场军官
 DELETE FROM `game_event_creature` WHERE `guid` IN (208429, 208451, 208473, 208484);
 
-/* Battle for the Undercity - Wrathgate NPCs  */
+/* 幽暗城之战 - 怒门事件NPC  */
 
 SET @IPPPHASE       := 65536;
 SET @IPPPHASE_II    := 131072;
@@ -78,16 +80,16 @@ SET @CGUID          := 658000;
 SET @WPID           := 6580000;
 
 DELETE FROM `creature_template` WHERE `entry` IN (@Faranell_entry);
-INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `name`, `subname`, `IconName`, `gossip_menu_id`, 
+REPLACE INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `name`, `subname`, `IconName`, `gossip_menu_id`, 
 `minlevel`, `maxlevel`, `exp`, `faction`, `npcflag`, `speed_walk`, `speed_run`, `speed_swim`, `speed_flight`, `detection_range`, `rank`, `dmgschool`, `DamageModifier`, 
 `BaseAttackTime`, `RangeAttackTime`, `BaseVariance`, `RangeVariance`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, 
 `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `HoverHeight`, `HealthModifier`, `ManaModifier`, `ArmorModifier`, `ExperienceModifier`, `RacialLeader`, `movementId`, 
 `RegenHealth`, `CreatureImmunitiesId`, `flags_extra`, `ScriptName`, `VerifiedBuild`) VALUES
 --
-(@Faranell_entry,0,0,0,0,0,'Master Apothecary Faranell','Royal Apothecary Society',NULL,10775,50,50,0,68,3,1,1.14286,1,1,18,0,0,1.1,2000,2000,1,1,2,37376,2048,0,0,7,0,0,0,0,0,0,0,0,'',0,1,1.25,1,1,1,0,0,1,0,2,'',0);
+(@Faranell_entry,0,0,0,0,0,'大药剂师法拉尼尔','皇家药剂师协会',NULL,10775,50,50,0,68,3,1,1.14286,1,1,18,0,0,1.1,2000,2000,1,1,2,37376,2048,0,0,7,0,0,0,0,0,0,0,0,'',0,1,1.25,1,1,1,0,0,1,0,2,'',0);
 
 DELETE FROM `creature_template_locale` WHERE `entry` IN (@Faranell_entry);
-INSERT INTO `creature_template_locale` (`entry`, `locale`, `Name`, `Title`, `VerifiedBuild`) VALUES 
+REPLACE INTO `creature_template_locale` (`entry`, `locale`, `Name`, `Title`, `VerifiedBuild`) VALUES 
 (@Faranell_entry, 'deDE', 'Apothekermeister Faranell', 'Königliche Apothekervereinigung', 18019),
 (@Faranell_entry, 'esES', 'Maestro boticario Faranell', 'Sociedad Real de Boticarios', 18019),
 (@Faranell_entry, 'esMX', 'Maestro boticario Faranell', 'Sociedad Real de Boticarios', 18019),
@@ -98,22 +100,22 @@ INSERT INTO `creature_template_locale` (`entry`, `locale`, `Name`, `Title`, `Ver
 (@Faranell_entry, 'zhTW', '藥劑大師法拉尼爾', '皇家藥劑師學會', 18019);
 
 DELETE FROM `creature_template_model` WHERE `CreatureID` IN (@Faranell_entry);
-INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`, `DisplayScale`, `Probability`, `VerifiedBuild`) VALUES 
+REPLACE INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`, `DisplayScale`, `Probability`, `VerifiedBuild`) VALUES 
 (@Faranell_entry, 0, 1680, 1, 1, 12340);
 
 DELETE FROM `creature_equip_template` WHERE `CreatureID` IN (@Faranell_entry);
-INSERT INTO `creature_equip_template` (`CreatureID`, `ID`, `ItemID1`, `ItemID2`, `ItemID3`, `VerifiedBuild`) VALUES 
+REPLACE INTO `creature_equip_template` (`CreatureID`, `ID`, `ItemID1`, `ItemID2`, `ItemID3`, `VerifiedBuild`) VALUES 
 (@Faranell_entry, 1, 2199, 3695, 0, 18019);
 
 DELETE FROM `creature_queststarter` WHERE `id` IN (@Faranell_entry);
-INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES 
+REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES 
 (@Faranell_entry, 450),
 (@Faranell_entry, 515),
 (@Faranell_entry, 1109),
 (@Faranell_entry, 1113);
 
 DELETE FROM `creature_questender` WHERE `id` IN (@Faranell_entry);
-INSERT INTO `creature_questender` (`id`, `quest`) VALUES 
+REPLACE INTO `creature_questender` (`id`, `quest`) VALUES 
 (@Faranell_entry, 447),
 (@Faranell_entry, 451),
 (@Faranell_entry, 513),
@@ -124,15 +126,15 @@ INSERT INTO `creature_questender` (`id`, `quest`) VALUES
 
 DELETE FROM `creature` WHERE `guid` IN (@Faranell_guid, @Varimathras, 31901, 43466, 79263);
 DELETE FROM `creature` WHERE `guid` BETWEEN @CGUID+1 AND @CGUID+44;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
 `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 --
-(@Faranell_guid,@Faranell_entry, 0, 0, 0, 1, 1, 1, 1434.48, 404.854, -85.1753, 2.26893, 300, 0, 0, 2215, 1807, 0, 0, 0, 0, '', 0, 0, NULL), -- Master Apothecary Faranell
-(@Varimathras, 2425, 0, 0, 0, 1, 1, 0, 1287.7, 333.589, -59.9998, 4.86748, 120, 0, 0, 1, 0, 0, 0, 0, 0, '', 0, 0, NULL),                    -- Varimathras
-(31901, 36273, 0, 0, 0, 1, 1, 1, 1287.7, 333.589, -59.9998, 4.86748, 120, 0, 0, 1, 0, 0, 0, 0, 0, '', 0, 0, NULL),                          -- Bragor Bloodfist
-(43466, 36517, 0, 0, 0, 1, 1, 1, 1283, 338.917, -59.9998, 0.244346, 120, 0, 0, 1, 0, 0, 0, 0, 0, '', 0, 0, NULL),                           -- Aleric Hawkins
-(79263, 36217, 0, 0, 0, 1, 1, 0, 1438.03, 403.83, -85.1626, 3.12414, 120, 0, 0, 1, 0, 0, 0, 0, 0, '', 0, 0, NULL),                          -- Overseer Kraggosh
--- guards
+(@Faranell_guid,@Faranell_entry, 0, 0, 0, 1, 1, 1, 1434.48, 404.854, -85.1753, 2.26893, 300, 0, 0, 2215, 1807, 0, 0, 0, 0, '', 0, 0, NULL), -- 大药剂师法拉尼尔
+(@Varimathras, 2425, 0, 0, 0, 1, 1, 0, 1287.7, 333.589, -59.9998, 4.86748, 120, 0, 0, 1, 0, 0, 0, 0, 0, '', 0, 0, NULL),                    -- 瓦里玛萨斯
+(31901, 36273, 0, 0, 0, 1, 1, 1, 1287.7, 333.589, -59.9998, 4.86748, 120, 0, 0, 1, 0, 0, 0, 0, 0, '', 0, 0, NULL),                          -- 布拉贡·血拳
+(43466, 36517, 0, 0, 0, 1, 1, 1, 1283, 338.917, -59.9998, 0.244346, 120, 0, 0, 1, 0, 0, 0, 0, 0, '', 0, 0, NULL),                           -- 阿勒瑞克·霍克金斯
+(79263, 36217, 0, 0, 0, 1, 1, 0, 1438.03, 403.83, -85.1626, 3.12414, 120, 0, 0, 1, 0, 0, 0, 0, 0, '', 0, 0, NULL),                          -- 监督者克拉加什
+-- 卫兵
 (@CGUID+1, 5624, 0, 0, 0, 1, 1, 0, 1440.41, 350.383, -62.1024, 4.13643, 275, 0, 0, 15952, 0, 0, 0, 0, 0, '', 0, 0, NULL), 
 (@CGUID+2, 5624, 0, 0, 0, 1, 1, 0, 1612.13, 189.217, -43.0189, 0.471239, 300, 0, 0, 15952, 0, 0, 0, 0, 0, '', 0, 0, NULL), 
 (@CGUID+3, 5624, 0, 0, 0, 1, 1, 0, 1423.53, 323.279, -62.1024, 1.02974, 300, 0, 0, 15952, 0, 0, 0, 0, 0, '', 0, 0, NULL), 
@@ -178,20 +180,20 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (@CGUID+43, 5624, 0, 0, 0, 1, 1, 0, 1414.68, 448.16, -77.1543, 4.67748, 120, 0, 0, 1, 0, 0, 0, 0, 0, '', 0, 0, NULL), 
 (@CGUID+44, 5624, 0, 0, 0, 1, 1, 0, 1419.08, 389.021, -84.9804, 0.698132, 120, 0, 0, 1, 0, 0, 0, 0, 0, '', 0, 0, 'SAI Target');
 
-UPDATE `creature` SET `phaseMask` = @IPPPHASE_II  WHERE `guid` IN (@Faranell_guid, @Varimathras); -- pre Wrathgate
-UPDATE `creature` SET `phaseMask` = @IPPPHASE_III WHERE `guid` IN (31900, 31901, 43466, 79263, 203394, 203395, 203420);   -- post Wrathgate
+UPDATE `creature` SET `phaseMask` = @IPPPHASE_II  WHERE `guid` IN (@Faranell_guid, @Varimathras); -- 怒门事件之前
+UPDATE `creature` SET `phaseMask` = @IPPPHASE_III WHERE `guid` IN (31900, 31901, 43466, 79263, 203394, 203395, 203420);   -- 怒门事件之后
 
-UPDATE `creature` SET `phaseMask` = @IPPPHASE_II  WHERE `id` = 5624;  -- pre Wrathgate
-UPDATE `creature` SET `phaseMask` = @IPPPHASE_III WHERE `id` = 36213; -- post Wrathgate
+UPDATE `creature` SET `phaseMask` = @IPPPHASE_II  WHERE `id` = 5624;  -- 怒门事件之前
+UPDATE `creature` SET `phaseMask` = @IPPPHASE_III WHERE `id` = 36213; -- 怒门事件之后
 
--- guard waypoints, can use existing ones
+-- 卫兵路径点，可以使用现有的
 DELETE FROM `creature_addon` WHERE `guid` IN (@CGUID+12, @CGUID+13, @CGUID+17);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (@CGUID+12, 341030, 0, 0, 0, 0, 0, NULL),
 (@CGUID+13, 341040, 0, 0, 0, 0, 0, NULL),
 (@CGUID+17, 382970, 0, 0, 0, 0, 0, NULL);
 
--- Restore quests series The Deathstalkers
+-- 恢复任务系列：死亡行者
 DELETE FROM `creature_questender` WHERE `id` = 36517 AND `quest` = 14418;
 DELETE FROM `creature_questender` WHERE `id` = 6522  AND `quest` = 14419;
 DELETE FROM `creature_questender` WHERE `id` = 6467  AND `quest` = 14420;
@@ -215,9 +217,9 @@ UPDATE `quest_template` SET `RewardNextQuest` = 1898 WHERE `ID` = 1886;
 UPDATE `quest_template` SET `RewardNextQuest` = 1899 WHERE `ID` = 1898;
 UPDATE `quest_template` SET `RewardNextQuest` = 1978 WHERE `ID` = 1899;
 
-UPDATE `conditions` SET `ConditionValue1`= 1886,  `comment` = 'Astor Hadren - Show gossip if quest 1886 is taken' WHERE `SourceTypeOrReferenceId` = 15 AND `SourceGroup` = 126;
+UPDATE `conditions` SET `ConditionValue1`= 1886,  `comment` = '阿斯特·哈德伦 - 接受任务1886时显示对话' WHERE `SourceTypeOrReferenceId` = 15 AND `SourceGroup` = 126;
 
-/* Restore quests for Varimathras */
+-- 恢复瓦里玛萨斯的任务
 DELETE FROM `disables` WHERE `sourceType` = 1 AND `entry` IN (550, 6522, 6521, 1048, 5725);
 
 REPLACE INTO `creature_questender` (`id`, `quest`) VALUES 
@@ -227,13 +229,13 @@ REPLACE INTO `creature_questender` (`id`, `quest`) VALUES
 REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES (2215, 550);
 UPDATE `quest_template` SET `RewardNextQuest` = 550 WHERE `ID` = 541;
 
--- REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES (2215, 14351); -- same quest as 550
+-- REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES (2215, 14351); -- 与550相同任务
 DELETE FROM `creature_queststarter` WHERE `id` = 2215 AND `quest` = 14351;
 
--- Quest: An Unholy Alliance
+-- 任务：邪恶同盟
 DELETE FROM `creature_loot_template` WHERE `Entry` = 4421 AND `Item` = 49205 AND `Reference` = 0 AND `GroupId` = 0;
 REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
-(4421, 17008, 0, 100, 0, 1, 0, 1, 1, 'Charlga Razorflank - Small Scroll');
+(4421, 17008, 0, 100, 0, 1, 0, 1, 1, '卡尔加·刺肋 - 小卷轴');
 
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 1 AND `SourceGroup` = 4421 AND `SourceEntry` = 49205;
 REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
@@ -241,56 +243,56 @@ REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntr
 (1, 4421, 17008, 0, 0, 6, 0, 67, 0, 0, 0, 0, 0, '', NULL);
 
 UPDATE `item_template` SET `flags` = 2048 WHERE `entry` = 17008;
-UPDATE `item_template` SET `description` = 'To be opened by Lord Varimathras.' WHERE `entry` = 3701;
+UPDATE `item_template` SET `description` = '由瓦里玛萨斯大人开启。' WHERE `entry` = 3701;
 
--- Quest: An Unholy Alliance
+-- 任务：邪恶同盟
 UPDATE `quest_template`
-SET `LogDescription`  = "Bring Ambassador Malcin's Head to Varimathras in the Undercity.",
-    `QuestCompletionLog` = "Return to Varimathras at the Royal Quarter in the Undercity."
+SET `LogDescription`  = "把玛克林大使的头颅交给幽暗城的瓦里玛萨斯。",
+    `QuestCompletionLog` = "转至幽暗城，去找皇家区的瓦里玛萨斯。"
 WHERE `ID` = 6521;
 UPDATE `quest_template_locale` SET `Objectives` = 'Apporter la Tête de l''Ambassadeur Malcin à Varimathras, à Fossoyeuse.', `CompletedText` = 'Retournez voir Varimathras au Quartier royal, à Fossoyeuse.'
 WHERE `ID` = 6521 AND `locale` = 'frFR';
 
 UPDATE `quest_template`
-SET `LogDescription`  = "Take the Small Scroll to Varimathras in the Undercity.",
-    `QuestDescription` = "My Lady,$B$BYou know very well what it is we are offering. The opportunity for you to take the Barrens and the lands beyond is a great one. We simply want your aid in return. By aid we mean nothing more than your giving us the freedom to take action in the area.$B$BPlease, allow us to discuss this further. We have great power and are willing to share with those wise enough to join us. I will remain outside Razorfen Downs for the time being.$B$BBest Regards,$BAmbassador Malcin",
-    `QuestCompletionLog` = "Return to Varimathras at the Royal Quarter in the Undercity."
+SET `LogDescription`  = "把小卷轴交给幽暗城的瓦里玛萨斯。",
+    `QuestDescription` = "大人：$B$B您很清楚我们可以提供什么。您占领贫瘠之地及其它土地的机会非常大，我们也只想要您的帮助作为回报。所谓的帮助不过是让您授予我们在这一带行动的自由。$B$B请允许我们说得更远些。我们拥有强大的力量，并愿意与那些希望加入我们的聪明人分享。我当前仍待在剃刀高地外面。$B$B向您致以最高的敬意，$B玛克林大使",
+    `QuestCompletionLog` = "转至幽暗城，去找皇家区的瓦里玛萨斯。"
 WHERE `ID` = 14352;
 
 UPDATE `quest_template`
-SET `LogDescription`  = "Bring Ambassador Malcin's Head to Varimathras in the Undercity.",
-    `QuestDescription` = "Supposedly this Malcin is outside Razorfen Downs. There's no question - he has to die.$b$bMy contacts in Orgrimmar tell me their scouts have found signs of the Plague down there. The quilboar are showing signs of being plagued, too; they're much more powerful. Whatever the Scourge are doing down there needs to end. Now.$b$bFind this Malcin and kill him. Report back here when he's dead.",
-    `QuestCompletionLog` = "Return to Varimathras at the Royal Quarter in the Undercity."
+SET `LogDescription`  = "把玛克林大使的头颅交给幽暗城的瓦里玛萨斯。",
+    `QuestDescription` = "看样子，玛克林就在剃刀高地外面。我们必须将他消灭。$b$b我在奥格瑞玛的线人告诉我，他们的侦察兵在那里发现了一些奇怪的迹象。那里的野猪人身上发生了一些怪异的现象，他们的力量比以前强大了许多。不管天灾军团在那里做了什么，我们必须立刻阻止他们。$b$b找到那个玛克林，消灭他。然后回来向我报告。",
+    `QuestCompletionLog` = "转至幽暗城，去找皇家区的瓦里玛萨斯。"
 WHERE `ID` = 14353;
 
--- Quest: The Power to Destroy...
+-- 任务：毁灭之力...
 UPDATE `quest_template`
-SET `QuestCompletionLog` = "Return to Varimathras at the Royal Quarter in the Undercity."
+SET `QuestCompletionLog` = "回到幽暗城皇家区的瓦里玛萨斯处复命。"
 WHERE `ID` = 5725;
 
 UPDATE `quest_template`
-SET `LogDescription`  = "Bring the books Spells of Shadow and Incantations from the Nether to Varimathras in Undercity.",
-    `QuestDescription` = "Listen up, $c.$b$bYou may not know this, but Orgrimmar's got a problem. Deep in Ragefire Chasm, a sect of the Shadow Council called the Searing Blade performs their sinister work. They're mainly orcs, and I can't trust sensitive information in the hands of the grunts there. That's where you come in.$b$bThey should have two books in their possession. I want them kept out of the hands of the Searing Blade and the Forsaken alike. Bring them to me directly.",
-    `QuestCompletionLog` = "Return to Varimathras at the Royal Quarter in the Undercity."
+SET `LogDescription`  = "将《暗影法术研究》和《扭曲虚空的魔法》这两本书交给幽暗城的瓦里玛萨斯。",
+    `QuestDescription` = "听着，$c。$b$b你可能不知道，奥格瑞玛出了问题。在怒焰裂谷深处，一个叫燃刃的暗影议会分支正在进行他们邪恶的勾当。他们主要是兽人，我不能把敏感信息交给那里的步兵。这就是你来的原因。$b$b他们手中有两本书。我要防止这两本书落入燃刃和被遗忘者手中。直接把它们交给我。",
+    `QuestCompletionLog` = "回到幽暗城皇家区的瓦里玛萨斯处复命。"
 WHERE `ID` = 14356;
 
--- Quest: Into The Scarlet Monastery
+-- 任务：进入血色修道院
 UPDATE `quest_template`
-SET `LogDescription`  = "Kill High Inquisitor Whitemane, Scarlet Commander Mograine, Herod, the Scarlet Champion and Houndmaster Loksey and then report back to Varimathras in the Undercity.",
-    `QuestDescription` = "One of my duties while I'm stationed here is to help the Forsaken take care of their borders, and that, $c, is exactly what you're going to do for me.$b$bI might live and breathe, but the Scarlet Crusade will cut down my people as quickly as they will one of the undead. They're a problem here, a big one, and you're going to do something about it.$b$bGo to the Monastery and slay High Inquisitor Whitemane and her lieutenants.",
-    `QuestCompletionLog` = "Return to Varimathras at the Royal Quarter in the Undercity."
+SET `LogDescription`  = "杀死大检察官怀特迈恩、血色十字军指挥官莫格莱尼、血色十字军勇士赫洛德、血色勇士和驯犬者洛克希，然后向幽暗城的瓦里玛萨斯复命。",
+    `QuestDescription` = "我驻扎在这里的职责之一就是帮助被遗忘者守卫边境，而这，$c，正是你要替我做的事。$b$b我虽然还活着，但血色十字军杀起我的人来和杀亡灵一样快。他们在这里是个大麻烦，而你要去解决这个问题。$b$b去修道院杀掉大检察官怀特迈恩和她的副手们。",
+    `QuestCompletionLog` = "回到幽暗城皇家区的瓦里玛萨斯处复命。"
 WHERE `ID` = 14355;
 
--- smart scripts
+-- 智能脚本
 UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN (36273);
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN (36273);
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
 --
-(36273, 0, 0, 0, 54, 0, 100, 512, 0, 0, 0, 0, 0, 0, 11, 7741, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                'Varimathras - On Just Summoned - Cast Summoned Demon'),
-(36273, 0, 1, 0, 4, 0, 100, 1, 0, 0, 0, 0, 0, 0, 4, 5887, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                    'Varimathras - On Aggro - Play Sound (No Repeat)'),
-(36273, 0, 2, 0, 9, 0, 100, 0, 25000, 25000, 20000, 20000, 0, 30, 11, 20741, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Varimathras - Within 0-30 Range - Cast Shadow Bolt Volley'),
-(36273, 0, 3, 0, 2, 0, 100, 0, 0, 30, 20000, 20000, 0, 0, 11, 20743, 1, 0, 0, 0, 0, 5, 20, 0, 0, 0, 0, 0, 0, 0,        'Varimathras - Between 0-30% Health - Cast Drain Life'),
-(36273, 0, 4, 0, 9, 0, 100, 0, 20000, 20000, 15000, 25000, 0, 20, 11, 20740, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 'Varimathras - Within 0-20 Range - Cast Dominate Mind');
+(36273, 0, 0, 0, 54, 0, 100, 512, 0, 0, 0, 0, 0, 0, 11, 7741, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                '瓦里玛萨斯 - 召唤时 - 施放召唤恶魔'),
+(36273, 0, 1, 0, 4, 0, 100, 1, 0, 0, 0, 0, 0, 0, 4, 5887, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                    '瓦里玛萨斯 - 进入战斗 - 播放音效（仅一次）'),
+(36273, 0, 2, 0, 9, 0, 100, 0, 25000, 25000, 20000, 20000, 0, 30, 11, 20741, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, '瓦里玛萨斯 - 0-30码范围内 - 施放暗影箭齐射'),
+(36273, 0, 3, 0, 2, 0, 100, 0, 0, 30, 20000, 20000, 0, 0, 11, 20743, 1, 0, 0, 0, 0, 5, 20, 0, 0, 0, 0, 0, 0, 0,        '瓦里玛萨斯 - 生命值0-30%时 - 施放生命汲取'),
+(36273, 0, 4, 0, 9, 0, 100, 0, 20000, 20000, 15000, 25000, 0, 20, 11, 20740, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, '瓦里玛萨斯 - 0-20码范围内 - 施放精神控制');

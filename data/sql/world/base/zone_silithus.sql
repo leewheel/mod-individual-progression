@@ -7,7 +7,7 @@ DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN
 (11721, 11722, 11723, 11726, 11727, 11728, 11729, 11730, 11731, 11732, 11733, 11734, 11736, 11737, 11738, 11739, 11740, 11741, 11744, 11745, 11746, 11747, 
 11803, 11804, 11880, 11881, 11882, 11883, 12178, 12179, 14471, 14472, 14474, 14475, 14477, 14478, 14479, 15196, 15200, 15201, 15202, 15213, 15308, 15541, 15542);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -118,7 +118,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 (15542, 0, 3, 0, 61, 0, 100, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                       'Twilight Marauder - On Enrage - Say Line 0');
 
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 19 AND `ConditionTypeOrReference` = 8 AND `SourceEntry` IN (8320, 8349, 9415, 9416);
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 --
 (19, 0, 8320, 0, 0, 8, 0, 66003, 0, 0, 0, 0, 0, '', 'Huum Wildmane - Hide \'Twilight Geolords\' until player reaches Pre-AQ'), -- needed for if AllowEarlyDungeonSet2 is enabled
@@ -131,22 +131,22 @@ UPDATE `creature` SET `MovementType` = 1, `wander_distance` = 15 WHERE `guid` IN
 
 -- Deathclasp waypoints
 DELETE FROM `creature` WHERE `id` = 15196;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
 (42921, 15196, 1, 0, 0, 1, 1, 0, -8102.7, 967.628, 59.7207, 2.96696, 600, 0, 1, 8883, 0, 2, 0, 0, 0, '', 0, 0, NULL); 
 
 DELETE FROM `creature_formations` WHERE `leaderGUID` = 42921;
-INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES 
+REPLACE INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES 
 (42921, 42921, 0, 0, 515, 0, 0),
 (42921, 44396, 4, 150, 515, 0, 0),
 (42921, 44397, 4, 210, 515, 0, 0);
 
 DELETE FROM `creature_addon` WHERE `guid` = 42921;
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (42921, 429210, 0, 0, 0, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` = 429210;
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 (429210, 1, -8102.7, 967.628, 59.6608, NULL, 0, 0, 0, 100, 0),
 (429210, 2, -8114.65, 973.169, 61.9454, NULL, 0, 0, 0, 100, 0),
 (429210, 3, -8091.66, 969.205, 54.2255, NULL, 0, 0, 0, 100, 0),
@@ -165,7 +165,7 @@ DELETE FROM `creature_addon` WHERE `guid` IN (42969, 42983, 42984);
 
 DELETE FROM `creature` WHERE `id` = 15308;
 DELETE FROM `creature` WHERE `guid` BETWEEN @CGUID+1 AND @CGUID+8;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
 (43322, 15308, 1, 0, 0, 1, 1, 1, -7612.16, 1619.85, 2.5204, -1.45604, 3600, 0, 1, 7369, 11502, 2, 0, 0, 0, '', 0, 0, NULL),
 (43323, 15308, 1, 0, 0, 1, 1, 1, -6888.79, 1636.61, 2.8743, 0.795651, 3600, 0, 1, 7369, 11502, 2, 0, 0, 0, '', 0, 0, NULL),
@@ -182,7 +182,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 
 UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN (11880);
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN (-651001, -651002, -651003, -651004, -651005, -651006, -651007, -651008);
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -230,7 +230,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 (-651008, 0, 4, 0, 61, 0, 100, 0, 0, 0, 0, 0, 0, 0, 2, 21, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,      'Twilight Avenger - On Near Prophet - Set Faction');
 
 DELETE FROM `creature_formations` WHERE `leaderGUID` IN (43322, 43323);
-INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES 
+REPLACE INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES 
 (43322, 43322, 0, 0, 515, 0, 0),       -- https://www.youtube.com/watch?v=FgmHdNUmWbk
 (43322, @CGUID+1, 4, 20, 515, 0, 0),
 (43322, @CGUID+2, 4, 80, 515, 0, 0),
@@ -244,21 +244,21 @@ INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, 
 (43323, @CGUID+8, 4, 260, 515, 0, 0);
 
 DELETE FROM `pool_creature` WHERE `guid` IN (43322, 43323);
-INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
+REPLACE INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
 (43322, 601016, 0, 'Twilight Prophet'),
 (43323, 601016, 0, 'Twilight Prophet');
 
 DELETE FROM `pool_template` WHERE `entry` = 601016;
-INSERT INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
+REPLACE INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
 (601016, 1, 'Twilight Prophet');
 
 DELETE FROM `creature_addon` WHERE `guid` IN (43322, 43323);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (43322, 433220, 0, 0, 1, 0, 0, NULL),
 (43323, 433230, 0, 0, 1, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` IN (433220, 433230);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 (433220, 1, -7611.79, 1607.78, 2.3015, 4.75279, 0, 0, 0, 100, 0),
 (433220, 2, -7615.14, 1598.43, 3.98964, 5.05516, 0, 0, 0, 100, 0),
 (433220, 3, -7618.21, 1582, 5.60624, 4.38365, 0, 0, 0, 100, 0),
@@ -415,7 +415,7 @@ DELETE FROM `waypoint_data` WHERE `id` IN (432020, 432030);
 
 DELETE FROM `creature` WHERE `id` = 15541;
 DELETE FROM `creature` WHERE `guid` BETWEEN @CGUID+11 AND @CGUID+15;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
 `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 (43201, 15541, 1, 0, 0, 1, 1, 1, -6374.21, 532.318, 6.19409, 4.31401, 600, 0, 1, 10529, 0, 2, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+11, 15542, 1, 0, 0, 1, 1, 1, -6365.12, 537.924, 7.15975, 6.17294, 600, 0, 0, 3998, 0, 0, 0, 0, 0, '', NULL, 0, NULL), -- escort of 15541
@@ -426,7 +426,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 
 UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN (15542);
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN (-651011, -651012, -651013, -651014, -651015);
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -437,7 +437,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 (-651015, 0, 0, 0, 11, 0, 100, 0, 0, 0, 0, 0, 0, 0, 48, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Twilight Marauder - On Respawn - Set Active');
 
 DELETE FROM `creature_formations` WHERE `leaderGUID` = 43201;
-INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES 
+REPLACE INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES 
 (43201, 43201, 0, 0, 515, 0, 0),
 (43201, @CGUID+11, 4, 150, 515, 0, 0),
 (43201, @CGUID+12, 4, 210, 515, 0, 0),
@@ -447,7 +447,7 @@ INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, 
 
 DELETE FROM `creature_addon` WHERE `guid` = 43201;
 DELETE FROM `creature_addon` WHERE `guid` BETWEEN @CGUID+11 AND @CGUID+15;
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (43201, 432010, 14337, 0, 0, 0, 0, NULL),
 --
 (@CGUID+11, 0, 14337, 0, 0, 0, 0, NULL),
@@ -457,7 +457,7 @@ INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `e
 (@CGUID+15, 0, 14337, 0, 0, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` = 432010;
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (432010, 1, -6376.62, 532.586, 6.06976, NULL, 0, 0, 0, 100, 0),
 (432010, 2, -6387.27, 525.77, 6.35716, NULL, 0, 0, 0, 100, 0),

@@ -4,7 +4,7 @@ UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN 
 (3630, 3631, 3632, 3633, 3634, 3636, 3637, 3655, 3669, 3670, 3671, 3672, 3673, 3674, 3840, 5048, 5053, 5055, 5056, 5755, 5756, 5761, 5775);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -89,7 +89,7 @@ UPDATE `creature` SET `spawntimesecs` = 172800, `MovementType` = 1, `wander_dist
 UPDATE `creature` SET `spawntimesecs` = 54000,  `MovementType` = 1, `wander_distance` = 5 WHERE `id` = 3672; -- Boahn
 
 DELETE FROM `creature` WHERE `id` IN (3655, 3671);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
 --
 (14055,  3655, 1, 0, 0, 1, 1, 1, -658.948, -2006.91, 61.816, 3.46793,     275, 0, 0, 386, 0, 0, 0, 0, 0, '', 0, 0, NULL),   -- Mad Magglish
@@ -102,7 +102,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (695075, 3671, 43, 0, 0, 1, 1, 1, 46.4727, 183.984, -89.1516, 4.01967, 36000, 0, 0, 2165, 490, 0, 0, 0, 0, '', 0, 0, NULL);
 
 DELETE FROM `pool_creature` WHERE `pool_entry` IN (601039, 601040);
-INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
+REPLACE INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
 --
 (14055,  601039, 0, 'Mad Magglish'),
 (695071, 601039, 0, 'Mad Magglish'),
@@ -114,12 +114,12 @@ INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALU
 (695075, 601040, 0, 'Lady Anacondra');
 
 DELETE FROM `pool_template` WHERE `entry` IN (601039, 601040);
-INSERT INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
+REPLACE INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
 (601039, 1, 'Mad Magglish - Wailing Caverns'),
 (601040, 1, 'Lady Anacondra - Wailing Caverns');
 
 DELETE FROM `creature_addon` WHERE `guid` IN (14055, 695071, 695072);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
 (14055,  0, 0, 131072, 1, 0, 0, ''),
 (695071, 0, 0, 131072, 1, 0, 0, ''),
 (695072, 0, 0, 131072, 1, 0, 0, '');

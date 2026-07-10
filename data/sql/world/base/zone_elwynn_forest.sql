@@ -5,7 +5,7 @@ UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN 
 (6, 30, 38, 40, 43, 46, 61, 79, 80, 94, 97, 99, 100, 103, 113, 116, 118, 257, 285, 327, 330, 448, 473, 474, 475, 476, 478, 524, 525, 732, 735, 881);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -58,14 +58,14 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 (881, 0, 2, 0, 0, 0, 100, 0, 0, 0, 1000, 1000, 0, 0, 11, 20793, 64, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0,             'Surena Caledon - In Combat - Cast Fireball');
 
 DELETE FROM `creature_text` WHERE `CreatureID` = 79;
-INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
-(79, 0, 0, 'You no take candle!', 12, 0, 100, 0, 0, 0, 16658, 0,    'Narg the Taskmaster'),
-(79, 0, 1, 'Yiieeeee! Me run!', 12, 7, 100, 0, 0, 0, 1864, 0,       'Narg the Taskmaster'),
-(79, 0, 2, 'No kill me! No kill me!', 12, 0, 100, 0, 0, 0, 1863, 0, 'Narg the Taskmaster');
+REPLACE INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
+(79, 0, 0, '不许拿蜡烛！', 12, 0, 100, 0, 0, 0, 16658, 0,    'Narg the Taskmaster'),
+(79, 0, 1, '啊呀呀呀！我跑！', 12, 7, 100, 0, 0, 0, 1864, 0,       'Narg the Taskmaster'),
+(79, 0, 2, '别杀我！别杀我！', 12, 0, 100, 0, 0, 0, 1863, 0, 'Narg the Taskmaster');
 
 -- Hogger, fix missing waypoints and spawn points, entry 448, guid 80531
 DELETE FROM `creature` WHERE `id` = 448;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
 (80531, 448, 0, 0, 0, 1, 1, 1, -9946, 604.266, 38.2862, 0.297245, 180, 0, 1, 666, 0, 2, 0, 0, 0, '', 0, 0, NULL),
 (695022, 448, 0, 0, 0, 1, 1, 1, -9947.88, 594.773, 39.608, 5.19393, 180, 15, 0, 666, 0, 1, 0, 0, 0, '', 0, 0, NULL),
@@ -74,11 +74,11 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (695025, 448, 0, 0, 0, 1, 1, 1, -10018.6, 640.629, 39.0636, 1.3324, 180, 15, 0, 666, 0, 1, 0, 0, 0, '', 0, 0, NULL);
 
 DELETE FROM `creature_addon` WHERE `guid` = 80531;
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (80531, 805310, 0, 0, 0, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` = 805310;
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 (805310, 1, -9946, 604.266, 38.2862, NULL, 10000, 0, 0, 100, 0),
 (805310, 2, -9969.58, 625.799, 38.4956, NULL, 0, 0, 0, 100, 0),
 (805310, 3, -9996.3, 638.969, 39.1481, NULL, 0, 0, 0, 100, 0),
@@ -93,7 +93,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (805310, 12, -9982.26, 628.856, 38.2322, NULL, 0, 0, 0, 100, 0);
 
 DELETE FROM `pool_creature` WHERE `pool_entry` = 601013;
-INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
+REPLACE INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
 (80531,  601013, 0, 'Hogger'),
 (695022, 601013, 0, 'Hogger'),
 (695023, 601013, 0, 'Hogger'),
@@ -101,21 +101,21 @@ INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALU
 (695025, 601013, 0, 'Hogger');
 
 DELETE FROM `pool_template` WHERE `entry` = 601013;
-INSERT INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
+REPLACE INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
 (601013, 1, '');
 
 -- Kitta Firewind <Enchanting Trainer>
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 15 AND `SourceGroup` = 4169 AND `SourceEntry` = 0 AND `ConditionTypeOrReference` = 7;
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `ConditionTypeOrReference`, `ConditionValue1`, `ConditionValue2`, `Comment`) VALUES
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `ConditionTypeOrReference`, `ConditionValue1`, `ConditionValue2`, `Comment`) VALUES
 (15, 4169, 0, 7, 333, 125, 'Show menu if enchanting is 125 or higher');
 
 -- The Stolen Tome (Warlock)
 DELETE FROM `creature_questender` WHERE `id` = 459 AND `quest` = 1598;
-INSERT INTO `creature_questender` (`id`, `quest`) VALUES (459, 1598);
+REPLACE INTO `creature_questender` (`id`, `quest`) VALUES (459, 1598);
 
 -- The Stolen Tome (Warlock)
 DELETE FROM `creature_queststarter` WHERE `id` = 459 AND `quest` = 1598;
-INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES (459, 1598);
+REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES (459, 1598);
 
 -- update creature models
 UPDATE `creature_template_model` SET `CreatureDisplayID` = 604   WHERE `CreatureID` = 69;  -- Diseased Timber Wolf
@@ -123,22 +123,22 @@ UPDATE `creature_template_model` SET `CreatureDisplayID` = 10912 WHERE `Creature
 UPDATE `creature_template_model` SET `CreatureDisplayID` = 447   WHERE `CreatureID` = 299; -- Diseased Young Wolf
 
 -- update creature names
-UPDATE `creature_template` SET `name`    = 'Timber Wolf'              WHERE `entry` = 69;   -- Diseased Timber Wolf
-UPDATE `creature_template` SET `name`    = 'Young Wolf'               WHERE `entry` = 299;  -- Diseased Young Wolf
-UPDATE `creature_template` SET `subname` = 'Journeyman Blacksmith'    WHERE `entry` = 514;  -- Smith Argus
-UPDATE `creature_template` SET `subname` = 'Journeyman Tailor'        WHERE `entry` = 1103; -- Eldrin <Journeyman Tailor>
-UPDATE `creature_template` SET `subname` = 'Journeyman Alchemist'     WHERE `entry` = 1215; -- Alchemist Mallory <Journeyman Alchemist>
-UPDATE `creature_template` SET `subname` = 'Journeyman Leatherworker' WHERE `entry` = 1632; -- Adele Fielder <Journeyman Leatherworker>
-UPDATE `creature_template` SET `subname` = 'Fisherman'                WHERE `entry` = 1651; -- Lee Brown <Fisherman>
-UPDATE `creature_template` SET `subname` = 'Tabard Vendor'            WHERE `entry` = 5193; -- Rebecca Laughlin <Tabard Designer>
-UPDATE `creature_template` SET `subname` = 'Expert Alchemist'         WHERE `entry` = 5499; -- Lilyssia Nightbreeze <Alchemy Trainer>
-UPDATE `creature_template` SET `subname` = 'Herbalism Supplier'       WHERE `entry` = 5503; -- Eldraeith <Herbalism Supplies>
-UPDATE `creature_template` SET `subname` = 'Expert Blacksmith'        WHERE `entry` = 5511; -- Therum Deepforge <Blacksmithing Trainer>
-UPDATE `creature_template` SET `subname` = 'Expert Engineer'          WHERE `entry` = 5518; -- Lilliam Sparkspindle <Engineering Trainer>
-UPDATE `creature_template` SET `subname` = 'Expert Leatherworker'     WHERE `entry` = 5564; -- Simon Tanner <Leatherworking Trainer>
-UPDATE `creature_template` SET `subname` = 'Skinner'                  WHERE `entry` = 6306; -- Helene Peltskinner <Skinner>
-UPDATE `creature_template` SET `subname` = 'Journeyman Alchemist'     WHERE `entry` = 5500; -- Tel'Athir <Apprentice Alchemist> -- `trainer_type` = 2
-UPDATE `creature_template` SET `subname` = 'Expert Tailor'            WHERE `entry` = 5567; -- Sellandus <Apprentice Tailor> -- `trainer_type` = 2
+UPDATE `creature_template` SET `name`    = '森林狼'              WHERE `entry` = 69;   -- Diseased Timber Wolf
+UPDATE `creature_template` SET `name`    = '幼狼'               WHERE `entry` = 299;  -- Diseased Young Wolf
+UPDATE `creature_template` SET `subname` = '锻造训练师'    WHERE `entry` = 514;  -- Smith Argus
+UPDATE `creature_template` SET `subname` = '裁缝训练师'        WHERE `entry` = 1103; -- Eldrin <Journeyman Tailor>
+UPDATE `creature_template` SET `subname` = '炼金术训练师'     WHERE `entry` = 1215; -- Alchemist Mallory <Journeyman Alchemist>
+UPDATE `creature_template` SET `subname` = '制皮训练师' WHERE `entry` = 1632; -- Adele Fielder <Journeyman Leatherworker>
+UPDATE `creature_template` SET `subname` = '钓鱼训练师'                WHERE `entry` = 1651; -- Lee Brown <Fisherman>
+UPDATE `creature_template` SET `subname` = '战袍设计师'            WHERE `entry` = 5193; -- Rebecca Laughlin <Tabard Designer>
+UPDATE `creature_template` SET `subname` = '炼金术训练师'         WHERE `entry` = 5499; -- Lilyssia Nightbreeze <Alchemy Trainer>
+UPDATE `creature_template` SET `subname` = '草药学供应商'       WHERE `entry` = 5503; -- Eldraeith <Herbalism Supplies>
+UPDATE `creature_template` SET `subname` = '锻造训练师'        WHERE `entry` = 5511; -- Therum Deepforge <Blacksmithing Trainer>
+UPDATE `creature_template` SET `subname` = '工程学训练师'          WHERE `entry` = 5518; -- Lilliam Sparkspindle <Engineering Trainer>
+UPDATE `creature_template` SET `subname` = '制皮训练师'     WHERE `entry` = 5564; -- Simon Tanner <Leatherworking Trainer>
+UPDATE `creature_template` SET `subname` = '剥皮训练师'                  WHERE `entry` = 6306; -- Helene Peltskinner <Skinner>
+UPDATE `creature_template` SET `subname` = '初级炼金师'     WHERE `entry` = 5500; -- Tel'Athir <Apprentice Alchemist> -- `trainer_type` = 2
+UPDATE `creature_template` SET `subname` = '初级裁缝'            WHERE `entry` = 5567; -- Sellandus <Apprentice Tailor> -- `trainer_type` = 2
 
 UPDATE `creature_template` SET `npcflag` = 81 WHERE `entry` IN (5500, 5567);
 
@@ -147,35 +147,33 @@ DELETE FROM `creature_template_addon` WHERE `entry` = 299; -- Diseased Young Wol
 
 -- Wolves Across the Border
 DELETE FROM `quest_offer_reward` WHERE `ID` = 33;
-INSERT INTO `quest_offer_reward` (`ID`, `Emote1`, `RewardText`) VALUES (33, 1, 'You\'ve been busy! I can\'t wait to cook up that wolf meat...$b$bI have some things here you might want - take your pick!');
+REPLACE INTO `quest_offer_reward` (`ID`, `Emote1`, `RewardText`) VALUES (33, 1, '真是太辛苦你了！我已经等不及要去煮狼肉了……$b$b我这里有些东西你也许用得着……选一件吧！');
 
 -- Wolves Across the Border
 DELETE FROM `quest_request_items` WHERE `ID` = 33;
-INSERT INTO `quest_request_items` (`ID`, `EmoteOnComplete`, `EmoteOnIncomplete`, `CompletionText`) VALUES (33, 6, 6, 'Hey $N. I\'m getting hungry...did you get that tough wolf meat?');
+REPLACE INTO `quest_request_items` (`ID`, `EmoteOnComplete`, `EmoteOnIncomplete`, `CompletionText`) VALUES (33, 6, 6, '嘿，$N。我有些饿了……你拿到硬狼肉了吗？');
 
 -- Bounty on Garrick Padfoot
 UPDATE `quest_template` SET `Flags` = 8 WHERE `ID` = 6;
 
 -- Kobold Camp Cleanup
-UPDATE `quest_template` SET `Flags`=8, `LogDescription`='Kill 10 Kobold Vermin, then return to Marshal McBride.', `RequiredNpcOrGoCount1` = 10 WHERE `ID` = 7;
+UPDATE `quest_template` SET `Flags`=8, `LogDescription`='消灭10只狗头人歹徒，然后向治安官玛克布莱德复命。', `RequiredNpcOrGoCount1` = 10 WHERE `ID` = 7;
 
 -- Investigate Echo Ridge
 UPDATE `quest_template` SET `Flags` = 8, 
-`LogDescription` = 'Kill 10 Kobold Workers, then report back to Marshal McBride.', 
-`QuestDescription`='$N, my scouts tell me that the kobold infestation is larger than we had thought.  A group of kobold workers has camped near the Echo Ridge Mine to the north.$B$B
-Go to the mine and remove them.  We know there are at least 10.  Kill them, see if there are more, then report back to me.', `RequiredNpcOrGoCount1` = 10 WHERE `ID` = 15;
+`LogDescription` = '消灭10只狗头人劳工，然后向治安官玛克布莱德复命。', 
+`QuestDescription`='$N，我的探子告诉我说，狗头人群落的规模远远大于我们的估计，一群狗头人劳工刚刚入侵了北边的回音山矿洞。$B$B到矿洞里去，把他们都除掉。那里至少有10个狗头人劳工，杀光他们，如果你发现他们的数量远不止这么多的话，就赶快回报给我。', `RequiredNpcOrGoCount1` = 10 WHERE `ID` = 15;
 
 -- Brotherhood of Thieves
-UPDATE `quest_template` SET `Flags` = 8, `LogDescription` = 'Bring 12 Red Burlap Bandanas to Deputy Willem outside the Northshire Abbey.', `RequiredItemCount1` = 12 WHERE `ID` = 18;
+UPDATE `quest_template` SET `Flags` = 8, `LogDescription` = '给北郡的维里副队长带回12个红色粗麻面罩。', `RequiredItemCount1` = 12 WHERE `ID` = 18;
 
 -- Skirmish at Echo Ridge
-UPDATE `quest_template` SET `Flags` = 8, `LogDescription` = 'Kill 12 Kobold Laborers, then return to Marshal McBride at Northshire Abbey.', `RequiredNpcOrGoCount1` = 12 WHERE `ID` = 21;
+UPDATE `quest_template` SET `Flags` = 8, `LogDescription` = '消灭12只狗头人苦力，然后向北郡修道院里的治安官玛克布莱德复命。', `RequiredNpcOrGoCount1` = 12 WHERE `ID` = 21;
 
 -- Wolves Across the Border
 UPDATE `quest_template` SET `Flags` = 8, 
-`LogDescription`   = 'Bring 8 pieces of Tough Wolf Meat to Eagan Peltskinner outside Northshire Abbey.', 
-`QuestDescription` = 'I hate those nasty timber wolves!  But I sure like eating wolf steaks...  Bring me tough wolf meat and I will exchange it for something you\'ll find useful.$B$B
-Tough wolf meat is gathered from hunting the timber wolves and young wolves wandering the Northshire countryside.', `RequiredItemId1` = 750 WHERE `ID` = 33;
+`LogDescription`   = '给北郡修道院外的伊根·派特斯金纳带回8块硬狼肉。', 
+`QuestDescription` = '我最讨厌那些肮脏狡猾的森林狼了！但我一直都很爱吃狼肉排……给我带几块硬狼肉来，我会拿一些对你有用的东西来交换。$B$B你可以在北郡的郊外找到森林狼和幼狼，杀掉它们就可以得到硬狼肉了。', `RequiredItemId1` = 750 WHERE `ID` = 33;
 
 UPDATE `quest_template` SET `Flags`=0 WHERE `ID`=54; -- Report to Goldshire
 UPDATE `quest_template` SET `Flags`=8 WHERE `ID`=783; -- A Threat Within
@@ -187,8 +185,7 @@ UPDATE `quest_template` SET `Flags`=0 WHERE `ID`=3905; -- Grape Manifest
 
 -- Eagan Peltskinner
 UPDATE `quest_template` SET `QuestDescription` = 
-'Eagan Peltskinner is looking for someone to hunt wolves for him. That\'s good news, because we\'re seeing a lot more wolves in Northshire Valley lately.$B$B
-If you\'re interested then speak with Eagan. He\'s around the side of the abbey, to the left.' WHERE `ID`=5261;
+'伊根·派特斯金纳正在找人帮他猎捕狼。这是个好消息，因为现在在北郡山谷里的狼实在是太多了。$B$B如果你感兴趣的话，那就去和伊根谈谈吧。他就在修道院的左边。' WHERE `ID`=5261;
 
 UPDATE `quest_template_addon` SET `SpecialFlags` = 0 WHERE `ID` IN (
 6,    -- Bounty on Garrick Padfoot
@@ -213,18 +210,18 @@ UPDATE `quest_template_addon` SET `SpecialFlags` = 0 WHERE `ID` IN (
 );
 
 DELETE FROM `creature_loot_template` WHERE `Item` = 750 AND `Entry` IN (69, 299);
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Chance`, `QuestRequired`, `MinCount`, `MaxCount`, `Comment`) VALUES 
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Chance`, `QuestRequired`, `MinCount`, `MaxCount`, `Comment`) VALUES 
 (69, 750, 80, 1, 1, 1, 'Timber Wolf - Tough Wolf Meat'),
 (299, 750, 80, 1, 1, 1, 'Young Wolf - Tough Wolf Meat');
 
 DELETE FROM `creature_questitem` WHERE `CreatureEntry` IN (69, 299);
-INSERT INTO `creature_questitem` (`CreatureEntry`, `Idx`, `ItemId`, `VerifiedBuild`) VALUES
+REPLACE INTO `creature_questitem` (`CreatureEntry`, `Idx`, `ItemId`, `VerifiedBuild`) VALUES
 (69, 0, 750, 0),
 (299, 0, 750, 0);
 
 -- Restore Mirror Lake Orchard creatures removed in WotLK
 DELETE FROM `creature` WHERE `guid` IN (80391, 80392, 80393, 80394, 80396, 80397, 80399, 80400, 80401, 80402, 80403, 80404, 80405) AND `id` IN (116, 94);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`) VALUES
 (80391, 116, 0, 0, 0, 1, 1, 1, -9441.48, 469.81, 53.2758, 4.26422, 180, 5, 0, 156, 0, 1, 0, 0, 0, '', 0),
 (80392, 116, 0, 0, 0, 1, 1, 1, -9444.94, 473.775, 52.3257, 4.03171, 180, 5, 0, 156, 0, 1, 0, 0, 0, '', 0),
@@ -250,7 +247,7 @@ UPDATE `creature_addon` SET `path_id` = 0 WHERE `guid` = 80251;
 DELETE FROM smart_scripts WHERE `entryorguid` IN (-80251,-80149) and `source_type` = 0;
 DELETE FROM smart_scripts WHERE `entryorguid` IN (3800) and `source_type` = 9;
 
-INSERT INTO `smart_scripts` (`entryorguid`,`source_type`,`id`,`link`,`event_type`,`event_phase_mask`,`event_chance`,`event_flags`,
+REPLACE INTO `smart_scripts` (`entryorguid`,`source_type`,`id`,`link`,`event_type`,`event_phase_mask`,`event_chance`,`event_flags`,
 `event_param1`,`event_param2`,`event_param3`,`event_param4`,`event_param5`,`event_param6`,
 `action_type`,`action_param1`,`action_param2`,`action_param3`,`action_param4`,`action_param5`,`action_param6`,
 `target_type`,`target_param1`,`target_param2`,`target_param3`,`target_param4`,`target_x`,`target_y`,`target_z`,`target_o`,`comment`) VALUES 
@@ -272,7 +269,7 @@ DELETE FROM `waypoint_scripts` where id IN (8025100, 8014900);
 DELETE FROM `waypoint_data`    where id IN (802510, 801490);
 
 DELETE FROM `waypoints` WHERE `entry` IN (8014900, 8025100);
-INSERT INTO `waypoints` (`entry`, `pointid`, `position_x`, `position_y`, `position_z`, `point_comment`) VALUES
+REPLACE INTO `waypoints` (`entry`, `pointid`, `position_x`, `position_y`, `position_z`, `point_comment`) VALUES
 (8014900,1,  -9008.89, -320.603, 75.8279, 'Defias Thug'), -- 1 sec delay
 (8014900,2,  -8981.22, -335.138, 73.3474, 'Defias Thug'),
 (8014900,3,  -8946.51, -338.891, 71.1134, 'Defias Thug'),

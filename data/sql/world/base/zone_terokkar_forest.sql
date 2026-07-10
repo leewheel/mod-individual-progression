@@ -1,94 +1,94 @@
--- fix drop Mature Bone Sifter Carcass (didn't drop)
+-- 修复成年筛骨虫尸体掉落问题（原先不掉落）
 UPDATE `creature_loot_template` SET `GroupId` = 2 WHERE `Item` = 31814 AND `Entry` = 22482;
 
--- quest: Evil Draws Near - fix turn in screen
+-- 任务：邪恶逼近 - 修复提交界面
 UPDATE `quest_template` SET `RequiredItemId3` = 0, `RequiredItemCount3` = 0 WHERE `ID` = 10923;
 
--- quest: Safety is Job One - fix turn in text
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to the Ethereal Transporter Control Panel in the Mana-Tombs.' WHERE `ID` = 10216;
+-- 任务：安全第一 - 修复提交文本
+UPDATE `quest_template` SET `QuestCompletionLog` = '返回法力墓地的虚灵传送器控制台。' WHERE `ID` = 10216;
 
--- fix movement Teribus the Cursed - patrols while nobody is doing the quest.
+-- 修复受诅者泰里布斯的移动问题 - 无人做任务时也在巡逻
 DELETE FROM `creature_template` WHERE `entry` IN (22441, 122441);
-INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `name`, `subname`, `IconName`, `gossip_menu_id`, 
+REPLACE INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `name`, `subname`, `IconName`, `gossip_menu_id`, 
 `minlevel`, `maxlevel`, `exp`, `faction`, `npcflag`, `speed_walk`, `speed_run`, `speed_swim`, `speed_flight`, `detection_range`, `rank`, `dmgschool`, `DamageModifier`, 
 `BaseAttackTime`, `RangeAttackTime`, `BaseVariance`, `RangeVariance`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, 
 `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `HoverHeight`, `HealthModifier`, `ManaModifier`, `ArmorModifier`, `ExperienceModifier`, `RacialLeader`, `movementId`, 
 `RegenHealth`, `CreatureImmunitiesId`, `flags_extra`, `ScriptName`, `VerifiedBuild`) VALUES
 --
-(22441,0,0,0,0,0,'Teribus the Cursed',NULL,NULL,0,65,65,1,16,0,1,2.28571,1,1,20,1,0,3,2000,2000,1,1,1,33536,2048,0,0,6,8,0,0,0,0,0,0,0,'SmartAI',1,1,5,1,1,1,0,0,1,-93,2,'',0),
-(122441,0,0,0,0,0,'Teribus the Cursed',NULL,NULL,0,65,65,1,16,0,1,2.28571,1,1,20,1,0,3,2000,2000,1,1,1,33538,0,0,0,6,8,0,0,0,0,0,0,0,'',1,1,5,1,1,1,0,0,1,-93,2,'',0);
+(22441,0,0,0,0,0,'受诅者泰里布斯',NULL,NULL,0,65,65,1,16,0,1,2.28571,1,1,20,1,0,3,2000,2000,1,1,1,33536,2048,0,0,6,8,0,0,0,0,0,0,0,'SmartAI',1,1,5,1,1,1,0,0,1,-93,2,'',0),
+(122441,0,0,0,0,0,'受诅者泰里布斯',NULL,NULL,0,65,65,1,16,0,1,2.28571,1,1,20,1,0,3,2000,2000,1,1,1,33538,0,0,0,6,8,0,0,0,0,0,0,0,'',1,1,5,1,1,1,0,0,1,-93,2,'',0);
 
 DELETE FROM `creature_template_model` WHERE `CreatureID` IN (122441);
-INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`, `DisplayScale`, `Probability`, `VerifiedBuild`) VALUES 
+REPLACE INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`, `DisplayScale`, `Probability`, `VerifiedBuild`) VALUES 
 (122441, 0, 21018, 1, 1, 12340);
 
 DELETE FROM `creature_template_movement` WHERE `CreatureID` IN (122441);
-INSERT INTO `creature_template_movement` (`CreatureId`, `Ground`, `Swim`, `Flight`, `Rooted`, `Chase`, `Random`, `InteractionPauseTimer`) VALUES 
+REPLACE INTO `creature_template_movement` (`CreatureId`, `Ground`, `Swim`, `Flight`, `Rooted`, `Chase`, `Random`, `InteractionPauseTimer`) VALUES 
 (122441, 1, 0, 1, 0, 0, 0, NULL);
 
 UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN (5355, 22441);
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN (5355, 22441);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
 --
-(5355, 0, 0, 0, 9, 0, 100, 0, 0, 0, 3000, 6000, 0, 5, 11, 11976, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0,             'Firewing Defender - Within 0-5 Range - Cast Strike'),
-(5355, 0, 1, 0, 0, 0, 100, 0, 6000, 8000, 12000, 18000, 0, 0, 11, 33483, 1, 0, 0, 0, 0, 5, 30, 0, 0, 0, 0, 0, 0, 0,    'Firewing Defender - In Combat - Cast Mana Tap'),
-(5355, 0, 2, 0, 0, 0, 100, 0, 8000, 13000, 1300, 18000, 0, 0, 11, 33390, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,     'Firewing Defender - In Combat - Cast Arcane Torrent'),
-(5355, 0, 3, 0, 4, 0, 30, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 21, 40, 0, 0, 0, 0, 0, 0, 0,                       'Firewing Defender - On Agro - Say'),
+(5355, 0, 0, 0, 9, 0, 100, 0, 0, 0, 3000, 6000, 0, 5, 11, 11976, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0,             '火翼防御者 - 0-5码范围内 - 施放打击'),
+(5355, 0, 1, 0, 0, 0, 100, 0, 6000, 8000, 12000, 18000, 0, 0, 11, 33483, 1, 0, 0, 0, 0, 5, 30, 0, 0, 0, 0, 0, 0, 0,    '火翼防御者 - 战斗中 - 施放法力分流'),
+(5355, 0, 2, 0, 0, 0, 100, 0, 8000, 13000, 1300, 18000, 0, 0, 11, 33390, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,     '火翼防御者 - 战斗中 - 施放奥术洪流'),
+(5355, 0, 3, 0, 4, 0, 30, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 21, 40, 0, 0, 0, 0, 0, 0, 0,                       '火翼防御者 - 进入战斗 - 说台词'),
 --
-(22441, 0, 0, 1, 38, 0, 100, 512, 1, 1, 0, 0, 0, 0, 48, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                   'Teribus the Cursed - On Data Set - Set Active'),
-(22441, 0, 1, 2, 61, 0, 100, 512, 0, 0, 0, 0, 0, 0, 47, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                   'Teribus the Cursed - On Data Set - Set Visible ON'),
-(22441, 0, 2, 3, 61, 0, 100, 512, 0, 0, 0, 0, 0, 0, 47, 0, 0, 0, 0, 0, 0, 10, 622441, 122441, 0, 0, 0, 0, 0, 0,        'Teribus the Cursed - On Data Set - Set Visible OFF for patrol'),
-(22441, 0, 3, 0, 61, 0, 100, 512, 0, 0, 0, 0, 0, 0, 69, 1, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, -3398.96, 4466.33, -11.18, 0, 'Teribus the Cursed - On Data Set - Move To Position'),
-(22441, 0, 4, 5, 34, 0, 100, 0, 8, 1, 0, 0, 0, 0, 5, 293, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                    'Teribus the Cursed - Movement Inform - Play Emote'),
-(22441, 0, 5, 6, 61, 0, 100, 512, 0, 0, 0, 0, 0, 0, 48, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                   'Teribus the Cursed - On Data Set - Set Active off'),
-(22441, 0, 6, 7, 61, 0, 100, 512, 0, 0, 0, 0, 0, 0, 22, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                   'Teribus the Cursed - On Data Set - Set Event Phase'),
-(22441, 0, 7, 0, 61, 0, 100, 512, 0, 0, 0, 0, 0, 0, 101, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                  'Teribus the Cursed - On Data Set - Set Home Position'),
-(22441, 0, 8, 9, 60, 1, 100, 513, 2000, 2000, 0, 0, 0, 0, 19, 768, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,           'Teribus the Cursed - On Update - Remove Unit Flags'),
-(22441, 0, 9, 0, 61, 0, 100, 513, 0, 0, 0, 0, 0, 0, 49, 0, 0, 0, 0, 0, 0, 21, 70, 0, 0, 0, 0, 0, 0, 0,                 'Teribus the Cursed - On Update - Attack Start'),
-(22441, 0, 10, 0, 7, 0, 100, 512, 0, 0, 0, 0, 0, 0, 101, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                  'Teribus the Cursed - On Data Set - Set Home Position'),
-(22441, 0, 11, 12, 11, 0, 100, 512, 0, 0, 0, 0, 0, 0, 47, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                 'Teribus the Cursed - On Respawn - Set Visible OFF'),
-(22441, 0, 12, 0, 61, 0, 100, 512, 0, 0, 0, 0, 0, 0, 47, 1, 0, 0, 0, 0, 0, 10, 622441, 122441, 0, 0, 0, 0, 0, 0,       'Teribus the Cursed - On Respawn - Set Visible ON for patrol');
+(22441, 0, 0, 1, 38, 0, 100, 512, 1, 1, 0, 0, 0, 0, 48, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                   '受诅者泰里布斯 - 数据设置 - 设置激活'),
+(22441, 0, 1, 2, 61, 0, 100, 512, 0, 0, 0, 0, 0, 0, 47, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                   '受诅者泰里布斯 - 数据设置 - 设置可见'),
+(22441, 0, 2, 3, 61, 0, 100, 512, 0, 0, 0, 0, 0, 0, 47, 0, 0, 0, 0, 0, 0, 10, 622441, 122441, 0, 0, 0, 0, 0, 0,        '受诅者泰里布斯 - 数据设置 - 为巡逻设置不可见'),
+(22441, 0, 3, 0, 61, 0, 100, 512, 0, 0, 0, 0, 0, 0, 69, 1, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, -3398.96, 4466.33, -11.18, 0, '受诅者泰里布斯 - 数据设置 - 移动到位置'),
+(22441, 0, 4, 5, 34, 0, 100, 0, 8, 1, 0, 0, 0, 0, 5, 293, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                    '受诅者泰里布斯 - 移动信息 - 播放表情'),
+(22441, 0, 5, 6, 61, 0, 100, 512, 0, 0, 0, 0, 0, 0, 48, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                   '受诅者泰里布斯 - 数据设置 - 取消激活'),
+(22441, 0, 6, 7, 61, 0, 100, 512, 0, 0, 0, 0, 0, 0, 22, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                   '受诅者泰里布斯 - 数据设置 - 设置事件阶段'),
+(22441, 0, 7, 0, 61, 0, 100, 512, 0, 0, 0, 0, 0, 0, 101, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                  '受诅者泰里布斯 - 数据设置 - 设置原地位置'),
+(22441, 0, 8, 9, 60, 1, 100, 513, 2000, 2000, 0, 0, 0, 0, 19, 768, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,           '受诅者泰里布斯 - 更新时 - 移除单位标记'),
+(22441, 0, 9, 0, 61, 0, 100, 513, 0, 0, 0, 0, 0, 0, 49, 0, 0, 0, 0, 0, 0, 21, 70, 0, 0, 0, 0, 0, 0, 0,                 '受诅者泰里布斯 - 更新时 - 开始攻击'),
+(22441, 0, 10, 0, 7, 0, 100, 512, 0, 0, 0, 0, 0, 0, 101, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                  '受诅者泰里布斯 - 数据设置 - 设置原地位置'),
+(22441, 0, 11, 12, 11, 0, 100, 512, 0, 0, 0, 0, 0, 0, 47, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                 '受诅者泰里布斯 - 重生时 - 设置不可见'),
+(22441, 0, 12, 0, 61, 0, 100, 512, 0, 0, 0, 0, 0, 0, 47, 1, 0, 0, 0, 0, 0, 10, 622441, 122441, 0, 0, 0, 0, 0, 0,       '受诅者泰里布斯 - 重生时 - 为巡逻设置可见');
 
--- fix Terokk evade issue -- 00_cleanup (this can be removed at some point)
+-- 修复泰罗克脱战问题 -- 00_cleanup（以后可以移除）
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` = 21838;
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(21838, 0, 0, 0, 0, 0, 100, 0, 4000, 7000, 10000, 15000, 0, 0, 11, 40721, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0,     'Terokk - In Combat - Cast \'Shadow Bolt Volley\''),
-(21838, 0, 1, 0, 0, 0, 100, 0, 6000, 9000, 7000, 9000, 0, 0, 11, 15284, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0,       'Terokk - In Combat - Cast \'Cleave\''),
-(21838, 0, 2, 0, 54, 0, 100, 0, 0, 0, 0, 0, 0, 0, 80, 2183800, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                'Terokk - On Just Summoned - Run Script'),
-(21838, 0, 3, 0, 4, 0, 100, 0, 0, 0, 0, 0, 0, 0, 112, 97, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                     'Terokk - On Aggro - Start Skyguard Ace Event'),
-(21838, 0, 4, 0, 0, 0, 100, 0, 18000, 30000, 16000, 32000, 0, 0, 80, 2183801, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Terokk - In Combat and Outside \'Divine Shield\' Phase - Run Chosen One Script'), -- Only Outside Divine Shield
-(21838, 0, 5, 6, 0, 0, 100, 0, 45000, 60000, 45000, 75000, 0, 0, 11, 40733, 32, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,  'Terokk - In Combat - Cast \'Divine Shield\''),
-(21838, 0, 6, 0, 61, 0, 100, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                       'Terokk - On \'Divine Shield\' Cast - Say Line 1'),
-(21838, 0, 7, 8, 32, 0, 100, 0, 0, 1000000, 0, 0, 0, 0, 28, 40733, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,            'Terokk - On Damaged by \'Ancient Flames\' - Remove Aura \'Divine Shield\' (Phase 1)'), -- Only with Divine Shield
-(21838, 0, 8, 9, 61, 0, 100, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                       'Terokk - On Spellhit \'Ancient Flames\' - Say Line 2'),
-(21838, 0, 9, 0, 61, 0, 100, 0, 0, 0, 0, 0, 0, 0, 11, 28747, 34, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                 'Terokk - On Spellhit \'Ancient Flames\' - Cast \'Frenzy\''),
-(21838, 0, 10, 11, 7, 0, 100, 0, 0, 0, 0, 0, 0, 0, 41, 0, 0, 0, 0, 0, 0, 19, 23377, 90, 0, 0, 0, 0, 0, 0,               'Terokk - On Evade - Despawn Target'),
-(21838, 0, 11, 0, 61, 0, 100, 0, 0, 0, 0, 0, 0, 0, 41, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                     'Terokk - On Evade - Despawn Instant'),
-(21838, 0, 12, 0, 6, 0, 100, 0, 0, 0, 0, 0, 0, 0, 223, 1, 0, 0, 0, 0, 0, 10, 12478, 23377, 0, 0, 0, 0, 0, 0,            'Terokk - On Just Died - Do Action Terokk Dead');
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
+(21838, 0, 0, 0, 0, 0, 100, 0, 4000, 7000, 10000, 15000, 0, 0, 11, 40721, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0,     '泰罗克 - 战斗中 - 施放暗影箭雨'),
+(21838, 0, 1, 0, 0, 0, 100, 0, 6000, 9000, 7000, 9000, 0, 0, 11, 15284, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0,       '泰罗克 - 战斗中 - 施放顺劈斩'),
+(21838, 0, 2, 0, 54, 0, 100, 0, 0, 0, 0, 0, 0, 0, 80, 2183800, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                '泰罗克 - 召唤时 - 运行脚本'),
+(21838, 0, 3, 0, 4, 0, 100, 0, 0, 0, 0, 0, 0, 0, 112, 97, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                     '泰罗克 - 进入战斗 - 启动天空卫队王牌飞行员事件'),
+(21838, 0, 4, 0, 0, 0, 100, 0, 18000, 30000, 16000, 32000, 0, 0, 80, 2183801, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, '泰罗克 - 战斗中且在神圣护盾阶段外 - 运行天选之人脚本'), -- 仅在神圣护盾外
+(21838, 0, 5, 6, 0, 0, 100, 0, 45000, 60000, 45000, 75000, 0, 0, 11, 40733, 32, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,  '泰罗克 - 战斗中 - 施放神圣护盾'),
+(21838, 0, 6, 0, 61, 0, 100, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                       '泰罗克 - 施放神圣护盾后 - 说台词1'),
+(21838, 0, 7, 8, 32, 0, 100, 0, 0, 1000000, 0, 0, 0, 0, 28, 40733, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,            '泰罗克 - 被远古之火击中时 - 移除神圣护盾光环（阶段1）'), -- 仅在有神圣护盾时
+(21838, 0, 8, 9, 61, 0, 100, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                       '泰罗克 - 法术命中远古之火时 - 说台词2'),
+(21838, 0, 9, 0, 61, 0, 100, 0, 0, 0, 0, 0, 0, 0, 11, 28747, 34, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                 '泰罗克 - 法术命中远古之火时 - 施放狂暴'),
+(21838, 0, 10, 11, 7, 0, 100, 0, 0, 0, 0, 0, 0, 0, 41, 0, 0, 0, 0, 0, 0, 19, 23377, 90, 0, 0, 0, 0, 0, 0,               '泰罗克 - 脱战时 - 消失目标'),
+(21838, 0, 11, 0, 61, 0, 100, 0, 0, 0, 0, 0, 0, 0, 41, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                     '泰罗克 - 脱战时 - 立即消失'),
+(21838, 0, 12, 0, 6, 0, 100, 0, 0, 0, 0, 0, 0, 0, 223, 1, 0, 0, 0, 0, 0, 10, 12478, 23377, 0, 0, 0, 0, 0, 0,            '泰罗克 - 死亡时 - 执行泰罗克死亡动作');
 
--- add UNIT_FLAG_IMMUNE_TO_PC and UNIT_FLAG_IMMUNE_TO_NPC flags to avoid evade
+-- 添加UNIT_FLAG_IMMUNE_TO_PC和UNIT_FLAG_IMMUNE_TO_NPC标记以避免脱战
 UPDATE `creature_template` SET `unit_flags` = 33600 WHERE `entry` = 21838;
 
--- fix SMART_ACTION_TALK worldserver errors
+-- 修复SMART_ACTION_TALK世界服务器错误
 UPDATE `smart_scripts` SET `target_type` = 21, `target_param1` = 40 WHERE `entryorguid` = 1410 AND `source_type` = 0 AND `id` = 3;
 UPDATE `smart_scripts` SET `target_type` = 21, `target_param1` = 40 WHERE `entryorguid` = 16769 AND `source_type` = 0 AND `id` = 17;
 
 DELETE FROM `creature` WHERE `guid` IN (247237, 622441);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
 `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
-(247237, 22441, 530, 0, 0, 1, 1, 0, -3400.86, 4665.3, 99.6544, 4.62677, 300, 0, 0, 29570, 0, 0, 0, 0, 0, '', 0, 0, 'SAI Target'),
-(622441, 122441, 530, 0, 0, 1, 1, 0, -3536.9500, 4552.8501, 83.9206, 1.4071, 300, 0, 1, 29570, 0, 2, 0, 0, 0, '', 0, 0, 'Patrol');
+(247237, 22441, 530, 0, 0, 1, 1, 0, -3400.86, 4665.3, 99.6544, 4.62677, 300, 0, 0, 29570, 0, 0, 0, 0, 0, '', 0, 0, 'SAI目标'),
+(622441, 122441, 530, 0, 0, 1, 1, 0, -3536.9500, 4552.8501, 83.9206, 1.4071, 300, 0, 1, 29570, 0, 2, 0, 0, 0, '', 0, 0, '巡逻');
 
 DELETE FROM `creature_addon` WHERE `guid` = 622441;
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (622441, 6224410, 0, 0, 0, 0, 4, '');
 
 DELETE FROM `waypoint_data` WHERE `id` = 6224410;
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (6224410, 1, -3536.95, 4552.85, 83.9206, 0, 0, 2, 0, 100, 0),
 (6224410, 2, -3409.62, 4449.58, 83.9206, 0, 0, 2, 0, 100, 0),
@@ -163,12 +163,12 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (6224410, 71, -3409.62, 4449.58, 83.9206, 0, 0, 2, 0, 100, 0),
 (6224410, 72, -3375.35, 4441.38, 83.9206, 0, 0, 2, 0, 100, 0);
 
--- fix movement Rotting Forest-Rager (entry 22307)
+-- 修复腐烂的森林愤怒者移动问题（entry 22307）
 UPDATE `creature` SET `MovementType` = 2, `currentwaypoint` = 1, `wander_distance` = 0 WHERE `guid` IN (78435, 78436, 78437, 78438, 78439);
-DELETE FROM `creature` WHERE `guid` = 133907 AND `id` = 22307; -- misplaced
+DELETE FROM `creature` WHERE `guid` = 133907 AND `id` = 22307; -- 位置错误
 
 DELETE FROM `creature_addon` WHERE `guid` BETWEEN 78435 AND 78439;
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (78435, 784350, 0, 0, 0, 0, 0, ''),
 (78436, 784360, 0, 0, 0, 0, 0, ''),
 (78437, 784370, 0, 0, 0, 0, 0, ''),
@@ -176,7 +176,7 @@ INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `e
 (78439, 784390, 0, 0, 0, 0, 0, '');
 
 DELETE FROM `waypoint_data` WHERE `id` BETWEEN 784350 AND 784390;
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (784350, 1, -2831, 4488.55, -5.40144, 0, 0, 0, 0, 100, 0),
 (784350, 2, -2833.69, 4511.24, -6.97536, 0, 0, 0, 0, 100, 0),
@@ -274,24 +274,24 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 SET @CGUID    := 671000;
 SET @WPID     := 6710000;
 
--- fix Raven Stone Fragments
+-- 修复渡鸦石碎片
 UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN (22986);
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN (22986);
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
 --
-(22986, 0, 0, 0, 75, 0, 100, 0, 0, 22972, 5, 2000, 0, 0, 50, 185541, 15, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Invis Raven Stone - On Near Sparrowhawk - Spawn Raven Stone Fragment');
+(22986, 0, 0, 0, 75, 0, 100, 0, 0, 22972, 5, 2000, 0, 0, 50, 185541, 15, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, '隐形渡鸦石 - 麻雀鹰靠近时 - 生成渡鸦石碎片');
 
--- fix speed Monstrous Kaliri - https://www.youtube.com/watch?v=vLIzGAOyQjY
-UPDATE `creature_template` SET `speed_walk` = 4 WHERE `Entry` = 23051; -- was set to 14
+-- 修复巨型卡利鸟速度 - https://www.youtube.com/watch?v=vLIzGAOyQjY
+UPDATE `creature_template` SET `speed_walk` = 4 WHERE `Entry` = 23051; -- 原先设置为14
 
 DELETE FROM `creature` WHERE `id` IN (21644, 21649, 21650, 21651, 21723, 21728, 21730, 21763, 21787, 21804, 21911, 23029, 23051, 23219);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
 `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
 
--- Skettis Wing Guard
+-- 斯克提斯翼卫
 (@CGUID+1,  21644, 530, 0, 0, 1, 1, 1, -3869.3799, 3325.4800, 274.5950, 3.7699, 300, 0, 0, 6986, 0, 0, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+2,  21644, 530, 0, 0, 1, 1, 1, -3854.9299, 3311.5300, 274.5640, 3.7176, 300, 0, 0, 6986, 0, 0, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+3,  21644, 530, 0, 0, 1, 1, 1, -3734.6799, 3309.8101, 293.5740, 3.0369, 300, 0, 0, 6986, 0, 0, 0, 0, 0, '', 0, 0, NULL),
@@ -305,7 +305,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (@CGUID+11, 21644, 530, 0, 0, 1, 1, 1, -4186.9600, 3089.4399, 324.0740, 1.5533, 300, 0, 0, 6986, 0, 0, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+12, 21644, 530, 0, 0, 1, 1, 1, -4172.2300, 3087.3000, 323.6890, 1.0647, 300, 0, 0, 6986, 0, 0, 0, 0, 0, '', 0, 0, NULL),
 
--- Skettis Windwalker
+-- 斯克提斯风行者
 (@CGUID+13, 21649, 530, 0, 0, 1, 1, 1, -3674.9399, 3319.4299, 283.5690, 2.6005, 300, 0, 0, 5589, 3155, 0, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+14, 21649, 530, 0, 0, 1, 1, 1, -3801.3301, 3785.9700, 275.5740, 1.5883, 300, 0, 0, 5589, 3155, 0, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+15, 21649, 530, 0, 0, 1, 1, 1, -3874.4600, 3280.4900, 275.7670, 0.1396, 300, 0, 0, 5589, 3155, 0, 0, 0, 0, '', 0, 0, NULL),
@@ -327,7 +327,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (@CGUID+31, 21649, 530, 0, 0, 1, 1, 1, -3958.6799, 3250.2400, 294.1400, 1.5533, 300, 0, 1, 5589, 3155, 2, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+32, 21649, 530, 0, 0, 1, 1, 1, -3739.6001, 3748.6399, 273.8220, 0.0698, 300, 0, 1, 5589, 3155, 2, 0, 0, 0, '', 0, 0, NULL),
 
--- Skettis Talonite
+-- 斯克提斯鸦爪战士
 (@CGUID+33, 21650, 530, 0, 0, 1, 1, 1, -3691.04004, 3778.1499, 270.2330, 3.5605, 300, 0, 0, 6986, 0, 0, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+34, 21650, 530, 0, 0, 1, 1, 1, -3708.65991, 3783.7100, 270.6070, 5.2709, 300, 0, 0, 6986, 0, 0, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+35, 21650, 530, 0, 0, 1, 1, 1, -3748.88989, 3299.4099, 296.3950, 4.2935, 300, 0, 0, 6986, 0, 0, 0, 0, 0, '', 0, 0, NULL),
@@ -348,7 +348,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (@CGUID+50, 21650, 530, 0, 0, 1, 1, 1, -3679.72998, 3371.8501, 283.0750, 0.6109, 300, 0, 0, 6986, 0, 0, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+51, 21650, 530, 0, 0, 1, 1, 1, -3685.11011, 3707.4299, 277.8980, 5.1313, 300, 0, 0, 6986, 0, 0, 0, 0, 0, '', 0, 0, NULL),
 
--- Time-Lost Skettis Reaver
+-- 迷失的斯克提斯掠夺者
 (@CGUID+52, 21651, 530, 0, 0, 1, 1, 1, -3889.4399, 3788.5901, 334.8850, 5.2534, 180, 0, 0, 7181, 0, 0, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+53, 21651, 530, 0, 0, 1, 1, 1, -3893.4299, 3075.9600, 362.5920, 3.0892, 180, 0, 0, 7181, 0, 0, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+54, 21651, 530, 0, 0, 1, 1, 1, -3894.0400, 3086.4700, 374.7470, 5.5327, 180, 0, 0, 7181, 0, 0, 0, 0, 0, '', 0, 0, NULL),
@@ -380,7 +380,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (@CGUID+80, 21651, 530, 0, 0, 1, 1, 1, -3839.2500, 3429.0500, 325.1350, 5.0947, 180, 0, 0, 7181, 0, 0, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+81, 21651, 530, 0, 0, 1, 1, 1, -3852.9800, 3322.6399, 324.1380, 0.6066, 180, 0, 0, 7181, 0, 0, 0, 0, 0, '', 0, 0, NULL),
 
--- Skettis Surger
+-- 斯克提斯涌动者
 (@CGUID+82,  21728, 530, 0, 0, 1, 1, 0, -3682.5500, 3484.4500, 258.8650, 5.8289, 300, 10, 0, 5589, 3155, 1, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+83,  21728, 530, 0, 0, 1, 1, 0, -3718.5901, 3448.1399, 252.0160, 4.9536, 300, 10, 0, 5589, 3155, 1, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+84,  21728, 530, 0, 0, 1, 1, 0, -3746.7600, 3415.2400, 251.3810, 2.3676, 300, 10, 0, 5589, 3155, 1, 0, 0, 0, '', 0, 0, NULL),
@@ -430,13 +430,13 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (@CGUID+128, 21728, 530, 0, 0, 1, 1, 0, -3660.3000, 3513.9900, 261.7320, 1.5257, 300, 0, 1, 5589, 3155, 2, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+129, 21728, 530, 0, 0, 1, 1, 0, -3993.3000, 3550.8999, 263.6310, 4.7566, 300, 0, 1, 5589, 3155, 2, 0, 0, 0, '', 0, 0, NULL),
 
--- Alluvion
+-- 奥卢维恩
 (@CGUID+131, 21730, 530, 0, 0, 1, 1, 0, -3889.0701, 3579.5601, 249.9330, 5.7596, 600, 0, 0, 29500, 6618, 0, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+132, 21730, 530, 0, 0, 1, 1, 0, -3972.0100, 3429.2700, 263.5920, 4.2761, 600, 0, 0, 29500, 6618, 0, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+133, 21730, 530, 0, 0, 1, 1, 0, -3744.4199, 3428.0901, 249.5810, 4.1539, 600, 0, 0, 29500, 6618, 0, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+134, 21730, 530, 0, 0, 1, 1, 0, -3724.6001, 3545.6799, 252.3530, 5.7596, 600, 0, 0, 29500, 6618, 0, 0, 0, 0, '', 0, 0, NULL),
 
--- Time-Lost Skettis Worshipper
+-- 迷失的斯克提斯膜拜者
 (@CGUID+135, 21763, 530, 0, 0, 1, 1, 1, -3890.9900, 3472.8301, 274.0060, 2.3213, 180, 0, 0, 5744, 3231, 0, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+136, 21763, 530, 0, 0, 1, 1, 1, -3901.3000, 3036.0000, 357.7320, 3.2806, 180, 0, 0, 5744, 3231, 0, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+137, 21763, 530, 0, 0, 1, 1, 1, -3957.9299, 3307.3501, 287.0570, 4.8062, 180, 0, 0, 5744, 3231, 0, 0, 0, 0, '', 0, 0, NULL),
@@ -455,7 +455,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (@CGUID+150, 21763, 530, 0, 0, 1, 1, 1, -3700.1499, 3774.0801, 270.2300, 3.4852, 180, 0, 0, 5744, 3231, 0, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+151, 21763, 530, 0, 0, 1, 1, 1, -3680.6799, 3378.9399, 282.7350, 4.3510, 180, 0, 0, 5744, 3231, 0, 0, 0, 0, '', 0, 0, NULL),
 
--- Time-Lost Skettis High Priest
+-- 迷失的斯克提斯大祭司
 (@CGUID+152, 21787, 530, 0, 0, 1, 1, 1, -4185.0898, 3056.9600, 344.2300, 4.5521, 180, 0, 0, 5744, 3231, 0, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+153, 21787, 530, 0, 0, 1, 1, 1, -4172.2300, 3180.6899, 315.8810, 5.3696, 180, 0, 0, 5744, 3231, 0, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+154, 21787, 530, 0, 0, 1, 1, 1, -4152.7798, 3042.5200, 315.8550, 0.6804, 180, 0, 0, 5744, 3231, 0, 0, 0, 0, '', 0, 0, NULL),
@@ -497,7 +497,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (@CGUID+190, 21787, 530, 0, 0, 1, 1, 1, -3651.4500, 3750.5601, 302.1410, 0.2026, 180, 0, 0, 5744, 3231, 0, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+191, 21787, 530, 0, 0, 1, 1, 1, -3649.2000, 3379.7200, 312.3370, 1.0297, 180, 0, 0, 5744, 3231, 0, 0, 0, 0, '', 0, 0, NULL),
 
--- Skettis Kaliri
+-- 斯克提斯卡利鸟
 (@CGUID+192, 21804, 530, 0, 0, 1, 1, 0, -3678.1899, 3720.2000, 277.6870, 0.9243, 300, 10, 0, 3144, 0, 1, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+193, 21804, 530, 0, 0, 1, 1, 0, -3711.6499, 3750.6599, 278.4300, 2.6886, 300, 10, 0, 3144, 0, 1, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+194, 21804, 530, 0, 0, 1, 1, 0, -3816.6799, 3751.6899, 277.6780, 0.7219, 300, 10, 0, 3144, 0, 1, 0, 0, 0, '', 0, 0, NULL),
@@ -529,7 +529,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (@CGUID+220, 21804, 530, 0, 0, 1, 1, 0, -3909.5200, 3020.3401, 356.8440, 5.6803, 300, 10, 0, 3144, 0, 1, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+221, 21804, 530, 0, 0, 1, 1, 0, -3688.7700, 3352.1599, 284.1500, 3.2816, 300, 10, 0, 3144, 0, 1, 0, 0, 0, '', 0, 0, NULL),
 
--- Skettis Soul Caller
+-- 斯克提斯唤魂者
 (@CGUID+222, 21911, 530, 0, 0, 1, 1, 1, -4179.7100, 3087.2200, 325.2720, 4.5672, 300, 0, 1, 5589, 3155, 2, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+223, 21911, 530, 0, 0, 1, 1, 1, -4166.7700, 3162.5701, 316.6580, 3.3833, 300, 0, 1, 5589, 3155, 2, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+224, 21911, 530, 0, 0, 1, 1, 1, -4166.6602, 3020.2900, 315.5670, 2.8623, 300, 0, 1, 5589, 3155, 2, 0, 0, 0, '', 0, 0, NULL),
@@ -570,13 +570,13 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (@CGUID+259, 21911, 530, 0, 0, 1, 1, 1, -3673.8101, 3751.9099, 277.8400, 0.6149, 300, 0, 1, 5589, 3155, 2, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+260, 21911, 530, 0, 0, 1, 1, 1, -3658.7400, 3716.8401, 282.6260, 1.2402, 300, 0, 1, 5589, 3155, 2, 0, 0, 0, '', 0, 0, NULL),
 
--- Talonsworn Forest-Rager
+-- 森林狂暴者
 (@CGUID+261, 23029, 530, 0, 0, 1, 1, 0, -3738.8999, 3723.0601, 279.2620, 4.1998, 300, 0, 1, 28724, 0, 2, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+262, 23029, 530, 0, 0, 1, 1, 0, -4053.2700, 3555.2200, 282.9350, 4.9694, 300, 0, 1, 28724, 0, 2, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+263, 23029, 530, 0, 0, 1, 1, 0, -3906.1101, 3238.1799, 301.1740, 5.0529, 300, 0, 1, 28724, 0, 2, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+264, 23029, 530, 0, 0, 1, 1, 0, -3655.9800, 3408.1699, 280.9450, 3.4439, 300, 0, 1, 28724, 0, 2, 0, 0, 0, '', 0, 0, NULL),
 
--- Monstrous Kaliri
+-- 巨型卡利鸟
 (@CGUID+265, 23051, 530, 0, 0, 1, 1, 0, -3733.9099, 3794.4500, 311.5980, 1.4695, 300, 0, 1, 6986, 0, 2, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+266, 23051, 530, 0, 0, 1, 1, 0, -3871.0801, 3673.6001, 374.4300, 0.8129, 300, 0, 1, 6986, 0, 2, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+267, 23051, 530, 0, 0, 1, 1, 0, -4099.4199, 3040.6699, 353.4830, 3.0118, 300, 0, 1, 6986, 0, 2, 0, 0, 0, '', 0, 0, NULL),
@@ -596,7 +596,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (@CGUID+281, 23051, 530, 0, 0, 1, 1, 0, -3879.7100, 3671.7400, 380.7400, 5.5822, 300, 0, 1, 6986, 0, 2, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+282, 23051, 530, 0, 0, 1, 1, 0, -3858.6799, 3437.1599, 370.3190, 1.4226, 300, 0, 1, 6986, 0, 2, 0, 0, 0, '', 0, 0, NULL),
 
--- Blackwind Warp Chaser
+-- 黑风追迹者
 (@CGUID+283, 23219, 530, 0, 0, 1, 1, 0, -3587.1799, 3722.0400, 286.7970, 4.8084, 300, 10, 0, 6761, 0, 1, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+284, 23219, 530, 0, 0, 1, 1, 0, -3614.7600, 3819.0601, 253.1680, 5.0449, 300, 10, 0, 6761, 0, 1, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+285, 23219, 530, 0, 0, 1, 1, 0, -3881.1799, 3746.6899, 292.7130, 0.3490, 300, 10, 0, 6761, 0, 1, 0, 0, 0, '', 0, 0, NULL),
@@ -638,7 +638,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (@CGUID+321, 23219, 530, 0, 0, 1, 1, 0, -3274.2000, 3531.5000, 322.8210, 6.0319, 300, 10, 0, 6761, 0, 1, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+322, 23219, 530, 0, 0, 1, 1, 0, -3248.9700, 3647.8201, 247.6020, 0.8207, 300, 10, 0, 6761, 0, 1, 0, 0, 0, '', 0, 0, NULL),
 
--- Blackwind Sabercat
+-- 黑风刃豹
 (@CGUID+323, 21723, 530, 0, 0, 1, 1, 0, -3248.2500, 3317.6001, 254.5510, 5.7223, 300, 10, 0, 6761, 0, 1, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+324, 21723, 530, 0, 0, 1, 1, 0, -3283.4099, 3289.2500, 259.7010, 3.0145, 300, 10, 0, 6761, 0, 1, 0, 0, 0, '', 0, 0, NULL),
 (@CGUID+325, 21723, 530, 0, 0, 1, 1, 0, -3348.2600, 3250.9800, 304.4300, 2.4433, 300, 10, 0, 6761, 0, 1, 0, 0, 0, '', 0, 0, NULL),
@@ -661,17 +661,17 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (@CGUID+342, 21723, 530, 0, 0, 1, 1, 0, -3530.8201, 3153.3000, 315.3120, 3.6083, 300, 0, 1, 6986, 0, 2, 0, 0, 0, '', 0, 0, NULL);
 
 DELETE FROM `pool_creature` WHERE `pool_entry` IN (601055);
-INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
-(@CGUID+131, 601055, 0, 'Alluvion'),
-(@CGUID+132, 601055, 0, 'Alluvion'),
-(@CGUID+133, 601055, 0, 'Alluvion'),
-(@CGUID+134, 601055, 0, 'Alluvion');
+REPLACE INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
+(@CGUID+131, 601055, 0, '奥卢维恩'),
+(@CGUID+132, 601055, 0, '奥卢维恩'),
+(@CGUID+133, 601055, 0, '奥卢维恩'),
+(@CGUID+134, 601055, 0, '奥卢维恩');
 
 DELETE FROM `pool_template` WHERE `entry` IN (601055);
-INSERT INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
-(601055, 1, 'Alluvion - Skettis');
+REPLACE INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
+(601055, 1, '奥卢维恩 - Skettis');
 
--- remove unused creature_addon entries 
+-- 移除未使用的creature_addon条目 
 DELETE FROM `creature_addon` WHERE `guid` IN 
 (76656, 76660, 76661, 76662, 76663, 76664, 76669, 76670, 76675, 76676, 79017, 79020, 83237, 83238, 86099, 86115, 86116, 86117, 86131, 86133, 
 132553, 132554, 132555, 132556, 132557, 132558, 132560, 132562, 132564, 132565, 132566, 132567, 132778, 132780, 132781, 132782, 132783, 
@@ -683,20 +683,20 @@ DELETE FROM `creature_addon` WHERE `guid` BETWEEN @CGUID+127 AND @CGUID+129;
 DELETE FROM `creature_addon` WHERE `guid` BETWEEN @CGUID+222 AND @CGUID+282;
 DELETE FROM `creature_addon` WHERE `guid` BETWEEN @CGUID+338 AND @CGUID+342;
 --
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 --
-(@CGUID+27, @WPID+270, 0, 0, 0, 0, 0, ''),   -- Skettis Windwalker
+(@CGUID+27, @WPID+270, 0, 0, 0, 0, 0, ''),   -- 斯克提斯风行者
 (@CGUID+28, @WPID+280, 0, 0, 0, 0, 0, ''),
 (@CGUID+29, @WPID+290, 0, 0, 0, 0, 0, ''),
 (@CGUID+30, @WPID+300, 0, 0, 0, 0, 0, ''),
 (@CGUID+31, @WPID+310, 0, 0, 0, 0, 0, ''),
 (@CGUID+32, @WPID+320, 0, 0, 0, 0, 0, ''),
 --
-(@CGUID+127, @WPID+1270, 0, 0, 0, 0, 0, ''), -- Skettis Surger
+(@CGUID+127, @WPID+1270, 0, 0, 0, 0, 0, ''), -- 斯克提斯涌动者
 (@CGUID+128, @WPID+1280, 0, 0, 0, 0, 0, ''),
 (@CGUID+129, @WPID+1290, 0, 0, 0, 0, 0, ''),
 --
-(@CGUID+222, @WPID+2220, 0, 0, 0, 0, 0, ''), -- Skettis Soul Caller
+(@CGUID+222, @WPID+2220, 0, 0, 0, 0, 0, ''), -- 斯克提斯唤魂者
 (@CGUID+223, @WPID+2230, 0, 0, 0, 0, 0, ''),
 (@CGUID+224, @WPID+2240, 0, 0, 0, 0, 0, ''),
 (@CGUID+225, @WPID+2250, 0, 0, 0, 0, 0, ''),
@@ -736,12 +736,12 @@ INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `e
 (@CGUID+259, @WPID+2590, 0, 0, 0, 0, 0, ''),
 (@CGUID+260, @WPID+2600, 0, 0, 0, 0, 0, ''),
 --
-(@CGUID+261, @WPID+2610, 0, 0, 0, 0, 0, ''), -- Talonsworn Forest-Rager
+(@CGUID+261, @WPID+2610, 0, 0, 0, 0, 0, ''), -- 森林狂暴者
 (@CGUID+262, @WPID+2620, 0, 0, 0, 0, 0, ''),
 (@CGUID+263, @WPID+2630, 0, 0, 0, 0, 0, ''),
 (@CGUID+264, @WPID+2640, 0, 0, 0, 0, 0, ''),
 --
-(@CGUID+265, @WPID+2650, 0, 0, 0, 0, 0, ''), -- Monstrous Kaliri
+(@CGUID+265, @WPID+2650, 0, 0, 0, 0, 0, ''), -- 巨型卡利鸟
 (@CGUID+266, @WPID+2660, 0, 0, 0, 0, 0, ''),
 (@CGUID+267, @WPID+2670, 0, 0, 0, 0, 0, ''),
 (@CGUID+268, @WPID+2680, 0, 0, 0, 0, 0, ''),
@@ -760,7 +760,7 @@ INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `e
 (@CGUID+281, @WPID+2810, 0, 0, 0, 0, 0, ''),
 (@CGUID+282, @WPID+2820, 0, 0, 0, 0, 0, ''),
 --
-(@CGUID+338, @WPID+3380, 0, 0, 0, 0, 0, ''), -- Blackwind Sabercat
+(@CGUID+338, @WPID+3380, 0, 0, 0, 0, 0, ''), -- 黑风刃豹
 (@CGUID+339, @WPID+3390, 0, 0, 0, 0, 0, ''),
 (@CGUID+340, @WPID+3400, 0, 0, 0, 0, 0, ''),
 (@CGUID+341, @WPID+3410, 0, 0, 0, 0, 0, ''),
@@ -771,9 +771,9 @@ DELETE FROM `waypoint_data` WHERE `id` BETWEEN @WPID+1270 AND @WPID+1290;
 DELETE FROM `waypoint_data` WHERE `id` BETWEEN @WPID+2220 AND @WPID+2820;
 DELETE FROM `waypoint_data` WHERE `id` BETWEEN @WPID+3380 AND @WPID+3420;
 --
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
-(@WPID+270, 1, -4179.62, 3181.17, 315.761, 0, 1000, 0, 0, 100, 0),   -- Skettis Windwalker
+(@WPID+270, 1, -4179.62, 3181.17, 315.761, 0, 1000, 0, 0, 100, 0),   -- 斯克提斯风行者
 (@WPID+280, 1, -4175.36, 3188.11, 314.792, 0, 1000, 0, 0, 100, 0),
 (@WPID+290, 1, -4174.46, 3115.02, 322.523, 2.96561, 29000, 0, 0, 100, 0),
 (@WPID+300, 1, -4095.24, 3187.52, 297.125, 4.72984,  5000, 0, 0, 100, 0),
@@ -782,7 +782,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+320, 1, -3739.6, 3748.64, 273.822,  2.02458,  6000, 0, 0, 100, 0),
 (@WPID+320, 2, -3739.6, 3748.64, 273.822,  0.06981, 90000, 0, 0, 100, 0),
 --
-(@WPID+1270, 1, -3315.88, 3493.09, 266.564, 0, 0, 0, 0, 100, 0),     -- Skettis Surger 1
+(@WPID+1270, 1, -3315.88, 3493.09, 266.564, 0, 0, 0, 0, 100, 0),     -- 斯克提斯涌动者 1
 (@WPID+1270, 2, -3331.39, 3519.39, 266.564, 0, 0, 0, 0, 100, 0),
 (@WPID+1270, 3, -3347.09, 3531.5, 266.564, 0, 0, 0, 0, 100, 0),
 (@WPID+1270, 4, -3377.52, 3530.71, 266.564, 0, 0, 0, 0, 100, 0),
@@ -811,7 +811,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+1270, 27, -3315.88, 3493.09, 266.564, 0, 0, 0, 0, 100, 0),
 (@WPID+1270, 28, -3293.57, 3460.82, 266.477, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+1280, 1, -3659.17, 3539.03, 261.988, 0, 0, 0, 0, 100, 0),     -- Skettis Surger 2
+(@WPID+1280, 1, -3659.17, 3539.03, 261.988, 0, 0, 0, 0, 100, 0),     -- 斯克提斯涌动者 2
 (@WPID+1280, 2, -3679.56, 3559.38, 249.745, 0, 0, 0, 0, 100, 0),
 (@WPID+1280, 3, -3699.6, 3590.5, 243.423, 0, 0, 0, 0, 100, 0),
 (@WPID+1280, 4, -3725.98, 3600.31, 242.739, 0, 0, 0, 0, 100, 0),
@@ -840,7 +840,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+1280, 27, -3659.17, 3539.03, 261.988, 0, 0, 0, 0, 100, 0),
 (@WPID+1280, 28, -3658.85, 3508.94, 263.688, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+1290, 1, -3991.47, 3509.38, 256.984, 0, 0, 0, 0, 100, 0),     -- Skettis Surger 3
+(@WPID+1290, 1, -3991.47, 3509.38, 256.984, 0, 0, 0, 0, 100, 0),     -- 斯克提斯涌动者 3
 (@WPID+1290, 2, -3987.43, 3481.49, 259.587, 0, 0, 0, 0, 100, 0),
 (@WPID+1290, 3, -3968.07, 3452.54, 259.67, 0, 0, 0, 0, 100, 0),
 (@WPID+1290, 4, -3934.94, 3416.93, 256.698, 0, 0, 0, 0, 100, 0),
@@ -873,7 +873,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+1290, 31, -3991.47, 3509.38, 256.984, 0, 0, 0, 0, 100, 0),
 (@WPID+1290, 32, -3993.13, 3549.21, 262.323, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2220, 1, -4182.83, 3065.91, 342.286, 0, 0, 0, 0, 100, 0),     -- Skettis Soul Caller 1
+(@WPID+2220, 1, -4182.83, 3065.91, 342.286, 0, 0, 0, 0, 100, 0),     -- 斯克提斯唤魂者 1
 (@WPID+2220, 2, -4185.46, 3058.01, 344.14, 0, 0, 0, 0, 100, 0),
 (@WPID+2220, 3, -4198.15, 3054.56, 344.14, 0, 0, 0, 0, 100, 0),
 (@WPID+2220, 4, -4203.27, 3043.31, 344.14, 0, 0, 0, 0, 100, 0),
@@ -886,14 +886,14 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2220, 11, -4182.83, 3065.91, 342.286, 0, 0, 0, 0, 100, 0),
 (@WPID+2220, 12, -4179.64, 3088.31, 324.582, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2230, 1, -4173.05, 3176.96, 316.063, 0, 1000, 0, 0, 100, 0),  -- Skettis Soul Caller 2 !
+(@WPID+2230, 1, -4173.05, 3176.96, 316.063, 0, 1000, 0, 0, 100, 0),  -- 斯克提斯唤魂者 2 !
 --
-(@WPID+2240, 1, -4148.86, 3048.82, 314.835, 0, 12000, 0, 0, 100, 0), -- Skettis Soul Caller 3
+(@WPID+2240, 1, -4148.86, 3048.82, 314.835, 0, 12000, 0, 0, 100, 0), -- 斯克提斯唤魂者 3
 (@WPID+2240, 2, -4166.66, 3020.3, 315.624, 2.86234, 1000, 0, 0, 100, 0),
 --
-(@WPID+2250, 1, -4148.57, 3049.41, 314.506, 0, 1000, 0, 0, 100, 0),  -- Skettis Soul Caller 4 !
+(@WPID+2250, 1, -4148.57, 3049.41, 314.506, 0, 1000, 0, 0, 100, 0),  -- 斯克提斯唤魂者 4 !
 --
-(@WPID+2260, 1, -4151.16, 3030.71, 336.914, 0, 0, 0, 0, 100, 0),     -- Skettis Soul Caller 5
+(@WPID+2260, 1, -4151.16, 3030.71, 336.914, 0, 0, 0, 0, 100, 0),     -- 斯克提斯唤魂者 5
 (@WPID+2260, 2, -4172.56, 3034.9, 343.205, 0, 0, 0, 0, 100, 0),
 (@WPID+2260, 3, -4175.53, 3039.49, 343.736, 0, 0, 0, 0, 100, 0),
 (@WPID+2260, 4, -4174.93, 3050.15, 344.039, 0, 0, 0, 0, 100, 0),
@@ -904,9 +904,9 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2260, 9, -4151.16, 3030.71, 336.914, 0, 0, 0, 0, 100, 0),
 (@WPID+2260, 10, -4128.61, 3026.25, 344.056, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2270, 1, -4144.29, 3043.4, 315.113, 0, 1000, 0, 0, 100, 0),   -- Skettis Soul Caller 6 !
+(@WPID+2270, 1, -4144.29, 3043.4, 315.113, 0, 1000, 0, 0, 100, 0),   -- 斯克提斯唤魂者 6 !
 --
-(@WPID+2280, 1, -4105.24, 3036.22, 344.098, 0, 0, 0, 0, 100, 0),     -- Skettis Soul Caller 7
+(@WPID+2280, 1, -4105.24, 3036.22, 344.098, 0, 0, 0, 0, 100, 0),     -- 斯克提斯唤魂者 7
 (@WPID+2280, 2, -4097.89, 3031.17, 344.027, 0, 0, 0, 0, 100, 0),
 (@WPID+2280, 3, -4095.69, 3020.44, 343.949, 0, 0, 0, 0, 100, 0),
 (@WPID+2280, 4, -4098.69, 3011.09, 344.14, 0, 0, 0, 0, 100, 0),
@@ -923,12 +923,12 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2280, 15, -4120.73, 3032.14, 344.071, 0, 0, 0, 0, 100, 0),
 (@WPID+2280, 16, -4115.79, 3036.8, 344.047, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2290, 1, -4005.67, 3291.76, 284.28, 0, 1000, 0, 0, 100, 0),   -- Skettis Soul Caller 8 !
+(@WPID+2290, 1, -4005.67, 3291.76, 284.28, 0, 1000, 0, 0, 100, 0),   -- 斯克提斯唤魂者 8 !
 --
-(@WPID+2300, 1, -3999.47, 3285.25, 284.218, 0, 12000, 0, 0, 100, 0), -- Skettis Soul Caller 9
+(@WPID+2300, 1, -3999.47, 3285.25, 284.218, 0, 12000, 0, 0, 100, 0), -- 斯克提斯唤魂者 9
 (@WPID+2300, 2, -4000.14, 3272, 284.155, 4.10152, 1000, 0, 0, 100, 0),
 --
-(@WPID+2310, 1, -3998.74, 3251.67, 326.222, 0, 0, 0, 0, 100, 0),     -- Skettis Soul Caller 10
+(@WPID+2310, 1, -3998.74, 3251.67, 326.222, 0, 0, 0, 0, 100, 0),     -- 斯克提斯唤魂者 10
 (@WPID+2310, 2, -4022.94, 3265.63, 332.861, 0, 0, 0, 0, 100, 0),
 (@WPID+2310, 3, -4032.46, 3265.43, 332.849, 0, 0, 0, 0, 100, 0),
 (@WPID+2310, 4, -4042.09, 3258.39, 332.85, 0, 0, 0, 0, 100, 0),
@@ -945,7 +945,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2310, 15, -3998.74, 3251.67, 326.222, 0, 0, 0, 0, 100, 0),
 (@WPID+2310, 16, -3979.64, 3240.23, 332.742, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2320, 1, -3972.56, 3215.37, 333.847, 0, 0, 0, 0, 100, 0),     -- Skettis Soul Caller 11
+(@WPID+2320, 1, -3972.56, 3215.37, 333.847, 0, 0, 0, 0, 100, 0),     -- 斯克提斯唤魂者 11
 (@WPID+2320, 2, -3956.4, 3211.54, 333.966, 0, 0, 0, 0, 100, 0),
 (@WPID+2320, 3, -3943.3, 3220.04, 333.971, 0, 0, 0, 0, 100, 0),
 (@WPID+2320, 4, -3945.21, 3233.37, 333.964, 0, 0, 0, 0, 100, 0),
@@ -958,7 +958,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2320, 11, -3972.56, 3215.37, 333.847, 0, 0, 0, 0, 100, 0),
 (@WPID+2320, 12, -3979.68, 3230.16, 333.182, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2330, 1, -3978.83, 3179.86, 345.187, 0, 0, 0, 0, 100, 0),     -- Skettis Soul Caller 12
+(@WPID+2330, 1, -3978.83, 3179.86, 345.187, 0, 0, 0, 0, 100, 0),     -- 斯克提斯唤魂者 12
 (@WPID+2330, 2, -3986.98, 3162.93, 360.837, 0, 0, 0, 0, 100, 0),
 (@WPID+2330, 3, -3991.18, 3154.45, 362.546, 0, 0, 0, 0, 100, 0),
 (@WPID+2330, 4, -4006.07, 3150.62, 362.538, 0, 0, 0, 0, 100, 0),
@@ -973,11 +973,11 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2330, 13, -3978.83, 3179.86, 345.187, 0, 0, 0, 0, 100, 0),
 (@WPID+2330, 14, -3967.27, 3204.62, 334.049, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2340, 1, -3994.27, 3290.57, 284.403, 0, 1000, 0, 0, 100, 0),  -- Skettis Soul Caller 13 !
+(@WPID+2340, 1, -3994.27, 3290.57, 284.403, 0, 1000, 0, 0, 100, 0),  -- 斯克提斯唤魂者 13 !
 --
-(@WPID+2350, 1, -3910.11, 3115.83, 328.602, 0, 1000, 0, 0, 100, 0),  -- Skettis Soul Caller 14 !
+(@WPID+2350, 1, -3910.11, 3115.83, 328.602, 0, 1000, 0, 0, 100, 0),  -- 斯克提斯唤魂者 14 !
 --
-(@WPID+2360, 1, -3946.16, 3112.57, 360.835, 0, 0, 0, 0, 100, 0),     -- Skettis Soul Caller 15
+(@WPID+2360, 1, -3946.16, 3112.57, 360.835, 0, 0, 0, 0, 100, 0),     -- 斯克提斯唤魂者 15
 (@WPID+2360, 2, -3977.61, 3124.79, 361.508, 0, 0, 0, 0, 100, 0),
 (@WPID+2360, 3, -3976.48, 3139.85, 362.094, 0, 0, 0, 0, 100, 0),
 (@WPID+2360, 4, -3985.85, 3153.42, 362.548, 0, 0, 0, 0, 100, 0),
@@ -986,7 +986,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2360, 7, -3946.16, 3112.57, 360.835, 0, 0, 0, 0, 100, 0),
 (@WPID+2360, 8, -3921.25, 3103.02, 373.528, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2370, 1, -3920.87, 3091.82, 362.471, 0, 0, 0, 0, 100, 0),     -- Skettis Soul Caller 16
+(@WPID+2370, 1, -3920.87, 3091.82, 362.471, 0, 0, 0, 0, 100, 0),     -- 斯克提斯唤魂者 16
 (@WPID+2370, 2, -3911.49, 3077.63, 362.433, 0, 0, 0, 0, 100, 0),
 (@WPID+2370, 3, -3897.39, 3073.74, 362.459, 0, 0, 0, 0, 100, 0),
 (@WPID+2370, 4, -3889.36, 3083.74, 362.62, 0, 0, 0, 0, 100, 0),
@@ -1001,7 +1001,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2370, 13, -3920.87, 3091.82, 362.471, 0, 0, 0, 0, 100, 0),
 (@WPID+2370, 14, -3917.07, 3104.66, 362.325, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2380, 1, -3899.57, 3115.63, 373.105, 0, 0, 0, 0, 100, 0),     -- Skettis Soul Caller 17
+(@WPID+2380, 1, -3899.57, 3115.63, 373.105, 0, 0, 0, 0, 100, 0),     -- 斯克提斯唤魂者 17
 (@WPID+2380, 2, -3888.24, 3111.19, 372.984, 0, 0, 0, 0, 100, 0),
 (@WPID+2380, 3, -3882.61, 3096.34, 373.473, 0, 0, 0, 0, 100, 0),
 (@WPID+2380, 4, -3886.25, 3082.38, 373.756, 0, 0, 0, 0, 100, 0),
@@ -1016,9 +1016,9 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2380, 13, -3899.57, 3115.63, 373.105, 0, 0, 0, 0, 100, 0),
 (@WPID+2380, 14, -3913.78, 3107.91, 373.72, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2390, 1, -3904.74, 3119.97, 328.602, 0, 1000, 0, 0, 100, 0),  -- Skettis Soul Caller 18 !
+(@WPID+2390, 1, -3904.74, 3119.97, 328.602, 0, 1000, 0, 0, 100, 0),  -- 斯克提斯唤魂者 18 !
 --
-(@WPID+2400, 1, -3865.38, 3300.41, 274.586, 0, 12000, 0, 0, 100, 0), -- Skettis Soul Caller 19
+(@WPID+2400, 1, -3865.38, 3300.41, 274.586, 0, 12000, 0, 0, 100, 0), -- 斯克提斯唤魂者 19
 (@WPID+2400, 2, -3896.65, 3299.82, 287.308, 0, 0, 0, 0, 100, 0),
 (@WPID+2400, 3, -3907.42, 3322.78, 285.669, 0, 0, 0, 0, 100, 0),
 (@WPID+2400, 4, -3895.94, 3300.41, 287.002, 0, 0, 0, 0, 100, 0),
@@ -1026,10 +1026,10 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2400, 6, -3895.94, 3300.41, 287.002, 0, 0, 0, 0, 100, 0),
 (@WPID+2400, 7, -3907.42, 3322.78, 285.669, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2410, 1, -3862.12, 3305.95, 274.326, 0, 12000, 0, 0, 100, 0), -- Skettis Soul Caller 20
+(@WPID+2410, 1, -3862.12, 3305.95, 274.326, 0, 12000, 0, 0, 100, 0), -- 斯克提斯唤魂者 20
 (@WPID+2410, 2, -3892.49, 3332.78, 275.478, 1.71042, 30000, 0, 0, 100, 0),
 --
-(@WPID+2420, 1, -3877.59, 3720.86, 328.119, 0, 0, 0, 0, 100, 0),     -- Skettis Soul Caller 21
+(@WPID+2420, 1, -3877.59, 3720.86, 328.119, 0, 0, 0, 0, 100, 0),     -- 斯克提斯唤魂者 21
 (@WPID+2420, 2, -3875.23, 3747.41, 334.801, 0, 0, 0, 0, 100, 0),
 (@WPID+2420, 3, -3877.84, 3757.5, 334.797, 0, 0, 0, 0, 100, 0),
 (@WPID+2420, 4, -3891.94, 3763, 334.804, 0, 0, 0, 0, 100, 0),
@@ -1046,7 +1046,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2420, 15, -3877.59, 3720.86, 328.119, 0, 0, 0, 0, 100, 0),
 (@WPID+2420, 16, -3879.64, 3698.13, 334.689, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2430, 1, -3868.38, 3683.08, 335.461, 0, 0, 0, 0, 100, 0),     -- Skettis Soul Caller 22
+(@WPID+2430, 1, -3868.38, 3683.08, 335.461, 0, 0, 0, 0, 100, 0),     -- 斯克提斯唤魂者 22
 (@WPID+2430, 2, -3866.36, 3670.1, 335.922, 0, 0, 0, 0, 100, 0),
 (@WPID+2430, 3, -3878.93, 3656.71, 335.919, 0, 0, 0, 0, 100, 0),
 (@WPID+2430, 4, -3896.58, 3661.47, 335.922, 0, 0, 0, 0, 100, 0),
@@ -1059,14 +1059,14 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2430, 11, -3868.38, 3683.08, 335.461, 0, 0, 0, 0, 100, 0),
 (@WPID+2430, 12, -3874.69, 3690.86, 335.171, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2440, 1, -3900.07, 3115.94, 328.352, 0, 1000, 0, 0, 100, 0),  -- Skettis Soul Caller 23 !
+(@WPID+2440, 1, -3900.07, 3115.94, 328.352, 0, 1000, 0, 0, 100, 0),  -- 斯克提斯唤魂者 23 !
 --
-(@WPID+2450, 1, -3859.15, 3527.61, 278.447, 0, 5000, 0, 0, 100, 0),  -- Skettis Soul Caller 24
+(@WPID+2450, 1, -3859.15, 3527.61, 278.447, 0, 5000, 0, 0, 100, 0),  -- 斯克提斯唤魂者 24
 (@WPID+2450, 2, -3810.88, 3518.75, 286.639, 0, 0, 0, 0, 100, 0),
 (@WPID+2450, 3, -3859.54, 3529, 278.503, 0, 5000, 0, 0, 100, 0),
 (@WPID+2450, 4, -3871.96, 3484.26, 275.719, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2460, 1, -3837.28, 3317.93, 324.053, 100, 0, 0, 0, 100, 0),   -- Skettis Soul Caller 25
+(@WPID+2460, 1, -3837.28, 3317.93, 324.053, 100, 0, 0, 0, 100, 0),   -- 斯克提斯唤魂者 25
 (@WPID+2460, 2, -3821.94, 3327.54, 324.048, 100, 0, 0, 0, 100, 0),
 (@WPID+2460, 3, -3817.53, 3343.31, 324.055, 100, 0, 0, 0, 100, 0),
 (@WPID+2460, 4, -3821.68, 3345.72, 324.046, 100, 0, 0, 0, 100, 0),
@@ -1080,9 +1080,9 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2460, 12, -3817.53, 3343.31, 324.055, 100, 0, 0, 0, 100, 0),
 (@WPID+2460, 13, -3821.94, 3327.54, 324.048, 100, 0, 0, 0, 100, 0),
 --
-(@WPID+2470, 1, -3855.41, 3299, 274.417, 0, 1000, 0, 0, 100, 0),     -- Skettis Soul Caller 26 !
+(@WPID+2470, 1, -3855.41, 3299, 274.417, 0, 1000, 0, 0, 100, 0),     -- 斯克提斯唤魂者 26 !
 --
-(@WPID+2480, 1, -3837.94, 3431.92, 325.102, 0, 0, 0, 0, 100, 0),     -- Skettis Soul Caller 27
+(@WPID+2480, 1, -3837.94, 3431.92, 325.102, 0, 0, 0, 0, 100, 0),     -- 斯克提斯唤魂者 27
 (@WPID+2480, 2, -3844.35, 3450.12, 325.173, 0, 0, 0, 0, 100, 0),
 (@WPID+2480, 3, -3860.31, 3452.64, 325.168, 0, 0, 0, 0, 100, 0),
 (@WPID+2480, 4, -3872.52, 3439.78, 325.15, 0, 0, 0, 0, 100, 0),
@@ -1095,21 +1095,21 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2480, 11, -3837.94, 3431.92, 325.102, 0, 0, 0, 0, 100, 0),
 (@WPID+2480, 12, -3846.66, 3418.71, 324.491, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2490, 1, -3814.44, 3764.06, 275.675, 0, 1000, 0, 0, 100, 0),  -- Skettis Soul Caller 28 !
+(@WPID+2490, 1, -3814.44, 3764.06, 275.675, 0, 1000, 0, 0, 100, 0),  -- 斯克提斯唤魂者 28 !
 --
-(@WPID+2500, 1, -3807.49, 3763.93, 275.497, 0, 1000, 0, 0, 100, 0),  -- Skettis Soul Caller 29 !
+(@WPID+2500, 1, -3807.49, 3763.93, 275.497, 0, 1000, 0, 0, 100, 0),  -- 斯克提斯唤魂者 29 !
 --
-(@WPID+2510, 1, -3812.05, 3770.95, 275.638, 0, 12000, 0, 0, 100, 0), -- Skettis Soul Caller 30
+(@WPID+2510, 1, -3812.05, 3770.95, 275.638, 0, 12000, 0, 0, 100, 0), -- 斯克提斯唤魂者 30
 (@WPID+2510, 2, -3786.22, 3766.61, 277.485, 0.820305, 31000, 0, 0, 100, 0),
 --
-(@WPID+2520, 1, -3692.3, 3740.71, 278.494, 0, 1000, 0, 0, 100, 0),   -- Skettis Soul Caller 31 !
+(@WPID+2520, 1, -3692.3, 3740.71, 278.494, 0, 1000, 0, 0, 100, 0),   -- 斯克提斯唤魂者 31 !
 --
-(@WPID+2530, 1, -3689.27, 3324.33, 283.368, 0, 1000, 0, 0, 100, 0),  -- Skettis Soul Caller 32 !
+(@WPID+2530, 1, -3689.27, 3324.33, 283.368, 0, 1000, 0, 0, 100, 0),  -- 斯克提斯唤魂者 32 !
 --
-(@WPID+2540, 1, -3685.53, 3739.79, 278.83, 0, 12000, 0, 0, 100, 0),  -- Skettis Soul Caller 33
+(@WPID+2540, 1, -3685.53, 3739.79, 278.83, 0, 12000, 0, 0, 100, 0),  -- 斯克提斯唤魂者 33
 (@WPID+2540, 2, -3708.16, 3745.77, 276.941, 3.87463, 1000, 0, 0, 100, 0),
 --
-(@WPID+2550, 1, -3714.55, 3778.53, 302.044, 0, 0, 0, 0, 100, 0),     -- Skettis Soul Caller 34
+(@WPID+2550, 1, -3714.55, 3778.53, 302.044, 0, 0, 0, 0, 100, 0),     -- 斯克提斯唤魂者 34
 (@WPID+2550, 2, -3724.24, 3783.69, 302.08, 0, 0, 0, 0, 100, 0),
 (@WPID+2550, 3, -3728.24, 3794.53, 302.064, 0, 0, 0, 0, 100, 0),
 (@WPID+2550, 4, -3725.49, 3806.32, 302.163, 0, 0, 0, 0, 100, 0),
@@ -1124,9 +1124,9 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2550, 13, -3714.55, 3778.53, 302.044, 0, 0, 0, 0, 100, 0),
 (@WPID+2550, 14, -3705.23, 3782.65, 302.101, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2560, 1, -3687.69, 3325.14, 283.114, 0, 1000, 0, 0, 100, 0),  -- Skettis Soul Caller 35 !
+(@WPID+2560, 1, -3687.69, 3325.14, 283.114, 0, 1000, 0, 0, 100, 0),  -- 斯克提斯唤魂者 35 !
 --
-(@WPID+2570, 1, -3675.49, 3778.75, 294.927, 0, 0, 0, 0, 100, 0),     -- Skettis Soul Caller 36
+(@WPID+2570, 1, -3675.49, 3778.75, 294.927, 0, 0, 0, 0, 100, 0),     -- 斯克提斯唤魂者 36
 (@WPID+2570, 2, -3655.67, 3770.66, 301.19, 0, 0, 0, 0, 100, 0),
 (@WPID+2570, 3, -3652.75, 3765.46, 301.812, 0, 0, 0, 0, 100, 0),
 (@WPID+2570, 4, -3655.93, 3757.44, 301.965, 0, 0, 0, 0, 100, 0),
@@ -1137,11 +1137,11 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2570, 9, -3675.49, 3778.75, 294.927, 0, 0, 0, 0, 100, 0),
 (@WPID+2570, 10, -3696.83, 3787.27, 302.055, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2580, 1, -3686.12, 3326.35, 283.431, 0, 1000, 0, 0, 100, 0),  -- Skettis Soul Caller 37 !
+(@WPID+2580, 1, -3686.12, 3326.35, 283.431, 0, 1000, 0, 0, 100, 0),  -- 斯克提斯唤魂者 37 !
 --
-(@WPID+2590, 1, -3684.25, 3740.32, 278.682, 0, 1000, 0, 0, 100, 0),  -- Skettis Soul Caller 38 !
+(@WPID+2590, 1, -3684.25, 3740.32, 278.682, 0, 1000, 0, 0, 100, 0),  -- 斯克提斯唤魂者 38 !
 --
-(@WPID+2600, 1, -3651.32, 3738.44, 300.348, 0, 0, 0, 0, 100, 0),     -- Skettis Soul Caller 39
+(@WPID+2600, 1, -3651.32, 3738.44, 300.348, 0, 0, 0, 0, 100, 0),     -- 斯克提斯唤魂者 39
 (@WPID+2600, 2, -3646.55, 3745.71, 302.153, 0, 0, 0, 0, 100, 0),
 (@WPID+2600, 3, -3633.42, 3747.37, 302.151, 0, 0, 0, 0, 100, 0),
 (@WPID+2600, 4, -3626.23, 3756.61, 302.156, 0, 0, 0, 0, 100, 0),
@@ -1156,7 +1156,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2600, 13, -3651.32, 3738.44, 300.348, 0, 0, 0, 0, 100, 0),
 (@WPID+2600, 14, -3658.7, 3717.02, 282.63, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2610, 1, -3747.9, 3707.06, 278.267, 0, 0, 0, 0, 100, 0),      -- Talonsworn Forest-Rager 1
+(@WPID+2610, 1, -3747.9, 3707.06, 278.267, 0, 0, 0, 0, 100, 0),      -- 森林狂暴者 1
 (@WPID+2610, 2, -3763.23, 3681.93, 278.482, 0, 0, 0, 0, 100, 0),
 (@WPID+2610, 3, -3787.18, 3673.23, 273.251, 0, 0, 0, 0, 100, 0),
 (@WPID+2610, 4, -3805.7, 3674.62, 275.109, 0, 0, 0, 0, 100, 0),
@@ -1173,7 +1173,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2610, 15, -3764.7, 3729.14, 275.839, 0, 0, 0, 0, 100, 0),
 (@WPID+2610, 16, -3740.25, 3721.61, 279.313, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2620, 1, -4050.83, 3545.95, 279.064, 0, 0, 0, 0, 100, 0),     -- Talonsworn Forest-Rager 2
+(@WPID+2620, 1, -4050.83, 3545.95, 279.064, 0, 0, 0, 0, 100, 0),     -- 森林狂暴者 2
 (@WPID+2620, 2, -4045.61, 3535.02, 278.088, 0, 0, 0, 0, 100, 0),
 (@WPID+2620, 3, -4044.96, 3526.06, 279.12, 0, 0, 0, 0, 100, 0),
 (@WPID+2620, 4, -4046.26, 3514.09, 278.814, 0, 0, 0, 0, 100, 0),
@@ -1208,7 +1208,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2620, 33, -4064.66, 3546.34, 285.31, 0, 0, 0, 0, 100, 0),
 (@WPID+2620, 34, -4051.4, 3555.12, 281.835, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2630, 1, -3898.57, 3216.97, 307.379, 0, 0, 0, 0, 100, 0),     -- Talonsworn Forest-Rager 3
+(@WPID+2630, 1, -3898.57, 3216.97, 307.379, 0, 0, 0, 0, 100, 0),     -- 森林狂暴者 3
 (@WPID+2630, 2, -3901.34, 3206.96, 311.344, 0, 0, 0, 0, 100, 0),
 (@WPID+2630, 3, -3904.54, 3198.2, 312.276, 0, 0, 0, 0, 100, 0),
 (@WPID+2630, 4, -3900.79, 3187.1, 312.276, 0, 0, 0, 0, 100, 0),
@@ -1251,7 +1251,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2630, 41, -3898.57, 3216.97, 307.379, 0, 0, 0, 0, 100, 0),
 (@WPID+2630, 42, -3906.21, 3225.95, 303.429, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2640, 1, -3667.87, 3404.46, 278.255, 0, 0, 0, 0, 100, 0),     -- Talonsworn Forest-Rager 4
+(@WPID+2640, 1, -3667.87, 3404.46, 278.255, 0, 0, 0, 0, 100, 0),     -- 森林狂暴者 4
 (@WPID+2640, 2, -3677.83, 3405.26, 276.616, 0, 0, 0, 0, 100, 0),
 (@WPID+2640, 3, -3685.5, 3401.45, 277.72, 0, 0, 0, 0, 100, 0),
 (@WPID+2640, 4, -3690.24, 3393.6, 281.099, 0, 0, 0, 0, 100, 0),
@@ -1338,7 +1338,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2640, 85, -3667.87, 3404.46, 278.255, 0, 0, 0, 0, 100, 0),
 (@WPID+2640, 86, -3660.77, 3406.12, 279.839, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2650, 1, -3733.34, 3800.06, 318.596, 0, 0, 0, 0, 100, 0),     -- Monstrous Kaliri 1
+(@WPID+2650, 1, -3733.34, 3800.06, 318.596, 0, 0, 0, 0, 100, 0),     -- 巨型卡利鸟 1
 (@WPID+2650, 2, -3700.76, 3815.84, 314.929, 0, 0, 0, 0, 100, 0),
 (@WPID+2650, 3, -3684.38, 3790.57, 311.318, 0, 0, 0, 0, 100, 0),
 (@WPID+2650, 4, -3673.3, 3755.68, 311.318, 0, 0, 0, 0, 100, 0),
@@ -1352,7 +1352,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2650, 12, -3728.83, 3766.57, 318.151, 0, 0, 0, 0, 100, 0),
 (@WPID+2650, 13, -3740.35, 3781.2, 318.124, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2660, 1, -3862.59, 3682.57, 374.421, 0, 0, 0, 0, 100, 0),     -- Monstrous Kaliri 2
+(@WPID+2660, 1, -3862.59, 3682.57, 374.421, 0, 0, 0, 0, 100, 0),     -- 巨型卡利鸟 2
 (@WPID+2660, 2, -3856.33, 3709.22, 366.032, 0, 0, 0, 0, 100, 0),
 (@WPID+2660, 3, -3844.01, 3755.45, 357.56, 0, 0, 0, 0, 100, 0),
 (@WPID+2660, 4, -3852.51, 3791.22, 357.06, 0, 0, 0, 0, 100, 0),
@@ -1366,7 +1366,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2660, 12, -3881.58, 3654.32, 389.965, 0, 0, 0, 0, 100, 0),
 (@WPID+2660, 13, -3865.41, 3672.89, 381.465, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2670, 1, -4104.21, 3041.3, 359.578, 0, 0, 0, 0, 100, 0),      -- Monstrous Kaliri 3
+(@WPID+2670, 1, -4104.21, 3041.3, 359.578, 0, 0, 0, 0, 100, 0),      -- 巨型卡利鸟 3
 (@WPID+2670, 2, -4125.44, 3052.26, 358.968, 0, 0, 0, 0, 100, 0),
 (@WPID+2670, 3, -4159.87, 3033.6, 358.995, 0, 0, 0, 0, 100, 0),
 (@WPID+2670, 4, -4186.09, 3020.48, 361.662, 0, 0, 0, 0, 100, 0),
@@ -1380,7 +1380,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2670, 12, -4089.46, 3009.01, 362.384, 0, 0, 0, 0, 100, 0),
 (@WPID+2670, 13, -4096.79, 3033.96, 360.606, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2680, 1, -3869.68, 3093.18, 392.352, 0, 0, 0, 0, 100, 0),     -- Monstrous Kaliri 4
+(@WPID+2680, 1, -3869.68, 3093.18, 392.352, 0, 0, 0, 0, 100, 0),     -- 巨型卡利鸟 4
 (@WPID+2680, 2, -3876.11, 3078.8, 392.352, 0, 0, 0, 0, 100, 0),
 (@WPID+2680, 3, -3900.01, 3066.92, 392.352, 0, 0, 0, 0, 100, 0),
 (@WPID+2680, 4, -3934.17, 3083.28, 392.352, 0, 0, 0, 0, 100, 0),
@@ -1396,7 +1396,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2680, 14, -3904.76, 3124.44, 386.768, 0, 0, 0, 0, 100, 0),
 (@WPID+2680, 15, -3884.44, 3113.83, 389.185, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2690, 1, -4050.73, 3247.83, 342.388, 0, 0, 0, 0, 100, 0),     -- Monstrous Kaliri 5
+(@WPID+2690, 1, -4050.73, 3247.83, 342.388, 0, 0, 0, 0, 100, 0),     -- 巨型卡利鸟 5
 (@WPID+2690, 2, -4074.9, 3254.4, 339.443, 0, 0, 0, 0, 100, 0),
 (@WPID+2690, 3, -4099.82, 3279.18, 340.388, 0, 0, 0, 0, 100, 0),
 (@WPID+2690, 4, -4090.61, 3300.57, 342.388, 0, 0, 0, 0, 100, 0),
@@ -1411,7 +1411,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2690, 13, -4002.08, 3217.68, 348.082, 0, 0, 0, 0, 100, 0),
 (@WPID+2690, 14, -4027.13, 3236.14, 342.388, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2700, 1, -3835.52, 3455.28, 363.488, 0, 0, 0, 0, 100, 0),     -- Monstrous Kaliri 6
+(@WPID+2700, 1, -3835.52, 3455.28, 363.488, 0, 0, 0, 0, 100, 0),     -- 巨型卡利鸟 6
 (@WPID+2700, 2, -3826.34, 3432.9, 363.488, 0, 0, 0, 0, 100, 0),
 (@WPID+2700, 3, -3833.53, 3403.36, 349.96, 0, 0, 0, 0, 100, 0),
 (@WPID+2700, 4, -3849.91, 3384.76, 348.238, 0, 0, 0, 0, 100, 0),
@@ -1426,7 +1426,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2700, 13, -3875.49, 3457.74, 364.488, 0, 0, 0, 0, 100, 0),
 (@WPID+2700, 14, -3846.3, 3462.79, 364.488, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2710, 1, -3675.1, 3400.8, 324.573, 0, 0, 0, 0, 100, 0),       -- Monstrous Kaliri 7
+(@WPID+2710, 1, -3675.1, 3400.8, 324.573, 0, 0, 0, 0, 100, 0),       -- 巨型卡利鸟 7
 (@WPID+2710, 2, -3696, 3378.85, 323.795, 0, 0, 0, 0, 100, 0),
 (@WPID+2710, 3, -3677.76, 3333.37, 329.462, 0, 0, 0, 0, 100, 0),
 (@WPID+2710, 4, -3671.79, 3306.19, 341.907, 0, 0, 0, 0, 100, 0),
@@ -1438,7 +1438,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2710, 10, -3641.23, 3384.09, 325.49, 0, 0, 0, 0, 100, 0),
 (@WPID+2710, 11, -3655.43, 3406.73, 325.045, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2720, 1, -4197.81, 3024.34, 366.188, 0, 0, 0, 0, 100, 0),     -- Monstrous Kaliri 8
+(@WPID+2720, 1, -4197.81, 3024.34, 366.188, 0, 0, 0, 0, 100, 0),     -- 巨型卡利鸟 8
 (@WPID+2720, 2, -4166.6, 3015.78, 353.327, 0, 0, 0, 0, 100, 0),
 (@WPID+2720, 3, -4119.36, 3000.52, 350.383, 0, 0, 0, 0, 100, 0),
 (@WPID+2720, 4, -4078.06, 3004.44, 346.771, 0, 0, 0, 0, 100, 0),
@@ -1464,7 +1464,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2720, 24, -4214.1, 3060.08, 359.272, 0, 0, 0, 0, 100, 0),
 (@WPID+2720, 25, -4210.05, 3036.03, 359.272, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2730, 1, -4214.47, 3180.67, 347.25, 0, 0, 0, 0, 100, 0),      -- Monstrous Kaliri 9
+(@WPID+2730, 1, -4214.47, 3180.67, 347.25, 0, 0, 0, 0, 100, 0),      -- 巨型卡利鸟 9
 (@WPID+2730, 2, -4216.52, 3213.61, 345.677, 0, 0, 0, 0, 100, 0),
 (@WPID+2730, 3, -4208.68, 3255.88, 339.011, 0, 0, 0, 0, 100, 0),
 (@WPID+2730, 4, -4189.06, 3300.13, 333.011, 0, 0, 0, 0, 100, 0),
@@ -1515,7 +1515,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2730, 49, -4187.51, 3137.1, 345.677, 0, 0, 0, 0, 100, 0),
 (@WPID+2730, 50, -4209.92, 3166.67, 345.678, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2740, 1, -3886.1, 3325.34, 379.561, 0, 0, 0, 0, 100, 0),      -- Monstrous Kaliri 10
+(@WPID+2740, 1, -3886.1, 3325.34, 379.561, 0, 0, 0, 0, 100, 0),      -- 巨型卡利鸟 10
 (@WPID+2740, 2, -3911.67, 3347.09, 379.561, 0, 0, 0, 0, 100, 0),
 (@WPID+2740, 3, -3945.02, 3355.81, 379.561, 0, 0, 0, 0, 100, 0),
 (@WPID+2740, 4, -3972.97, 3374.65, 379.561, 0, 0, 0, 0, 100, 0),
@@ -1587,7 +1587,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2740, 70, -3855.8, 3289.5, 379.561, 0, 0, 0, 0, 100, 0),
 (@WPID+2740, 71, -3876.83, 3314.51, 379.561, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2750, 1, -4104.04, 3655.93, 439.988, 0, 0, 0, 0, 100, 0),     -- Monstrous Kaliri 11
+(@WPID+2750, 1, -4104.04, 3655.93, 439.988, 0, 0, 0, 0, 100, 0),     -- 巨型卡利鸟 11
 (@WPID+2750, 2, -4101.17, 3611.58, 439.988, 0, 0, 0, 0, 100, 0),
 (@WPID+2750, 3, -4102.89, 3574.59, 439.988, 0, 0, 0, 0, 100, 0),
 (@WPID+2750, 4, -4103.93, 3544.91, 439.988, 0, 0, 0, 0, 100, 0),
@@ -1642,7 +1642,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2750, 53, -4097.88, 3717.78, 439.988, 0, 0, 0, 0, 100, 0),
 (@WPID+2750, 54, -4102.04, 3680.51, 439.988, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2760, 1, -3933.33, 2966.66, 390.458, 0, 0, 0, 0, 100, 0),     -- Monstrous Kaliri 12
+(@WPID+2760, 1, -3933.33, 2966.66, 390.458, 0, 0, 0, 0, 100, 0),     -- 巨型卡利鸟 12
 (@WPID+2760, 2, -3954.89, 2975.5, 382.291, 0, 0, 0, 0, 100, 0),
 (@WPID+2760, 3, -3963.79, 3013.65, 381.374, 0, 0, 0, 0, 100, 0),
 (@WPID+2760, 4, -3969.2, 3050.42, 375.985, 0, 0, 0, 0, 100, 0),
@@ -1677,7 +1677,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2760, 33, -3866.54, 2965.67, 390.458, 0, 0, 0, 0, 100, 0),
 (@WPID+2760, 34, -3910.41, 2965.88, 390.458, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2770, 1, -3712.45, 3309.06, 332.569, 0, 0, 0, 0, 100, 0),     -- Monstrous Kaliri 13
+(@WPID+2770, 1, -3712.45, 3309.06, 332.569, 0, 0, 0, 0, 100, 0),     -- 巨型卡利鸟 13
 (@WPID+2770, 2, -3731.05, 3347.23, 317.681, 0, 0, 0, 0, 100, 0),
 (@WPID+2770, 3, -3716.8, 3386.16, 312.597, 0, 0, 0, 0, 100, 0),
 (@WPID+2770, 4, -3714.8, 3416.08, 310.319, 0, 0, 0, 0, 100, 0),
@@ -1703,7 +1703,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2770, 24, -3664.14, 3265.26, 332.569, 0, 0, 0, 0, 100, 0),
 (@WPID+2770, 25, -3700.19, 3268.53, 332.569, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2780, 1, -3839.54, 3360.74, 346.521, 0, 0, 0, 0, 100, 0),     -- Monstrous Kaliri 14
+(@WPID+2780, 1, -3839.54, 3360.74, 346.521, 0, 0, 0, 0, 100, 0),     -- 巨型卡利鸟 14
 (@WPID+2780, 2, -3844.53, 3382.86, 327.466, 0, 0, 0, 0, 100, 0),
 (@WPID+2780, 3, -3824.74, 3421.51, 330.41, 0, 0, 0, 0, 100, 0),
 (@WPID+2780, 4, -3815.86, 3458.31, 331.299, 0, 0, 0, 0, 100, 0),
@@ -1748,7 +1748,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2780, 43, -3787.11, 3314.23, 339.993, 0, 0, 0, 0, 100, 0),
 (@WPID+2780, 44, -3811.57, 3318.01, 350.049, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2790, 1, -3864.91, 3641.72, 343.667, 0, 0, 0, 0, 100, 0),     -- Monstrous Kaliri 15
+(@WPID+2790, 1, -3864.91, 3641.72, 343.667, 0, 0, 0, 0, 100, 0),     -- 巨型卡利鸟 15
 (@WPID+2790, 2, -3899.77, 3634.01, 334.5, 0, 0, 0, 0, 100, 0),
 (@WPID+2790, 3, -3932.79, 3625.8, 327.723, 0, 0, 0, 0, 100, 0),
 (@WPID+2790, 4, -3965.98, 3604.83, 323.556, 0, 0, 0, 0, 100, 0),
@@ -1775,7 +1775,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2790, 25, -3788.04, 3651.2, 328.056, 0, 0, 0, 0, 100, 0),
 (@WPID+2790, 26, -3829.16, 3656.95, 343.667, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2800, 1, -3621.72, 3753.04, 319.025, 0, 0, 0, 0, 100, 0),     -- Monstrous Kaliri 16
+(@WPID+2800, 1, -3621.72, 3753.04, 319.025, 0, 0, 0, 0, 100, 0),     -- 巨型卡利鸟 16
 (@WPID+2800, 2, -3619.64, 3727.9, 309.831, 0, 0, 0, 0, 100, 0),
 (@WPID+2800, 3, -3627.18, 3681.11, 308.553, 0, 0, 0, 0, 100, 0),
 (@WPID+2800, 4, -3656.43, 3650.6, 304.22, 0, 0, 0, 0, 100, 0),
@@ -1799,7 +1799,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2800, 22, -3632.45, 3787.69, 313.802, 0, 0, 0, 0, 100, 0),
 (@WPID+2800, 23, -3617.66, 3768.5, 321.441, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2810, 1, -3867.7, 3661.6, 374.23, 0, 0, 0, 0, 100, 0),        -- Monstrous Kaliri 17
+(@WPID+2810, 1, -3867.7, 3661.6, 374.23, 0, 0, 0, 0, 100, 0),        -- 巨型卡利鸟 17
 (@WPID+2810, 2, -3829.1, 3657.19, 352.564, 0, 0, 0, 0, 100, 0),
 (@WPID+2810, 3, -3781.74, 3660.67, 339.203, 0, 0, 0, 0, 100, 0),
 (@WPID+2810, 4, -3733.91, 3659.38, 326.008, 0, 0, 0, 0, 100, 0),
@@ -1841,7 +1841,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2810, 40, -3912.39, 3631.52, 376.424, 0, 0, 0, 0, 100, 0),
 (@WPID+2810, 41, -3889.63, 3647.45, 379.841, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+2820, 1, -3857.21, 3447.03, 372.471, 0, 0, 0, 0, 100, 0),     -- Monstrous Kaliri 18
+(@WPID+2820, 1, -3857.21, 3447.03, 372.471, 0, 0, 0, 0, 100, 0),     -- 巨型卡利鸟 18
 (@WPID+2820, 2, -3823.56, 3471.69, 372.471, 0, 0, 0, 0, 100, 0),
 (@WPID+2820, 3, -3784.6, 3479.7, 372.471, 0, 0, 0, 0, 100, 0),
 (@WPID+2820, 4, -3742.47, 3490.95, 353.026, 0, 0, 0, 0, 100, 0),
@@ -1870,12 +1870,12 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+2820, 27, -3922.99, 3396.19, 351.971, 0, 0, 0, 0, 100, 0),
 (@WPID+2820, 28, -3894.56, 3430.66, 372.471, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+3380, 1, -3552.35, 3200.38, 310.373, 0, 0, 0, 0, 100, 0),        -- Blackwind Sabercat 1
+(@WPID+3380, 1, -3552.35, 3200.38, 310.373, 0, 0, 0, 0, 100, 0),        -- 黑风刃豹 1
 (@WPID+3380, 2, -3524.61, 3186.12, 316.292, 0, 0, 0, 0, 100, 0),
 (@WPID+3380, 3, -3552.06, 3200, 310.444, 0, 0, 0, 0, 100, 0),
 (@WPID+3380, 4, -3555.63, 3213.1, 309.277, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+3390, 1, -3509.61, 3252.65, 297.816, 0, 0, 0, 0, 100, 0),        -- Blackwind Sabercat 2
+(@WPID+3390, 1, -3509.61, 3252.65, 297.816, 0, 0, 0, 0, 100, 0),        -- 黑风刃豹 2
 (@WPID+3390, 2, -3521.91, 3253.1, 300.544, 0, 0, 0, 0, 100, 0),
 (@WPID+3390, 3, -3539.97, 3239.49, 302.32, 0, 0, 0, 0, 100, 0),
 (@WPID+3390, 4, -3553.5, 3223.02, 307.994, 0, 0, 0, 0, 100, 0),
@@ -1884,7 +1884,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+3390, 7, -3509.61, 3252.65, 297.816, 0, 0, 0, 0, 100, 0),
 (@WPID+3390, 8, -3508.35, 3238.6, 291.492, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+3400, 1, -3514.69, 3162.71, 316.109, 0, 0, 0, 0, 100, 0),        -- Blackwind Sabercat 3
+(@WPID+3400, 1, -3514.69, 3162.71, 316.109, 0, 0, 0, 0, 100, 0),        -- 黑风刃豹 3
 (@WPID+3400, 2, -3524.07, 3165.06, 315.807, 0, 0, 0, 0, 100, 0),
 (@WPID+3400, 3, -3528.42, 3178.18, 317.068, 0, 0, 0, 0, 100, 0),
 (@WPID+3400, 4, -3522.81, 3188.14, 316.037, 0, 0, 0, 0, 100, 0),
@@ -1893,14 +1893,14 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@WPID+3400, 7, -3514.69, 3162.71, 316.109, 0, 0, 0, 0, 100, 0),
 (@WPID+3400, 8, -3506.93, 3153.97, 314.601, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+3410, 1, -3492.99, 3242.46, 299.354, 0, 0, 0, 0, 100, 0),        -- Blackwind Sabercat 4
+(@WPID+3410, 1, -3492.99, 3242.46, 299.354, 0, 0, 0, 0, 100, 0),        -- 黑风刃豹 4
 (@WPID+3410, 2, -3497.53, 3257.29, 299.824, 0, 0, 0, 0, 100, 0),
 (@WPID+3410, 3, -3500.05, 3273.2, 300.777, 0, 0, 0, 0, 100, 0),
 (@WPID+3410, 4, -3497.55, 3257.33, 299.754, 0, 0, 0, 0, 100, 0),
 (@WPID+3410, 5, -3492.99, 3242.46, 299.354, 0, 0, 0, 0, 100, 0),
 (@WPID+3410, 6, -3496.17, 3221.67, 297.358, 0, 0, 0, 0, 100, 0),
 --
-(@WPID+3420, 1, -3545.18, 3146.07, 314.753, 0, 0, 0, 0, 100, 0),        -- Blackwind Sabercat 5
+(@WPID+3420, 1, -3545.18, 3146.07, 314.753, 0, 0, 0, 0, 100, 0),        -- 黑风刃豹 5
 (@WPID+3420, 2, -3562.07, 3157.14, 313.595, 0, 0, 0, 0, 100, 0),
 (@WPID+3420, 3, -3575.59, 3131.62, 316.208, 0, 0, 0, 0, 100, 0),
 (@WPID+3420, 4, -3562.07, 3157.14, 313.595, 0, 0, 0, 0, 100, 0),

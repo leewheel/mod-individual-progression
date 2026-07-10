@@ -9,7 +9,7 @@ UPDATE `creature_template` SET `npcflag` = 81 WHERE `entry` IN (11041, 11042, 11
 UPDATE `creature_template` SET `type_flags` = 134217728 WHERE `entry` IN (4212, 11042, 11081);
 
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 15 AND `SourceEntry` = 0 AND `ConditionTypeOrReference` = 7 AND `SourceGroup` IN (4125, 4131, 4163, 4204, 4241, 4349);
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `ConditionTypeOrReference`, `ConditionValue1`, `ConditionValue2`, `Comment`) VALUES
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `ConditionTypeOrReference`, `ConditionValue1`, `ConditionValue2`, `Comment`) VALUES
 (15, 4125, 0, 7, 171, 50,  'Show menu if alchemy is 50 or higher'),         -- Sylvanna Forestmoon <Expert Alchemist>
 (15, 4131, 0, 7, 171, 125, 'Show menu if alchemy is 125 or higher'),        -- Ainethil <Artisan Alchemist>
 (15, 4163, 0, 7, 333, 50,  'Show menu if enchanting is 50 or higher'),      -- Taladan <Expert Enchanter>
@@ -19,7 +19,7 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 
 -- Battlemasters
 DELETE FROM `creature` WHERE `id` IN (907, 2302, 5118);
-INSERT INTO `creature` (`guid`, `id`, `map`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`) VALUES
+REPLACE INTO `creature` (`guid`, `id`, `map`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`) VALUES
 (600907, 907,  1, 9975.14, 2324.34, 1330.87, 0.0698132, 600), -- Keras Wolfheart <Arathi Basin Battlemaster>
 (602302, 2302, 1, 9977.6, 2313.53, 1330.87, 0.698132, 600),   -- Aethalas <Warsong Gulch Battlemaster>
 (605118, 5118, 1, 9923.77, 2323.84, 1330.87, 1.6057, 600);    -- Brogun Stoneshield <Alterac Valley Battlemaster>
@@ -27,7 +27,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `position_x`, `position_y`, `positi
 -- smart scripts
 UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN (3516, 7999, 14378, 14379, 14380);
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN (3516, 7999, 14378, 14379, 14380);
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 

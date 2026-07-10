@@ -27,27 +27,27 @@ class spell_detect_magic : public SpellScript
             if (holyResist < 0.1 && fireResist < 0.01 && natureResist < 0.01 && frostResist < 0.01 && shadowResist < 0.01 && arcaneResist < 0.01)
             {
                 // Send message - you detect no magical resistances
-                ChatHandler(caster->GetSession()).PSendSysMessage("You detect no magical resistances.");
+                ChatHandler(caster->GetSession()).PSendSysMessage("您未探测到任何魔法抗性。");
             }
             else
             {
                 if (holyResist > 0.01)
-                    ChatHandler(caster->GetSession()).PSendSysMessage("You detect a holy resistance of: {}", holyResist);
+                    ChatHandler(caster->GetSession()).PSendSysMessage("您探测到神圣抗性为: {}", holyResist);
 
                 if (fireResist > 0.01)
-                    ChatHandler(caster->GetSession()).PSendSysMessage("You detect a fire resistance of: {}", fireResist);
+                    ChatHandler(caster->GetSession()).PSendSysMessage("您探测到火焰抗性为: {}", fireResist);
 
                 if (natureResist > 0.01)
-                    ChatHandler(caster->GetSession()).PSendSysMessage("You detect a nature resistance of: {}", natureResist);
+                    ChatHandler(caster->GetSession()).PSendSysMessage("您探测到自然抗性为: {}", natureResist);
 
                 if (frostResist > 0.01)
-                    ChatHandler(caster->GetSession()).PSendSysMessage("You detect a frost resistance of: {}", frostResist);
+                    ChatHandler(caster->GetSession()).PSendSysMessage("您探测到冰霜抗性为: {}", frostResist);
 
                 if (shadowResist > 0.01)
-                    ChatHandler(caster->GetSession()).PSendSysMessage("You detect a shadow resistance of: {}", shadowResist);
+                    ChatHandler(caster->GetSession()).PSendSysMessage("您探测到暗影抗性为: {}", shadowResist);
 
                 if (arcaneResist > 0.01)
-                    ChatHandler(caster->GetSession()).PSendSysMessage("You detect a arcane resistance of: {}", arcaneResist);
+                    ChatHandler(caster->GetSession()).PSendSysMessage("您探测到奥术抗性为: {}", arcaneResist);
             }
         }
     }

@@ -1,5 +1,5 @@
 DELETE FROM `playercreateinfo_action` WHERE `class` IN (1, 2, 3, 4, 5, 7, 8, 9, 11);
-INSERT INTO `playercreateinfo_action` (`race`, `class`, `button`, `action`, `type`) VALUES
+REPLACE INTO `playercreateinfo_action` (`race`, `class`, `button`, `action`, `type`) VALUES
 (11, 5, 11, 4540, 128),
 (11, 5, 10, 159, 128),
 (11, 5, 3, 28880, 0),

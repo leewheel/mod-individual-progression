@@ -4,7 +4,7 @@ UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN 
 (11658, 11659, 11666, 11667, 11668, 11669, 11673, 13278);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -33,7 +33,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 
 
 DELETE FROM `creature_queststarter` WHERE `quest` IN (6804, 6821, 6822, 6823, 6824, 7486) AND `id` = 13278;
-INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES
+REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES
 (13278, 6804), -- Poisoned Water
 (13278, 6821), -- Eye of the Emberseer
 (13278, 6822), -- The Molten Core
@@ -42,7 +42,7 @@ INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES
 (13278, 7486); -- A Hero's Reward
 
 DELETE FROM `creature_questender` WHERE `quest` IN (6804, 6821, 6822, 6823, 6824) AND `id` = 13278;
-INSERT INTO `creature_questender` (`id`, `quest`) VALUES
+REPLACE INTO `creature_questender` (`id`, `quest`) VALUES
 (13278, 6804), -- Poisoned Water
 (13278, 6821), -- Eye of the Emberseer
 (13278, 6822), -- The Molten Core
@@ -50,7 +50,7 @@ INSERT INTO `creature_questender` (`id`, `quest`) VALUES
 (13278, 6824); -- Hands of the Enemy
 
 DELETE FROM `quest_template_addon` WHERE `ID` IN (6821, 6822, 6823, 6824, 7486);
-INSERT INTO `quest_template_addon` (`ID`, `PrevQuestID`, `NextQuestID`) VALUES
+REPLACE INTO `quest_template_addon` (`ID`, `PrevQuestID`, `NextQuestID`) VALUES
 (6821, 6805, 6822),
 (6822, 6021, 6823),
 (6823, 6022, 6824),
@@ -58,13 +58,13 @@ INSERT INTO `quest_template_addon` (`ID`, `PrevQuestID`, `NextQuestID`) VALUES
 (7486, 6824, 0);
 
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 19 AND `SourceEntry` = 6821;
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES
 (19, 0, 6821, 0, 0, 47, 0, 6804, 64, 0, 0, 0, 0, '', 'Quest Eyes of the Emberseer available if quest Poisoned Water has been rewarded.'),
 (19, 0, 6821, 0, 0, 47, 0, 6805, 64, 0, 0, 0, 0, '', 'Quest Eyes of the Emberseer available if quest Stormers and Rumblers has been rewarded.');
 
 DELETE FROM `conditions` WHERE (`SourceTypeOrReferenceId` = 15) AND (`SourceGroup` = 5065) AND (`SourceId` IN (0, 1));
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES
 (15, 5065, 0, 0, 0, 5, 0, 749, 224, 0, 0, 0, 0, '', 'Duke Hydraxis - Create Aqual Quintessence Gossip - Requires Honored Rep'),
 (15, 5065, 0, 0, 0, 47, 0, 6824, 64, 0, 0, 0, 0, '', 'Duke Hydraxis - Aqual Quintessence Gossip available if quest Hand of the Enemy rewarded.'),
@@ -72,7 +72,7 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 (15, 5065, 1, 0, 0, 47, 0, 6824, 64, 0, 0, 0, 0, '', 'Duke Hydraxis - Create Eternal Quintessence Gossip - Requires Hand of the Enemy rewarded');
 
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 19 AND `SourceEntry` IN (6822, 6823, 6824, 7486);
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES
 (19, 0, 6822, 0, 0, 47, 0, 6821, 64, 0, 0, 0, 0, '', 'Quest Molten Core available if quest Eye of the Emberseer has been rewarded.'),
 (19, 0, 6823, 0, 0, 47, 0, 6822, 64, 0, 0, 0, 0, '', 'Quest Agent of Hydraxis available if quest Molten Core has been rewarded.'),
@@ -80,7 +80,7 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 (19, 0, 7486, 0, 0, 47, 0, 6824, 64, 0, 0, 0, 0, '', 'Quest A Heros Reward available if quest Hands of the Enemy has been rewarded.');
 
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 19 AND `SourceEntry` IN (6822, 6823, 6824, 7486);
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES
 (19, 0, 6822, 0, 0, 47, 0, 6821, 64, 0, 0, 0, 0, '', 'Quest Molten Core available if quest Eye of the Emberseer has been rewarded.'),
 (19, 0, 6823, 0, 0, 47, 0, 6822, 64, 0, 0, 0, 0, '', 'Quest Agent of Hydraxis available if quest Molten Core has been rewarded.'),
@@ -89,9 +89,9 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 
 
 DELETE FROM `gossip_menu_option` WHERE `MenuID` = 5065 AND `OptionID` IN (0, 1);
-INSERT INTO `gossip_menu_option` (`MenuID`, `OptionID`, `OptionIcon`, `OptionText`, `OptionBroadcastTextID`, `OptionType`, `OptionNpcFlag`, `ActionMenuID`, `ActionPoiID`, `BoxCoded`, `BoxMoney`, `BoxText`, `BoxBroadcastTextID`, `VerifiedBuild`) VALUES
-(5065,0,0,'I require a vial of aqual quintessence, Hydraxis, for I go to the Molten Core to extinguish a rune of the Firelords.',8666,1,2,0,0,0,0,'',0,0),
-(5065,1,0,'I desire this eternal quintessence, Duke Hydraxis.',12363,1,2,0,0,0,0,'',0,0);
+REPLACE INTO `gossip_menu_option` (`MenuID`, `OptionID`, `OptionIcon`, `OptionText`, `OptionBroadcastTextID`, `OptionType`, `OptionNpcFlag`, `ActionMenuID`, `ActionPoiID`, `BoxCoded`, `BoxMoney`, `BoxText`, `BoxBroadcastTextID`, `VerifiedBuild`) VALUES
+(5065,0,0,'我需要一瓶水之精萃，海达克西斯，因为我要去熔火之心毁掉炎魔之王的符文。',8666,1,2,0,0,0,0,'',0,0),
+(5065,1,0,'我想要这个永恒精萃，海达克西斯公爵。',12363,1,2,0,0,0,0,'',0,0);
 
 -- reputation fixes
 UPDATE `creature_onkill_reputation` SET `RewOnKillRepValue1` = 20 WHERE `creature_id` IN 
@@ -108,7 +108,7 @@ UPDATE `gameobject_template` SET `ScriptName` = 'go_firelord_rune' WHERE `entry`
 
 -- Ancient Core Hound
 DELETE FROM `creature_loot_template` WHERE (`Entry` = 11673) AND (`Item` IN (16838, 16840, 16857, 16858));
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 (11673, 16838, 0, 0.34, 0, 1, 0, 1, 1, 'Ancient Core Hound - Earthfury Belt'),
 (11673, 16840, 0, 0.32, 0, 1, 0, 1, 1, 'Ancient Core Hound - Earthfury Bracers'),
 (11673, 16857, 0, 0.32, 0, 1, 0, 1, 1, 'Ancient Core Hound - Lawbringer Bracers'),
@@ -116,14 +116,14 @@ INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `Q
 
 -- Firelord
 DELETE FROM `creature_loot_template` WHERE (`Entry` = 11668) AND (`Item` IN (16838, 16840, 16858));
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 (11668, 16838, 0, 0.34, 0, 1, 0, 1, 1, 'Firelord - Earthfury Belt'),
 (11668, 16840, 0, 0.32, 0, 1, 0, 1, 1, 'Firelord - Earthfury Bracers'),
 (11668, 16858, 0, 0.34, 0, 1, 0, 1, 1, 'Firelord - Lawbringer Belt');
 
 -- Firewalker
 DELETE FROM `creature_loot_template` WHERE (`Entry` = 11666) AND (`Item` IN (16838, 16840, 16857, 16858, 16861, 16864));
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 (11666, 16838, 0, 0.34, 0, 1, 0, 1, 1, 'Firewalker - Earthfury Belt'),
 (11666, 16840, 0, 0.32, 0, 1, 0, 1, 1, 'Firewalker - Earthfury Bracers'),
 (11666, 16857, 0, 0.32, 0, 1, 0, 1, 1, 'Firewalker - Lawbringer Bracers'),
@@ -133,7 +133,7 @@ INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `Q
 
 -- Flameguard
 DELETE FROM `creature_loot_template` WHERE (`Entry` = 11667) AND (`Item` IN (16819, 16838, 16840, 16857));
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 (11667, 16819, 0, 0.32, 0, 1, 0, 1, 1, 'Flameguard - Vambraces of Prophecy'),
 (11667, 16838, 0, 0.34, 0, 1, 0, 1, 1, 'Flameguard - Earthfury Belt'),
 (11667, 16840, 0, 0.32, 0, 1, 0, 1, 1, 'Flameguard - Earthfury Bracers'),
@@ -141,7 +141,7 @@ INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `Q
 
 -- Flamewaker
 DELETE FROM `creature_loot_template` WHERE (`Entry` = 11661) AND (`Item` IN (16804, 16838, 16840, 16857, 16858, 16864));
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 (11661, 16804, 0, 0.32, 0, 1, 0, 1, 1, 'Flamewaker - Felheart Bracers'),
 (11661, 16838, 0, 0.34, 0, 1, 0, 1, 1, 'Flamewaker - Earthfury Belt'),
 (11661, 16840, 0, 0.32, 0, 1, 0, 1, 1, 'Flamewaker - Earthfury Bracers'),
@@ -151,7 +151,7 @@ INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `Q
 
 -- Flamewaker Priest
 DELETE FROM `creature_loot_template` WHERE (`Entry` = 11662) AND (`Item` IN (16802, 16806, 16827, 16828, 16830, 16838, 16840, 16857, 16858, 16861, 16864));
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 (11662, 16802, 0, 0.34, 0, 1, 0, 1, 1, 'Flamewaker Priest - Arcanist Belt'),
 (11662, 16806, 0, 0.34, 0, 1, 0, 1, 1, 'Flamewaker Priest - Felheart Belt'),
 (11662, 16827, 0, 0.34, 0, 1, 0, 1, 1, 'Flamewaker Priest - Nightslayer Belt'),
@@ -166,7 +166,7 @@ INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `Q
 
 -- Flamewaker Healer
 DELETE FROM `creature_loot_template` WHERE (`Entry` = 11663) AND (`Item` IN (16799, 16828, 16838, 16840, 16851, 16858));
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 (11663, 16799, 0, 0.32, 0, 1, 0, 1, 1, 'Flamewaker Healer - Arcanist Bindings'),
 (11663, 16828, 0, 0.34, 0, 1, 0, 1, 1, 'Flamewaker Healer - Cenarion Belt'),
 (11663, 16838, 0, 0.34, 0, 1, 0, 1, 1, 'Flamewaker Healer - Earthfury Belt'),
@@ -176,7 +176,7 @@ INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `Q
 
 -- Flamewaker Elite
 DELETE FROM `creature_loot_template` WHERE (`Entry` = 11664) AND (`Item` IN (16817, 16838, 16840, 16851, 16857, 16858, 16861));
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 (11664, 16817, 0, 0.34, 0, 1, 0, 1, 1, 'Flamewaker Elite - Girdle of Prophecy'),
 (11664, 16838, 0, 0.34, 0, 1, 0, 1, 1, 'Flamewaker Elite - Earthfury Belt'),
 (11664, 16840, 0, 0.32, 0, 1, 0, 1, 1, 'Flamewaker Elite - Earthfury Bracers'),
@@ -187,7 +187,7 @@ INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `Q
 
 -- Flamewaker Protector
 DELETE FROM `creature_loot_template` WHERE (`Entry` = 12119) AND (`Item` IN (16802, 16804, 16806, 16817, 16827, 16840));
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 (12119, 16802, 0, 0.34, 0, 1, 0, 1, 1, 'Flamewaker Protector - Arcanist Belt'),
 (12119, 16804, 0, 0.32, 0, 1, 0, 1, 1, 'Flamewaker Protector - Felheart Bracers'),
 (12119, 16806, 0, 0.34, 0, 1, 0, 1, 1, 'Flamewaker Protector - Felheart Belt'),
@@ -197,14 +197,14 @@ INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `Q
 
 -- Lava Elemental
 DELETE FROM `creature_loot_template` WHERE (`Entry` = 12076) AND (`Item` IN (16838, 16840, 16858));
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 (12076, 16838, 0, 0.2, 0, 1, 0, 1, 1, 'Lava Elemental - Earthfury Belt'),
 (12076, 16840, 0, 0.2, 0, 1, 0, 1, 1, 'Lava Elemental - Earthfury Bracers'),
 (12076, 16858, 0, 0.2, 0, 1, 0, 1, 1, 'Lava Elemental - Lawbringer Belt');
 
 -- Lava Reaver
 DELETE FROM `creature_loot_template` WHERE (`Entry` = 12100) AND (`Item` IN (16806, 16838, 16840, 16857, 16858));
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 (12100, 16806, 0, 0.34, 0, 1, 0, 1, 1, 'Lava Reaver - Felheart Belt'),
 (12100, 16838, 0, 0.34, 0, 1, 0, 1, 1, 'Lava Reaver - Earthfury Belt'),
 (12100, 16840, 0, 0.32, 0, 1, 0, 1, 1, 'Lava Reaver - Earthfury Bracers'),
@@ -213,7 +213,7 @@ INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `Q
 
 -- Lava Surger
 DELETE FROM `creature_loot_template` WHERE (`Entry` = 12101) AND (`Item` IN (16838, 16840, 16857, 16858, 16864));
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 (12101, 16838, 0, 0.34, 0, 1, 0, 1, 1, 'Lava Surger - Earthfury Belt'),
 (12101, 16840, 0, 0.32, 0, 1, 0, 1, 1, 'Lava Surger - Earthfury Bracers'),
 (12101, 16857, 0, 0.32, 0, 1, 0, 1, 1, 'Lava Surger - Lawbringer Bracers'),
@@ -222,11 +222,11 @@ INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `Q
 
 -- Molten Destroyer
 DELETE FROM `creature_loot_template` WHERE (`Entry` = 11659) AND (`Item` IN (16840));
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 (11659, 16840, 0, 0.32, 0, 1, 0, 1, 1, 'Molten Destroyer - Earthfury Bracers');
 
 -- Molten Giant
 DELETE FROM `creature_loot_template` WHERE (`Entry` = 11658) AND (`Item` IN (16838, 16840));
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 (11658, 16838, 0, 0.34, 0, 1, 0, 1, 1, 'Molten Giant - Earthfury Belt'),
 (11658, 16840, 0, 0.32, 0, 1, 0, 1, 1, 'Molten Giant - Earthfury Bracers');

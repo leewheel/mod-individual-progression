@@ -8,7 +8,7 @@ DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN
 1030, 1031, 1032, 1033, 1034, 1035, 1036, 1037, 1038, 1042, 1043, 1044, 1045, 1046, 1047, 1048, 1049, 1050, 1051, 1052, 1053, 1054, 1057, 
 1111, 1112, 1140, 1157, 1158, 1160, 1259, 1353, 1364, 1418, 2091, 2102, 2103, 2108, 4040, 12899, 14424, 14425);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -216,16 +216,16 @@ UPDATE `creature_loot_template` SET `Chance` = 5  WHERE `Item` = 3349 AND `Entry
 -- missing patrols
 DELETE FROM `pool_creature` WHERE `pool_entry` = 1072; -- remove 22 spawn locations used by AC, we are now using waypoints
 DELETE FROM `creature` WHERE `id` IN (14424);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
 (91113, 14424, 0, 0, 0, 1, 1, 0, -2752.94, -1311.99, 6.14436, 1.69779, 39600, 0, 1, 734, 0, 2, 0, 0, 0, '', 0, 0, NULL); -- Mirelow
 
 DELETE FROM `creature_addon` WHERE `guid` IN (91113);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (91113, 911130, 0, 0, 1, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` IN (911130);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 (911130, 1, -2752.94, -1311.99, 6.14436, NULL, 0, 0, 0, 100, 0),
 (911130, 2, -2779.33, -1318.19, 6.2125, NULL, 0, 0, 0, 100, 0),
 (911130, 3, -2802.51, -1327.23, 6.2125, NULL, 0, 0, 0, 100, 0),

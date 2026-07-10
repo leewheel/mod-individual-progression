@@ -6,7 +6,7 @@ DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN
 (4632, 4634, 4635, 4636, 4637, 4654, 4655, 4656, 4657, 4663, 4664, 4665, 4670, 4671, 4672, 4673, 4674, 4675, 4676, 4677, 
 4681, 4682, 4692, 4695, 4696, 4705, 4726, 4728, 5402, 5600, 5602, 5760, 5771, 10182, 10204, 13019, 14225, -610204);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -115,7 +115,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 
 -- fix worldserver error at serpent shrine to summon Lord Kragaru
 DELETE FROM `smart_scripts` WHERE `source_type` = 1 AND `entryorguid` IN (177673, 177705);
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -125,20 +125,20 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 
 -- Khan Dez'Hepah, 3 spawn locations
 DELETE FROM `creature` WHERE `guid` IN (29141, 27042, 27052);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
 `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 (29141, 5600, 1, 0, 0, 1, 1, 1, -795.566, 934.17, 90.5846, 2.77507,  300, 0, 0, 1342, 0, 0, 0, 0, 0, '', 0, 0, NULL),
 (27042, 5600, 1, 0, 0, 1, 1, 1, -947.212, 954.353, 96.303, 4.27606,  300, 0, 0, 1342, 0, 0, 0, 0, 0, '', 0, 0, NULL), -- https://www.youtube.com/watch?v=tkMfTwnqFNY
 (27052, 5600, 1, 0, 0, 1, 1, 1, -1010.09, 874.882, 92.6127, 2.05949, 300, 0, 0, 1342, 0, 0, 0, 0, 0, '', 0, 0, NULL); -- https://www.youtube.com/watch?v=_dOku9rqHTo
 
 DELETE FROM `pool_creature` WHERE `pool_entry` IN (601020);
-INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
+REPLACE INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
 (29141, 601020, 0, 'Khan Dez\'Hepah'),
 (27042, 601020, 0, 'Khan Dez\'Hepah'),
 (27052, 601020, 0, 'Khan Dez\'Hepah');
 
 DELETE FROM `pool_template` WHERE `entry` IN (601020);
-INSERT INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
+REPLACE INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
 (601020, 1, 'Khan Dezz\'Hepah - Desolace');
 
 /* Restore Rexxar in Desolace. */
@@ -155,9 +155,8 @@ UPDATE `creature_template_locale` SET `name` = '雷克萨', `VerifiedBuild` = 11
 UPDATE `creature_template_locale` SET `name` = '雷克薩', `VerifiedBuild` = 11200 WHERE `entry` = 10182 AND `locale` = 'zhTW';
 
 UPDATE `quest_template` SET 
-`LogDescription` = 'Seek out Rexxar. The Warchief has instructed you as to his whereabouts. Search the paths of Desolace, between the Stonetalon Mountains and Feralas.',
-`QuestDescription` = 'I have received word from one of my champions that a way into the lair of the dragon may exist. You are to seek him out.$B$B
-Rexxar wanders the desert wasteland of Desolace, traveling between Stonetalon and Feralas. He awaits your arrival.', `VerifiedBuild` = 11200
+`LogDescription` = '寻找雷克萨。大酋长已经告诉了他的位置。在凄凉之地寻找，具体位置在石爪山脉和菲拉斯之间。', 
+`QuestDescription` = '我收到我的勇士之一的消息，说有办法进入巨龙的巢穴。你需要去找到他。$B$B雷克萨在凄凉之地这片荒芜的沙漠中游荡，往返于石爪山脉和菲拉斯之间。他在等你到来。', `VerifiedBuild` = 11200
 WHERE `ID` = 6567;
 UPDATE `quest_template_locale` SET
 `Details` = 'L''un de mes champions m''a envoyé un mot pour dire qu''il existait peut-être un chemin dans la tanière du dragon. Vous devez le rejoindre. Rexxar se trouve sur la terre déserte de Désolace, entre les Serres-Rocheuses et Feralas. Il attend votre venue.',
@@ -165,8 +164,8 @@ UPDATE `quest_template_locale` SET
 WHERE `ID` = 6567 AND `locale` = 'frFR';
 
 UPDATE `quest_template` SET
-`LogTitle` = 'The Testament of Rexxar', `LogDescription` = 'Deliver Rexxar''s Testament to Myranda the Hag in the Western Plaguelands.',
-`QuestDescription` = 'What do you know of illusions? For you see, it is an illusion that you must create in order to circumvent the Black Flight''s defenses. I know of one that may be willing to assist you in your quest of deception. She has assisted our kind in the past when she has deemed the cause worthy. In the Western Plaguelands you will find Myranda the Hag, master illusionist - an exile of the Lordaeron alliance. Travel there and take with you this message.', `VerifiedBuild` = 11200
+`LogTitle` = '雷克萨的证明', `LogDescription` = '把雷克萨的证明送到西瘟疫之地交给迈兰达·哈格。', 
+`QuestDescription` = '你对幻术了解多少？因为想要绕过黑龙军团的防御，你需要制造一个幻象。我知道有一个人可能会愿意帮助你在欺骗的道路上前行。过去，当她认为某项事业值得支持时，她曾帮助过我们。在西瘟疫之地，你将找到迈兰达·哈格，她是幻术大师——洛丹伦联盟的流放者。带上这个消息去找她。', `VerifiedBuild` = 11200
 WHERE `ID` = 6568;
 UPDATE `quest_template_locale` SET
 `Details` = 'Que connaissez-vous des illusions? Parce que c''est une illusion que vous devez créer pour circonvenir les défenses du Vol noir. Je connais une personne qui acceptera de vous aider dans votre recherche de l''art de la tromperie. Elle a aidé les nôtres dans le passé, quand elle jugeait que la cause en était digne. Dans les Maleterres de l''ouest, vous trouverez Myranda la Sorcière, un Maître Illusionniste, exilée de l''Alliance de Lordaeron. Allez là-bas et prenez avec vous ce message.',
@@ -183,26 +182,25 @@ UPDATE `item_template_locale` SET `Name` = '雷克萨的证明', `VerifiedBuild`
 UPDATE `item_template_locale` SET `Name` = '雷克薩的證明', `VerifiedBuild` = '11200' WHERE `ID` = '16785' AND `locale` = 'zhTW';
 
 UPDATE `quest_template` SET 
-`LogDescription` = 'It would appear as if the charade is over. 
-You know that the Amulet of Draconic Subversion that Myranda the Hag created for you will not function inside Blackrock Spire. 
-Perhaps you should find Rexxar and explain your predicament. Show him the Dull Drakefire Amulet. Hopefully he will know what to do next.', `VerifiedBuild` = 11200
+`LogDescription` = '看来伪装已经结束了。  
+你知道迈兰达·哈格为你制作的龙形护身符无法在黑石塔中使用。  
+也许你应该找到雷克萨，向他说明你的困境。向他展示暗淡的龙火护符。希望他知道下一步该怎么做。', `VerifiedBuild` = 11200
 WHERE `ID` = 6601;
 UPDATE `quest_template_locale` SET
 `Details` = 'Un médaillon a été façonné à partir des crânes de nos ennemis. Vous connaissez ce médaillon, n''est-ce pas ? Vous l''avez sûrement vu porté par vos aînés. Prenez cela. Retournez au Pic et présentez-le au général Drakkisath. Il y placera l''enchantement final pour mettre ce bibelot en phase avec votre esprit. Vous porterez ce médaillon avec honneur, en signe de votre accession à l''un de nos rangs les plus fermés : Gardien de la mère des couvées. Allez !',
 `Objectives` = 'Il semble que la comédie soit finie. Vous savez que l''Amulette de subversion draconique, créée par Myranda la Mégère, ne fonctionnera pas à l''intérieur du pic Blackrock. Peut-être devriez-vous trouver Rexxar et lui exposer votre fâcheuse situation. Montrez-lui l''Amulette drakefeu terne. Avec un peu de chance, il saura quoi faire.', `VerifiedBuild` = 11200
 WHERE `ID` = 6601 AND `locale` = 'frFR';
 
-UPDATE `quest_template` SET 
-`LogDescription` = 'Travel to Blackrock Spire and slay General Drakkisath. Gather his blood and return it to Rexxar.',
-`QuestCompletionLog` = 'Return to Rexxar in Desolace.', `VerifiedBuild` = 11200
+UPDATE `quest_template` SET
+`LogDescription` = '前往黑石塔，杀死达基萨斯将军。收集他的血，然后带给雷克萨。', `QuestCompletionLog` = '回到凄凉之地找雷克萨。', `VerifiedBuild` = 11200
 WHERE `ID` = 6602;
 UPDATE `quest_template_locale` SET
 `Details` = 'Vous irez rendre visite au général, mais pas en tant que dragon noir. Vous voyez, une cérémonie n''est qu''un autre terme pour permettre de verser du sang au Vol noir. L''amulette inachevée a simplement besoin du sang du général pour s''activer. Un de leurs mécanismes à sûreté intégrée. Retournez au pic Blackrock et détruisez Drakkisath. Rapportez son sang ici et j''activerai la clé du repaire d''Onyxia.',
 `Objectives` = 'Aller au Pic Rochenoire, et tuer le général Drakkisath. Récupérer son sang et l''apporter à Rexxar.', `VerifiedBuild` = 11200
 WHERE `ID` = 6602 AND `locale` = 'frFR';
 
-UPDATE `npc_text` SET `text0_0` = 'Well met, $c. I am Rexxar.' WHERE `ID` = 6533;
-UPDATE `broadcast_text` SET `MaleText` = 'Well met, $c. I am Rexxar.' WHERE `ID` = 9013;
+UPDATE `npc_text` SET `text0_0` = '很高兴见到你，$c。我是雷克萨。' WHERE `ID` = 6533;
+UPDATE `broadcast_text` SET `MaleText` = '很高兴见到你，$c。我是雷克萨。' WHERE `ID` = 9013;
 
 UPDATE `npc_text_locale` SET `text0_0` = 'Seid gegrüßt, $C. Ich bin Rexxar.' WHERE `ID` = 6533 AND `Locale` = 'deDE';
 UPDATE `npc_text_locale` SET `text0_0` = 'Salutations, $C. Je suis Rexxar.' WHERE `ID` = 6533 AND `Locale` = 'frFR';
@@ -215,26 +213,26 @@ UPDATE `broadcast_text_locale` SET `MaleText` = 'Salutations, $c. Je suis Rexxar
 UPDATE `creature_template_model` SET `CreatureDisplayID` = 11660 WHERE `CreatureID` = 10182;
 
 DELETE FROM `creature` WHERE `guid` IN (29113, 610204);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, 
 `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 (29113, 10182, 1, 0, 0, 1, 1, 1, 248.28, 1834.76, 86.2291, 3.32486, 550, 0, 1, 647400, 0, 2, 0, 0, 0, '', 0, 0, NULL),
 (610204, 10204, 1, 0, 0, 1, 1, 0, 247.329, 1830.72, 86.2303, 3.36506, 550, 0, 0, 161850, 0, 0, 0, 0, 0, '', 0, 0, NULL);
 
 DELETE FROM `creature_formations` WHERE `leaderGUID` = 29113;
-INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES 
+REPLACE INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES 
 (29113, 29113, 0, 0, 519, 0, 0),
 (29113, 610204, 4, 90, 519, 0, 0);
 
 DELETE FROM `creature_text` WHERE `CreatureID` IN (10182);
-INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
+REPLACE INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
 (10182, 0, 0, '$s becomes enraged!', 16, 0, 100, 0, 0, 0, 24144, 0, 'Rexxar enrage at 30%');
 
 DELETE FROM `creature_addon` WHERE `guid` = 29113;
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (29113, 291130, 0, 0, 0, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` = 291130;
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 (291130, 1, 241.215, 1833.28, 86.2291, 3.35878, 0, 0, 0, 100, 0),
 (291130, 2, 224.89, 1826.93, 86.2299, 3.56298, 0, 0, 0, 100, 0),
 (291130, 3, 210.148, 1817.78, 86.2299, 3.56298, 0, 0, 0, 100, 0),
@@ -587,7 +585,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 
 -- fix kodo patrols
 DELETE FROM `creature` WHERE `guid` IN (28272, 28273, 28274, 28295, 28278, 28279, 28280, 28298, 28282, 28283, 28284, 28299);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
 `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 --
 (28272, 4700, 1, 0, 0, 1, 1, 0, -1313.12, 957.979, 91.9389, 1.58056,  180, 0, 1, 1570, 0, 2, 0, 0, 0, '', 0, 0, NULL),
@@ -606,7 +604,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (28299, 4701, 1, 0, 0, 1, 1, 0, -2170.64, 1625.81, 60.3131, 0.218082, 180, 0, 0, 1647, 0, 0, 0, 0, 0, '', 0, 0, NULL);
 
 DELETE FROM `creature_formations` WHERE `leaderGUID` IN (28272, 28278, 28282);
-INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES 
+REPLACE INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES 
 --
 (28272, 28272, 0,  0,   515, 0, 0), -- Aged Kodo
 (28272, 28273, 20, 180, 515, 0, 0), -- Aged Kodo
@@ -624,13 +622,13 @@ INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, 
 (28282, 28299, 30, 170, 515, 0, 0); -- Dying Kodo
 
 DELETE FROM `creature_addon` WHERE `guid` IN (28272, 28278, 28282);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (28272, 282720, 0, 0, 0, 0, 0, NULL),
 (28278, 282780, 0, 0, 0, 0, 0, NULL),
 (28282, 282820, 0, 0, 0, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` IN (282720, 282780, 282820);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (282720, 1, -1313.12, 957.979, 91.9389, NULL, 0, 0, 0, 100, 0),
 (282720, 2, -1309.85, 973.866, 93.0568, NULL, 0, 0, 0, 100, 0),
@@ -752,7 +750,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN (4700, 4701);
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN (-28272, -28273, -28274, -28278, -28279, -28280, -28282, -28283, -28284, -28295, -28298, -28299);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -795,7 +793,7 @@ DELETE FROM `creature` WHERE `guid` IN (
 27939, 27940, 27941, 27942, 27943, 27949, 27950, 27951, 27952, 27953, 27954, 27955, 27956, 27957, 27958,
 27959, 27960, 27961, 27962, 27963, 27964, 27965, 27966, 27967, 27968, 27969, 27970, 27971, 27972, 27973);
 
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
 `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 --
 (27939, 4688, 1, 0, 0, 1, 1, 0, -1726.32, 2567.95, 107.69, 0.39374,  300, 0, 1, 444, 0, 2, 0, 0, 0, '', 0, 0, NULL), -- Bonepaw Hyena
@@ -836,7 +834,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 
 
 DELETE FROM `creature_formations` WHERE `leaderGUID` IN (27939, 27949, 27954, 27959, 27964, 27969);
-INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES 
+REPLACE INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES 
 --
 (27939, 27939, 0, 0,   515, 0, 0), -- Bonepaw Hyena
 (27939, 27940, 8, 180, 515, 0, 0),
@@ -875,7 +873,7 @@ INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, 
 (27969, 27973, 6, 140, 515, 0, 0);
 
 DELETE FROM `creature_addon` WHERE `guid` IN (27939, 27949, 27954, 27959, 27964, 27969);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (27939, 279390, 0, 0, 0, 0, 0, NULL),
 (27949, 279490, 0, 0, 0, 0, 0, NULL),
 (27954, 279540, 0, 0, 0, 0, 0, NULL),
@@ -884,7 +882,7 @@ INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `e
 (27969, 279690, 0, 0, 0, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` IN (279390, 279490, 279540, 279590, 279640, 279690);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (279390, 1, -1726.32, 2567.95, 107.69, NULL, 0, 0, 0, 100, 0),
 (279390, 2, -1735.91, 2567.28, 100.626, NULL, 0, 0, 0, 100, 0),
@@ -1215,7 +1213,7 @@ DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN (
 -27940, -27941, -27942, -27943, -27950, -27951, -27952, -27953, -27955, -27956, -27957, -27958,
 -27960, -27961, -27962, -27963, -27965, -27966, -27967, -27968, -27970, -27971, -27972, -27973);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 

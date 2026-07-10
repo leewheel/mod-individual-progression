@@ -9,7 +9,7 @@ DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN
 813, 818, 854, 871, 873, 875, 877, 879, 905, 921, 937, 938, 939, 940, 941, 942, 943, 978, 979, 1059, 1060, 1061, 1062, 1085, 1096, 1097, 1108, 1114, 1144, 1150, 1151, 1488, 1490, 1491, 1492, 1493, 
 1550, 1551, 1552, 1559, 1561, 1562, 1563, 1564, 1565, 1653, 1907, 2521, 2534, 2541, 2545, 2546, 2547, 2548, 2549, 2550, 2551, 2635, 4260, 4457, 4458, 4459, 4460, 4461, 4505, 4506, 4723, 14487, 14488);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -316,7 +316,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 
 -- Bhag'thera(728) and Tethis(730) have multiple spawn locations 
 DELETE FROM `creature` WHERE `id` IN (728, 730);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
 `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 (1348,   728, 0, 0, 0, 1, 1, 0, -12191, -944.651, 32.9082, 0.187693, 480, 0, 0, 1753, 0, 0, 0, 0, 0, '', 0, 0, NULL),
 (695017, 728, 0, 0, 0, 1, 1, 0, -12016.5, -896.876, 35.3047, 3.59511, 480, 5, 0, 1753, 0, 1, 0, 0, 0, '', 0, 0, NULL),
@@ -326,7 +326,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (695020, 730, 0, 0, 0, 1, 1, 0, -13017.2, 193.101, 22.7814, 1.45268, 480, 5, 0, 1973, 0, 1, 0, 0, 0, '', 0, 0, NULL);
 
 DELETE FROM `pool_creature` WHERE `pool_entry` IN (601010, 601011);
-INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
+REPLACE INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
 (1348,   601010, 0, 'Bhag thera'),
 (695017, 601010, 0, 'Bhag thera'),
 (695018, 601010, 0, 'Bhag thera'),
@@ -335,13 +335,13 @@ INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALU
 (695020, 601011, 0, 'Tethis');
 
 DELETE FROM `pool_template` WHERE `entry` IN (601010, 601011);
-INSERT INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
+REPLACE INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
 (601010, 1, ''),
 (601011, 1, '');
 
 -- Skullsplitter patrols missing formations
 DELETE FROM `creature` WHERE `guid` IN (1408, 1409, 2516, 2517, 2518, 2539);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
 --
 (1408, 780, 0, 0, 0, 1, 1, 1, -12762, -890.346, 52.7586, 2.23398, 390, 0, 0, 1357, 1236, 2, 0, 0, 0, '', 0, 0, NULL),
@@ -352,7 +352,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (2539, 667, 0, 0, 0, 1, 1, 1, -12762, -890.346, 52.7586, 2.5783, 390, 0, 0, 1678, 0, 0, 0, 0, 0, '', 0, 0, NULL);
 
 DELETE FROM `creature_formations` WHERE `leaderGUID` IN (1408, 2516);
-INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES
+REPLACE INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES
 (1408, 1408, 0, 0, 515, 0, 0),
 (1408, 2539, 3, 135, 515, 0, 0),
 (1408, 1409, 3, 225, 515, 0, 0),
@@ -370,12 +370,12 @@ UPDATE `creature_loot_template` SET `Chance` = 4 WHERE `Item` = 3862;
 UPDATE `creature_loot_template` SET `Chance` = 25 WHERE `Item` = 3863;
 
 DELETE FROM `creature` WHERE `id` IN (723);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
 `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 (600723, 723, 0, 0, 0, 1, 1, 1, -12357.4, -1075.36, 1.94221, 1.94815, 54000, 5, 0, 5346, 0, 1, 0, 0, 0, '', NULL, 0, NULL); 
     
 DELETE FROM `creature_text` WHERE `CreatureID` IN (675, 723);
-INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
+REPLACE INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
 (675, 0, 0, 'Work you dogs! Put your back into it!',             12, 0, 100, 0, 0, 0, 306,  0, 'Venture Co. Foreman'),
 (723, 0, 0, 'I\'ll crush you!',                                  12, 0, 100, 0, 0, 0, 1925, 0, 'Mosh Ogg Butcher'),
 (723, 0, 1, 'Me smash! You die!',                                12, 0, 100, 0, 0, 0, 1926, 0, 'Mosh Ogg Butcher'),

@@ -4,7 +4,7 @@ UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN 
 (11685, 11686, 11687, 11688, 11777, 11785, 11786, 11787, 11790, 11791, 11792, 11793, 11794, 12203, 12206, 12207, 12216, 12219, 12220, 12221, 12222, 12223, 12224, 12236, 12258, 13141, 13142, 13323, 13533, 13596, 13601, 13696, 13718);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -120,7 +120,7 @@ SET @WPID   := 6520000;
 
 DELETE FROM `creature` WHERE `id` = 12242;
 DELETE FROM `creature` WHERE `guid` BETWEEN @CGUID+1 AND @CGUID+32;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
 --
 (54684, 12242, 349, 0, 0, 1, 1, 1, 790.473, -500.472, -53.0402, 0.600063, 86400, 0, 1, 5346, 0, 2, 0, 0, 0, '', 0, 0, NULL), -- Spirit of Maraudos <The Fourth Khan>
@@ -165,7 +165,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (@CGUID+32, 11784, 349, 0, 0, 1, 1, 0, 125.256, -273.096, -108.677, 2.81844, 7200, 0, 0, 6168, 0, 0, 0, 0, 0, '', 0, 0, NULL);
 
 DELETE FROM `creature_formations` WHERE `leaderGUID` IN (@CGUID+1, @CGUID+6, @CGUID+11, @CGUID+16, @CGUID+21, @CGUID+26, @CGUID+31);
-INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES
+REPLACE INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES
 --
 (@CGUID+1, @CGUID+1, 0, 0, 515, 0, 0),
 (@CGUID+1, @CGUID+2, 4, 90, 515, 0, 0),
@@ -207,7 +207,7 @@ INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, 
 (@CGUID+31, @CGUID+32, 4, 180, 515, 0, 0);
 
 DELETE FROM `creature_addon` WHERE `guid` IN (@CGUID+1, @CGUID+6, @CGUID+11, @CGUID+16, @CGUID+21, @CGUID+26, @CGUID+31, 54684);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (@CGUID+1,  @WPID+10,  0, 0, 0, 0, 0, NULL),
 (@CGUID+6,  @WPID+60,  0, 0, 0, 0, 0, NULL),
 (@CGUID+11, @WPID+110, 0, 0, 0, 0, 0, NULL),
@@ -218,7 +218,7 @@ INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `e
 (54684, 546840, 0, 0, 1, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` IN (@WPID+10, @WPID+60, @WPID+110, @WPID+160, @WPID+210, @WPID+260, @WPID+310, 546840);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (546840, 1, 813.251, -485.585, -54.8048, 0.574534, 0, 0, 0, 100, 0),
 (546840, 2, 818.973, -470.028, -55.7948, 1.22053, 0, 0, 0, 100, 0),
@@ -438,7 +438,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 
 -- The Nameless Prophet, should have multiple spawn locations and almost instant respawn - https://www.youtube.com/watch?v=NzIngiFj1lQ
 DELETE FROM `creature` WHERE `id` = 13718;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
 (@CGUID+41, 13718, 1, 0, 0, 1, 1, 0, -1417.84, 2969.18, 124.195, 1.51197, 5, 0, 0, 3804, 1332, 0, 0, 0, 0, '', NULL, 0, NULL),
 (@CGUID+42, 13718, 1, 0, 0, 1, 1, 0, -1472.66, 2964.98, 122.436, 4.91161, 5, 0, 0, 3804, 1332, 0, 0, 0, 0, '', NULL, 0, NULL),
@@ -446,26 +446,26 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (@CGUID+44, 13718, 1, 0, 0, 1, 1, 0, -1419.18, 2940.57, 95.2565, 3.62354, 5, 0, 0, 3804, 1332, 0, 0, 0, 0, '', NULL, 0, NULL);
 
 DELETE FROM `creature_addon` WHERE `guid` IN (29070, @CGUID+41, @CGUID+42, @CGUID+43, @CGUID+44);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (@CGUID+41, 0, 0, 0, 1, 0, 0, NULL),
 (@CGUID+42, 0, 0, 0, 1, 0, 0, NULL),
 (@CGUID+43, 0, 0, 0, 1, 0, 0, NULL),
 (@CGUID+44, 0, 0, 0, 1, 0, 0, NULL);
 
 DELETE FROM `pool_creature` WHERE `pool_entry` = 601012;
-INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
+REPLACE INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
 (@CGUID+41, 601012, 0, 'The Nameless Prophet'),
 (@CGUID+42, 601012, 0, 'The Nameless Prophet'),
 (@CGUID+43, 601012, 0, 'The Nameless Prophet'),
 (@CGUID+44, 601012, 0, 'The Nameless Prophet');
 
 DELETE FROM `pool_template` WHERE `entry` = 601012;
-INSERT INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
+REPLACE INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
 (601012, 1, '');
 
 -- Primordial Behemoth (12206), link giants together - https://www.youtube.com/watch?v=ookD9bng7kU&t=16m
 DELETE FROM `creature_formations` WHERE `leaderGUID` IN (54658, 55338, 55344, 55345);
-INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES 
+REPLACE INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES 
 (54658, 54658, 0, 0, 3, 0, 0),
 (54658, 54664, 0, 0, 3, 0, 0),
 (55338, 55338, 0, 0, 3, 0, 0),
@@ -482,7 +482,7 @@ UPDATE `creature_template` SET `skinloot` = 0 WHERE `entry` = 13533;
 UPDATE `creature_template` SET `skinloot` = 100013 WHERE `entry` = 11789;
 
 -- Legends of Maraudon
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Celebras the Redeemed.' WHERE `ID` = 7044;
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找玛拉顿的塞雷布拉斯。' WHERE `ID` = 7044;
 
 -- The Pariah's Instructions
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Centaur Pariah in Desolace.' WHERE `ID` = 7067;
+UPDATE `quest_template` SET `QuestCompletionLog` = '去凄凉之地找玛诺洛克集会所的半人马贱民。' WHERE `ID` = 7067;

@@ -7,7 +7,7 @@ DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN
 (3099, 3100, 3101, 3103, 3104, 3105, 3106, 3107, 3110, 3111, 3112, 3113, 3114, 3115, 3116, 3117, 3118, 3119, 3120, 3121, 3122, 3123, 3124, 3125, 3127, 3128, 3129, 3130, 3131, 
 3183, 3192, 3195, 3196, 3197, 3198, 3199, 3203, 3204, 3205, 3206, 3207, 3226, 3227, 3281, 5808, 5809, 5822, 5823, 5824, 5826);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -120,7 +120,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 
 -- fix multiple spawn locations and respawn times
 DELETE FROM `creature` WHERE `id` IN (3204, 5809, 5822, 5824, 5826);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 --
 (695041, 3204, 1, 0, 0, 1, 1, 1, 1454.2, -4701.82, -2.62193, 4.57276, 300, 0, 0, 178, 382, 0, 0, 0, 0, '', 0, 0, NULL),   -- Gazz'uz
@@ -144,7 +144,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 
 DELETE FROM `creature_addon` WHERE `guid` IN (6456, 12209, 12218, 12384); -- using custom guids now
 DELETE FROM `creature_addon` WHERE `guid` BETWEEN 695041 AND 695057;
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
 (695041, 0, 0, 0, 1, 0, 0, NULL),
 (695042, 0, 0, 0, 1, 0, 0, NULL),
 (695043, 0, 0, 0, 1, 0, 0, NULL),
@@ -159,7 +159,7 @@ INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `e
 (695057, 0, 0, 0, 1, 0, 0, NULL);
 
 DELETE FROM `pool_creature` WHERE `pool_entry` IN (601031, 601032, 601033, 601034, 601035);
-INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
+REPLACE INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
 --
 (695041, 601031, 0, 'Gazz uz'),
 (695042, 601031, 0, 'Gazz uz'),
@@ -181,7 +181,7 @@ INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALU
 (695057, 601035, 0, 'Geolord Mottle');
 
 DELETE FROM `pool_template` WHERE `entry` IN (601031, 601032, 601033, 601034, 601035);
-INSERT INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
+REPLACE INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
 (601031, 1, 'Gazz uz - Durotar'),
 (601032, 1, 'Watch Commander Zalaphi - Durotar'),
 (601033, 1, 'Felweaver Scornn - Durotar'),
@@ -193,16 +193,16 @@ UPDATE `creature` SET `spawntimesecs` = 3600, `MovementType` = 1, `Wander_distan
 
 -- Death Flayer, fix waypoints and respawn time
 DELETE FROM `creature` WHERE `id` = 5823;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 (12322, 5823, 1, 0, 0, 1, 1, 0, 57.4579, -3894.15, 42.8933, 0.345736, 5400, 0, 1, 222, 0, 2, 0, 0, 0, '', 0, 0, NULL);
 
 DELETE FROM `creature_addon` WHERE `guid` = 12322;
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (12322, 123220, 0, 0, 0, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` = 123220;
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (123220, 1, 65.0755, -3891.4, 42.9449, NULL, 0, 0, 0, 100, 0),
 (123220, 2, 81.1732, -3871.89, 40.6949, NULL, 0, 0, 0, 100, 0),
@@ -265,28 +265,28 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 
 -- Cutting Teeth
 UPDATE `quest_template` SET `Flags` = 8, 
-`LogDescription` = 'Kill 10 Mottled Boars then return to Gornek at the Den.', `RequiredNpcOrGoCount1` = 10 WHERE `ID` = 788;
+`LogDescription` = '杀掉8只杂斑野猪，然后向大兽穴里的高内克报告。', `RequiredNpcOrGoCount1` = 10 WHERE `ID` = 788;
 
 -- Sting of the Scorpid
 UPDATE `quest_template` SET `Flags` = 8, 
-`LogDescription` = 'Get 10 Scorpid Worker Tails for Gornek in the Den.', `RequiredItemCount1` = 10 WHERE `ID` = 789;
+`LogDescription` = '给大兽穴中的高内克带回8根工蝎的尾巴。', `RequiredItemCount1` = 10 WHERE `ID` = 789;
 
 -- Vile Familiars
 UPDATE `quest_template` SET `Flags` = 8, 
-`LogDescription` = 'Kill 12 Vile Familiars.$b$bReturn to Zureetha Fargaze outside the Den.', `RequiredNpcOrGoCount1` = 12 WHERE `ID` = 792;
+`LogDescription` = '杀死8只邪灵劣魔，然后向大兽穴外的祖雷萨复命。', `RequiredNpcOrGoCount1` = 12 WHERE `ID` = 792;
 
 UPDATE `quest_template_addon` SET `AllowableClasses` = 1279 WHERE `ID` = 792;
 UPDATE `quest_template_addon` SET `NextQuestID` = 1499 WHERE `ID` = 1485;
 
 DELETE FROM `creature_queststarter` WHERE `id` = 5765 AND `quest` = 1485;
-INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES (5765, 1485);
+REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES (5765, 1485);
 
 DELETE FROM `creature_questender` WHERE `id` = 5765 AND `quest` = 1485;
-INSERT INTO `creature_questender` (`id`, `quest`) VALUES (5765, 1485);
+REPLACE INTO `creature_questender` (`id`, `quest`) VALUES (5765, 1485);
 
 -- Galgar's Cactus Apple Surprise
 UPDATE `quest_template` SET `Flags` = 8, 
-`LogDescription` = 'Bring Galgar 10 Cactus Apples. You remember him saying that they could be found near cactuses.', `RequiredItemCount1` = 10 WHERE `ID` = 4402;
+`LogDescription` = '收集6个仙人掌果，把它们交给戈加尔。你记得他说可以在仙人掌上收集到这种果子。', `RequiredItemCount1` = 10 WHERE `ID` = 4402;
 
 UPDATE `quest_template` SET `Flags` = 8 WHERE `ID` = 790; -- Sarkoth
 UPDATE `quest_template` SET `Flags` = 8 WHERE `ID` = 794; -- Burning Blade Medallion

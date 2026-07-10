@@ -2,7 +2,7 @@ SET @OGUID    := 657000;
 
 /* RESOURCES */
 DELETE FROM `gameobject` WHERE `guid` BETWEEN @OGUID+501 AND @OGUID+999;
-INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `rotation0`, `rotation1`, `rotation2`, `rotation3`, `spawntimesecs`, `animprogress`, `state`, `ScriptName`, `VerifiedBuild`, `Comment`) VALUES 
 --
 (@OGUID+501, 2044, 30, 0, 0, 1, 1, -331.867, -360.646, 8.59012, 3.29489, 0, 0, 0.997064, -0.0765719, 300, 0, 1, '', NULL, NULL),
@@ -473,7 +473,7 @@ INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, 
 (@OGUID+972, 178670, 30, 0, 0, 1, 1, -199.993, -343.217, 6.77662, 3.68265, 0, 0, -0.96363, 0.267241, 300, 0, 1, '', NULL, NULL); -- Altar of Summoning
 
 DELETE FROM `pool_gameobject` WHERE `pool_entry` = 601057;
-INSERT INTO `pool_gameobject` (`guid`, `pool_entry`, `chance`, `description`) VALUES
+REPLACE INTO `pool_gameobject` (`guid`, `pool_entry`, `chance`, `description`) VALUES
 --
 (@OGUID+501, 601057, 0, 'Gathering Resources - AV'),
 (@OGUID+502, 601057, 0, 'Gathering Resources - AV'),
@@ -940,5 +940,5 @@ INSERT INTO `pool_gameobject` (`guid`, `pool_entry`, `chance`, `description`) VA
 (@OGUID+963, 601057, 0, 'Gathering Resources - AV');
 
 DELETE FROM `pool_template` WHERE `entry` = 601057;
-INSERT INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
+REPLACE INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
 (601057, 50, 'Gathering Resources - AV');

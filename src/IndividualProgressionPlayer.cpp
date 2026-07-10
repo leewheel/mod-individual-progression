@@ -36,6 +36,13 @@ public:
                 sIndividualProgression->ForceUpdateProgressionState(player, static_cast<ProgressionState>(8));
             else
                 sIndividualProgression->ForceUpdateProgressionState(player, static_cast<ProgressionState>(13));
+
+            //By leewheel 2026-07-07
+            //机器人登录时如果在队伍中，同步进度到队长
+            Group* loginGroup = player->GetGroup();
+            if (loginGroup)
+                sIndividualProgression->SyncBotsProgressionToLeader(loginGroup);
+            //End By leewheel
         }
         else // normal account
         {
@@ -64,7 +71,7 @@ public:
             if (!player->GetSession())
                 return;
 
-            ChatHandler(player->GetSession()).SendSysMessage("|cff00ff00Individual Progression: |cffccccccenabled|r");
+            ChatHandler(player->GetSession()).SendSysMessage("|cff00ff00个人进度系统: |cffcccccc已启用|r");
         }
     }
 
@@ -168,7 +175,7 @@ public:
 
         if (mapid == MAP_BLACKWING_LAIR && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_MOLTEN_CORE))
         {
-            ChatHandler(player->GetSession()).PSendSysMessage("Progression Level Required = |cff00ffff{}|r", PROGRESSION_MOLTEN_CORE);
+            ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_MOLTEN_CORE);
             return false;
         }
         if (mapid == MAP_ONYXIAS_LAIR)
@@ -195,18 +202,18 @@ public:
 
             if (PLAYER_PROGRESSION < REQUIRED_ZG_PROGRESSION)
             {
-                ChatHandler(player->GetSession()).PSendSysMessage("Progression Level Required = |cff00ffff{}|r", REQUIRED_ZG_PROGRESSION);
+                ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", REQUIRED_ZG_PROGRESSION);
                 return false;
             }
         }
         if (mapid == MAP_AHN_QIRAJ_TEMPLE && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_PRE_AQ))
         {
-            ChatHandler(player->GetSession()).PSendSysMessage("Progression Level Required = |cff00ffff{}|r", PROGRESSION_PRE_AQ);
+            ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_PRE_AQ);
             return false;
         }
         if (mapid == MAP_RUINS_OF_AHN_QIRAJ && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_PRE_AQ))
         {
-            ChatHandler(player->GetSession()).PSendSysMessage("Progression Level Required = |cff00ffff{}|r", PROGRESSION_PRE_AQ);
+            ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_PRE_AQ);
             return false;
         }
         if (mapid == MAP_OUTLAND)
@@ -218,7 +225,7 @@ public:
 
                 if ((highestProgression < sIndividualProgression->tbcRacesProgressionLevel) && (player->getRace() != RACE_DRAENEI && player->getRace() != RACE_BLOODELF))
                 {
-                    ChatHandler(player->GetSession()).PSendSysMessage("Progression Level Required = |cff00ffff{}|r", sIndividualProgression->tbcRacesProgressionLevel);
+                    ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", sIndividualProgression->tbcRacesProgressionLevel);
                     return false;
                 }
                 else
@@ -230,7 +237,7 @@ public:
 
             if (!sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_4) && zoneId == AREA_ISLE_OF_QUEL_DANAS)
             {
-                ChatHandler(player->GetSession()).PSendSysMessage("Progression Level Required = |cff00ffff{}|r", PROGRESSION_TBC_TIER_4);
+                ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_TBC_TIER_4);
                 return false;
             }
         }
@@ -241,7 +248,7 @@ public:
 
             if (PLAYER_PROGRESSION < REQUIRED_ZA_PROGRESSION)
             {
-                ChatHandler(player->GetSession()).PSendSysMessage("Progression Level Required = |cff00ffff{}|r", REQUIRED_ZA_PROGRESSION);
+                ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", REQUIRED_ZA_PROGRESSION);
                 return false;
             }
         }
@@ -285,55 +292,55 @@ public:
                 break;
             }
 
-            ChatHandler(player->GetSession()).PSendSysMessage("Progression Level Required = |cff00ffff{}|r", PROGRESSION_TBC_TIER_5);
+            ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_TBC_TIER_5);
             return false;
         }
         if (mapid == MAP_ULDUAR && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_WOTLK_TIER_1))
         {
-            ChatHandler(player->GetSession()).PSendSysMessage("Progression Level Required = |cff00ffff{}|r", PROGRESSION_WOTLK_TIER_1);
+            ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_WOTLK_TIER_1);
             return false;
         }
         if ((mapid == MAP_TRIAL_OF_THE_CHAMPION || mapid == MAP_TRIAL_OF_THE_CRUSADER) && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_WOTLK_TIER_2))
         {
-            ChatHandler(player->GetSession()).PSendSysMessage("Progression Level Required = |cff00ffff{}|r", PROGRESSION_WOTLK_TIER_2);
+            ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_WOTLK_TIER_2);
             return false;
         }
         // This will also restrict other Frozen Halls dungeons, because Forge of Souls must be completed first to access them
         if ((mapid == MAP_ICECROWN_CITADEL || mapid == MAP_THE_FORGE_OF_SOULS) && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_WOTLK_TIER_3))
         {
-            ChatHandler(player->GetSession()).PSendSysMessage("Progression Level Required = |cff00ffff{}|r", PROGRESSION_WOTLK_TIER_3);
+            ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_WOTLK_TIER_3);
             return false;
         }
         if (mapid == MAP_THE_RUBY_SANCTUM && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_WOTLK_TIER_4))
         {
-            ChatHandler(player->GetSession()).PSendSysMessage("Progression Level Required = |cff00ffff{}|r", PROGRESSION_WOTLK_TIER_4);
+            ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_WOTLK_TIER_4);
             return false;
         }
         if (mapid == MAP_MAGISTERS_TERRACE && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_4))
         {
-            ChatHandler(player->GetSession()).PSendSysMessage("Progression Level Required = |cff00ffff{}|r", PROGRESSION_TBC_TIER_4);
+            ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_TBC_TIER_4);
             return false;
         }
         if (mapid == MAP_THE_SUNWELL && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_4))
         {
-            ChatHandler(player->GetSession()).PSendSysMessage("Progression Level Required = |cff00ffff{}|r", PROGRESSION_TBC_TIER_4);
+            ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_TBC_TIER_4);
             return false;
         }
         if (mapid == MAP_TEMPEST_KEEP)
         {
             if (!sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_1))
             {
-                ChatHandler(player->GetSession()).PSendSysMessage("Progression Level Required = |cff00ffff{}|r", PROGRESSION_TBC_TIER_1);
+                ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_TBC_TIER_1);
                 return false;
             }
  			else if (!player->HasItemCount(ITEM_TEMPEST_KEY))
             {
-                ChatHandler(player->GetSession()).PSendSysMessage("You must possess the Tempest Key to enter The Eye.");
+                ChatHandler(player->GetSession()).PSendSysMessage("您必须拥有风暴钥匙才能进入风暴要塞。");
                 return false;
             }
  			else if (player->GetQuestStatus(TRIAL_MAGTHERIDON) != QUEST_STATUS_REWARDED)
             {
-                ChatHandler(player->GetSession()).PSendSysMessage("You must complete the quest Trial of the Naaru: Magtheridon to enter The Eye.");
+                ChatHandler(player->GetSession()).PSendSysMessage("您必须完成任务\"纳鲁的试炼：玛瑟里顿\"才能进入风暴要塞。");
                 return false;
             }
         }
@@ -341,12 +348,12 @@ public:
         {
             if (!sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_1))
             {
-                ChatHandler(player->GetSession()).PSendSysMessage("Progression Level Required = |cff00ffff{}|r", PROGRESSION_TBC_TIER_1);
+                ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_TBC_TIER_1);
                 return false;
             }
  			else if (player->GetQuestStatus(CUDGEL_OF_KARDESH) != QUEST_STATUS_REWARDED)
             {
-                ChatHandler(player->GetSession()).PSendSysMessage("You must complete the quest The Cudgel of Kar\'desh to enter Serpentshrine Reservoir.");
+                ChatHandler(player->GetSession()).PSendSysMessage("您必须完成任务\"卡达什圣杖\"才能进入盘牙湖泊：毒蛇神殿。");
                 return false;
             }
         }
@@ -354,12 +361,12 @@ public:
         {
             if (!sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_2))
             {
-                ChatHandler(player->GetSession()).PSendSysMessage("Progression Level Required = |cff00ffff{}|r", PROGRESSION_TBC_TIER_2);
+                ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_TBC_TIER_2);
                 return false;
             }
  			else if (player->GetQuestStatus(VIALS_OF_ETERNITY) != QUEST_STATUS_REWARDED)
             {
-                ChatHandler(player->GetSession()).PSendSysMessage("You must complete the quest The Vials of Eternity to enter the Battle of Mount Hyjal.");
+                ChatHandler(player->GetSession()).PSendSysMessage("您必须完成任务\"永恒水瓶\"才能进入海加尔山之战。");
                 return false;
             }
         }
@@ -367,12 +374,12 @@ public:
         {
             if (!sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_2))
             {
-                ChatHandler(player->GetSession()).PSendSysMessage("Progression Level Required = |cff00ffff{}|r", PROGRESSION_TBC_TIER_2);
+                ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_TBC_TIER_2);
                 return false;
             }
  			else if (!player->HasItemCount(ITEM_MEDALLION_OF_KARABOR) && !player->HasItemCount(ITEM_BLESSED_MEDALLION_OF_KARABOR))
             {
-                ChatHandler(player->GetSession()).PSendSysMessage("You must possess the Medallion of Karabor to enter the Black Temple.");
+                ChatHandler(player->GetSession()).PSendSysMessage("您必须拥有卡拉波勋章才能进入黑暗神殿。");
                 return false;
             }
         }
@@ -421,9 +428,9 @@ public:
                 // uint32 copp = (moneyRew % GOLD) % SILVER;
 
                 if (gold > 0)
-                    ChatHandler(player->GetSession()).PSendSysMessage("Received {} Gold, {} Silver.", gold, silv);
+                    ChatHandler(player->GetSession()).PSendSysMessage("获得 {} 金币，{} 银币。", gold, silv);
                 else
-                    ChatHandler(player->GetSession()).PSendSysMessage("Received {} Silver.", silv);
+                    ChatHandler(player->GetSession()).PSendSysMessage("获得 {} 银币。", silv);
             }
         }
 
@@ -453,6 +460,13 @@ public:
             }
             break;
         }
+
+        //By leewheel 2026-07-07
+        //队长完成进度任务后，同步队内机器人的进度
+        Group* questGroup = player->GetGroup();
+        if (questGroup)
+            sIndividualProgression->SyncBotsProgressionToLeader(questGroup);
+        //End By leewheel
     }
 
     bool OnPlayerCanGroupInvite(Player* player, std::string& membername) override
@@ -473,42 +487,10 @@ public:
             {
                 if (sIndividualProgression->isBotAccount(otherPlayer))
                 {
-                    if (!sIndividualProgression->hasPassedProgression(player, PROGRESSION_PRE_TBC)) // player is in vanilla
-                    {
-                        if (otherPlayer->GetLevel() <= 60)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            ChatHandler(player->GetSession()).SendSysMessage("|cff00ff00Enforce Group Rules is enabled: |cffccccccthis player's level is too high.|r");
-                            return false;
-                        }
-                    }
-                    else if (!sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_5)) // player is in TBC
-                    {
-                        if ((otherPlayer->GetLevel() > 60) && (otherPlayer->GetLevel() <= 70))
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            ChatHandler(player->GetSession()).SendSysMessage("|cff00ff00Enforce Group Rules is enabled: |cffccccccthis player's level is too low or too high.|r");
-                            return false;
-                        }
-                    }
-                    else // player is in WotLK
-                    {
-                        if (otherPlayer->GetLevel() > 70)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            ChatHandler(player->GetSession()).SendSysMessage("|cff00ff00Enforce Group Rules is enabled: |cffccccccthis player's level is too low.|r");
-                            return false;
-                        }
-                    }
+                    //By leewheel 2026-07-07
+                    //机器人不受强制组队规则限制，任何等级的机器人都可以加入队伍
+                    return true;
+                    //End By leewheel
                 }
                 else // player or ALTbot
                 {
@@ -517,6 +499,12 @@ public:
             }
             else // if (sIndividualProgression->isExcludedAccount(player))
             {
+                //By leewheel 2026-07-07
+                //机器人不受强制组队规则限制
+                if (sIndividualProgression->isBotAccount(otherPlayer))
+                    return true;
+                //End By leewheel
+
                 if (!sIndividualProgression->isNormalAccount(otherPlayer)) // other player is either excluded or a RNDbot
                 {
                     if (player->GetLevel() <= 60) // player is in vanilla
@@ -527,7 +515,7 @@ public:
                         }
                         else // excluded accounts in vanilla cannot group with TBC or WotLK accounts when enforceGroupRules is enabled, to avoid bypassing progression requirements
                         {
-                            ChatHandler(player->GetSession()).SendSysMessage("|cff00ff00Enforce Group Rules is enabled: |cffccccccthis player's level is too high.|r");
+                            ChatHandler(player->GetSession()).SendSysMessage("|cff00ff00强制组队规则已启用: |cffcccccc该玩家等级过高。|r");
                             return false;
                         }
                     }
@@ -539,7 +527,7 @@ public:
                         }
                         else
                         {
-                            ChatHandler(player->GetSession()).SendSysMessage("|cff00ff00Enforce Group Rules is enabled: |cffccccccthis player's level is too low or too high.|r");
+                            ChatHandler(player->GetSession()).SendSysMessage("|cff00ff00强制组队规则已启用: |cffcccccc该玩家等级过低或过高。|r");
                             return false;
                         }
                     }
@@ -551,14 +539,14 @@ public:
                         }
                         else
                         {
-                            ChatHandler(player->GetSession()).SendSysMessage("|cff00ff00Enforce Group Rules is enabled: |cffccccccthis player's level is too low.|r");
+                            ChatHandler(player->GetSession()).SendSysMessage("|cff00ff00强制组队规则已启用: |cffcccccc该玩家等级过低。|r");
                             return false;
                         }
                     }
                 }
                 else // player or ALTbot
                 {
-                    ChatHandler(player->GetSession()).SendSysMessage("|cff00ff00Enforce Group Rules is enabled: |cffccccccthis player is not a bot or does not have an excluded account.|r");
+ChatHandler(player->GetSession()).SendSysMessage("|cff00ff00强制组队规则已启用: |cffcccccc该玩家不是机器人或没有排除账户。|r");
                     return false;
                 }
             }
@@ -583,46 +571,11 @@ public:
 
         if (!sIndividualProgression->isNormalAccount(player)) // player is either a RNDbot or has an excluded account
         {
-            if (sIndividualProgression->enforceGroupRules)
-            {
-                if (groupLeaderState < PROGRESSION_PRE_TBC) // Group leader is in Vanilla
-                {
-                    if (player->GetLevel() <= 60) // invited player is in Vanilla
-                    {
-                        sIndividualProgression->ForceUpdateProgressionState(player, static_cast<ProgressionState>(groupLeaderState));
-                        return true;
-                    }
-                    else
-                        return false;
-                }
-                else if (groupLeaderState >= PROGRESSION_PRE_TBC && groupLeaderState < PROGRESSION_TBC_TIER_5) // Group leader is in TBC
-                {
-                    if (player->GetLevel() > 60 && player->GetLevel() <= 70) // invited excluded player is in TBC
-                    {
-                        sIndividualProgression->ForceUpdateProgressionState(player, static_cast<ProgressionState>(groupLeaderState));
-                        return true;
-                    }
-                    else
-                        return false;
-                }
-                else // Group leader is in WotLK
-                {
-                    if (player->GetLevel() > 70) // invited excluded player is in WotLK
-                    {
-                        sIndividualProgression->ForceUpdateProgressionState(player, static_cast<ProgressionState>(groupLeaderState));
-                        return true;
-                    }
-                    else
-                        return false;
-                }
-            }
-            else // not enforcing Group Rules
-            {
-                if (currentState != groupLeaderState)
-                    sIndividualProgression->ForceUpdateProgressionState(player, static_cast<ProgressionState>(groupLeaderState));
-
-                return true;
-            }
+            //By leewheel 2026-07-07
+            //机器人不受强制组队规则限制，任何等级的机器人都可以加入队伍
+            //机器人的进度同步由 SyncBotsProgressionToLeader 在加入队伍后自动处理
+            return true;
+            //End By leewheel
         }
         else // normal account
         {
@@ -786,6 +739,12 @@ public:
                     sIndividualProgression->checkKillProgression(killer, killed);
             }
         }
+
+        //By leewheel 2026-07-07
+        //队长击杀BOSS后进度可能变化，同步队内机器人的进度
+        if (sIndividualProgression->isNormalAccount(killer) && group)
+            sIndividualProgression->SyncBotsProgressionToLeader(group);
+        //End By leewheel
     }
 
     bool OnPlayerUpdateFishingSkill(Player* player, int32 /*skill*/, int32 /*zone_skill*/, int32 chance, int32 roll) override
@@ -825,6 +784,27 @@ public:
             return;
 
         sIndividualProgression->checkIPPhasing(player, newArea);
+
+        //By leewheel 2026-07-07
+        //队长切换区域时，同步更新队内所有机器人的相位
+        //确保机器人看到与队长相同的世界状态
+        if (sIndividualProgression->isNormalAccount(player))
+        {
+            Group* group = player->GetGroup();
+            if (group)
+            {
+                for (GroupReference* itr = group->GetFirstMember(); itr; itr = itr->next())
+                {
+                    Player* member = itr->GetSource();
+                    if (!member || !member->IsInWorld() || member == player)
+                        continue;
+
+                    if (sIndividualProgression->isBotAccount(member))
+                        sIndividualProgression->checkIPPhasing(member, newArea);
+                }
+            }
+        }
+        //End By leewheel
     }
 
     void OnPlayerUpdateArea(Player* player, uint32 oldArea, uint32 newArea) override
@@ -846,7 +826,7 @@ public:
             {
                 if (!sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_4) && newArea == 4087) // Sun's Reach Harbor
                 {
-                    ChatHandler(player->GetSession()).PSendSysMessage("Progression Level Required = |cff00ffff{}|r", PROGRESSION_TBC_TIER_4);
+                    ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_TBC_TIER_4);
 
                     TeamId teamId = player->GetTeamId(true);
                     if (teamId == TEAM_ALLIANCE)
@@ -858,6 +838,32 @@ public:
         }
 
         sIndividualProgression->checkIPPhasing(player, newArea);
+
+        //By leewheel 2026-07-07
+        //队长切换子区域时，同步更新队内所有机器人的相位
+        if (sIndividualProgression->isNormalAccount(player))
+        {
+            Group* group = player->GetGroup();
+            if (group)
+            {
+                for (GroupReference* itr = group->GetFirstMember(); itr; itr = itr->next())
+                {
+                    Player* member = itr->GetSource();
+                    if (!member || !member->IsInWorld() || member == player)
+                        continue;
+
+                    if (sIndividualProgression->isBotAccount(member))
+                        sIndividualProgression->checkIPPhasing(member, newArea);
+                }
+            }
+        }
+        //End By leewheel
+
+        //By leewheel 2026-07-08
+        //相位变化后，GO可能被移除并重新创建，导致任务物品闪光效果丢失
+        //调用 UpdateForQuestWorldObjects 重新发送 GO 的动态标志，恢复闪光效果
+        player->UpdateForQuestWorldObjects();
+        //End By leewheel
     }
 
     bool OnPlayerCanEquipItem(Player* player, uint8 /*slot*/, uint16& /*dest*/, Item* pItem, bool /*swap*/, bool /*not_loading*/) override

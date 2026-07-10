@@ -3,7 +3,7 @@ DELETE FROM `reference_loot_template` WHERE `Entry` BETWEEN 36003 AND 36026;
 DELETE FROM `reference_loot_template` WHERE `Entry` BETWEEN 36101 AND 36111; -- Hyjal
 DELETE FROM `reference_loot_template` WHERE `Entry` BETWEEN 36121 AND 36139; -- Black Temple
 
-INSERT INTO `reference_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
+REPLACE INTO `reference_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 --
 (34093, 32227, 0, 0, 0, 1, 1, 1, 1, 'Crimson Spinel'),
 (34093, 32228, 0, 0, 0, 1, 1, 1, 1, 'Empyrean Sapphire'),

@@ -3,7 +3,7 @@ SET @OGUID    := 650000;
 
 -- Collector Npcs
 DELETE FROM `creature` WHERE `guid` BETWEEN @CGUID+1 AND @CGUID+30;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`) VALUES
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`) VALUES
 -- Alliance Collector Npcs
 (@CGUID+1,15383,0,0,0,1,1,1,-4914.29,-1228.1,501.65,3.66003,300,0,0,13495,0,0,0,0,0,'',0),
 (@CGUID+2,15431,0,0,0,1,1,1,-4915.32,-1220.84,501.658,4.07551,300,0,0,14355,0,0,0,0,0,'',0),
@@ -39,7 +39,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 
 -- Commendation Npcs
 DELETE FROM `creature` WHERE `guid` BETWEEN @CGUID+31 AND @CGUID+50;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`) VALUES
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`) VALUES
 -- Alliance Commendation Npcs
 (@CGUID+31,15731,0,0,0,1,1,0,-4938.75,-1206.29,501.658,4.03146,300,0,0,2614,0,0,0,0,0,'npc_ipp_we',0),
 (@CGUID+32,15733,0,0,0,1,1,0,-4936.65,-1209.73,501.658,3.95796,300,0,0,2614,0,0,0,0,0,'npc_ipp_we',0),
@@ -68,7 +68,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 
 -- War Effort Recruiters
 DELETE FROM `gossip_menu` WHERE `MenuID` IN (3118101, 3118103, 3118105, 3118107);
-INSERT INTO `gossip_menu` (`MenuID`, `TextID`) VALUES (3118101, 8101), (3118103, 8103), (3118105, 8105), (3118107, 8107);
+REPLACE INTO `gossip_menu` (`MenuID`, `TextID`) VALUES (3118101, 8101), (3118103, 8103), (3118105, 8105), (3118107, 8107);
 
 UPDATE `creature_template` SET `gossip_menu_id` = 3118101, `npcflag` = 3 WHERE `entry` = 15707;
 UPDATE `creature_template` SET `gossip_menu_id` = 3118103, `npcflag` = 3 WHERE `entry` IN (15708, 15709, 21156);
@@ -79,14 +79,14 @@ UPDATE `quest_template` SET `AllowableRaces` = 690 WHERE `ID` IN (8792, 8793, 87
 UPDATE `quest_template` SET `AllowableRaces` = 1101 WHERE `ID` IN (8795, 8796, 8797, 10501);
 
 DELETE FROM `creature_queststarter` WHERE `quest` IN (8792, 8793, 8794, 8795, 8796, 8797, 10500, 10501);
-INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES (15702, 8792), (15703, 8792), (15704, 8792), (21155, 8792), (15707, 8795), (15708, 8795), (15709, 8795), (21156, 8795);
+REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES (15702, 8792), (15703, 8792), (15704, 8792), (21155, 8792), (15707, 8795), (15708, 8795), (15709, 8795), (21156, 8795);
 
 DELETE FROM `creature_questender` WHERE `quest` IN (8792, 8793, 8794, 8795, 8796, 8797, 10500, 10501);
-INSERT INTO `creature_questender` (`id`, `quest`) VALUES (15700, 8792), (15701, 8795);
+REPLACE INTO `creature_questender` (`id`, `quest`) VALUES (15700, 8792), (15701, 8795);
 
 DELETE FROM `creature` WHERE `guid` BETWEEN @CGUID+51 AND @CGUID+58;
 DELETE FROM `creature` WHERE `guid` = 86424; -- placed by AC - copy of 15707
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`) VALUES
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`) VALUES
 (@CGUID+51,15702,1,0,0,1,1,0,-1209.58, 100.22, 134.661, 3.15905,300,0,0,15260,0,0,0,0,0,'',0),
 (@CGUID+52,15703,0,0,0,1,1,0,1572.58, 272.707, -43.0193, 5.02655,300,0,0,15260,0,0,0,0,0,'',0),
 (@CGUID+53,15704,1,0,0,1,1,0,1653.07, -4403.81, 18.5819, 4.45059,300,0,0,15260,0,0,0,0,0,'',0),
@@ -98,14 +98,14 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 
 -- War Effort Commanders
 DELETE FROM `creature` WHERE `guid` IN (@CGUID+59, @CGUID+60);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`) VALUES
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`) VALUES
 (@CGUID+59,15701,0,0,0,1,1,1,-4961.68,-1243.19,501.672,2.46488,300,0,1,30520,0,2,0,134254592,0,'',0),
 (@CGUID+60,15700,1,0,0,1,1,1,1581.39,-4202.27,41.8233,4.96133,300,0,1,30520,0,2,0,134217728,0,'',0);
 
 SET @NPC := 15701;
 SET @PATH := @NPC * 10;
 DELETE FROM `waypoint_data` WHERE `id` = @PATH;
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES
 (@PATH, 1, -4975.995605, -1231.047607, 501.676392, 2.419811, 0, 0, 0, 100, 0),
 (@PATH, 2, -4994.347168, -1208.347168, 501.676392, 2.021614, 0, 0, 0, 100, 0),
 (@PATH, 3, -4992.331543, -1191.743164, 501.661407, 1.034368, 0, 0, 0, 100, 0),
@@ -116,13 +116,13 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@PATH, 8, -4951.852051, -1236.240234, 501.664520, 3.806038, 0, 0, 0, 100, 0);
 
 DELETE FROM `creature_template_addon` WHERE `entry` IN (@NPC);
-INSERT INTO `creature_template_addon` (`entry`,`path_id`,`mount`,`bytes1`,`bytes2`,`emote`,`visibilityDistanceType`,`auras`) VALUES
+REPLACE INTO `creature_template_addon` (`entry`,`path_id`,`mount`,`bytes1`,`bytes2`,`emote`,`visibilityDistanceType`,`auras`) VALUES
 (@NPC,@PATH,14347,0,1,0,0, '');
 
 SET @NPC := 15700;
 SET @PATH := @NPC * 10;
 DELETE FROM `waypoint_data` WHERE `id` = @PATH;
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES
 (@PATH, 1, 1578.605957, -4182.716797, 39.134441, 1.467103, 0, 0, 0, 100, 0),
 (@PATH, 2, 1580.579590, -4161.104004, 35.596245, 1.116816, 0, 0, 0, 100, 0),
 (@PATH, 3, 1592.792236, -4137.739746, 32.130486, 0.887479, 0, 0, 0, 100, 0),
@@ -140,7 +140,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (@PATH, 15, 1578.605957, -4182.716797, 39.134441, 1.467103, 0, 0, 0, 100, 0);
 
 DELETE FROM `creature_template_addon` WHERE `entry` IN (@NPC);
-INSERT INTO `creature_template_addon` (`entry`,`path_id`,`mount`,`bytes1`,`bytes2`,`emote`,`visibilityDistanceType`,`auras`) VALUES
+REPLACE INTO `creature_template_addon` (`entry`,`path_id`,`mount`,`bytes1`,`bytes2`,`emote`,`visibilityDistanceType`,`auras`) VALUES
 (@NPC,@PATH,14573,0,0,0,0, '');
 
 -- Phase AQ War Effort Npcs
@@ -150,7 +150,7 @@ UPDATE `creature_template` SET `ScriptName` = 'npc_ipp_we' WHERE `entry` IN
 
 -- Phase AQ War Effort Objects
 DELETE FROM `gameobject` WHERE `guid` BETWEEN @OGUID+1 AND @OGUID+20;
-INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `rotation0`, `rotation1`, `rotation2`, `rotation3`, `spawntimesecs`, `animprogress`, `state`, `ScriptName`, `VerifiedBuild`, `Comment`) VALUES 
 -- Horde
 (@OGUID+1,  180812, 1, 0, 0, 1, 1, 1590.82, -4155.33, 36.2926, 3.7001, 0, 0, -0.961261, 0.27564, 180, 100, 1, 'gobject_ipp_leather_stage_0', 0, NULL),
@@ -177,42 +177,42 @@ INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, 
 
 -- New 'Complete the War Effort' quest. 
 DELETE FROM `quest_template` WHERE `ID` IN (108850, 108855);
-INSERT INTO `quest_template` (`ID`, `QuestType`, `QuestLevel`, `MinLevel`, `QuestSortID`, `QuestInfoID`, `SuggestedGroupNum`, `RequiredFactionId1`, `RequiredFactionId2`, `RequiredFactionValue1`, `RequiredFactionValue2`, `RewardNextQuest`, `RewardXPDifficulty`, `RewardMoney`, `RewardMoneyDifficulty`, `RewardDisplaySpell`, `RewardSpell`, `RewardHonor`, `RewardKillHonor`, 
+REPLACE INTO `quest_template` (`ID`, `QuestType`, `QuestLevel`, `MinLevel`, `QuestSortID`, `QuestInfoID`, `SuggestedGroupNum`, `RequiredFactionId1`, `RequiredFactionId2`, `RequiredFactionValue1`, `RequiredFactionValue2`, `RewardNextQuest`, `RewardXPDifficulty`, `RewardMoney`, `RewardMoneyDifficulty`, `RewardDisplaySpell`, `RewardSpell`, `RewardHonor`, `RewardKillHonor`, 
 `StartItem`, `Flags`, `RequiredPlayerKills`, `RewardItem1`, `RewardAmount1`, `RewardItem2`, `RewardAmount2`, `RewardItem3`, `RewardAmount3`, `RewardItem4`, `RewardAmount4`, `ItemDrop1`, `ItemDropQuantity1`, `ItemDrop2`, `ItemDropQuantity2`, `ItemDrop3`, `ItemDropQuantity3`, `ItemDrop4`, `ItemDropQuantity4`, 
 `RewardChoiceItemID1`, `RewardChoiceItemQuantity1`, `RewardChoiceItemID2`, `RewardChoiceItemQuantity2`, `RewardChoiceItemID3`, `RewardChoiceItemQuantity3`, `RewardChoiceItemID4`, `RewardChoiceItemQuantity4`, `RewardChoiceItemID5`, `RewardChoiceItemQuantity5`, `RewardChoiceItemID6`, `RewardChoiceItemQuantity6`, 
 `POIContinent`, `POIx`, `POIy`, `POIPriority`, `RewardTitle`, `RewardTalents`, `RewardArenaPoints`, `RewardFactionID1`, `RewardFactionValue1`, `RewardFactionOverride1`, `RewardFactionID2`, `RewardFactionValue2`, `RewardFactionOverride2`, `RewardFactionID3`, `RewardFactionValue3`, `RewardFactionOverride3`, `RewardFactionID4`, `RewardFactionValue4`, `RewardFactionOverride4`, `RewardFactionID5`, `RewardFactionValue5`, `RewardFactionOverride5`, 
 `TimeAllowed`, `AllowableRaces`, `LogTitle`, `LogDescription`, `QuestDescription`, `AreaDescription`, `QuestCompletionLog`, `RequiredNpcOrGo1`, `RequiredNpcOrGo2`, `RequiredNpcOrGo3`, `RequiredNpcOrGo4`, `RequiredNpcOrGoCount1`, `RequiredNpcOrGoCount2`, `RequiredNpcOrGoCount3`, `RequiredNpcOrGoCount4`, `RequiredItemId1`, `RequiredItemId2`, `RequiredItemId3`, `RequiredItemId4`, `RequiredItemId5`, `RequiredItemId6`, 
 `RequiredItemCount1`, `RequiredItemCount2`, `RequiredItemCount3`, `RequiredItemCount4`, `RequiredItemCount5`, `RequiredItemCount6`, `Unknown0`, `ObjectiveText1`, `ObjectiveText2`, `ObjectiveText3`, `ObjectiveText4`, `VerifiedBuild`) VALUES 
 --
-(108850, 2, 60, 50, -365, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21513, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1101, 'Complete the War Effort', '', '', NULL, 'Return to Field Marshal Snowfall in Ironforge.', 0, 0, 0, 0, 0, 0, 0, 0, 21436, 0, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 0, 0, '', '', '', '', 0),
-(108855, 2, 60, 50, -365, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21513, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 690, 'Complete the War Effort', '', '', NULL, 'Return to Warlord Gorchuk in Orgrimmar.', 0, 0, 0, 0, 0, 0, 0, 0, 21438, 0, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 0, 0, '', '', '', '', 0);
+(108850, 2, 60, 50, -365, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21513, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1101, '完成战争物资收集', '', '', NULL, '回到铁炉堡的大元帅斯诺·落雪处。', 0, 0, 0, 0, 0, 0, 0, 0, 21436, 0, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 0, 0, '', '', '', '', 0),
+(108855, 2, 60, 50, -365, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21513, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 690, '完成战争物资收集', '', '', NULL, '回到奥格瑞玛的督军格尔库克处。', 0, 0, 0, 0, 0, 0, 0, 0, 21438, 0, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 0, 0, '', '', '', '', 0);
 
 DELETE FROM `quest_offer_reward` WHERE `ID` IN (108850, 108855);
-INSERT INTO `quest_offer_reward` (`ID`, `Emote1`, `Emote2`, `Emote3`, `Emote4`, `EmoteDelay1`, `EmoteDelay2`, `EmoteDelay3`, `EmoteDelay4`, `RewardText`, `VerifiedBuild`) VALUES 
-(108850, 0, 0, 0, 0, 0, 0, 0, 0, 'You are such a selfless person. Thank you very much for your contribution to the war effort. It\'s people like you that are going to make the difference between success and failure at Ahn\'Qiraj. I just hope that all of this will be enough.$B$BThanks again, $N.', 0),
-(108855, 0, 0, 0, 0, 0, 0, 0, 0, 'You are such a selfless person. Thank you very much for your contribution to the war effort. It\'s people like you that are going to make the difference between success and failure at Ahn\'Qiraj. I just hope that all of this will be enough.$B$BThanks again, $N.', 0);
+REPLACE INTO `quest_offer_reward` (`ID`, `Emote1`, `Emote2`, `Emote3`, `Emote4`, `EmoteDelay1`, `EmoteDelay2`, `EmoteDelay3`, `EmoteDelay4`, `RewardText`, `VerifiedBuild`) VALUES 
+(108850, 0, 0, 0, 0, 0, 0, 0, 0, '你真是一个无私的人。非常感谢你对战争物资收集的贡献。正是因为有你这样的人，安其拉的成败才会有所不同。我只希望这一切都能足够。$B$B再次感谢你，$N。', 0),
+(108855, 0, 0, 0, 0, 0, 0, 0, 0, '你真是一个无私的人。非常感谢你对战争物资收集的贡献。正是因为有你这样的人，安其拉的成败才会有所不同。我只希望这一切都能足够。$B$B再次感谢你，$N。', 0);
 
 DELETE FROM `quest_template_addon` WHERE `ID` IN (108850, 108855);
-INSERT INTO `quest_template_addon` (`ID`, `MaxLevel`, `AllowableClasses`, `SourceSpellID`, `PrevQuestID`, `NextQuestID`, `ExclusiveGroup`, `RewardMailTemplateID`, `RewardMailDelay`, 
+REPLACE INTO `quest_template_addon` (`ID`, `MaxLevel`, `AllowableClasses`, `SourceSpellID`, `PrevQuestID`, `NextQuestID`, `ExclusiveGroup`, `RewardMailTemplateID`, `RewardMailDelay`, 
 `RequiredSkillID`, `RequiredSkillPoints`, `RequiredMinRepFaction`, `RequiredMaxRepFaction`, `RequiredMinRepValue`, `RequiredMaxRepValue`, `ProvidedItemCount`, `SpecialFlags`) VALUES 
 (108850, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 256),
 (108855, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 256);
 
 DELETE FROM `creature_queststarter` WHERE `id` = 15700 AND `quest` = 108855;
 DELETE FROM `creature_queststarter` WHERE `id` = 15701 AND `quest` = 108850;
-INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES 
+REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES 
 (15700, 108855),
 (15701, 108850);
 
 DELETE FROM `creature_questender` WHERE `id` = 15700 AND `quest` = 108855;
 DELETE FROM `creature_questender` WHERE `id` = 15701 AND `quest` = 108850;
-INSERT INTO `creature_questender` (`id`, `quest`) VALUES 
+REPLACE INTO `creature_questender` (`id`, `quest`) VALUES 
 (15700, 108855),
 (15701, 108850);
 
 -- Hide 'Complete the War Effort' quests until the player has completed all collection quests at least once
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 19 AND `ConditionTypeOrReference` = 8 AND `SourceEntry` IN (108850, 108855);
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 -- Alliance
 (19, 0, 108850, 0, 0, 8, 0, 8492, 0, 0, 0, 0, 0, '', 'Quest \'Complete the War Effort\' requires QUEST_COPPER_BARS_A'),
@@ -249,101 +249,103 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 
 
 -- Alliance CompletionText fixes
-UPDATE `quest_request_items` SET `CompletionText` = 'I do so hope that you have been successful in gathering the thorium bars that we spoke of earlier.' WHERE `ID` = 8499;
-UPDATE `quest_request_items` SET `CompletionText` = 'Hello, $C, have you been able to get those twenty silk bandages yet?' WHERE `ID` = 8520;
+UPDATE `quest_request_items` SET `CompletionText` = '我希望你已经成功收集好我们之前讲的瑟银锭了。' WHERE `ID` = 8499;
+UPDATE `quest_request_items` SET `CompletionText` = '你好，$C，你拿到那20个丝质绷带了吗？' WHERE `ID` = 8520;
 
 -- Alliance RewardText fixes
-UPDATE `quest_offer_reward` SET `RewardText` = 'Oh thank you, $C! Thank you! That\'s twenty down and an incalculable amount to go. You have the gratitude of the Alliance, and your efforts shall not go unrewarded. Speak to me again should you come across more thorium bars.' WHERE `ID` = 8499;
+UPDATE `quest_offer_reward` SET `RewardText` = '喔，谢谢你，$C！谢谢你！这样就完成了20个，还有无法估计的数量要收集。你赢得联盟的感谢，你的努力会得到应有的奖励。等你收集更多的瑟银锭再次与我交谈吧。' WHERE `ID` = 8499;
 
 -- Alliance LogDescription fixes
-UPDATE `quest_template` SET `LogDescription` = 'Bring 20 Copper Bars to Sergeant Stonebrow in Ironforge.' WHERE `ID` = 8493;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 20 Iron Bars to Corporal Carnes in Ironforge.' WHERE `ID` = 8495;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 20 Thorium Bars to Dame Twinbraid in Ironforge.' WHERE `ID` = 8500;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 20 Stranglekelp to Private Draxlegauge in Ironforge.' WHERE `ID` = 8504;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 20 Purple Lotus to Master Nightsong in Ironforge.' WHERE `ID` = 8506;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 20 Arthas\' Tears to Sergeant Major Germaine in Ironforge.' WHERE `ID` = 8510;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 10 Light Leather to Bonnie Stoneflayer in Ironforge.' WHERE `ID` = 8512;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 10 Medium Leather to Private Porter in Ironforge.' WHERE `ID` = 8514;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 10 Thick Leather to Marta Finespindle in Ironforge.' WHERE `ID` = 8516;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 20 Linen Bandages to Sentinel Silversky in Ironforge.' WHERE `ID` = 8518;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 20 Silk Bandages to Nurse Stonefield in Ironforge.' WHERE `ID` = 8521;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 20 Runecloth Bandages to Keeper Moonshade in Ironforge.' WHERE `ID` = 8523;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 20 Rainbow Fin Albacore to Slicky Gastronome in Ironforge.' WHERE `ID` = 8525;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 20 Roast Raptor to Sarah Sadwhistle in Ironforge.' WHERE `ID` = 8527;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 20 Spotted Yellowtail to Huntress Swiftriver in Ironforge.' WHERE `ID` = 8529;
+UPDATE `quest_template` SET `LogDescription` = '带20个铜锭给丹莫洛飞机场的石眉中尉。' WHERE `ID` = 8493;
+UPDATE `quest_template` SET `LogDescription` = '带20个铁锭给丹莫洛飞机场的卡恩斯下士。' WHERE `ID` = 8495;
+UPDATE `quest_template` SET `LogDescription` = '把20块瑟银锭交给铁炉堡军事区的达米。' WHERE `ID` = 8500;
+UPDATE `quest_template` SET `LogDescription` = '带20个荆棘藻给丹莫洛飞机场的士兵德拉里格。' WHERE `ID` = 8504;
+UPDATE `quest_template` SET `LogDescription` = '把20朵紫莲花交给铁炉堡军事区的艾文·夜歌。' WHERE `ID` = 8506;
+UPDATE `quest_template` SET `LogDescription` = '把20棵阿尔萨斯之泪交给铁炉堡军事区的士官长戈麦恩。' WHERE `ID` = 8510;
+UPDATE `quest_template` SET `LogDescription` = '带10张轻皮给丹莫洛飞机场的波尼·碎石。' WHERE `ID` = 8512;
+UPDATE `quest_template` SET `LogDescription` = '带10张中皮给丹莫洛飞机场的士兵波特。' WHERE `ID` = 8514;
+UPDATE `quest_template` SET `LogDescription` = '带10张厚皮给丹莫洛飞机场的玛塔·钢轴。' WHERE `ID` = 8516;
+UPDATE `quest_template` SET `LogDescription` = '把20卷亚麻绷带交给丹莫罗飞机场的哨兵塞尔瓦·银空。' WHERE `ID` = 8518;
+UPDATE `quest_template` SET `LogDescription` = '带20个丝质绷带给丹莫洛飞机场的护士斯通菲尔德。' WHERE `ID` = 8521;
+UPDATE `quest_template` SET `LogDescription` = '带20个符文布绷带给丹莫洛飞机场的守护者月影。' WHERE `ID` = 8523;
+UPDATE `quest_template` SET `LogDescription` = '把20条彩鳍鱼交给铁炉堡军事区的美食家斯里克。' WHERE `ID` = 8525;
+UPDATE `quest_template` SET `LogDescription` = '把20块烤迅猛龙肉交给铁炉堡军事区的萨拉·塞维斯。' WHERE `ID` = 8527;
+UPDATE `quest_template` SET `LogDescription` = '带20条斑点黄尾鱼给丹莫洛飞机场的女猎手蕾尔·急流。' WHERE `ID` = 8529;
 
 -- Alliance QuestCompletionLog fixes
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Sergeant Stonebrow in Ironforge.' WHERE `ID` IN (8492, 8493);
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Corporal Carnes in Ironforge.' WHERE `ID` IN (8494, 8495);
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Dame Twinbraid in Ironforge.' WHERE `ID` IN (8499, 8500);
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Private Draxlegauge in Ironforge.' WHERE `ID` IN (8503, 8504);
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Master Nightsong in Ironforge.' WHERE `ID` IN (8505, 8506);
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Sergeant Major Germaine in Ironforge.' WHERE `ID` IN (8509, 8510);
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Bonnie Stoneflayer in Ironforge.' WHERE `ID` IN (8511, 8512);
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Private Porter in Ironforge.' WHERE `ID` IN (8513, 8514);
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Marta Finespindle in Ironforge.' WHERE `ID` IN (8515, 8516);
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Sentinel Silversky in Ironforge.' WHERE `ID` IN (8517, 8518);
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Nurse Stonefield in Ironforge.' WHERE `ID` IN (8520, 8521);
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Keeper Moonshade in Ironforge.' WHERE `ID` IN (8522, 8523);
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Slicky Gastronome in Ironforge.' WHERE `ID` IN (8524, 8525);
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Sarah Sadwhistle in Ironforge.' WHERE `ID` IN (8526, 8527);
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Huntress Swiftriver in Ironforge.' WHERE `ID` IN (8528, 8529);
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找丹莫罗的布罗恩·石眉。' WHERE `ID` IN (8492, 8493);
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找丹莫罗的卡恩斯下士。' WHERE `ID` IN (8494, 8495);
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找丹莫罗的达米。' WHERE `ID` IN (8499, 8500);
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找丹莫罗的列兵德拉里格。' WHERE `ID` IN (8503, 8504);
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找铁炉堡的艾文·夜歌。' WHERE `ID` IN (8505, 8506);
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找丹莫罗的士官长戈麦恩。' WHERE `ID` IN (8509, 8510);
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找丹莫罗的波尼·碎石。' WHERE `ID` IN (8511, 8512);
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找丹莫罗的列兵波特。' WHERE `ID` IN (8513, 8514);
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找铁炉堡军事区的玛尔塔·钢轴。' WHERE `ID` IN (8515, 8516);
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找丹莫罗的哨兵塞尔瓦·银空。' WHERE `ID` IN (8517, 8518);
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找丹莫罗的女护士斯通菲尔德。' WHERE `ID` IN (8520, 8521);
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找铁炉堡军事区的守护者莫沙·月影。' WHERE `ID` IN (8522, 8523);
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找丹莫罗的美食家斯里克。' WHERE `ID` IN (8524, 8525);
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找丹莫罗的萨拉·塞维斯。' WHERE `ID` = 8526;
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找铁炉堡军事区的萨拉·塞维斯。' WHERE `ID` = 8527;
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找铁炉堡军事区的女猎手蕾尔·急流。' WHERE `ID` IN (8528, 8529);
 
 -- Horde CompletionText fixes
-UPDATE `quest_request_items` SET `CompletionText` = 'How many tin bars do you have there, $c? After the war I think I\'m going to need someone to teach me how to count.' WHERE `ID` = 8542;
-UPDATE `quest_request_items` SET `CompletionText` = 'Back so soon with the peacebloom, $c?' WHERE `ID` = 8549;
-UPDATE `quest_request_items` SET `CompletionText` = 'Returned already with the purple lotus that I have requested, $C? It is critical that you do so in as timely as fashion as possible lest all that I am attempting here come to naught.' WHERE `ID` = 8582;
-UPDATE `quest_request_items` SET `CompletionText` = 'Ah, $C, have you returned so quickly with the wool bandages?' WHERE `ID` = 8604;
-UPDATE `quest_request_items` SET `CompletionText` = 'The war comes soon, I think, $C. I thank you for your time and effort devoted to helping with our gathering tasks. Do you return because you have obtained the runecloth bandages that we spoke of before?' WHERE `ID` = 8609;
-UPDATE `quest_request_items` SET `CompletionText` = 'Back with those lean wolf steaks so soon, $C? I don\'t care if they\'re overcooked or tartar, just make sure they\'re tasty and get them to me quick!' WHERE `ID` = 8611;
-UPDATE `quest_request_items` SET `CompletionText` = 'Back so soon with the spotted yellowtail, $C? You rememba\' to cook it up nice? We not servin\' raw fish to the soldiers out in the hot desert sun, to be sure.' WHERE `ID` = 8613;
-UPDATE `quest_request_items` SET `CompletionText` = 'Have you returned with the baked salmon, $C? Remember, it must be cooked; I have no use for raw fish unfortunately.' WHERE `ID` = 8615;
+UPDATE `quest_request_items` SET `CompletionText` = '为了你好，我希望你有那些锡锭，$C！' WHERE `ID` = 8542;
+UPDATE `quest_request_items` SET `CompletionText` = '这么快就带着宁神花回来了吗，$C？' WHERE `ID` = 8549;
+UPDATE `quest_request_items` SET `CompletionText` = '你已经带着我要的紫莲花回来了吗，$C？你一定得尽快做好这件事，否则我这里要做的事全是空谈。' WHERE `ID` = 8582;
+UPDATE `quest_request_items` SET `CompletionText` = '啊，$C，你这么快就带着绒线绷带回来了吗？' WHERE `ID` = 8604;
+UPDATE `quest_request_items` SET `CompletionText` = '战争很快就来了，$C。你取得了我们之前说的符文布绷带吗？' WHERE `ID` = 8609;
+UPDATE `quest_request_items` SET `CompletionText` = '这么快就带着瘦狼排回来了吗，$C？我不在乎它们烤太熟或沾了塔塔酱，只要它们是美味的就快点带来给我！' WHERE `ID` = 8611;
+UPDATE `quest_request_items` SET `CompletionText` = '这么快就带着斑点黄尾鱼回来了吗，$C？你有把它们煮好吧？我们可不想在炎热的沙漠艳阳下给士兵们生鱼吃。' WHERE `ID` = 8613;
+UPDATE `quest_request_items` SET `CompletionText` = '你带着烤鲑鱼回来了吗，$C？记住，一定要煮熟的我们不能用生的鱼。' WHERE `ID` = 8615;
 
 -- Horde RewardText fixes
-UPDATE `quest_offer_reward` SET `RewardText` = 'Well, I guess that looks like the right number of tin bars. Don\'t try to fool me, $C! Counting makes my skull hurt. Now I go and put these bars on the stack and you go out and bring me back more of the same.' WHERE `ID` = 8542;
-UPDATE `quest_offer_reward` SET `RewardText` = 'And so our efforts push us that much closer to war. Thank you for your hard work in gathering this peacebloom $C. I assure you that it will go to good use, and that your contribution has been noted $N. Should you find yourself willing, please return to me again with more of the flowers. Until then, may the Earth Mother guide you.' WHERE `ID` = 8549;
-UPDATE `quest_offer_reward` SET `RewardText` = '$C! Pele\'keiki happy for now. Pele\'keiki take all that firebloom and put it in box so it stay fresh. Pele\'keiki be seein\' to it that all the firebloom bein\' made into good stuff for the war. And if you be gettin\' anymore, you come see Pele\'keiki fast. Pele\'keiki prolly be needin\' more.' WHERE `ID` = 8580;
-UPDATE `quest_offer_reward` SET `RewardText` = 'A commendable effort, $C. I will measure these specimens for their appropriate usage and note your contribution. The purple lotus will then need to be properly stored until I am ready for them. As for you, if you are still available I should imagine that I\'ll still need more purple lotus. Please check back with me in a moment.' WHERE `ID` = 8582;
-UPDATE `quest_offer_reward` SET `RewardText` = 'Oh, so you do have the heavy leather I needed. Your blade is sharp indeed, $C; these are good skins! Now that we\'ve gotten off on the right foot with one another I\'ll make sure that your contribution is put to good use. And if you happen to come across more heavy leather, bring it my way.' WHERE `ID` = 8588;
-UPDATE `quest_offer_reward` SET `RewardText` = 'You have my thanks, $C, and the gratitude of the Horde. If you come across more wool bandages bring them to me here should you wish to further contribute to the war effort. Until then, may your ancestors watch over you!' WHERE `ID` = 8604;
-UPDATE `quest_offer_reward` SET `RewardText` = 'You are a credit to the Horde, $C. Thank you for your efforts; they are appreciated! I\'ll have to pack these fresh bandages away and take another count to see how far along we are to our goal. If you\'d like you could gather more runecloth bandages and return them to me here.' WHERE `ID` = 8609;
-UPDATE `quest_offer_reward` SET `RewardText` = 'Ok, this stack of meat looks good to me. I\'ll salt them, and then pack them away and hopefully they\'ll keep fresh enough to be edible when the time comes.$B$BThanks for the contribution, $C. Do you think you could bring me another rack?' WHERE `ID` = 8611;
-UPDATE `quest_offer_reward` SET `RewardText` = 'Oh ya, this be the good stuff. I pack it up real nice so it not go to waste. Thanks be to you for helpin\' me out like this. I\'m thinkin\' you an A-number-one fisherman for all this spotted yellowtail. An if you happen to fish up and cook even more, you bring it to me here; I make sure everyone know you did!' WHERE `ID` = 8613;
-UPDATE `quest_offer_reward` SET `RewardText` = 'Thank you for proving your interest in helping with the war effort here, $C. Many would simply ignore our needs, opting instead to make a profit. But they do not have the gratitude of the Horde, as you now do. Their hearts are not full, as yours must be filled with the pride that comes from selfless giving.$B$BAgain, I thank you. Should you find the time to assist us further before our preparations are complete, I will be here waiting.' WHERE `ID` = 8615;
+UPDATE `quest_offer_reward` SET `RewardText` = '嗯，我想这应该是正确的锡锭数字。别想蒙骗我，$C！清点数量让我感到头疼。现在去收集一样的数量来，但要快一点！' WHERE `ID` = 8542;
+UPDATE `quest_offer_reward` SET `RewardText` = '我们的努力让我们离战争越来越近。谢谢你努力帮忙收集这些宁神花。我保证它们会有很好的用途，而且你的贡献会被大家所认同的，$N。如果你还有意愿的话，请带更多的花回来给我。在那之前，愿大地之母指引你。' WHERE `ID` = 8549;
+UPDATE `quest_offer_reward` SET `RewardText` = '$C！比雷凯基现在开心了。比雷凯基把所有的火焰花收进盒子里保持新鲜。比雷凯基还告诉首领你的行为，所以大家都会对$N感到很高兴。如果你还有拿到其它的火焰花，就快点去找比雷凯基。比雷凯基还需要更多的花。' WHERE `ID` = 8580;
+UPDATE `quest_offer_reward` SET `RewardText` = '值得表扬的努力，$C。我会测试这些样本找出它们适合的用途并记下你的贡献。这些紫莲花在我使用之前要先好好储藏起来。至于你，如果你还有空的话我还需要更多的紫莲花。等一会儿再回来找我。' WHERE `ID` = 8582;
+UPDATE `quest_offer_reward` SET `RewardText` = '喔，你真的有我要的重皮。你的刀真的很锐利，$C这些真是好皮！现在既然我们已经有了该有的东西，我一定会将你对事业的贡献让大家都知道。如果你刚好又有更多的重皮，请带来这里给我。' WHERE `ID` = 8588;
+UPDATE `quest_offer_reward` SET `RewardText` = '谢谢你，$C，部落也很感激你。如果你有更多的绒线绷带，又希望对战事做更多贡献的话，请带到这边给我。在那之前，愿你的祖先守护着你！' WHERE `ID` = 8604;
+UPDATE `quest_offer_reward` SET `RewardText` = '你对部落而言是个荣耀，$C。谢谢你的努力我们很感谢！我要把这些新鲜的绷带打包好并算算我们离目标还差多少。如果你愿意，可以帮我收集更多符文布绷带再回来这里。' WHERE `ID` = 8609;
+UPDATE `quest_offer_reward` SET `RewardText` = '嗯，这堆肉看起来很好。我会用盐腌制它们并打包好，希望能一直保持新鲜到要吃的时候。$B$B谢谢你将它们带来给我我会确认你的烹饪工作被记录下来。你还能再带给我另一批吗？' WHERE `ID` = 8611;
+UPDATE `quest_offer_reward` SET `RewardText` = '喔耶，这真是好东西。我会把它们收好，不会浪费。谢谢你帮我们这样的忙。我想你是个一流的渔夫$g先生:小姐能钓到这些斑点黄尾鱼。如果你刚好钓到并煮好更多鱼，拿到这里给我我要让大家都知道你的表现！' WHERE `ID` = 8613;
+UPDATE `quest_offer_reward` SET `RewardText` = '谢谢你为战事提供帮忙，$C。很多人都会忽略我们的需要，选择赚取利润。但是他们无法获得部落的感谢，无法像你现在所做的一样。他们的心不是丰盈的，不像你现在的心一样，因为无私的奉献充满骄傲。$B$B我再一次的感谢你。如果你能在我们的准备完成前再次帮助我们，我会在这里等你。' WHERE `ID` = 8615;
 
 -- Horde LogDescription fixes
-UPDATE `quest_template` SET `LogDescription` = 'Bring 20 copper bars to Miner Cromwell in Orgrimmar.' WHERE `ID` = 8533;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 20 tin bars to Grunt Maug in Orgrimmar.' WHERE `ID` = 8543;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 20 Mithril Bars to Senior Sergeant T\'kelah in Orgrimmar.' WHERE `ID` = 8546;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 20 Peacebloom to Herbalist Proudfeather in Orgrimmar.' WHERE `ID` = 8550;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 20 Firebloom to Batrider Pele\'keiki in Orgrimmar.' WHERE `ID` = 8581;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 20 Purple Lotus to Apothecary Jezel in Orgrimmar.' WHERE `ID` = 8583;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 10 Heavy Leather to Skinner Jamani in Orgrimmar.'  WHERE `ID` = 8589;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 10 Thick Leather to Sergeant Umala in Orgrimmar.' WHERE `ID` = 8591;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 10 Rugged Leather to Doctor Serratus in Orgrimmar.' WHERE `ID` = 8601;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 20 Wool Bandages to Healer Longrunner in Orgrimmar.' WHERE `ID` = 8605;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 20 Mageweave Bandages to Lady Callow in Orgrimmar.' WHERE `ID` = 8608;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 20 Runecloth Bandages to Stoneguard Clayhoof in Orgrimmar.' WHERE `ID` = 8610;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 20 Lean Wolf Steaks to Bloodguard Rawtar in Orgrimmar.' WHERE `ID` = 8612;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 20 Spotted Yellowtail to Fisherman Lin\'do in Orgrimmar.' WHERE `ID` = 8614;
-UPDATE `quest_template` SET `LogDescription` = 'Bring 20 Baked Salmon to Chief Sharpclaw in Orgrimmar.' WHERE `ID` = 8616;
+UPDATE `quest_template` SET `LogDescription` = '带20个铜锭给杜洛塔的矿工克罗威尔。' WHERE `ID` = 8533;
+UPDATE `quest_template` SET `LogDescription` = '带20个锡锭给杜洛塔的步兵玛乌格。' WHERE `ID` = 8543;
+UPDATE `quest_template` SET `LogDescription` = '把20块秘银锭交给奥格瑞玛精神谷的军士长克拉恩。' WHERE `ID` = 8546;
+UPDATE `quest_template` SET `LogDescription` = '把20朵宁神花交给奥格瑞玛精神谷的草药学家波德·飞羽。' WHERE `ID` = 8550;
+UPDATE `quest_template` SET `LogDescription` = '把20份火焰花交给奥格瑞玛精神谷的蝙蝠骑士比雷凯基。' WHERE `ID` = 8581;
+UPDATE `quest_template` SET `LogDescription` = '把20份紫莲花交给奥格瑞玛精神谷的药剂师耶泽尔。' WHERE `ID` = 8583;
+UPDATE `quest_template` SET `LogDescription` = '把10块重皮交给奥格瑞玛精神谷的剥皮师亚曼尼。'  WHERE `ID` = 8589;
+UPDATE `quest_template` SET `LogDescription` = '把10块厚皮交给奥格瑞玛精神谷的乌玛拉中士。' WHERE `ID` = 8591;
+UPDATE `quest_template` SET `LogDescription` = '把10块硬甲皮交给奥格瑞玛精神谷的塞拉图斯。' WHERE `ID` = 8601;
+UPDATE `quest_template` SET `LogDescription` = '把20卷绒线绷带交给奥格瑞玛精神谷的医师朗兰纳。' WHERE `ID` = 8605;
+UPDATE `quest_template` SET `LogDescription` = '把20卷魔纹绷带交给奥格瑞玛精神谷的卡隆。' WHERE `ID` = 8608;
+UPDATE `quest_template` SET `LogDescription` = '把20卷符文布绷带交给奥格瑞玛精神谷的尼根·陶蹄。' WHERE `ID` = 8610;
+UPDATE `quest_template` SET `LogDescription` = '把20块瘦狼排交给奥格瑞玛精神谷的血卫士拉尔塔。' WHERE `ID` = 8612;
+UPDATE `quest_template` SET `LogDescription` = '把20条斑点黄尾鱼交给奥格瑞玛精神谷的渔夫林度。' WHERE `ID` = 8614;
+UPDATE `quest_template` SET `LogDescription` = '把20份烤鲑鱼交给奥格瑞玛精神谷的图拉·利爪。' WHERE `ID` = 8616;
 
 -- Horde QuestCompletionLog fixes
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Miner Cromwell in Orgrimmar.' WHERE `ID` IN (8532, 8533);
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Grunt Maug in Orgrimmar.' WHERE `ID` IN (8542, 8543);
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Senior Sergeant T\'kelah in Orgrimmar.' WHERE `ID` IN (8545, 8546);
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Herbalist Proudfeather in Orgrimmar.' WHERE `ID` IN (8549, 8550);
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Batrider Pele\'keiki in Orgrimmar.' WHERE `ID` IN (8580, 8581);
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Apothecary Jezel in Orgrimmar.' WHERE `ID` IN (8582, 8583);
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Skinner Jamani in Orgrimmar.' WHERE `ID` = 8589;
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Sergeant Umala in Orgrimmar.' WHERE `ID` = 8591;
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Doctor Serratus in Orgrimmar.' WHERE `ID` = 8601;
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Healer Longrunner in Orgrimmar.' WHERE `ID` = 8605;
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Lady Callow in Orgrimmar.' WHERE `ID` = 8608;
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Stoneguard Clayhoof in Orgrimmar.' WHERE `ID` = 8610;
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Bloodguard Rawtar in Orgrimmar.' WHERE `ID` IN (8611, 8612);
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Fisherman Lin\'do in Orgrimmar.' WHERE `ID` IN (8613, 8614);
-UPDATE `quest_template` SET `QuestCompletionLog` = 'Return to Chief Sharpclaw in Orgrimmar.' WHERE `ID` IN (8615, 8616);
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找杜隆塔尔的矿工克罗威尔。' WHERE `ID` IN (8532, 8533);
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找奥格瑞玛精神谷的步兵玛乌格。' WHERE `ID` IN (8542, 8543);
+UPDATE `quest_template` SET `QuestCompletionLog` = '去杜隆塔尔找军士长克拉恩。' WHERE `ID` IN (8545, 8546);
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找奥格瑞玛精神谷的草药学家波德·飞羽。' WHERE `ID` IN (8549, 8550);
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找奥格瑞玛精神谷的蝙蝠骑士比雷凯基。' WHERE `ID` IN (8580, 8581);
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找奥格瑞玛精神谷的药剂师耶泽尔。' WHERE `ID` IN (8582, 8583);
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找奥格瑞玛的剥皮师亚曼尼。' WHERE `ID` = 8589;
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找奥格瑞玛的乌玛拉中士。' WHERE `ID` = 8591;
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找奥格瑞玛的塞拉图斯。' WHERE `ID` = 8601;
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找奥格瑞玛的医师朗兰纳。' WHERE `ID` = 8605;
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找奥格瑞玛的卡隆。' WHERE `ID` = 8608;
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找杜隆塔尔的尼根·陶蹄。' WHERE `ID` = 8610;
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找杜隆塔尔的血卫士拉尔塔。' WHERE `ID` IN (8611, 8612);
+UPDATE `quest_template` SET `QuestCompletionLog` = '去杜隆塔尔找奥格瑞玛的渔夫林度。' WHERE `ID` = 8613;
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找杜隆塔尔的渔夫林度。' WHERE `ID` = 8614;
+UPDATE `quest_template` SET `QuestCompletionLog` = '去找杜隆塔尔的图拉·利爪。' WHERE `ID` IN (8615, 8616);
 
 -- Horde quest_template_addon fixes
 UPDATE `quest_template_addon` SET `SpecialFlags` = 0 WHERE `ID` = 8609;

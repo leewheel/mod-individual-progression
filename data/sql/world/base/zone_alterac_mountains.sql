@@ -5,7 +5,7 @@ UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN 
 (2242, 2243, 2245, 2246, 2247, 2252, 2253, 2254, 2255, 2256, 2271, 2272, 2287, 2306, 2320, 2407, 2415, 2417, 2420, 2421, 2422, 2423, 2453, 4504);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -89,12 +89,12 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 
 -- fix Frostmaw spawn location
 DELETE FROM `event_scripts` WHERE `id` = 727;
-INSERT INTO `event_scripts` (`id`, `delay`, `command`, `datalong`, `datalong2`, `dataint`, `x`, `y`, `z`, `o`) VALUES 
+REPLACE INTO `event_scripts` (`id`, `delay`, `command`, `datalong`, `datalong2`, `dataint`, `x`, `y`, `z`, `o`) VALUES 
 (727, 0, 10, 4504, 3000000, 0, 234.227, -239.227, 141.325, 2.84489);
 
 SET @ENTRY := 4504;
 DELETE FROM `waypoints` WHERE `entry` = @ENTRY * 100;
-INSERT INTO `waypoints` (`entry`, `pointid`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `point_comment`) VALUES
+REPLACE INTO `waypoints` (`entry`, `pointid`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `point_comment`) VALUES
 (@ENTRY*100, 1,  221.10156, -254.34375, 145.13052, NULL, 0, 'Frostmaw'),
 (@ENTRY*100, 2,  221.40279, -262.92282, 145.25552, NULL, 0, 'Frostmaw'),
 (@ENTRY*100, 3,  229.7501, -267.23904, 145.87318,  NULL, 0, 'Frostmaw'),
@@ -112,12 +112,12 @@ INSERT INTO `waypoints` (`entry`, `pointid`, `position_x`, `position_y`, `positi
 -- fix Stone Fury waypoints
 DELETE FROM `creature_template_addon` WHERE `entry` = 2258;
 DELETE FROM `creature_addon` WHERE `guid` = 63913;
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (63913, 639130, 0, 0, 0, 0, 0, NULL);
 
 -- Jailor Borhuin(2431) and Baron Vardus(2306) - multiple spawn locations 
 DELETE FROM `creature` WHERE `id` IN (2306, 2431);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
 `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 (16905,  2306, 0, 0, 0, 1, 1, 1, 1180.59, -555.904, 71.1468, 1.8822,  300, 0, 0, 1239, 3191, 0, 0, 0, 0, '', 0, 0, NULL),
 (695010, 2306, 0, 0, 0, 1, 1, 1, 693.333, -905.125, 157.78, 2.69564,  300, 0, 0, 1239, 3191, 0, 0, 0, 0, '', NULL, 0, NULL), -- https://www.youtube.com/watch?v=MgH-PCmxnUo
@@ -129,7 +129,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (695015, 2431, 0, 0, 0, 1, 1, 1, 679.818, -897.818, 171.806, 4.8398,  300, 0, 0, 1537, 0, 0, 0, 0, 0, '', NULL, 0, NULL);
 
 DELETE FROM `pool_creature` WHERE `pool_entry` IN (601008, 601009);
-INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
+REPLACE INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
 (16905,  601008, 0, 'Baron Vardus'),
 (695010, 601008, 0, 'Baron Vardus'),
 (695011, 601008, 0, 'Baron Vardus'),
@@ -139,6 +139,6 @@ INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALU
 (695015, 601009, 0, 'Jailor Borhuin');
 
 DELETE FROM `pool_template` WHERE `entry` IN (601008, 601009);
-INSERT INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
+REPLACE INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
 (601008, 1, ''),
 (601009, 1, '');

@@ -1,14 +1,14 @@
 DELETE FROM `creature_template` WHERE `entry` BETWEEN 301000 AND 301002;
-INSERT INTO `creature_template` (`entry`, `name`, `subname`, `minlevel`, `maxlevel`, `faction`, `speed_walk`, `speed_run`, `detection_range`, `rank`, `dmgschool`, `DamageModifier`,
+REPLACE INTO `creature_template` (`entry`, `name`, `subname`, `minlevel`, `maxlevel`, `faction`, `speed_walk`, `speed_run`, `detection_range`, `rank`, `dmgschool`, `DamageModifier`,
 `BaseAttackTime`, `RangeAttackTime`, `BaseVariance`, `RangeVariance`, `unit_class`, `unit_flags`, `unit_flags2`, `family`, `type`, `type_flags`, `lootid`, `skinloot`, `PetSpellDataId`, `mingold`, `maxgold`,
 `AIName`, `MovementType`, `HoverHeight`, `HealthModifier`, `ManaModifier`, `ArmorModifier`, `ExperienceModifier`, `movementId`, `RegenHealth`, `CreatureImmunitiesId`, `flags_extra`, `ScriptName`) VALUES
 --
-(301000, "Onyxia", "", 63, 63, 103, 1.0, 1.28571, 20.0, 3, 0, 15.05, 2000, 2000, 1.0, 1.0, 1, 64, 2048, 0, 2, 108, 301000, 10184, 0, 914892, 1066294, '', 0, 1.0, 330.0, 1.0, 1.0, 1.0, 0, 1, -327, 513, 'boss_onyxia_40'),
-(301001, "Onyxian Whelp", "", 56, 57, 16, 1.11111, 1.14286, 18.0, 0, 0, 3.7, 2000, 2000, 1.0, 1.0, 1, 0, 2048, 0, 2, 8, 0, 0, 0, 0, 0, '', 1, 1.0, 1.0, 1.0, 1.0, 1.0, 0, 1, 0, 0, ''),
-(301002, "Onyxian Warder", "", 60, 63, 103, 0.888888, 1.14286, 20.0, 1, 0, 9.8, 2000, 2000, 1.0, 1.0, 1, 64, 2048, 0, 2, 8, 301002, 12129, 0, 1185, 4741, 'SmartAI', 1, 1.0, 25.0, 1.0, 1.0, 1.0, 0, 1, -273, 0, '');
+(301000, "奥妮克希亚", "", 63, 63, 103, 1.0, 1.28571, 20.0, 3, 0, 15.05, 2000, 2000, 1.0, 1.0, 1, 64, 2048, 0, 2, 108, 301000, 10184, 0, 914892, 1066294, '', 0, 1.0, 330.0, 1.0, 1.0, 1.0, 0, 1, -327, 513, 'boss_onyxia_40'),
+(301001, "奥妮克希亚雏龙", "", 56, 57, 16, 1.11111, 1.14286, 18.0, 0, 0, 3.7, 2000, 2000, 1.0, 1.0, 1, 0, 2048, 0, 2, 8, 0, 0, 0, 0, 0, '', 1, 1.0, 1.0, 1.0, 1.0, 1.0, 0, 1, 0, 0, ''),
+(301002, "奥妮克希亚守卫", "", 60, 63, 103, 0.888888, 1.14286, 20.0, 1, 0, 9.8, 2000, 2000, 1.0, 1.0, 1, 64, 2048, 0, 2, 8, 301002, 12129, 0, 1185, 4741, 'SmartAI', 1, 1.0, 25.0, 1.0, 1.0, 1.0, 0, 1, -273, 0, '');
 
 DELETE FROM `creature_template_locale` WHERE `entry` BETWEEN 301000 AND 301002;
-INSERT INTO `creature_template_locale` (`entry`, `locale`, `Name`, `Title`, `VerifiedBuild`) VALUES
+REPLACE INTO `creature_template_locale` (`entry`, `locale`, `Name`, `Title`, `VerifiedBuild`) VALUES
 (301001, 'deDE', 'Welpe von Onyxia', '', 0),
 (301001, 'esES', 'Cría de Onyxia', '', 0),
 (301001, 'esMX', 'Cría de Onyxia', '', 0),
@@ -27,13 +27,13 @@ INSERT INTO `creature_template_locale` (`entry`, `locale`, `Name`, `Title`, `Ver
 (301002, 'zhTW', '奧妮克希亞護衛', '', 0);
 
 DELETE FROM `creature_template_model` WHERE (`CreatureID` BETWEEN 301000 AND 301002);
-INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`, `DisplayScale`, `Probability`, `VerifiedBuild`) VALUES
+REPLACE INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`, `DisplayScale`, `Probability`, `VerifiedBuild`) VALUES
 (301000, 0, 8570, 1.0, 1.0, NULL),
 (301001, 0, 397, 1.0, 1.0, NULL),
 (301002, 0, 8711, 1.0, 1.0, NULL);
 
 DELETE FROM `spell_dbc` WHERE `ID` = 91003;
-INSERT INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attributes`, `AttributesEx`, `AttributesEx2`, `AttributesEx3`, `AttributesEx4`, `AttributesEx5`, `AttributesEx6`, `AttributesEx7`, `ShapeshiftMask`, 
+REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attributes`, `AttributesEx`, `AttributesEx2`, `AttributesEx3`, `AttributesEx4`, `AttributesEx5`, `AttributesEx6`, `AttributesEx7`, `ShapeshiftMask`, 
 `unk_320_2`, `ShapeshiftExclude`, `unk_320_3`, `Targets`, `TargetCreatureType`, `RequiresSpellFocus`, `FacingCasterFlags`, `CasterAuraState`, `TargetAuraState`, `ExcludeCasterAuraState`, `ExcludeTargetAuraState`, 
 `CasterAuraSpell`, `TargetAuraSpell`, `ExcludeCasterAuraSpell`, `ExcludeTargetAuraSpell`, `CastingTimeIndex`, `RecoveryTime`, `CategoryRecoveryTime`, `InterruptFlags`, `AuraInterruptFlags`, `ChannelInterruptFlags`, 
 `ProcTypeMask`, `ProcChance`, `ProcCharges`, `MaxLevel`, `BaseLevel`, `SpellLevel`, `DurationIndex`, `PowerType`, `ManaCost`, `ManaCostPerLevel`, `ManaPerSecond`, `ManaPerSecondPerLevel`, `RangeIndex`, `Speed`, 
@@ -59,7 +59,7 @@ INSERT INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attributes
 `EffectBonusMultiplier_2`, `EffectBonusMultiplier_3`, `SpellDescriptionVariableID`, `SpellDifficultyID`) VALUES
 --
 (91003,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,31,0,0,0,101,0,0,0,0,4,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,0,0,28,0,0,1,0,0,0,0,0,0,0,0,0,0,0,18,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,301001,0,0,64,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,'Summon Onyxia Whelp','','','','','','','','','','','','','','','',16712190,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,301001,0,0,64,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,'召唤奥妮克希亚雏龙','','','','','','','','','','','','','','','',16712190,
 '','','','','','','','','','','','','','','','',16712188,'','','','','','','','','','','','','','','','',16712188,'','','','','','','','','','','','','','','','',16712188,
 0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0);
 
@@ -583,7 +583,7 @@ REPLACE INTO `reference_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, 
 (302680, 3475, 0, 0.0, 0, 1, 1, 1);
 
 DELETE FROM `creature` WHERE `guid` BETWEEN 311000 AND 311006;
-INSERT INTO `creature` (`guid`, `id`, `map`, `spawnMask`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `MovementType`) VALUES
+REPLACE INTO `creature` (`guid`, `id`, `map`, `spawnMask`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `MovementType`) VALUES
 (311000, 301000, 249, 4, 0.69628, -211.972, -86.075, 3.19974, 604800, 0.0, 0),
 (311001, 301002, 249, 4, -166.623, -196.003, -66.2619, 5.06806, 6300, 0.0, 2),
 (311002, 301002, 249, 4, -52.9699, -96.8813, -38.6419, 5.66711, 6300, 0.0, 2),
@@ -592,7 +592,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `spawnMask`, `position_x`, `positio
 (311005, 301002, 249, 4, -199.097, -209.826, -68.9112, 0.650188, 1201, 0.0, 0);
 
 DELETE FROM `waypoint_data` WHERE `id` IN (3110010, 3110020, 3110030, 3110040);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`) VALUES
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`) VALUES
 (3110010, 1, -163.83, -204.604, -66.2683, 5.05628, 0),
 (3110010, 2, -155.152, -212.384, -66.6343, 2.93965, 0),
 (3110010, 3, -141.729, -213.377, -68.8695, 6.22261, 0),
@@ -631,7 +631,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (3110040, 12, -125.618, -133.461, -51.4287, 3.8802, 0);
 
 DELETE FROM `smart_scripts` WHERE `entryorguid` = 301002;
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
 --
@@ -641,22 +641,22 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 (301002, 0, 3, 0, 0, 0, 95, 6, 3000, 3000, 35000, 35000, 0, 11, 12097, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0,  'Onyxian Warder - In Combat - Cast Pierce Armor (Onyxia 40)');
 
 DELETE FROM `creature_text` WHERE `CreatureID` = 301000;
-INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES
+REPLACE INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES
 --
-(301000, 0, 0, "How fortuitous. Usually, I must leave my lair in order to feed.", 14, 0, 100.0, 0, 0, 0, 8286, 0, "Onyxia - Aggro (Onyxia 40)"),
-(301000, 1, 0, "Learn your place, mortal!", 14, 0, 100.0, 0, 0, 0, 8287, 0, "Onyxia - Kill Player (Onyxia 40)"),
-(301000, 2, 0, "This meaningless exertion bores me. I'll incinerate you all from above!", 14, 0, 100.0, 0, 0, 0, 8288, 0, "Onyxia - Phase 2 (Onyxia 40)"),
-(301000, 3, 0, "It seems you'll need another lesson, mortals!", 14, 0, 100.0, 0, 0, 0, 8290, 0, "Onyxia - Phase 3 (Onyxia 40)"),
-(301000, 4, 0, "%s takes in a deep breath...", 41, 0, 100.0, 0, 0, 0, 36542, 0, "Onyxia - Deep Breath Emote (Onyxia 40)"),
-(301000, 5, 0, "You seek to lure me from my clutch? You shall pay for your insolence!", 14, 0, 100.0, 0, 0, 0, 8570, 0, "Onyxia - Boundary Evade (Onyxia 40)");
+(301000, 0, 0, "真是走运。通常我必须离开窝才能找到食物。", 14, 0, 100.0, 0, 0, 0, 8286, 0, "Onyxia - Aggro (Onyxia 40)"),
+(301000, 1, 0, "要明白你的处境，凡人！", 14, 0, 100.0, 0, 0, 0, 8287, 0, "Onyxia - Kill Player (Onyxia 40)"),
+(301000, 2, 0, "这毫无意义的行动让我很厌烦。我会从上空把你们都烧成灰！", 14, 0, 100.0, 0, 0, 0, 8288, 0, "Onyxia - Phase 2 (Onyxia 40)"),
+(301000, 3, 0, "看起来需要再给你一次教训，凡人！", 14, 0, 100.0, 0, 0, 0, 8290, 0, "Onyxia - Phase 3 (Onyxia 40)"),
+(301000, 4, 0, "%s深深地吸了一口气……", 41, 0, 100.0, 0, 0, 0, 36542, 0, "Onyxia - Deep Breath Emote (Onyxia 40)"),
+(301000, 5, 0, "你们这些渣滓居然想要挑战我？你们会为你们的傲慢付出代价的！", 14, 0, 100.0, 0, 0, 0, 8570, 0, "Onyxia - Boundary Evade (Onyxia 40)");
 
 UPDATE `creature` SET `equipment_id` = 1 WHERE `id` = 301002;
 DELETE FROM `creature_equip_template` WHERE `CreatureID` = 301002;
-INSERT INTO `creature_equip_template` (`CreatureID`, `ID`, `ItemID1`, `ItemID2`, `ItemID3`) VALUES
+REPLACE INTO `creature_equip_template` (`CreatureID`, `ID`, `ItemID1`, `ItemID2`, `ItemID3`) VALUES
 (301002, 1, 13631, 0, 0);
 
 DELETE FROM `creature_addon` WHERE `guid` BETWEEN 311000 AND 311004;
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `auras`) VALUES
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `auras`) VALUES
 (311000, 0, 0, 3, 1, 0, NULL),
 (311001, 3110010, 0, 0, 1, 0, NULL),
 (311002, 3110020, 0, 0, 1, 0, NULL),
@@ -664,28 +664,28 @@ INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `e
 (311004, 3110040, 0, 0, 1, 0, NULL);
 
 DELETE FROM `dungeon_access_template` WHERE `id` = 123;
-INSERT INTO `dungeon_access_template` (`id`, `map_id`, `difficulty`, `min_level`, `max_level`, `min_avg_item_level`, `comment`) VALUES
+REPLACE INTO `dungeon_access_template` (`id`, `map_id`, `difficulty`, `min_level`, `max_level`, `min_avg_item_level`, `comment`) VALUES
 (123, 249, 2, 50, 70, 0, 'Onyxia\'s Lair - 40man');
 
 DELETE FROM `mapdifficulty_dbc` WHERE `MapID` = 249;
-INSERT INTO `mapdifficulty_dbc` (`ID`, `MapID`, `Difficulty`, `RaidDuration`, `MaxPlayers`, `Difficultystring`) VALUES
+REPLACE INTO `mapdifficulty_dbc` (`ID`, `MapID`, `Difficulty`, `RaidDuration`, `MaxPlayers`, `Difficultystring`) VALUES
 (755, 249, 2, 604800, 40, 'RAID_DIFFICULTY_40PLAYER');
 
 DELETE FROM `dungeonencounter_dbc` WHERE `ID` = 895;
-INSERT INTO `dungeonencounter_dbc` (`ID`, `MapID`, `Difficulty`, `OrderIndex`, `Bit`, `Name_Lang_enUS`, `Name_Lang_enGB`, `Name_Lang_koKR`, `Name_Lang_frFR`, `Name_Lang_deDE`, `Name_Lang_enCN`, `Name_Lang_zhCN`, `Name_Lang_enTW`, `Name_Lang_zhTW`, `Name_Lang_esES`, `Name_Lang_esMX`, `Name_Lang_ruRU`, `Name_Lang_ptPT`, `Name_Lang_ptBR`, `Name_Lang_itIT`, `Name_Lang_Unk`, `Name_Lang_Mask`, `SpellIconID`) VALUES
-(895, 249, 2, 0, 0, 'Onyxia', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 16712190, 0);
+REPLACE INTO `dungeonencounter_dbc` (`ID`, `MapID`, `Difficulty`, `OrderIndex`, `Bit`, `Name_Lang_enUS`, `Name_Lang_enGB`, `Name_Lang_koKR`, `Name_Lang_frFR`, `Name_Lang_deDE`, `Name_Lang_enCN`, `Name_Lang_zhCN`, `Name_Lang_enTW`, `Name_Lang_zhTW`, `Name_Lang_esES`, `Name_Lang_esMX`, `Name_Lang_ruRU`, `Name_Lang_ptPT`, `Name_Lang_ptBR`, `Name_Lang_itIT`, `Name_Lang_Unk`, `Name_Lang_Mask`, `SpellIconID`) VALUES
+(895, 249, 2, 0, 0, '奥妮克希亚', NULL, NULL, NULL, NULL, NULL, '奥妮克希亚', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 16712190, 0);
 
 DELETE FROM `instance_encounters` WHERE `entry` = 895;
-INSERT INTO `instance_encounters` (`entry`, `creditType`, `creditEntry`, `lastEncounterDungeon`, `comment`) VALUES
+REPLACE INTO `instance_encounters` (`entry`, `creditType`, `creditEntry`, `lastEncounterDungeon`, `comment`) VALUES
 (895, 0, 301000, 0, 'Onyxia (Vanilla)');
 
 DELETE FROM `lfgdungeons_dbc` WHERE `ID` = 1000;
-INSERT INTO `lfgdungeons_dbc` VALUES
-(1000, 'Onyxia\'s Lair (Vanilla)', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16712190, 60, 83, 60, 60, 83, 249, 2, 0, 2, -1, '', 2, 0, 9, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16712188);
+REPLACE INTO `lfgdungeons_dbc` VALUES
+(1000, '奥妮克希亚的巢穴（经典旧世）', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16712190, 60, 83, 60, 60, 83, 249, 2, 0, 2, -1, '', 2, 0, 9, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16712188);
     
 -- quests
 DELETE FROM `creature_queststarter` WHERE `quest` IN (7491, 7493, 7496, 7497, 7509);
-INSERT INTO `creature_queststarter` (`quest`, `id`) VALUES
+REPLACE INTO `creature_queststarter` (`quest`, `id`) VALUES
 (7491, 4949),
 (7493, 14392),
 (7496, 1748),
@@ -693,7 +693,7 @@ INSERT INTO `creature_queststarter` (`quest`, `id`) VALUES
 (7509, 14368);
 
 DELETE FROM `creature_questender` WHERE `quest` IN (7490, 7491, 7495, 7496, 7497, 7507, 7508, 7509);
-INSERT INTO `creature_questender` (`quest`, `id`) VALUES
+REPLACE INTO `creature_questender` (`quest`, `id`) VALUES
 (7490, 4949), -- Victory for the Horde
 (7491, 14392),
 (7495, 1748), -- Victory for the Alliance - Bolvar or Varian
@@ -720,7 +720,7 @@ UPDATE `item_template` SET `Flags` = 32768, `spellid_1` = 22905, `description` =
 
 DELETE FROM `gossip_menu` WHERE `TextId` = 60040 AND `MenuId` = 5747;
 DELETE FROM `gossip_menu` WHERE `TextId` IN (60041, 60042, 60043, 60044, 60045, 60046);
-INSERT INTO `gossip_menu` (`MenuId`, `TextId`) VALUES
+REPLACE INTO `gossip_menu` (`MenuId`, `TextId`) VALUES
 (5747,  60040),
 (60041, 60041),
 (60042, 60042),
@@ -730,26 +730,26 @@ INSERT INTO `gossip_menu` (`MenuId`, `TextId`) VALUES
 (60046, 60046);
 
 DELETE FROM `npc_text` WHERE `ID` BETWEEN 60040 AND 60046;
-INSERT INTO `npc_text` (`ID`, `text0_0`,  `BroadcastTextID0`) VALUES
-(60040, '<Lydros reaches into his robe and presents you with a dull, flat elven blade.>$b$BIn ages past, well before even the War of the Ancients, there existed this blade.', 0),
-(60041, 'The blade itself had to be crafted IN ceremony with the children of the Aspects. A rare occurrence indeed... for not only would a dragon have TO willingly heat and mold the enchanted metal with their breath, they would also need to contain the fury of their own enchantment by using their blood as temper.', 0),
-(60042, 'Over the course of 8,000 years, only a handful of these blades were created - each blade unique in both power and appearance. The blades of Quel\'Serrar would take ON the characteristics of their creator.', 0),
-(60043, 'Rumors exist of a single legendary blade of Quel\'Serrar crafted for an unknown entity by the combined might of the five Aspects. Before the abominations of Nefarian and Deathwing were thrust into our world, such meetings of the Aspect were represented by the term \'Prismatic.\' I could only assume that the Prismatic Blade of Quel\'Serrar was a most glorious creation.', 0),
-(60044, 'What I offer to you now is one such blade, unfired, unheated, untreated - the most raw and basic form.$b$bNow you merely need TO find a dragon that will willingly enchant the blade.$b$bIf you had an eternity to live,this might be a possibility; but since you are mortal and could very likely cease to exist at any moment, might I recommend trying to persuade one of the lesser dragons to do your bidding.', 0),
-(60045, 'Have you heard of the brood mother of the Black Flight? I believe she is called Onyxia...', 0),
-(60046, 'I have sensed your coming for quite some time, $n. It was written in the pattern of stars.', 0);
+REPLACE INTO `npc_text` (`ID`, `text0_0`,  `BroadcastTextID0`) VALUES
+(60040, '<莱德罗斯从长袍中拿出一把暗淡的平坦精灵利刃递给你。>$b$B在远古时代，甚至早在上古之战之前，这把利刃就已经存在了。', 0),
+(60041, '这把利刃本身必须与巨龙之嗣在仪式中共同铸造。这确实非常罕见……因为不仅需要巨龙自愿用它的吐息来加热和塑造这附魔金属，还需要用它自己的鲜血作为淬火来压制其附魔的狂暴之力。', 0),
+(60042, '在八千年的岁月中，仅有少数几把这样的利刃被铸造出来——每把利刃在力量和外观上都独一无二。奎尔塞拉之刃会呈现出其铸造者的特征。', 0),
+(60043, '有传言说，五大守护巨龙曾联手为一位未知的存在铸造了一把传奇的奎尔塞拉之刃。在奈法利安和死亡之翼这些怪物降临我们的世界之前，守护巨龙们的这种聚会被称为「五色」。我只能想象，五色奎尔塞拉之刃一定是一件无比辉煌的杰作。', 0),
+(60044, '我现在交给你的是这样一把利刃，未经过锻造、未经过加热、未经过处理——最原始最基础的形态。$b$b现在你只需要找到一条愿意为这把利刃附魔的巨龙。$b$b如果你能长生不老，这或许还有可能；但既然你是凡人，随时都有可能不复存在，我建议你试着去说服一条较弱的巨龙来为你效劳。', 0),
+(60045, '你听说过黑龙军团的龙母吗？我相信她叫做奥妮克希亚……', 0),
+(60046, '我已经感应到你的到来有一段时间了，$n。这早已写在星辰的图案之中。', 0);
 
 DELETE FROM `gossip_menu_option` WHERE `MenuID` IN (5747, 60040, 60041, 60042, 60043, 60044, 60045, 60046);
-INSERT INTO `gossip_menu_option` (`menuID`, `optionid`, `OptionIcon`, `OptionText`, `OptionBroadcastTextID`, `OptionType`, `OptionNpcFlag`, `ActionMenuID`, `ActionPoiID`, `BoxCoded`, `BoxMoney`, `BoxText`, `BoxBroadcastTextID`, `VerifiedBuild`) VALUES
-(5747,  0, 0, '(Continue.)',  9519, 1, 3, 60041, 0, 0, 0, NULL, 0, 0), 
-(60041, 0, 0, '(Continue.)',  9519, 1, 3, 60042, 0, 0, 0, NULL, 0, 0), 
-(60042, 0, 0, '(Continue.)',  9519, 1, 3, 60043, 0, 0, 0, NULL, 0, 0), 
-(60043, 0, 0, '(Continue.)',  9519, 1, 3, 60044, 0, 0, 0, NULL, 0, 0), 
-(60044, 0, 0, 'Eh?', 0, 1, 3, 60045, 0, 0, 0, NULL, 0, 0), 
-(60045, 0, 0, 'Maybe... What do I do now?', 0, 1, 3, 0, 0, 0, 0, NULL, 0, 0);
+REPLACE INTO `gossip_menu_option` (`menuID`, `optionid`, `OptionIcon`, `OptionText`, `OptionBroadcastTextID`, `OptionType`, `OptionNpcFlag`, `ActionMenuID`, `ActionPoiID`, `BoxCoded`, `BoxMoney`, `BoxText`, `BoxBroadcastTextID`, `VerifiedBuild`) VALUES
+(5747,  0, 0, '（继续。）',  9519, 1, 3, 60041, 0, 0, 0, NULL, 0, 0), 
+(60041, 0, 0, '（继续。）',  9519, 1, 3, 60042, 0, 0, 0, NULL, 0, 0), 
+(60042, 0, 0, '（继续。）',  9519, 1, 3, 60043, 0, 0, 0, NULL, 0, 0), 
+(60043, 0, 0, '（继续。）',  9519, 1, 3, 60044, 0, 0, 0, NULL, 0, 0), 
+(60044, 0, 0, '嗯？', 0, 1, 3, 60045, 0, 0, 0, NULL, 0, 0), 
+(60045, 0, 0, '也许吧……我现在该做什么？', 0, 1, 3, 0, 0, 0, 0, NULL, 0, 0);
 
 DELETE FROM `smart_scripts` WHERE `entryorguid` = 14368 AND `source_type` = 0 AND `id` IN (1, 2);
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `action_type`, 
 `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
@@ -760,7 +760,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 1 AND `SourceGroup` = 301000 AND `SourceEntry` IN (18492, 21108);
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` IN (14, 15) AND `SourceGroup` = 5747;
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 17 AND  `SourceEntry` = 22905;
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES
 --
 (1, 301000, 21108, 0, 0, 9, 0, 8620, 0, 0, 0, 0, 0, '', 'Draconic for Dummies Chapter VI will drop only when a player has The Only Prescription (8620) in his quest log'),
@@ -773,13 +773,13 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 (17, 0, 22905, 0, 0, 29, 0, 301000, 10, 0, 0, 0, 0, '', 'Place Unfired Blade - near onyxia');
 
 DELETE FROM spell_linked_spell where spell_trigger = 22905;
-INSERT INTO spell_linked_spell (spell_trigger, spell_effect, TYPE, COMMENT) VALUES
+REPLACE INTO spell_linked_spell (spell_trigger, spell_effect, TYPE, COMMENT) VALUES
 (22905, 22906, 0, 'quelserrar');
 
 UPDATE `quest_template_addon` SET `SpecialFlags` = 0 WHERE `id` = 7509;
 
 DELETE FROM `areatrigger_scripts` WHERE `entry` = 2848;
-INSERT INTO `areatrigger_scripts` (`entry`, `ScriptName`) VALUES
+REPLACE INTO `areatrigger_scripts` (`entry`, `ScriptName`) VALUES
 (2848, 'onyxia_entrance_trigger');
 
 UPDATE `gameobject` SET `spawnMask` = 7 WHERE `map` = 249;

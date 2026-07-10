@@ -4,7 +4,7 @@ UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN 
 (1663, 1666, 1696, 1706, 1707, 1708, 1711, 1715, 1716, 1717, 1720);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -63,16 +63,16 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 
 
 DELETE FROM `creature_text` WHERE `CreatureID` IN (1720);
-INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
-(1720, 0, 0, 'Eh? What have we here?',                      12, 7, 100, 0, 0, 0, 1386, 0, 'Bruegal Ironknuckle'),
-(1720, 0, 1, 'Welcome to the Stockade!',                    12, 7, 100, 0, 0, 0, 1387, 0, 'Bruegal Ironknuckle'),
-(1720, 0, 2, 'Outsiders! Kill em all!',                     12, 7, 100, 0, 0, 0, 1388, 0, 'Bruegal Ironknuckle'),
-(1720, 0, 3, 'More of the Warden\'s errand boys!',          12, 7, 100, 0, 0, 0, 1390, 0, 'Bruegal Ironknuckle'),
-(1720, 0, 4, 'Tell the Warden this prison is ours now!',    12, 7, 100, 0, 0, 0, 1391, 0, 'Bruegal Ironknuckle'),
-(1720, 0, 5, 'It\'ll be quick, but it won\'t be painless!', 12, 7, 100, 0, 0, 0, 1392, 0, 'Bruegal Ironknuckle'),
-(1720, 0, 6, 'Fresh meat!',                                 12, 7, 100, 0, 0, 0, 1393, 0, 'Bruegal Ironknuckle'),
-(1720, 0, 7, 'I\'ll crush your skull beneath my boot!',     12, 7, 100, 0, 0, 0, 1394, 0, 'Bruegal Ironknuckle'),
-(1720, 0, 8, 'Death to the Warden\'s men!',                 12, 7, 100, 0, 0, 0, 1395, 0, 'Bruegal Ironknuckle');
+REPLACE INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
+(1720, 0, 0, '嗯？看看这是什么？',                      12, 7, 100, 0, 0, 0, 1386, 0, 'Bruegal Ironknuckle'),
+(1720, 0, 1, '欢迎来到监狱！',                    12, 7, 100, 0, 0, 0, 1387, 0, 'Bruegal Ironknuckle'),
+(1720, 0, 2, '外来者！杀掉他们！',                     12, 7, 100, 0, 0, 0, 1388, 0, 'Bruegal Ironknuckle'),
+(1720, 0, 3, '又来了几个典狱官的狗腿子！',          12, 7, 100, 0, 0, 0, 1390, 0, 'Bruegal Ironknuckle'),
+(1720, 0, 4, '告诉典狱官，这座监狱现在是我们的地盘了！',    12, 7, 100, 0, 0, 0, 1391, 0, 'Bruegal Ironknuckle'),
+(1720, 0, 5, '我会很快解决你，而且会让你感到无比的痛苦！', 12, 7, 100, 0, 0, 0, 1392, 0, 'Bruegal Ironknuckle'),
+(1720, 0, 6, '新鲜的肉！',                                 12, 7, 100, 0, 0, 0, 1393, 0, 'Bruegal Ironknuckle'),
+(1720, 0, 7, '我要把你彻底击败！',     12, 7, 100, 0, 0, 0, 1394, 0, 'Bruegal Ironknuckle'),
+(1720, 0, 8, '杀死典狱官的手下！',                 12, 7, 100, 0, 0, 0, 1395, 0, 'Bruegal Ironknuckle');
 
 
 -- Bazil Thredd, multiple spawn locations?

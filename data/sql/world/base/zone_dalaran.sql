@@ -1,5 +1,5 @@
 DELETE FROM `creature` WHERE `id` IN (31863, 31864, 31865, 33921, 33922, 33923, 33925, 33926, 33927, 33936, 33937, 33938, 34087, 34092, 34095);
-INSERT INTO `creature` (`guid`, `id`, `map`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`) VALUES 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`) VALUES 
 --
 (631863, 31863, 571, 1, 1, 5753.74, 585.413, 615.052, 0, 180),       -- Nargle Lashcord, WotLK Season 5
 (633921, 33921, 571, 1, 1, 5753.74, 585.413, 615.052, 0, 180),       -- Nargle Lashcord, WotLK Season 6
@@ -26,7 +26,7 @@ UPDATE `creature` SET `ScriptName` = 'npc_ipp_wotlk_S7' WHERE `guid` IN (633925,
 UPDATE `creature` SET `ScriptName` = 'npc_ipp_wotlk_S8' WHERE `guid` IN (633936, 633937, 633938, 634095);
 
 DELETE FROM `creature_addon` WHERE `guid` IN (631863, 631864, 631865, 633921, 633922, 633923, 633925, 633926, 633927, 633936, 633937, 633938, 634087, 634092, 634095);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (631863, 0, 0, 0, 1, 0, 0, NULL),
 (633921, 0, 0, 0, 1, 0, 0, NULL),
 (633927, 0, 0, 0, 1, 0, 0, NULL),
@@ -49,7 +49,7 @@ DELETE FROM `game_event_creature` WHERE `guid` IN (85064, 85208, 85209, 85210, 1
 
 -- smart scripts, fix worldconsole errors
 DELETE FROM `smart_scripts` WHERE `event_type` = 10 AND `target_type` = 7 AND `entryorguid` IN (28715, 28997, 29491);
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -62,7 +62,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 UPDATE `creature_template` SET `ScriptName` = 'npc_archmage_timear' WHERE `entry` = 31439;
 
 DELETE FROM `creature_queststarter` WHERE `id` = 31439;
-INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES 
+REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES 
 (31439, 13245),
 (31439, 13246),
 (31439, 13247),
@@ -77,7 +77,7 @@ INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES
 (31439, 13256);
 
 DELETE FROM `creature_questender` WHERE `id` = 31439;
-INSERT INTO `creature_questender` (`id`, `quest`) VALUES 
+REPLACE INTO `creature_questender` (`id`, `quest`) VALUES 
 (31439, 13245),
 (31439, 13246),
 (31439, 13247),
@@ -93,94 +93,94 @@ INSERT INTO `creature_questender` (`id`, `quest`) VALUES
 
 -- Archmage Lan'dalock / Proof of Demise: The Black Knight
 DELETE FROM `creature_queststarter` WHERE `id` = 20735 AND `quest` = 14199;
-INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES (20735, 14199);
+REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES (20735, 14199);
 DELETE FROM `creature_questender` WHERE `id` = 20735 AND `quest` = 14199;
-INSERT INTO `creature_questender` (`id`, `quest`) VALUES (20735, 14199);
+REPLACE INTO `creature_questender` (`id`, `quest`) VALUES (20735, 14199);
 
 UPDATE `quest_template` SET `Flags` = 4232 WHERE `ID` IN (13245, 13246, 13247, 13248, 13249, 13250, 13251, 13252, 13253, 13254, 13255, 13256, 14199);
 
 UPDATE `quest_template` SET
-`LogDescription` = 'Archmage Timear in Dalaran wants you to return with the Axe of the Plunderer.$B$BThis quest may only be completed on Heroic difficulty.',
-`QuestCompletionLog` = 'Return to Archmage Timear in Dalaran.'
+`LogDescription` = '达拉然的法师提玛尔需要你将掠夺者的斧头交给他。$B$B该任务只能在英雄难度下完成。',
+`QuestCompletionLog` = '返回达拉然的法师提玛尔那里。'
 WHERE `ID` = 13245;
 
 UPDATE `quest_template` SET
-`LogDescription` = 'Archmage Timear in Dalaran wants you to return with Keristrasza\'s Broken Heart.$B$BThis quest may only be completed on Heroic difficulty.',
-`QuestCompletionLog` = 'Return to Archmage Timear in Dalaran.'
+`LogDescription` = '达拉然的法师提玛尔需要你将克莉斯塔萨破碎的心交给他。$B$B该任务只能在英雄难度下完成。',
+`QuestCompletionLog` = '返回达拉然的法师提玛尔那里。'
 WHERE `ID` = 13246;
 
 UPDATE `quest_template` SET
-`LogDescription` = 'Archmage Timear in Dalaran wants you to return with a Ley Line Tuner.$B$BThis quest may only be completed on Heroic difficulty.',
-`QuestCompletionLog` = 'Return to Archmage Timear in Dalaran.'
+`LogDescription` = '达拉然的法师提玛尔需要你将地线调谐器交给他。$B$B该任务只能在英雄难度下完成。',
+`QuestCompletionLog` = '返回达拉然的法师提玛尔那里。'
 WHERE `ID` = 13247;
 
 UPDATE `quest_template` SET
-`LogDescription` = 'Archmage Timear in Dalaran wants you to return with the Locket of the Deceased Queen.$B$BThis quest may only be completed on Heroic difficulty.',
-`QuestCompletionLog` = 'Return to Archmage Timear in Dalaran.'
+`LogDescription` = '达拉然的法师提玛尔需要你将已故女王的坠盒交给他。$B$B该任务只能在英雄难度下完成。',
+`QuestCompletionLog` = '返回达拉然的法师提玛尔那里。'
 WHERE `ID` = 13248;
 
 UPDATE `quest_template` SET
-`LogDescription` = 'Archmage Timear in Dalaran wants you to return with the Prophet\'s Enchanted Tiki.$B$BThis quest may only be completed on Heroic difficulty.',
-`QuestCompletionLog` = 'Return to Archmage Timear in Dalaran.'
+`LogDescription` = '达拉然的法师提玛尔需要你将先知魔化提基神像交给他。$B$B该任务只能在英雄难度下完成。',
+`QuestCompletionLog` = '返回达拉然的法师提玛尔那里。'
 WHERE `ID` = 13249;
 
 UPDATE `quest_template` SET
-`LogDescription` = 'Archmage Timear in Dalaran wants you to return with the Mojo Remnant of Akali.$B$BThis quest may only be completed on Heroic difficulty.',
-`QuestCompletionLog` = 'Return to Archmage Timear in Dalaran.'
+`LogDescription` = '达拉然的法师提玛尔需要你将阿卡利的魔精残骸交给他。$B$B该任务只能在英雄难度下完成。',
+`QuestCompletionLog` = '返回达拉然的法师提玛尔那里。'
 WHERE `ID` = 13250;
 
 UPDATE `quest_template` SET
-`LogDescription` = 'Archmage Timear in Dalaran wants you to return with the Artifact from the Nathrezim Homeworld.$B$BThis quest may only be completed on Heroic difficulty.',
-`QuestCompletionLog` = 'Return to Archmage Timear in Dalaran.'
+`LogDescription` = '达拉然的法师提玛尔需要你将来自纳兹瑞尔家园的遗物交给他。$B$B该任务只能在英雄难度下完成。',
+`QuestCompletionLog` = '返回达拉然的法师提玛尔那里。'
 WHERE `ID` = 13251;
 
 UPDATE `quest_template` SET
-`LogDescription` = 'Archmage Timear in Dalaran wants you to return with the Curse of Flesh Disc.$B$BThis quest may only be completed on Heroic difficulty.',
-`QuestCompletionLog` = 'Return to Archmage Timear in Dalaran.'
+`LogDescription` = '达拉然的法师提玛尔需要你将血肉诅咒圆盘交给他。$B$B该任务只能在英雄难度下完成。',
+`QuestCompletionLog` = '返回达拉然的法师提玛尔那里。'
 WHERE `ID` = 13252;
 
 UPDATE `quest_template` SET
-`LogDescription` = 'Archmage Timear in Dalaran wants you to return with the Celestial Ruby Ring.$B$BThis quest may only be completed on Heroic difficulty.',
-`QuestCompletionLog` = 'Return to Archmage Timear in Dalaran.'
+`LogDescription` = '达拉然的法师提玛尔需要你将天界红宝石戒指交给他。$B$B该任务只能在英雄难度下完成。',
+`QuestCompletionLog` = '返回达拉然的法师提玛尔那里。'
 WHERE `ID` = 13253;
 
 UPDATE `quest_template` SET
-`LogDescription` = 'Archmage Timear in Dalaran wants you to return with the Idle Crown of Anub\'arak.$B$BThis quest may only be completed on Heroic difficulty.',
-`QuestCompletionLog` = 'Return to Archmage Timear in Dalaran.'
+`LogDescription` = '达拉然的法师提玛尔需要你将阿努巴拉克的闲置王冠交给他。$B$B该任务只能在英雄难度下完成。',
+`QuestCompletionLog` = '返回达拉然的法师提玛尔那里。'
 WHERE `ID` = 13254;
 
 UPDATE `quest_template` SET
-`LogDescription` = 'Archmage Timear in Dalaran wants you to return with the Faceless One\'s Withered Brain.$B$BThis quest may only be completed on Heroic difficulty.',
-`QuestCompletionLog` = 'Return to Archmage Timear in Dalaran.'
+`LogDescription` = '达拉然的法师提玛尔需要你将无面者的萎缩大脑交给他。$B$B该任务只能在英雄难度下完成。',
+`QuestCompletionLog` = '返回达拉然的法师提玛尔那里。'
 WHERE `ID` = 13255;
 
 UPDATE `quest_template` SET
-`LogDescription` = 'Archmage Timear in Dalaran wants you to return with the Head of Cyanigosa.$B$BThis quest may only be completed on Heroic difficulty.',
-`QuestCompletionLog` = 'Return to Archmage Timear in Dalaran.'
+`LogDescription` = '达拉然的法师提玛尔需要你将塞安妮苟萨的头颅交给他。$B$B该任务只能在英雄难度下完成。',
+`QuestCompletionLog` = '返回达拉然的法师提玛尔那里。'
 WHERE `ID` = 13256;
 
 UPDATE `quest_template` SET `Flags` = 32968,
-`LogDescription` = 'Archmage Lan\'dalock in Dalaran wants you to return with a Fragment of the Black Knight\'s Soul.$B$BThis quest may only be completed on Heroic difficulty.',
-`QuestDescription` = 'My counterpart, Archmage Timear, has asked me to warn you of something dire. Soon, you will be participating in the Trial of the Champions at the Argent Coliseum in Icecrown. You must beware of interference from one known only as the Black Knight.$B$BBring me a fragment of his soul that the Kirin Tor will know he is dealt with. I am told that failing to do so will be your own undoing.',
-`QuestCompletionLog` = 'Return to Archmage Lan\'dalock in Dalaran.'
+`LogDescription` = '达拉然的法师兰达洛克需要你将黑暗骑士的灵魂碎片交给他。$B$B该任务只能在英雄难度下完成。',
+`QuestDescription` = '我的同事法师提玛尔让我警告你一件可怕的事情。很快，你就要参加冰冠堡垒的银色竞技场举行的冠军试炼了。你必须小心那个被称为"黑暗骑士"的人的干扰。$B$B把他的灵魂碎片带给我，让肯瑞托知道他已经得到了应有的下场。我听说如果做不到这一点，你将自食其果。',
+`QuestCompletionLog` = '返回达拉然的法师兰达洛克那里。'
 WHERE `ID` = 14199;
 
 -- 00_cleanup, revert changes made to quest: Proof of Demise: The Black Knight, this quest can't be completed until WotLK TotC
-UPDATE `quest_offer_reward` SET `RewardText` = '<Archmage Lan\'dalock breathes a sigh of relief.>$b$bTo be honest, I feared the worst had befallen you. It\'s difficult to stand idly by while others, such as yourself, deal with the matters of life and death which confront our world seemingly on a daily basis.$b$bNow what are we going to do with that gigantic ring?' WHERE `ID` = 13253;
-UPDATE `quest_offer_reward` SET `RewardText` = 'What horrors you must have faced while traversing the Upper City.$b$b<Lan\'dalock glances down at the tarnished crown clutched in your fist.>$b$bPerhaps we should put that aside for their new king whenever the nerubians decide to coronate one?' WHERE `ID` = 13254;
-UPDATE `quest_request_items` SET `CompletionText` = 'Did the Black Knight appear unexpectedly as Timear foresaw?' WHERE `ID` = 14199;
+UPDATE `quest_offer_reward` SET `RewardText` = '<法师兰达洛克松了一口气。>$B$B说实话，我担心你遭遇了不测。看着像你这样的人每天都去面对生死攸关的危机，而我却只能在一旁袖手旁观，这真让我感到无助。$B$B现在我们该拿这枚巨大的戒指怎么办呢？' WHERE `ID` = 13253;
+UPDATE `quest_offer_reward` SET `RewardText` = '你在穿越上层城区时一定遇到了很多可怕的事情。$B$B<兰达洛克瞥了一眼你紧握在手中的那顶暗淡的王冠。>$B$B也许我们应该把这顶王冠放好，等尼鲁布人决定加冕新国王的时候再用？' WHERE `ID` = 13254;
+UPDATE `quest_request_items` SET `CompletionText` = '黑暗骑士是否像提玛尔预见的那样出现了？' WHERE `ID` = 14199;
 UPDATE `quest_template_addon` SET `ExclusiveGroup` = 24579 WHERE `ID` = 14199;
 
 DELETE FROM `pool_quest` WHERE `entry` = 14199;
-INSERT INTO `pool_quest` (`entry`, `pool_entry`, `description`) VALUES
+REPLACE INTO `pool_quest` (`entry`, `pool_entry`, `description`) VALUES
 (14199, 5678, 'Proof of Demise: The Black Knight');
 
 DELETE FROM `pool_template` WHERE `entry` = 90000;
-INSERT INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES
+REPLACE INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES
 (90000, 1, 'Heroic Dungeon Dailies');
 
 DELETE FROM `pool_quest` WHERE `pool_entry` = 90000;
-INSERT INTO `pool_quest` (`entry`, `pool_entry`, `description`) VALUES
+REPLACE INTO `pool_quest` (`entry`, `pool_entry`, `description`) VALUES
 (13245, 90000, 'Proof of Demise: Ingvar the Plunderer'),
 (13246, 90000, 'Proof of Demise: Keristrasza'),
 (13247, 90000, 'Proof of Demise: Ley-Guardian Eregos'),
@@ -195,11 +195,11 @@ INSERT INTO `pool_quest` (`entry`, `pool_entry`, `description`) VALUES
 (13256, 90000, 'Proof of Demise: Cyanigosa');
 
 DELETE FROM `creature_template_addon` WHERE `entry` = 31618; -- Keristrasza Image
-INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
+REPLACE INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
 (31618, 0, 0, 50331648, 0, 0, 0, ''); -- Hover mode 2
 
 DELETE FROM `creature_template_addon` WHERE `entry` = 31629; -- Cyanigosa Image
-INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
+REPLACE INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
 (31629, 0, 0, 50331648, 0, 0, 0, ''); -- Hover mode 2
 
 UPDATE `quest_template` SET `RewardItem1` = 40752 WHERE id IN (13245, 13246, 13247, 13248, 13249, 13250, 13251, 13252, 13253, 13254, 13255, 13256, 14199); -- Emblem of Heroism

@@ -3,24 +3,24 @@ UPDATE `quest_template` SET `RewardSpell` = 1446 WHERE `ID` IN (31, 5061);
 
 -- Remove starting dual wield skill for rogues
 DELETE FROM `playercreateinfo_skills` WHERE `skill` = 118;
-INSERT INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) VALUES (0, 32, 118, 0, 'Dual Wield');
+REPLACE INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) VALUES (0, 32, 118, 0, 'Dual Wield');
 
 -- add dual wield to trainers at level 10 for rogues (even though this is already done in AC's trainer_spell.sql, which I think is a mistake)
 DELETE FROM `trainer_spell` WHERE `TrainerId` = 9 AND `SpellID` = 674;
-INSERT INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`, `VerifiedBuild`) VALUES (9, 674, 300, 0, 0, 10, 0);
+REPLACE INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`, `VerifiedBuild`) VALUES (9, 674, 300, 0, 0, 10, 0);
 
 -- fix Mai'ah <Mage Trainer> in Valley of Trials.
 UPDATE `creature_default_trainer` SET `TrainerId` = 17 WHERE `CreatureId` = 5884;
 
 /* Restore Tome of Tranquilizing Shot to Lucifron */
-UPDATE `item_template` SET `description` = 'Attempts to remove 1 Enrage and 1 Magic effect from an enemy target.' WHERE `entry` = 16665;
+UPDATE `item_template` SET `description` = '尝试从一个敌方目标身上移除1个激怒效果和1个魔法效果。' WHERE `entry` = 16665;
 DELETE FROM `creature_loot_template` WHERE `Entry` = 12118 AND `Item` = 16665 AND `Reference` = 0 AND `GroupId` = 0;
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 (12118, 16665, 0, 100, 0, 1, 0, 1, 1, 'Lucifron - Tome of Tranquilizing Shot');
 
 -- Warrior
 DELETE FROM `trainer_spell` WHERE `TrainerId` = 1 AND `SpellId` IN (25286, 25288, 25289);
-INSERT INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqAbility1`, `ReqAbility2`, `ReqAbility3`, `ReqLevel`, `VerifiedBuild`) VALUES
+REPLACE INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqAbility1`, `ReqAbility2`, `ReqAbility3`, `ReqLevel`, `VerifiedBuild`) VALUES
 (1,25286,60000,0,0,11567,0,0,61,0), -- book, Heroic Strike (Rank 9), level 60 -> 61
 (1,25288,60000,0,0,11601,0,0,61,0), -- book, Revenge (Rank 6), level 60 -> 61
 (1,25289,65000,0,0,11551,0,0,61,0); -- book, Battle Shout (Rank 7), level 60 -> 61
@@ -29,7 +29,7 @@ INSERT INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`
 
 -- Paladin
 DELETE FROM `creature_default_trainer` WHERE `CreatureId` IN (16275, 16679, 16680, 16681, 20406, 23128);
-INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
+REPLACE INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
 (16275, 4), -- Noellene
 (16679, 4), -- Osselan
 (16680, 4), -- Ithelis
@@ -38,7 +38,7 @@ INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
 (23128, 4); -- Master Pyreanor
 
 DELETE FROM `trainer_spell` WHERE `TrainerId` = 3 AND `SpellId` IN (5502, 13820, 23214, 23215, 25290, 25291, 25292, 34766, 34767);
-INSERT INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqAbility1`, `ReqAbility2`, `ReqAbility3`, `ReqLevel`, `VerifiedBuild`) VALUES
+REPLACE INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqAbility1`, `ReqAbility2`, `ReqAbility3`, `ReqLevel`, `VerifiedBuild`) VALUES
 -- (3,5502,4000,0,0,0,0,0,20,0), -- quest, Sense Undead
 -- (3,13820,3500,0,0,0,0,0,40,0), -- quest, Summon Warhorse
 -- (3,23214,3500,0,0,13819,33391,0,60,0), -- quest, Summon Charger
@@ -51,7 +51,7 @@ INSERT INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`
 -- (3,62124,3000,0,0,0,0,0,16,0), -- optional, Hand of Reckoning, level 16 -> 71
 
 DELETE FROM `trainer_spell` WHERE `TrainerId` = 4 AND `SpellId` IN (5502, 13820, 23214, 23215, 25290, 25291, 25292, 34766, 34767, 53736);
-INSERT INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqAbility1`, `ReqAbility2`, `ReqAbility3`, `ReqLevel`, `VerifiedBuild`) VALUES
+REPLACE INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqAbility1`, `ReqAbility2`, `ReqAbility3`, `ReqLevel`, `VerifiedBuild`) VALUES
 -- (4,5502,4000,0,0,0,0,0,20,0), -- quest, Sense Undead
 -- (4,13820,3500,0,0,0,0,0,40,0), -- quest, Summon Warhorse
 -- (4,34767,3500,0,0,13819,33391,0,60,0), -- quest, Summon Charger
@@ -66,7 +66,7 @@ INSERT INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`
 
 -- Hunter
 DELETE FROM `trainer_spell` WHERE `TrainerId` = 7 AND `SpellId` IN (5118, 19801, 25294, 25295, 25296);
-INSERT INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqAbility1`, `ReqAbility2`, `ReqAbility3`, `ReqLevel`, `VerifiedBuild`) VALUES
+REPLACE INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqAbility1`, `ReqAbility2`, `ReqAbility3`, `ReqLevel`, `VerifiedBuild`) VALUES
 (7,5118,2200,0,0,0,0,0,20,0), -- Aspect of the Cheetah, level 16 -> 20
 (7,19801,50000,0,0,0,0,0,61,0), -- book, Tranquilizing Shot, level 60 -> 61
 (7,25294,50000,0,0,14290,0,0,61,0), -- book, Multi-Shot (Rank 5), level 60 -> 61
@@ -79,7 +79,7 @@ INSERT INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`
 
 -- Rogue
 DELETE FROM `trainer_spell` WHERE `TrainerId` = 9 AND `SpellId` IN (25300, 25302, 31016);
-INSERT INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqAbility1`, `ReqAbility2`, `ReqAbility3`, `ReqLevel`, `VerifiedBuild`) VALUES
+REPLACE INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqAbility1`, `ReqAbility2`, `ReqAbility3`, `ReqLevel`, `VerifiedBuild`) VALUES
 (9,25300,72000,0,0,11281,0,0,61,0), -- book, Backstab (Rank 9), level 60 -> 61
 (9,25302,50000,0,0,11303,0,0,61,0), -- book, Feint (Rank 5), level 60 -> 61
 (9,31016,65000,0,0,11300,0,0,61,0); -- book, Eviscerate (Rank 9), level 60 -> 61
@@ -89,7 +89,7 @@ INSERT INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`
 
 -- Priest
 DELETE FROM `trainer_spell` WHERE `TrainerId` = 11 AND `SpellId` IN (21562, 21564, 25314, 25315, 25316, 25392, 27683, 39374);
-INSERT INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqAbility1`, `ReqAbility2`, `ReqAbility3`, `ReqLevel`, `VerifiedBuild`) VALUES
+REPLACE INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqAbility1`, `ReqAbility2`, `ReqAbility3`, `ReqLevel`, `VerifiedBuild`) VALUES
 (11,21562,28000,0,0,0,0,0,61,0),      -- book, Prayer of Fortitude (Rank 1), level 48 -> 61
 (11,21564,46000,0,0,21562,0,0,61,0),  -- book, Prayer of Fortitude (Rank 2), level 60 -> 61
 (11,25314,65000,0,0,10965,0,0,61,0),  -- book, Greater Heal (Rank 5), level 60 -> 61
@@ -103,7 +103,7 @@ INSERT INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`
 
 -- Shaman
 DELETE FROM `trainer_spell` WHERE `TrainerId` = 14 AND `SpellId` IN (2645, 25357, 25361, 29228, 57994);
-INSERT INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqAbility1`, `ReqAbility2`, `ReqAbility3`, `ReqLevel`, `VerifiedBuild`) VALUES
+REPLACE INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqAbility1`, `ReqAbility2`, `ReqAbility3`, `ReqLevel`, `VerifiedBuild`) VALUES
 (14,2645,2200,0,0,0,0,0,20,0), -- Ghost Wolf, level 16 -> 20
 -- (14,24398,38000,0,0,52138,0,0,62,0), -- optional, Water Shield (Rank 7), level 62 -> 71
 (14,25357,6500,0,0,10396,0,0,61,0),  -- book, Healing Wave (Rank 10), level 60 -> 61
@@ -127,7 +127,7 @@ INSERT INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`
 
 -- Mage
 DELETE FROM `trainer_spell` WHERE `TrainerId` = 16 AND `SpellId` IN (10140, 23028, 25304, 25345, 27090, 27127, 28609, 28612, 33717);
-INSERT INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqAbility1`, `ReqAbility2`, `ReqAbility3`, `ReqLevel`, `VerifiedBuild`) VALUES
+REPLACE INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqAbility1`, `ReqAbility2`, `ReqAbility3`, `ReqLevel`, `VerifiedBuild`) VALUES
 (16,10140,42000,0,0,10139,0,0,61,0),  -- quest, Conjure Water (Rank 7), level 60 -> 61
 (16,23028,38000,0,0,0,0,0,61,0),      -- book, Arcane Brilliance (Rank 1), level 56 -> 61
 (16,25304,42000,0,0,10181,0,0,61,0),  -- book, Frostbolt (Rank 11), level 60 -> 61
@@ -142,7 +142,7 @@ INSERT INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`
 -- Warlock
 DELETE FROM `trainer_spell` WHERE `TrainerId` = 31 AND `SpellId` IN (688, 1710, 23161, 25309, 25311, 28610);
 DELETE FROM `trainer_spell` WHERE `TrainerId` = 32 AND `SpellId` IN (688);
-INSERT INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqAbility1`, `ReqAbility2`, `ReqAbility3`, `ReqLevel`, `VerifiedBuild`) VALUES
+REPLACE INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqAbility1`, `ReqAbility2`, `ReqAbility3`, `ReqLevel`, `VerifiedBuild`) VALUES
 -- (31,688,100,0,0,0,0,0,1,0), -- quest, Summon Imp
 -- (31,1710,10000,0,0,0,0,0,40,0), -- quest, Summon Felsteed
 -- (31,23161,100000,0,0,5784,33391,0,40,0), -- quest, Summon Dreadsteed
@@ -154,7 +154,7 @@ INSERT INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`
 
 -- Druid
 DELETE FROM `trainer_spell` WHERE `TrainerId` = 33 AND `SpellId` IN (783, 1066, 21849, 21850, 25297, 25298, 25299, 26991, 31018, 31709, 33950);
-INSERT INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqAbility1`, `ReqAbility2`, `ReqAbility3`, `ReqLevel`, `VerifiedBuild`) VALUES
+REPLACE INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqAbility1`, `ReqAbility2`, `ReqAbility3`, `ReqLevel`, `VerifiedBuild`) VALUES
 (33,783,6000,0,0,0,0,0,30,0), -- Travel Form, level 16 -> 30
 -- (33,1066,900,0,0,0,0,0,16,0), -- Aquatic Form is a quest reward
 (33,21849,23000,0,0,0,0,0,61,0),      -- book, Gift of the Wild (Rank 1), level 50 -> 61
@@ -179,7 +179,7 @@ INSERT INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`
 
 /* Restore drops from Grimoire of Shadow Ward IV */
 DELETE FROM `creature_loot_template` WHERE `Item` = 22891;
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Chance`, `GroupId`, `MinCount`, `MaxCount`) VALUES
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Chance`, `GroupId`, `MinCount`, `MaxCount`) VALUES
 (8895, 22891, 0.02, 0, 1, 1),
 (8898, 22891, 0.02, 0, 1, 1),
 (8899, 22891, 0.02, 0, 1, 1),

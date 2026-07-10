@@ -1,6 +1,6 @@
 -- fix The Ring of Blood: The Final Challenge - Mogor was resurrecting with 1% health
 DELETE FROM `smart_scripts` WHERE `source_type` = 9 AND `entryorguid` = 1806902;
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -22,7 +22,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 -- so I'm just giving them something to prevent an error on server startup saying they have SmartAI enabled but no SmartAI entries in the database.
 UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN (18075, 18076, 19647);
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN (18075, 18076, 19647);
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -41,7 +41,7 @@ SET @WPID    := 6700000;
 DELETE FROM `creature` WHERE `guid` BETWEEN @CGUID+1 AND @CGUID+6;
 DELETE FROM `creature` WHERE `guid` IN (59582, 60208);
 DELETE FROM `creature` WHERE `id`  IN (23022); -- needed to remove creature placed by AC
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
 `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
 --
 (@CGUID+1, 17133, 530, 0, 0, 1, 1, 0, -1179.0300, 8585.5195, 35.3682, 2.7576, 300, 0, 0, 1, 0, 0, 0, 258, 0, '', NULL, 0, NULL),
@@ -57,7 +57,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 
 -- feign death kodos (doesn't seem to work correctly, they do feign death, but their health still shows 100%)
 DELETE FROM `creature_addon` WHERE `guid` BETWEEN @CGUID+1 AND @CGUID+4;
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (@CGUID+1, 0, 0, 7, 0, 65, 0, NULL),
 (@CGUID+2, 0, 0, 7, 0, 65, 0, NULL),
 (@CGUID+3, 0, 0, 7, 0, 65, 0, NULL),
@@ -68,19 +68,19 @@ UPDATE `creature` SET `MovementType` = 2, `currentwaypoint` = 1, `position_x` = 
 UPDATE `creature` SET `MovementType` = 2, `currentwaypoint` = 1, `position_x` = -1915, `position_y` = 8854, `position_z` = 30.8850           WHERE `id` = 18258; -- Bach'lor
 
 DELETE FROM `creature_template_movement` WHERE `CreatureId` IN (18257, 18258);
-INSERT INTO `creature_template_movement` (`CreatureId`, `Ground`, `Swim`, `Flight`, `Rooted`, `Chase`, `Random`, `InteractionPauseTimer`) VALUES 
+REPLACE INTO `creature_template_movement` (`CreatureId`, `Ground`, `Swim`, `Flight`, `Rooted`, `Chase`, `Random`, `InteractionPauseTimer`) VALUES 
 (18257, 1, 1, 1, 0, 0, 0, NULL),
 (18258, 1, 1, 0, 0, 0, 0, NULL);
 
 DELETE FROM `creature_addon` WHERE `guid` IN (@CGUID+5, @CGUID+6, 65525, 65528);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (@CGUID+5, @WPID+50, 0, 0, 0, 0, 0, ''),
 (@CGUID+6, @WPID+60, 0, 0, 0, 0, 0, ''),
 (65525, 655250, 0, 0, 0, 0, 0, ''), -- Gutripper
 (65528, 655280, 0, 0, 0, 0, 0, ''); -- Bach'lor
 
 DELETE FROM `waypoint_data` WHERE `id` IN (@WPID+50, @WPID+60, 655250, 655280);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (@WPID+50, 1, -1529.1, 5971.24, 192.33, 0, 0, 0, 0, 100, 0),
 (@WPID+50, 2, -1521.51, 5957.25, 193.641, 0, 0, 0, 0, 100, 0),

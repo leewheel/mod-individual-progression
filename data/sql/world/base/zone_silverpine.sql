@@ -7,7 +7,7 @@ DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN
 (1766, 1767, 1768, 1769, 1772, 1773, 1778, 1779, 1780, 1781, 1782, 1797, 1865, 1866, 1867, 1868, 1870, 1888, 1889, 1891, 1894, 1895, 1908, 1909, 1912, 1913, 1914, 1915, 
 1920, 1923, 1924, 1939, 1940, 1942, 1947, 1953, 1954, 1955, 1956, 1957, 1958, 1971, 1973, 1974, 1983, 2053, 2054, 2120, 2283, 2332, 2529, 3528, 3530, 3532, 5682, 12431, 12433);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -162,7 +162,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 
 
 DELETE FROM `creature_text` WHERE `CreatureID` IN (1983);
-INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
+REPLACE INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
 (1983, 0, 0, 'I shall return in time...', 12, 0, 100, 0, 0, 0, 500, 0, 'Nightlash');
 
 
@@ -171,12 +171,12 @@ DELETE FROM `creature` WHERE `id` = 1983;
 DELETE FROM `creature_addon` WHERE `guid` = 28379;
 
 -- Quest: Call of Water (Shaman)
-UPDATE `quest_template` SET `LogDescription`='Speak to the Minor Manifestation of Water in Silverpine Forest.' WHERE `ID`=100;
+UPDATE `quest_template` SET `LogDescription`='与银松森林的微小水元素谈谈。' WHERE `ID`=100;
 
 -- Quest: Pyrewood Ambush
 UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` BETWEEN 2060 AND 2068;
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` BETWEEN 2060 AND 2068;
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 

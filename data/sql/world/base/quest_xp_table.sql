@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `custom_quest_xp` (
 ) ENGINE=InnoDB;
 
 
-INSERT INTO `custom_quest_xp` (`entry`, `xpValue`) VALUES
+REPLACE INTO `custom_quest_xp` (`entry`, `xpValue`) VALUES
 (5, 390),
 (6, 335),
 (7, 170),

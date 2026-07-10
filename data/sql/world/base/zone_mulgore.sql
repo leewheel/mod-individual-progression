@@ -5,7 +5,7 @@ UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN 
 (2949, 2950, 2951, 2953, 2954, 2956, 2957, 2958, 2959, 2960, 2962, 2963, 2964, 2965, 2967, 2968, 2969, 2970, 2971, 2972, 2973, 2974, 2975, 2976, 2977, 2978, 2989, 2990, 3035, 3051, 3056, 3058, 3068, 3232, 5786, 5787, 5807);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -74,12 +74,12 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 UPDATE `creature` SET `spawntimesecs` = 9000, `MovementType` = 2, `currentwaypoint` = 1 WHERE `id` = 3068;
 
 DELETE FROM `creature_addon` WHERE `guid` IN (26213, 26908);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (26213, 0, 0, 0, 0, 0, 0, NULL),
 (26908, 269080, 0, 0, 0, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` = 269080;
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 (269080,  1, -1722.14, -550.386, -14.7598, NULL, 0, 0, 0, 100, 0),
 (269080,  2, -1705.61, -569.055, -19.4067, NULL, 0, 0, 0, 100, 0),
 (269080,  3, -1682.04, -591.91, -25.4708, NULL, 0, 0, 0, 100, 0),
@@ -147,7 +147,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 
 -- Galak Centaur, waypoints
 DELETE FROM `creature` WHERE `id` IN (2967, 2968);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
 (25998, 2967, 1, 0, 0, 1, 1, 1, -2261.41, -1456.51, 46.2608, 5.28361, 375, 0, 1, 176, 0, 2, 0, 0, 0, '', 0, 0, NULL),
 (25999, 2967, 1, 0, 0, 1, 1, 1, -2227.05, -1386.47, 43.9742, 5.23882, 375, 0, 1, 176, 0, 2, 0, 0, 0, '', 0, 0, NULL),
@@ -157,7 +157,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (26019, 2968, 1, 0, 0, 1, 1, 1, -2227.05, -1386.47, 43.9742, 4.17969, 375, 0, 0, 198, 0, 0, 0, 0, 0, '', 0, 0, NULL);
 
 DELETE FROM `creature_formations` WHERE `leaderGUID` IN (25998, 25999, 26000);
-INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES
+REPLACE INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES
 (25998, 25998, 0, 0, 515, 0, 0),
 (25998, 26001, 4, 90, 515, 0, 0),
 (25999, 25999, 0, 0, 515, 0, 0),
@@ -167,7 +167,7 @@ INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, 
 
 UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN (2968);
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN (-26001, -26002, -26019);
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -177,13 +177,13 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 (-26019, 0, 0, 0, 11, 0, 100, 0, 0, 0, 0, 0, 0, 0, 48, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Galak Outrunner - On Respawn - Set Active');
 
 DELETE FROM `creature_addon` WHERE `guid` IN (25998, 25999, 26000);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (25998, 259980, 0, 0, 1, 0, 0, NULL),
 (25999, 259990, 0, 0, 1, 0, 0, NULL),
 (26000, 260000, 0, 0, 1, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` IN (259980, 259990, 260000);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (259980, 1, -2261.41, -1456.51, 46.2608, NULL, 0, 0, 0, 100, 0),
 (259980, 2, -2277.62, -1422.93, 32.4464, NULL, 0, 0, 0, 100, 0),
@@ -271,23 +271,23 @@ UPDATE `creature_template` SET `subname` = 'Journeyman Engineer'       WHERE `en
 
 -- The Hunt Begins
 DELETE FROM `quest_offer_reward` WHERE `ID` = 747;
-INSERT INTO `quest_offer_reward` (`ID`, `RewardText`) VALUES 
+REPLACE INTO `quest_offer_reward` (`ID`, `RewardText`) VALUES 
 (747, 'The tauren of Narache thank you, $n. You show much promise.');
 
 -- The Hunter's Way
 DELETE FROM `quest_offer_reward` WHERE `ID` = 861;
-INSERT INTO `quest_offer_reward` (`ID`, `RewardText`) VALUES 
+REPLACE INTO `quest_offer_reward` (`ID`, `RewardText`) VALUES 
 (861, 'Skorn Whitecloud is a wise tauren. He has hunted for years and years, and although his body is old, his spirit burns fiercely. We are honored to have him with us.$B$B
  If Skorn sent you to me, then you too must have the hunter\'s spirit. And to have gathered these claws shows your burgeoning skills.$B$BPerhaps you are ready to walk the path.');
 
 -- The Hunt Begins
 DELETE FROM `quest_request_items` WHERE `ID` = 747;
-INSERT INTO `quest_request_items` (`ID`, `EmoteOnComplete`, `CompletionText`) VALUES 
+REPLACE INTO `quest_request_items` (`ID`, `EmoteOnComplete`, `CompletionText`) VALUES 
 (747, 1, 'Providing meat and feathers for the tribe is the first step in proving yourself as a hunter before the Chief.');
 
 -- Wildmane Cleansing
 DELETE FROM `quest_request_items` WHERE `ID` = 760;
-INSERT INTO `quest_request_items` (`ID`, `EmoteOnComplete`, `CompletionText`) VALUES 
+REPLACE INTO `quest_request_items` (`ID`, `EmoteOnComplete`, `CompletionText`) VALUES 
 (760, 1, 'The last water well remains fetid and poisonous, $N. You must not delay!');
 
 UPDATE `quest_template` SET `Flags` = 0 WHERE `ID` = 1518; -- Call of Earth (Shaman)

@@ -10,7 +10,7 @@ DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 23 AND `SourceGroup` 
 10364, 10367, 11186, 11188, 11189, 11874, 12022, 12028, 12033, 12245, 12941, 12942, 12943, 12956, 12957, 12958, 13476, 
 14337, 14637, 14738, 14739, 14846, 14847, 15175, 15179, 16015, 16253, 16261, 16262, 16677, 16718, 17246, 17490, 25082);
 
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 --
 (23, 66,    30817, 0, 0, 8, 0, 66008, 0, 0, 0, 0, 0, '', 'Tharynn Bouden - Simple Flour'),
@@ -847,7 +847,7 @@ DELETE FROM `npc_vendor` WHERE `entry` = 10367 AND `item` IN
 DELETE FROM `npc_vendor` WHERE `entry` = 14846 AND `item` IN (4289, 11303, 11305, 11306, 11308, 12248, 12251);
 
 
-INSERT INTO `npc_vendor` (`entry`, `item`, `maxcount`, `incrtime`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `maxcount`, `incrtime`) VALUES 
 --
 (151, 4471, 0, 0),        -- Brog Hamfist, Flint and Tinder
 (227, 4471, 0, 0),        -- Mabel Solaj, Flint and Tinder

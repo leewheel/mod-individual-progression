@@ -6,7 +6,7 @@ SET @HW_TBC  := 215350; -- Horde Warbringer - TBC
 SET @ABG_TBC := 215351; -- Alliance Brigadier General - TBC
 
 DELETE FROM `creature_template` WHERE `entry` IN (@HW, @ABG, @HW_TBC, @ABG_TBC);
-INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `name`, `subname`, `IconName`, `gossip_menu_id`, 
+REPLACE INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `name`, `subname`, `IconName`, `gossip_menu_id`, 
 `minlevel`, `maxlevel`, `exp`, `faction`, `npcflag`, `speed_walk`, `speed_run`, `speed_swim`, `speed_flight`, `detection_range`, `rank`, `dmgschool`, `DamageModifier`, 
 `BaseAttackTime`, `RangeAttackTime`, `BaseVariance`, `RangeVariance`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`,  
 `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `HoverHeight`, `HealthModifier`, `ManaModifier`, 
@@ -18,7 +18,7 @@ INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entr
 (@ABG_TBC,0,0,0,0,0,'Alliance Brigadier General',NULL,NULL,6597,60,60,2,534,3,1,1.14286,1,1,18,0,0,2.4,2000,2000,1,1,1,320,2048,0,0,7,134217728,0,0,0,0,0,0,0,'',0,1,10,1,1.4,1,0,0,1,0,2,'',0);
 
 DELETE FROM `creature_template_locale` WHERE `entry` IN (@HW, @ABG, @HW_TBC, @ABG_TBC);
-INSERT INTO `creature_template_locale` (`entry`, `locale`, `Name`, `Title`, `VerifiedBuild`) VALUES 
+REPLACE INTO `creature_template_locale` (`entry`, `locale`, `Name`, `Title`, `VerifiedBuild`) VALUES 
 --
 (@HW, 'deDE', 'Kriegshetzer der Horde', '', 18019),
 (@HW, 'esES', 'Belisario de la Horda', '', 18019),
@@ -58,24 +58,24 @@ INSERT INTO `creature_template_locale` (`entry`, `locale`, `Name`, `Title`, `Ver
 
 
 DELETE FROM `creature_template_addon` WHERE `entry` IN (@HW, @HW_TBC);
-INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
+REPLACE INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
 (@HW, 0, 0, 0, 1, 0, 0, ''),
 (@HW_TBC, 0, 0, 0, 1, 0, 0, '');
 
 DELETE FROM `creature_equip_template` WHERE `CreatureID` IN (@HW, @HW_TBC);
-INSERT INTO `creature_equip_template` (`CreatureID`, `ID`, `ItemID1`, `ItemID2`, `ItemID3`, `VerifiedBuild`) VALUES 
+REPLACE INTO `creature_equip_template` (`CreatureID`, `ID`, `ItemID1`, `ItemID2`, `ItemID3`, `VerifiedBuild`) VALUES 
 (@HW, 1, 13706, 0, 0, 18019),
 (@HW_TBC, 1, 13706, 0, 0, 18019);
 
 DELETE FROM `creature_template_model` WHERE `CreatureID` IN (@HW, @ABG, @HW_TBC, @ABG_TBC);
-INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`, `DisplayScale`, `Probability`, `VerifiedBuild`) VALUES 
+REPLACE INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`, `DisplayScale`, `Probability`, `VerifiedBuild`) VALUES 
 (@HW, 0, 15387, 1, 1, 12340),
 (@ABG, 0, 27154, 1, 1, 12340),
 (@HW_TBC, 0, 15387, 1, 1, 12340),
 (@ABG_TBC, 0, 27154, 1, 1, 12340);
 
 DELETE FROM `creature` WHERE `id` IN (@HW, @ABG, @HW_TBC, @ABG_TBC);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, 
 `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES 
 --
 (@CGUID+201, @HW, 1, 0, 0, 1, 1, 1, -1381.13, -87.0034, 159.532, 3.14159, 300, 0, 0, 1, 0, 0, 0, 0, 0, '', 0, 0, NULL),
@@ -106,7 +106,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 
 
 DELETE FROM `creature_queststarter` WHERE `id` IN (@HW, @ABG, @HW_TBC, @ABG_TBC);
-INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES 
+REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES 
 -- Vanilla (Horde)
 (@HW, 13476),  -- For Great Honor
 (@HW, 13475),  -- For Great Honor (repeatable)
@@ -177,7 +177,7 @@ INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES
 (@ABG_TBC, 11338); -- Call to Arms: Warsong Gulch (repeatable)
 
 DELETE FROM `creature_questender` WHERE `id` IN (@HW, @ABG, @HW_TBC, @ABG_TBC);
-INSERT INTO `creature_questender` (`id`, `quest`) VALUES 
+REPLACE INTO `creature_questender` (`id`, `quest`) VALUES 
 --
 (@HW, 13476),  -- For Great Honor
 (@HW, 13475),  -- For Great Honor (repeatable)
@@ -251,7 +251,7 @@ DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 19 AND `ConditionType
 (8368, 8389, 8372, 8386, 8426, 8431, 8399, 8404, 8427, 8432, 8400, 8405, 8428, 8433, 8401, 8406, 8429, 8434, 8402, 8407, 8403, 8408, 8430, 8435, -- WSG
  8370, 8390, 8374, 8384, 8436, 8440, 8393, 8391, 8437, 8441, 8394, 8392, 8438, 8442, 8395, 8397, 8439, 8443, 8396, 8398); -- AB
 
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 -- WSG quests
 (19, 0, 8368, 0, 1, 27, 0, 10, 3, 0, 0, 0, 0, '', 'level must be higher or equal to 10'),
@@ -400,7 +400,7 @@ DELETE FROM `disables` WHERE `sourceType` = 1 AND `entry` IN
 
 -- connect Call to Arms quests to events (doesn't work yet)
 DELETE FROM `game_event_creature_quest` WHERE `eventEntry` IN (18, 19, 20, 21) AND `quest` IN (11335, 11337, 11338, 11340);
-INSERT INTO `game_event_creature_quest` (`eventEntry`, `id`, `quest`) VALUES 
+REPLACE INTO `game_event_creature_quest` (`eventEntry`, `id`, `quest`) VALUES 
 --
 (18, @HW_TBC,  11340), -- Call to Arms: Alterac Valley
 (18, @ABG_TBC, 11340),
@@ -412,7 +412,7 @@ INSERT INTO `game_event_creature_quest` (`eventEntry`, `id`, `quest`) VALUES
 (21, @ABG_TBC, 11337);
 
 DELETE FROM `game_event_seasonal_questrelation` WHERE `questId` IN (11335, 11337, 11338, 11340);
-INSERT INTO `game_event_seasonal_questrelation` (`questId`, `eventEntry`) VALUES 
+REPLACE INTO `game_event_seasonal_questrelation` (`questId`, `eventEntry`) VALUES 
 (11340, 18),
 (11338, 19),
 (11335, 20),

@@ -7,7 +7,7 @@ DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN
 (48, 202, 203, 205, 206, 210, 212, 213, 215, 217, 218, 300, 314, 315, 503, 507, 511, 521, 522, 531, 533, 534, 539, 565, 569, 570, 574, 
 604, 628, 785, 787, 889, 891, 892, 898, 909, 910, 920, 923, 930, 948, 949, 1110, 1200, 1251, 1258, 1270, 1487, 6170);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -115,18 +115,18 @@ UPDATE `creature` SET `spawntimesecs` = 23400 WHERE `id` IN (503, 574);
 
 -- Nothing but the Truth, should require deepstrider tumor(6082)
 DELETE FROM `item_dbc` WHERE `ID` = 6082;
-INSERT INTO `item_dbc` (`ID`, `ClassID`, `SubclassID`, `Sound_Override_Subclassid`, `Material`, `DisplayInfoID`, `InventoryType`, `SheatheType`) VALUES
+REPLACE INTO `item_dbc` (`ID`, `ClassID`, `SubclassID`, `Sound_Override_Subclassid`, `Material`, `DisplayInfoID`, `InventoryType`, `SheatheType`) VALUES
 (6082, 12, 0, -1, -1, 9734, 0, 0);
 
 -- Nothing but the Truth, item ID stayed the same, so only updating name and icon
-UPDATE `item_template` SET `name` = 'Deepstrider Tumor', `displayid` = 9734 WHERE `entry` = 6082;
+UPDATE `item_template` SET `name` = '深渊行者肿瘤', `displayid` = 9734 WHERE `entry` = 6082;
 
 -- Nothing but the Truth, tumor dropped from: Deepstrider Giant(4686), Deepstrider Searcher(4687)
 DELETE FROM `creature_loot_template` WHERE `Item` = 6082;
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
 (4686, 6082, 0, 100, 1, 1, 0, 1, 1, 'Deepstrider Giant - Deepstrider Tumor'),
 (4687, 6082, 0, 100, 1, 1, 0, 1, 1, 'Deepstrider Searcher - Deepstrider Tumor');
 
 -- Nothing but the Truth, update quest log and description
-UPDATE `quest_template` SET `LogDescription` = 'Apothecary Faustin at Beggar\'s Haunt needs 5 Shadow Panther Hearts, Mire Lord Fungus and a Deepstrider Tumor.' WHERE `ID` = 1383;
-UPDATE `quest_template` SET `QuestDescription` = 'I have just the right serum in mind. It will deal with the truth in precisely the way the truth should be dealt with.$b$bFor this concoction I will need several Shadow Panther hearts from the Swamp. I also require the enchanted fungus off of the Mire Lord who resides there. I am sure one as able as you, $n, can persuade him to part with some.$b$bNow the hard part will be locating a Deepstrider tumor from far-off Desolace. Very rarely the giants there become ill and a tumor forms.$b$bNow, off you go!' WHERE `ID` = 1383;
+UPDATE `quest_template` SET `LogDescription` = '乞丐鬼屋的药剂师福斯丁需要5个暗影豹之心、沼泽领主的真菌和一个深渊行者肿瘤。' WHERE `ID` = 1383;
+UPDATE `quest_template` SET `QuestDescription` = '我已经想好了一种恰当的血清。它会用恰当的方式处理"真相"——"真相"应该得到什么样的处理就给它什么样的处理。$b$b要配制这种混合液，我需要来自沼泽的暗影豹的5颗心脏。我还需要沼泽里的沼泽领主身上的魔法真菌。我相信像你这样能干的人，$n，肯定能说服他交出一些来。$b$b现在最困难的部分是要从遥远的凄凉之地找到深渊行者的肿瘤。那里的巨人们偶尔会生病，从而形成肿瘤。$b$b好了，快去吧！' WHERE `ID` = 1383;

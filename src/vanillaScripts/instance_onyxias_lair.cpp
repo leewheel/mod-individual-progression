@@ -142,19 +142,19 @@ public:
 
             if (player->GetLevel() < 50)
             {
-                handler.PSendSysMessage("You need to be at least level 50.");
+                handler.PSendSysMessage("您需要至少达到50级。");
                 allowed = false;
             }
 
             if (sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_5)) // death knights
             {
-                handler.PSendSysMessage("Your progression level is too high.");
+                handler.PSendSysMessage("您的进度等级过高。");
                 allowed = false;
             }
 
             if (!player->HasItemCount(ITEM_DRAKEFIRE_AMULET))
             {
-                handler.PSendSysMessage("You need to have the Drakefire Amulet in your inventory.");
+                handler.PSendSysMessage("您需要携带龙火护符。");
                 allowed = false;
             }
 
@@ -180,31 +180,31 @@ public:
 
                     if (member->GetLevel() < 50)
                     {
-                        handler.PSendSysMessage("|cff00ffff{}|r needs to be at least level 50.", member->GetName());
+                        handler.PSendSysMessage("|cff00ffff{}|r 需要至少达到50级。", member->GetName());
                         allowed = false;
                     }
                     if (sIndividualProgression->hasPassedProgression(member, PROGRESSION_TBC_TIER_5)) // death knights
                     {
-                        handler.PSendSysMessage("|cff00ffff{}|r progression level is too high.", member->GetName());
+                        handler.PSendSysMessage("|cff00ffff{}|r 进度等级过高。", member->GetName());
                         allowed = false;
                     }
                     if (!member->HasItemCount(ITEM_DRAKEFIRE_AMULET))
                     {
                         if (member->getGender() == GENDER_MALE)
-                            handler.PSendSysMessage("|cff00ffff{}|r does not have the Drakefire Amulet in his inventory.", member->GetName());
+                            handler.PSendSysMessage("|cff00ffff{}|r 未携带龙火护符。", member->GetName());
                         else 
-                            handler.PSendSysMessage("|cff00ffff{}|r does not have the Drakefire Amulet in her inventory.", member->GetName());
+                            handler.PSendSysMessage("|cff00ffff{}|r 未携带龙火护符。", member->GetName());
 
                         allowed = false;
                     }
                     if (member->IsGameMaster())
                     {
-                        handler.PSendSysMessage("|cff00ffff{}|r is a GM.", member->GetName());
+                        handler.PSendSysMessage("|cff00ffff{}|r 是管理员。", member->GetName());
                         allowed = true;
                     }
 
                     if (allowed)
-                        handler.PSendSysMessage("|cff00ffff{}|r is allowed to enter.", member->GetName());
+                        handler.PSendSysMessage("|cff00ffff{}|r 被允许进入。", member->GetName());
 
                     member->SetRaidDifficulty(RAID_DIFFICULTY_10MAN_HEROIC);
                 }
@@ -213,7 +213,7 @@ public:
         else
         {
             if (player->GetLevel() < 80)
-                handler.PSendSysMessage("You need to be level 80 to enter Onyxia's Lair.");
+                handler.PSendSysMessage("您需要达到80级才能进入奥妮克希亚的巢穴。");
         }
 
         return false;

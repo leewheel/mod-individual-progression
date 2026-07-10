@@ -1,6 +1,6 @@
 -- flight masters at Sanctum of the Stars and Altar of Sha'tar only visible if at least friendly with Scryers/Aldor
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 30 AND `ConditionTypeOrReference` = 5 AND `SourceEntry` IN (19581, 21766);
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 --
 (30, 0, 19581, 0, 0, 5, 0, 932, 240, 0, 0, 0, 0, '', 'Only able to activate flight path if friendly with Aldor'),
@@ -10,11 +10,11 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 UPDATE `creature` SET `MovementType` = 2, `currentwaypoint` = 1, `position_x` = -3493.5701, `position_y` = 2277.0901, `position_z` = 65.3081 WHERE `id` = 22024;
 
 DELETE FROM `creature_addon` WHERE `guid` IN (83112);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (83112, 831120, 0, 0, 0, 0, 0, '');
 
 DELETE FROM `waypoint_data` WHERE `id` IN (831120);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (831120, 1,  -3478.58, 2278.88, 64.3024, 0.466765, 0, 0, 0, 100, 0),
 (831120, 2,  -3465.33, 2287.22, 63.4117, 0.258635, 0, 0, 0, 100, 0),

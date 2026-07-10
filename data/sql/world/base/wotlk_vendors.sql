@@ -1,7 +1,7 @@
 /*  Hide vendor items until the player has completed the progression level for them */
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 23 AND `SourceGroup` IN (28701, 32172);
 
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 --   
 (23, 28701, 46897, 0, 0, 8, 0, 66015, 0, 0, 0, 0, 0, '', 'Timothy Jones - Jewelcrafting Design'),
@@ -128,7 +128,7 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 
 -- Restore vendors to use pre-3.2 gems
 DELETE FROM `npc_vendor` WHERE `entry` = 32172 AND `item` IN (36918, 36919, 36921, 36922, 36924, 36925, 36927, 36928, 36930, 36931, 36933, 36934);
-INSERT INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `ExtendedCost`, `VerifiedBuild`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `ExtendedCost`, `VerifiedBuild`) VALUES 
 (32172, 0, 36918, 0, 0, 2706, 0),
 (32172, 0, 36919, 0, 0, 2706, 0),
 (32172, 0, 36921, 0, 0, 2706, 0),

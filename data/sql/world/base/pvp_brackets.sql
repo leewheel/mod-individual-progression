@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `pvpdifficulty_dbc` (
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `pvpdifficulty_dbc` (`ID`, `MapID`, `RangeIndex`, `MinLevel`, `MaxLevel`, `Difficulty`) VALUES
+REPLACE INTO `pvpdifficulty_dbc` (`ID`, `MapID`, `RangeIndex`, `MinLevel`, `MaxLevel`, `Difficulty`) VALUES
 (1,   30,  0, 51, 60, 0), -- Alterac Valley
 (2,   30,  1, 61, 70, 1),
 (3,   30,  2, 71, 79, 2),

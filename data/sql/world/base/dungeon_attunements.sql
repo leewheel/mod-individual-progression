@@ -5,16 +5,16 @@ UPDATE `gameobject_template` SET `ScriptName` = 'go_mara_portal' WHERE `entry` =
 
 -- The Cudgel of Kar'desh
 DELETE FROM `creature_queststarter` WHERE `id` = 22421 AND `quest` IN (10901, 13431); -- 
-INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES (22421, 10901);
+REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES (22421, 10901);
 
 DELETE FROM `creature_questender` WHERE `id` = 22421 AND `quest` IN (10901, 13431);
-INSERT INTO `creature_questender` (`id`, `quest`) VALUES (22421, 10901);
+REPLACE INTO `creature_questender` (`id`, `quest`) VALUES (22421, 10901);
 
 UPDATE `quest_template` SET `RewardSpell` = 39145 WHERE (`ID` = 10901); -- Adds The Mark of Vashj spell to The Cudgel of Kar'desh (cosmetic)
 
 -- Trial of the Naaru: Magtheridon
 DELETE FROM `creature_queststarter` WHERE `id` = 18481 AND `quest` IN (10888, 13430); 
-INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES (18481, 10888);
+REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES (18481, 10888);
 
 DELETE FROM `creature_questender` WHERE `id` = 18481 AND `quest` = 13430;
 

@@ -5,7 +5,7 @@
 -- after the AzerothCore 2026_03_22_03 update (creature_immunities table).
 
 DELETE FROM `creature_immunities` WHERE `ID` BETWEEN -10232 AND -10000;
-INSERT INTO `creature_immunities` (`ID`,`SchoolMask`,`DispelTypeMask`,`MechanicsMask`,`Effects`,`Auras`,`ImmuneAoE`,`ImmuneChain`,`Comment`) VALUES
+REPLACE INTO `creature_immunities` (`ID`,`SchoolMask`,`DispelTypeMask`,`MechanicsMask`,`Effects`,`Auras`,`ImmuneAoE`,`ImmuneChain`,`Comment`) VALUES
 --
 (-10000,0,0,128,   '','',0,0,'IP vanilla: legacy mech=0x40(ROOT)'),
 (-10001,0,0,130,   '','',0,0,'IP vanilla: legacy mech=0x41(CHARM|ROOT)'),

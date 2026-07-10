@@ -17,7 +17,7 @@ UPDATE `creature_template` SET `type_flags` = 134217728 WHERE `entry` IN (3004, 
 DELETE FROM `npc_vendor` WHERE `entry`= 5189 AND `item` IN (15197, 15199, 19031, 19505, 24004, 31773, 31775, 31776, 31777, 31778, 31779, 31780, 31781, 31804, 32445, 32828, 35221);
 
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 15 AND `SourceEntry` = 0 AND `ConditionTypeOrReference` = 7 AND `SourceGroup` IN (1017, 4128, 4165, 4207, 4242, 4351);
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `ConditionTypeOrReference`, `ConditionValue1`, `ConditionValue2`, `Comment`) VALUES
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `ConditionTypeOrReference`, `ConditionValue1`, `ConditionValue2`, `Comment`) VALUES
 (15, 1017, 0, 7, 164, 50,  'Show menu if blacksmithing is 50 or higher'),   -- Karn Stonehoof <Expert Blacksmith>
 (15, 4128, 0, 7, 171, 50,  'Show menu if alchemy is 50 or higher'),         -- Bena Winterhoof <Expert Alchemist>
 (15, 4165, 0, 7, 333, 50,  'Show menu if enchanting is 50 or higher'),      -- Teg Dawnstrider <Expert Enchanter>
@@ -27,7 +27,7 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 
 -- battlemasters
 DELETE FROM `creature` WHERE `id` IN (7427, 10360, 12198, 34976, 34978);
-INSERT INTO `creature` (`guid`, `id`, `map`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`) VALUES 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`) VALUES 
 (607427, 7427,  1, -1384.29, -98.6163, 159.018, 2.87979, 300), -- Taim Ragetotem <Alterac Valley Battlemaster>
 (610360, 10360, 1, -1381.29, -75.9809, 160.602, 3.19395, 300), -- Kergul Bloodaxe <Warsong Gulch Battlemaster>
 (612198, 12198, 1, -995.143, 217.173, 104.729, 4.46804,  300); -- Martin Lindsey <Arathi Basin Battlemaster>
@@ -42,7 +42,7 @@ UPDATE `creature_template` SET `subname` = 'Trade Goods Supplier'      WHERE `en
 
 -- Evergreen Herb Casing should drop random herbs - was changed to WotLK to drop only Morrowgrain and Mutated Morrowgrain
 DELETE FROM `item_loot_template` WHERE `Entry` = 11024;
-INSERT INTO `item_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
+REPLACE INTO `item_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
 (11024, 785,   0, 6, 0, 1, 1, 1, 1,  'Evergreen Herb Casing - Mageroyal'),
 (11024, 2449,  0, 9, 0, 1, 1, 1, 1,  'Evergreen Herb Casing - Earthroot'),
 (11024, 2450,  0, 6, 0, 1, 1, 1, 1,  'Evergreen Herb Casing - Briarthorn'),

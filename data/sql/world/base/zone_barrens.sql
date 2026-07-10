@@ -11,7 +11,7 @@ DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN
 3414, 3416, 3424, 3425, 3426, 3434, 3435, 3436, 3438, 3452, 3454, 3455, 3456, 3457, 3458, 3459, 3461, 3463, 3466, 3470, 3471, 3472, 3473, 3476, 4127, 4128, 4129, 
 5828, 5829, 5830, 5831, 5834, 5835, 5836, 5838, 5841, 5842, 5847, 5848, 5849, 5851, 5859, 5863, 5865, 6494, 7872, 7873, 7874, 9336, 12865, 14908);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -310,29 +310,29 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 (14908, 0, 7, 0, 40, 0, 100, 0, 29, 14908, 0, 0, 0, 0, 80, 1490806, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,          'Mogg - On Waypoint 29 Reached - Run Script');
 
 DELETE FROM `creature_text` WHERE `CreatureID` IN (3279, 5828);
-INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
+REPLACE INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
 (3279, 0, 0, 'A fine trophy your head will make, $R.',                   12, 0, 100, 0, 0, 0, 2229, 0, 'Witchwing Ambusher'),
 (3279, 0, 1, 'My talons will shred your puny body, $R',                  12, 0, 100, 0, 0, 0, 2230, 0, 'Witchwing Ambusher'),
 (3279, 0, 2, 'You will be easy prey, $C.',                               12, 0, 100, 0, 0, 0, 2231, 0, 'Witchwing Ambusher'),
 (5828, 0, 0, '%s lets out a tremendous roar, alterting nearby enemies!', 16, 0, 100, 0, 0, 0, 2107, 0, 'Humar the Pridelord');
 
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 15 AND `SourceEntry` = 0 AND `ConditionTypeOrReference` = 7 AND `SourceGroup` IN (2783, 4206, 4350);
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `ConditionTypeOrReference`, `ConditionValue1`, `ConditionValue2`, `Comment`) VALUES 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `ConditionTypeOrReference`, `ConditionValue1`, `ConditionValue2`, `Comment`) VALUES 
 (15, 2783, 0, 7, 164, 50, 'Show menu if blacksmithing is 50 or higher'),  -- Traugh <Expert Blacksmith>
 (15, 4206, 0, 7, 165, 50, 'Show menu if leatherworking is 50 or higher'), -- Krulmoo Fullmoon <Expert Leatherworker>
 (15, 4350, 0, 7, 197, 50, 'Show menu if tailoring is 50 or higher');      -- Mahani <Expert Tailor>
 
-UPDATE `creature_template` SET `subname` = 'Blacksmithing Supplier'   WHERE `entry` = 3477;-- Hraq <Blacksmithing Supplier>
-UPDATE `creature_template` SET `subname` = 'Expert Blacksmith'        WHERE `entry` = 3478; -- Traugh <Expert Blacksmith>
-UPDATE `creature_template` SET `subname` = 'Journeyman Tailor'        WHERE `entry` = 3484; -- Kil'hala <Journeyman Tailor>
-UPDATE `creature_template` SET `subname` = 'Reagents and Herbs'       WHERE `entry` = 3490; -- Hula'mahi <Reagents and Herbs>
-UPDATE `creature_template` SET `subname` = 'Journeyman Engineer'      WHERE `entry` = 3494;-- Tinkerwiz <Journeyman Engineer>
-UPDATE `creature_template` SET `subname` = 'Engineering Goods'        WHERE `entry` = 3495;-- Gagsprocket <Engineering Goods>
-UPDATE `creature_template` SET `subname` = 'Expert Leatherworker'     WHERE `entry` = 3703;-- Krulmoo Fullmoon <Expert Leatherworker>
-UPDATE `creature_template` SET `subname` = 'Expert Tailor'            WHERE `entry` = 3704;-- Mahani <Expert Tailor>
-UPDATE `creature_template` SET `subname` = 'Journeyman Leatherworker' WHERE `entry` = 5784;-- Waldor <Journeyman Leatherworker>
-UPDATE `creature_template` SET `subname` = 'Skinner'                  WHERE `entry` = 6387;-- Dranh <Skinner>
-UPDATE `creature_template` SET `subname` = 'Master Goblin Engineer'   WHERE `entry` = 8738;-- Vazario Linkgrease <Master Goblin Engineer>
+UPDATE `creature_template` SET `subname` = '锻造供应商'   WHERE `entry` = 3477;-- Hraq <Blacksmithing Supplier>
+UPDATE `creature_template` SET `subname` = '专家级铁匠'        WHERE `entry` = 3478; -- Traugh <Expert Blacksmith>
+UPDATE `creature_template` SET `subname` = '初级裁缝'        WHERE `entry` = 3484; -- Kil'hala <Journeyman Tailor>
+UPDATE `creature_template` SET `subname` = '施法材料和草药'       WHERE `entry` = 3490; -- Hula'mahi <Reagents and Herbs>
+UPDATE `creature_template` SET `subname` = '初级工程师'      WHERE `entry` = 3494;-- Tinkerwiz <Journeyman Engineer>
+UPDATE `creature_template` SET `subname` = '工程学用品'        WHERE `entry` = 3495;-- Gagsprocket <Engineering Goods>
+UPDATE `creature_template` SET `subname` = '专家级制皮师'     WHERE `entry` = 3703;-- Krulmoo Fullmoon <Expert Leatherworker>
+UPDATE `creature_template` SET `subname` = '专家级裁缝'            WHERE `entry` = 3704;-- Mahani <Expert Tailor>
+UPDATE `creature_template` SET `subname` = '初级制皮师' WHERE `entry` = 5784;-- Waldor <Journeyman Leatherworker>
+UPDATE `creature_template` SET `subname` = '剥皮师'                  WHERE `entry` = 6387;-- Dranh <Skinner>
+UPDATE `creature_template` SET `subname` = '地精工程学大师'   WHERE `entry` = 8738;-- Vazario Linkgrease <Master Goblin Engineer>
 
 UPDATE `creature_template` SET `gossip_menu_id` = 0, `npcflag` = 2 WHERE `entry` = 3443; -- Grub
 UPDATE `creature_template_model` SET `CreatureDisplayID` = 4244    WHERE `CreatureID` = 3465;-- Gilthares Firebough
@@ -342,7 +342,7 @@ DELETE FROM `npc_vendor` WHERE `entry` = 3443;
 
 -- The Angry Scytheclaws
 DELETE FROM `quest_offer_reward` WHERE `ID` = 905;
-INSERT INTO `quest_offer_reward` (`ID`, `Emote1`, `RewardText`) VALUES 
+REPLACE INTO `quest_offer_reward` (`ID`, `Emote1`, `RewardText`) VALUES 
 (905, 1, 'So you\'ve been to the nests and placed the feathers of your prey within them. That took a fair portion of courage, no doubt about it.$B$B
  Do you feel a little tougher, $N? Because you look tougher now then when you first came here. I guess the Barrens is doing its job.');
 
@@ -354,19 +354,19 @@ UPDATE `quest_template_locale` SET `Details` = 'Etant Maître des quais d''un po
     
 -- Call of Water (Shaman)
 DELETE FROM `quest_request_items` WHERE `ID` = 63;
-INSERT INTO `quest_request_items` (`ID`, `EmoteOnComplete`, `CompletionText`) VALUES 
+REPLACE INTO `quest_request_items` (`ID`, `EmoteOnComplete`, `CompletionText`) VALUES 
 (63, 1, 'The brazier still reflects the ambient light from the area, and the flame shifts slightly as you move closer.$B$B
  The corruption along the hills seems to have kept its distance, and besides the missing components, the brazier looks prepared for the ritual to summon a cleansed manifestation of water.');
 
 -- Hamuul Runetotem
 DELETE FROM `quest_request_items` WHERE `ID` = 1489;
-INSERT INTO `quest_request_items` (`ID`, `EmoteOnComplete`, `CompletionText`) VALUES (1489, 1, NULL);
+REPLACE INTO `quest_request_items` (`ID`, `EmoteOnComplete`, `CompletionText`) VALUES (1489, 1, NULL);
 
-UPDATE `quest_template` SET `LogDescription` = 'Bring the Shard of Water to Islen Waterseer in the Barrens.'       WHERE `ID` = 96;   -- Call of Water (Shaman)
-UPDATE `quest_template` SET `LogDescription` = 'Bring the Vial of Purest Water to Islen Waterseer in the Barrens.' WHERE `ID` = 220;  -- Call of Water (Shaman)
-UPDATE `quest_template` SET `LogDescription` = 'Speak with Ziz Fizziks in Windshear Crag.'                         WHERE `ID` = 1483; -- Ziz Fizziks
-UPDATE `quest_template` SET `LogDescription` = 'Find Brine in Southern Barrens.'                                   WHERE `ID` = 1530; -- Call of Water (Shaman)
-UPDATE `quest_template` SET `LogDescription` = 'Speak with Mura Runetotem in the Sepulcher.'                       WHERE `ID` = 3301; -- Mura Runetotem
+UPDATE `quest_template` SET `LogDescription` = '将水之碎片带给贫瘠之地的伊斯伦·水视者。'       WHERE `ID` = 96;   -- Call of Water (Shaman)
+UPDATE `quest_template` SET `LogDescription` = '将纯净之水瓶带给贫瘠之地的伊斯伦·水视者。' WHERE `ID` = 220;  -- Call of Water (Shaman)
+UPDATE `quest_template` SET `LogDescription` = '与风喉峭壁的兹兹·菲兹克斯谈一谈。'                         WHERE `ID` = 1483; -- Ziz Fizziks
+UPDATE `quest_template` SET `LogDescription` = '在南贫瘠之地寻找布莱恩。'                                   WHERE `ID` = 1530; -- Call of Water (Shaman)
+UPDATE `quest_template` SET `LogDescription` = '与瑟伯切尔的穆拉·鲁因图姆谈一谈。'                       WHERE `ID` = 3301; -- Mura Runetotem
 
 UPDATE `quest_template_addon` SET `PrevQuestID` = 882  WHERE `ID` = 1130; -- Melor Sends Word
 UPDATE `quest_template_addon` SET `PrevQuestID` = 1799 WHERE `ID` = 4962; -- Shard of a Felhound (Warlock)
@@ -381,7 +381,7 @@ UPDATE `quest_template_addon` SET `PrevQuestID` = 871  WHERE `ID` = 5041; -- Sup
 UPDATE `creature` SET `MovementType` = 2, `currentwaypoint` = 1 WHERE `guid` = 15085; -- Isha Iwak, waypoints
 
 DELETE FROM `creature` WHERE `id` IN (3392, 3434, 3435, 3436, 3438, 3472, 3474, 5830, 5832, 5834, 5835);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
 --
 (13984,  3392, 1, 0, 0, 1, 1, 1, -4181.31, -2184.33, 50.2665, 0.292325, 240, 5, 0, 600, 618, 1, 0, 0, 0, '', 0, 0, NULL),  -- Prospector Khazgorm
@@ -411,7 +411,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (51808, 5835, 1, 0, 0, 1, 1, 1, 1058.87, -3079.53, 91.7453, 4.64184, 14400, 0, 1, 314, 0, 2, 0, 0, 0, '', 0, 0, NULL);     -- Foreman Grills
 
 DELETE FROM `pool_creature` WHERE `pool_entry` IN (601036, 601037, 601038);
-INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
+REPLACE INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
 --
 (13984,  601036, 0, 'Prospector Khazgorm'),
 (695061, 601036, 0, 'Prospector Khazgorm'),
@@ -429,13 +429,13 @@ INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALU
 (695069, 601038, 0, 'Lakota\'Mani');
 
 DELETE FROM `pool_template` WHERE `entry` IN (601036, 601037, 601038);
-INSERT INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
+REPLACE INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
 (601036, 1, 'Prospector Khazgorm - Barrens'),
 (601037, 1, 'Washte Pawne - Barrens'),
 (601038, 1, 'Lakota Mani - Barrens');
 
 DELETE FROM `creature_addon` WHERE `guid` IN (14365, 14383, 14386, 15085, 20429, 51808, 51813, 51816);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (14365, 143650, 0, 0, 1, 0, 0, NULL),
 (14383, 143830, 0, 0, 1, 0, 0, NULL),
 (14386, 143860, 0, 0, 0, 0, 0, NULL),
@@ -446,7 +446,7 @@ INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `e
 (51816, 518160, 0, 0, 0, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` IN (143650, 143830, 143860, 150850, 204290, 518080, 518130, 518160);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (143650, 1, -4012.59, -1810.81, 92.8317, NULL, 0, 0, 0, 100, 0), -- Nak
 (143650, 2, -4025.43, -1808.82, 94.3014, NULL, 0, 0, 0, 100, 0),
@@ -879,7 +879,7 @@ DELETE FROM `creature` WHERE `guid` BETWEEN 20301 AND 20309; -- Razormane Hunter
 DELETE FROM `creature` WHERE `guid` BETWEEN 20563 AND 20574; -- Kolkar Pack Runner
 DELETE FROM `creature` WHERE `guid` BETWEEN 20855 AND 20860; -- Kolkar Packhound
 DELETE FROM `creature` WHERE `guid` BETWEEN 20863 AND 20869; -- Kolkar Packhound
-INSERT INTO `creature` (`guid`, `id`,`map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `creature` (`guid`, `id`,`map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
 --
 (20301, 3265, 1, 0, 0, 1, 1, 1, -38.8009, -3234.81, 91.8888, 5.10638, 275, 0, 1, 222, 0, 2, 0, 0, 0, '', 0, 0, NULL),
@@ -919,13 +919,13 @@ INSERT INTO `creature` (`guid`, `id`,`map`, `zoneId`, `areaId`, `spawnMask`, `ph
 (20869, 4316, 1, 0, 0, 1, 1, 0, -1014.57, -2727.63, 93.9619, 1.97738, 275, 2, 0, 273, 0, 1, 0, 0, 0, '', 0, 0, NULL);
 
 DELETE FROM `creature_formations` WHERE `leaderGUID` IN (20566);
-INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES
+REPLACE INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES
 (20566, 20566, 0, 0, 515, 0, 0),
 (20566, 20858, 3, 240, 515, 0, 0);
 
 UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN (3275, 3397, 4316);
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN (-13991, -13992, -14007, -20588, -20858);
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -938,7 +938,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 
 DELETE FROM `creature_addon` WHERE `guid` BETWEEN 20301 AND 20309;
 DELETE FROM `creature_addon` WHERE `guid` = 20566;
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (20301, 203010, 0, 0, 1, 0, 0, NULL),
 (20302, 0, 0, 0, 1, 0, 0, NULL),
 (20303, 203030, 0, 0, 1, 0, 0, NULL),
@@ -951,7 +951,7 @@ INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `e
 (20566, 205660, 0, 0, 1, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` IN (203010, 203030, 203040, 203050, 203060, 203070, 203080, 203090, 205660);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (203010, 1, -46.4497, -3258.76, 91.6597, 4.3822, 0, 0, 0, 100, 0), -- Razormane Hunter
 (203010, 2, -55.7844, -3286.35, 91.7107, 4.38613, 0, 0, 0, 100, 0),

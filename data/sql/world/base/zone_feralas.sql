@@ -9,7 +9,7 @@ DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN
 5304, 5305, 5307, 5308, 5312, 5317, 5319, 5320, 5331, 5332, 5333, 5334, 5335, 5336, 5337, 5343, 5346, 5347, 5349, 5356, 5357, 5358, 5362, 5363, 5364, 5366, 5462, 
 7725, 7726, 7727, 8075, 8136, 11447, 11497, 11498, 12497, 14661);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -186,7 +186,7 @@ UPDATE `creature` SET `spawntimesecs` = 54000 WHERE `id` = 5347; -- Antilus the 
 UPDATE `creature` SET `spawntimesecs` = 23400 WHERE `id` = 5349; -- Arash-ethis
 
 DELETE FROM `creature` WHERE `id` IN (5356, 11447, 11497, 11498);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
 (51683, 5356,  1, 0, 0, 1, 1, 0, -4142.19, -423.252, 24.9747, 4.12439, 21000,  0, 1, 1981,  0,     2, 0, 0, 0, '', 0, 0, NULL), -- Snarler
 (45758, 11447, 1, 0, 0, 1, 1, 0, -3758.47, 1096.15, 131.97, 3.34614,   25200, 10, 0, 60000, 0,     1, 0, 0, 0, '', 0, 0, NULL), -- Mushgog
@@ -196,11 +196,11 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 
 -- Snarler fix missing waypoints
 DELETE FROM `creature_addon` WHERE `guid` = 51683;
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (51683, 516830, 0, 0, 0, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` = 516830;
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 (516830, 1, -4142.19, -423.252, 24.9747, NULL, 0, 0, 0, 100, 0),
 (516830, 2, -4145.7, -393.472, 35.8493, NULL, 0, 0, 0, 100, 0),
 (516830, 3, -4153.35, -369.855, 47.826, NULL, 0, 0, 0, 100, 0),
@@ -253,7 +253,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 
 
 DELETE FROM `creature_text` WHERE `CreatureID` IN (11447);
-INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
+REPLACE INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
 (11447, 0, 0, 'That will teach you to lay off the herb, $r.', 12, 0, 100, 0, 0, 0, 9500, 0, 'Mushgog');
 
 /* fix Gordunni Orb drop rate. Was set to 100 */
@@ -261,18 +261,18 @@ UPDATE `creature_loot_template` SET `Chance` = 15 WHERE `Item` = 9371;
 
 /* Quest - A Strange Request  - fix spaces in Quest Description */
 UPDATE `quest_template` SET `QuestDescription` = 
-'Neeru Fireblade in Orgrimmar has what I need to get started here! He has mixed up a concoction that I need for my... well, you\'ll see.$B$B
-Off with you now -- to Orgrimmar. Here, take this with you. It\'s a shrunken head that I promised Neeru in exchange for the herbs.\n
-It\'s the head of some poor dwarf I ventured across in the forest. I\'m sure Neeru will be pleased.$B$BYou\'ll find Neeru in the Cleft of Shadow.'
+'奥格瑞玛的尼鲁·火刃有我需要的东西，只有这样我才能开始我的工作！他配制了一种混合液，那是我的……嗯，以后你就会明白的。$B$B
+快去吧——去奥格瑞玛。拿着这个。这是一颗缩小的头颅，是我承诺给尼鲁用来交换草药的。$B$B
+这是我在森林里遇到的一个可怜的矮人的头。我相信尼鲁会满意的。$B$B你可以在暗影裂谷找到尼鲁。'
 WHERE `ID` = 3121;
 
 /* Quest - Testing the Vessel - now asks for Wildkin Muisek instead of Beast Muisek */
-UPDATE `item_template` SET `name` = 'Wildkin Muisek', `displayid` = 18094 WHERE `entry` = 9594;
-UPDATE `item_template` SET `name` = 'Wildkin Muisek Vessel' WHERE `entry` = 9618;
+UPDATE `item_template` SET `name` = '枭兽魔精', `displayid` = 18094 WHERE `entry` = 9594;
+UPDATE `item_template` SET `name` = '枭兽魔精容器' WHERE `entry` = 9618;
 
 -- update target creatures, was 5268 and 5286
 DELETE FROM `conditions` WHERE `SourceEntry` = 11886;
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, 
 `ConditionTarget`, `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 (17, 0, 11886, 0, 0, 31, 1, 3, 2927, 0, 0, 0, 0, '', 'Wildkin Muisek Vessel target - Vicious Owlbeast'),
 (17, 0, 11886, 0, 0, 36, 1, 0, 0, 0, 1, 0, 0, '', 'Target must be dead'),
@@ -283,27 +283,27 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 
 -- update quest text
 UPDATE `quest_template` SET `LogDescription` = 
-'This will be a test; both of the ritual I performed, and of your abilities. Take this vessel, $N. With it, you will have the power to shrink and capture a creature inside of it.$B$BTravel to the Hinterlands and look for creatures known as Wildkin that were once pets of the night elf goddess Elune. The vicious, primitive, or savage owlbeasts are your targets, $N. Kill 10, and use the muisek vessel to shrink and capture them before their spirits can escape.',
+'这将是一次考验，既是对我施放的仪式的考验，也是对你能力的考验。拿着这个容器，$N。有了它，你就有能力缩小并捕获一只生物，把它困在里面。$B$B前往辛特兰，寻找那些曾经是暗夜精灵女神伊露恩宠物的枭兽。凶恶的、原始的或野蛮的枭兽就是你的目标，$N。杀死10只，并在它们的灵魂逃逸之前使用魔精容器缩小并捕获它们。',
 `QuestDescription` = 
-'Travel to the Hinterlands, and locate the Wildkin. Kill 10, and use the Muisek Vessel to shrink and capture the fallen Wildkin.$B$BBring 10 Wildkin Muiseks and the Muisek Vessel to Witch Doctor Uzer\'i in Feralas.' WHERE `ID` = 3123;
+'前往辛特兰，找到枭兽。杀死10只，并使用魔精容器缩小并捕获倒下的枭兽。$B$B将10个枭兽魔精和魔精容器交给菲拉斯的巫医乌泽伊。' WHERE `ID` = 3123;
 
 UPDATE `quest_request_items` SET `CompletionText` = 
-'Were you able to capture the wildkin?$B$BIf you succeed, we will be ready to shrink and capture the muisek of creatures of Feralas.' WHERE `ID` = 3123;
+'你捕获枭兽了吗？$B$B如果成功了，我们就可以做好准备，缩小并捕获菲拉斯的生物的魔精了。' WHERE `ID` = 3123;
 
 -- update item display id
 DELETE FROM `item_dbc` WHERE `ID` = 9594;
-INSERT INTO `item_dbc` (`ID`, `ClassID`, `SubclassID`, `Sound_Override_Subclassid`, `Material`, `DisplayInfoID`, `InventoryType`, `SheatheType`) VALUES
+REPLACE INTO `item_dbc` (`ID`, `ClassID`, `SubclassID`, `Sound_Override_Subclassid`, `Material`, `DisplayInfoID`, `InventoryType`, `SheatheType`) VALUES
 (9594, 12, 0, -1, 1, 18094, 0, 0);
 
 -- update quest poi map markers
 DELETE FROM `quest_poi` WHERE `QuestID` = 3123;
-INSERT INTO `quest_poi` (`QuestID`, `id`, `ObjectiveIndex`, `MapID`, `WorldMapAreaId`, `Floor`, `Priority`, `Flags`, `VerifiedBuild`) VALUES
+REPLACE INTO `quest_poi` (`QuestID`, `id`, `ObjectiveIndex`, `MapID`, `WorldMapAreaId`, `Floor`, `Priority`, `Flags`, `VerifiedBuild`) VALUES
 (3123, 0, -1, 1, 121, 0, 0, 1, 0),
 (3123, 1, 4, 0, 26, 0, 0, 1, 0),
 (3123, 2, 4, 0, 26, 0, 0, 1, 0);
 
 DELETE FROM `quest_poi_points` WHERE `QuestID` = 3123;
-INSERT INTO `quest_poi_points` (`QuestID`, `Idx1`, `Idx2`, `X`, `Y`, `VerifiedBuild`) VALUES 
+REPLACE INTO `quest_poi_points` (`QuestID`, `Idx1`, `Idx2`, `X`, `Y`, `VerifiedBuild`) VALUES 
 (3123, 0, 0, -4376, 270, 0),
 (3123, 1, 1, 218, -4582, 0),
 (3123, 1, 2, 314, -4217, 0),

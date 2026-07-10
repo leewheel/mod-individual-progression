@@ -7,7 +7,7 @@ DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN
 (4323, 4328, 4329, 4331, 4334, 4344, 4345, 4346, 4347, 4348, 4351, 4352, 4356, 4359, 4360, 4361, 4362, 4363, 4364, 4366, 4368, 4370, 4371, 4374, 4376, 4378, 4379,
 4380, 4382, 4385, 4387, 4389, 4390, 4392, 4393, 4394, 4397, 4401, 4404, 4412, 4414, 4834, 14230, 14232, 14236, 15552, 23592, 23593, 23594, 23595, 23714, 23786, 23841, 23873);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`,
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`,
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`,
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`,
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
@@ -136,34 +136,34 @@ DELETE FROM `creature_addon` WHERE `guid` = 39309; -- Razorspine
 
 /* Fiora Longears - restore her location to Theramore and restore quests that involve her */
 DELETE FROM `creature` WHERE `id` = 4456;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`,
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`,
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `Comment`) VALUES
 (37087, 4456, 1, 0, 0, 1, 1, 1, -3613.47, -4464.02, 13.7054, 2.61799, 275, 0, 0, 787, 0, 0, 0, 0, 0, '', 0, NULL);
 
 DELETE FROM `creature_queststarter` WHERE `id` = 4455 AND `quest` IN (1132);
 DELETE FROM `creature_queststarter` WHERE `id` = 4456 AND `quest` IN (1133, 1135);
-INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES (4455, 1132), (4456, 1133), (4456, 1135);
+REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES (4455, 1132), (4456, 1133), (4456, 1135);
 
 DELETE FROM `creature_questender` WHERE `id` = 3845 AND `quest` IN (1133);
 DELETE FROM `creature_questender` WHERE `id` = 4456 AND `quest` IN (1132, 1135);
-INSERT INTO `creature_questender` (`id`, `quest`) VALUES (3845, 1133), (4456, 1132), (4456, 1135);
+REPLACE INTO `creature_questender` (`id`, `quest`) VALUES (3845, 1133), (4456, 1132), (4456, 1135);
 
 UPDATE `quest_template` SET `LogDescription` = "Speak with Fiora Longears in Theramore." WHERE `ID` = 1132;
 
 /* Fiora Longears - repoint quest tracker POI from her old Darkshore (Auberdine) spawn to Theramore */
 DELETE FROM `quest_poi` WHERE `QuestID` IN (1132, 1135) AND `id` = 0;
-INSERT INTO `quest_poi` (`QuestID`,`id`,`ObjectiveIndex`,`MapID`,`WorldMapAreaId`,`Floor`,`Priority`,`Flags`,`VerifiedBuild`) VALUES
+REPLACE INTO `quest_poi` (`QuestID`,`id`,`ObjectiveIndex`,`MapID`,`WorldMapAreaId`,`Floor`,`Priority`,`Flags`,`VerifiedBuild`) VALUES
 (1132, 0, -1, 1, 141, 0, 0, 1, 0),
 (1135, 0, -1, 1, 141, 0, 0, 1, 0);
 
 DELETE FROM `quest_poi_points` WHERE `QuestID` IN (1132, 1135) AND `Idx1` = 0;
-INSERT INTO `quest_poi_points` (`QuestID`,`Idx1`,`Idx2`,`X`,`Y`,`VerifiedBuild`) VALUES
+REPLACE INTO `quest_poi_points` (`QuestID`,`Idx1`,`Idx2`,`X`,`Y`,`VerifiedBuild`) VALUES
 (1132, 0, 0, -3613, -4464, 0),
 (1135, 0, 0, -3613, -4464, 0);
 
 /* Old Vanilla Varian Wrynn Npc in Alcaz during Vanilla phases */
 DELETE FROM `creature` WHERE `id` = 11699 AND `map` = 1;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`,
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`,
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `Comment`) VALUES
 (611699, 11699, 1, 0, 0, 1, 1, 1, -2744.03, -4994.2, 8.26564, 0.0392587, 300, 0, 0, 4121, 0, 0, 0, 0, 0, 'npc_ipp_pre_naxx40', 0, 'Varian Wrynn in Alcaz (Vanilla)');
 
@@ -172,11 +172,11 @@ UPDATE `creature_template` SET `MovementType` = 0 WHERE `entry` = 4841;
 UPDATE `creature` SET `position_x` = -4019.49, `position_y` = -3537.49, `position_z` = 29.8848, `orientation` = 0.719014, `MovementType` = 2, `currentwaypoint` = 1 WHERE `id` = 4841;
 
 DELETE FROM `creature_addon` WHERE `guid` = 33909;
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
 (33909, 339090, 0, 0, 0, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` = 339090;
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES
 --
 (339090, 1, -4019.49, -3537.49, 30.6543, NULL, 0, 0, 0, 0, 0),
 (339090, 2, -4026.45, -3546.94, 28.8119, NULL, 0, 0, 0, 0, 0),
@@ -275,7 +275,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 
 -- fix Firemane Scout patrols
 DELETE FROM `creature` WHERE `guid` IN (31125, 31126, 31338, 31339, 31487, 31488, 31492, 31493, 34008, 34019);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`,
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`,
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
 --
 (31125, 4329, 1, 0, 0, 1, 1, 1, -4929.12, -3419.79, 34.505, 0.149126, 720, 0, 1, 1751, 0, 2, 0, 0, 0, '', 0, 0, NULL),
@@ -288,7 +288,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (31493, 4331, 1, 0, 0, 1, 1, 1, -4466.32, -3243.72, 38.2725, 1.66456, 720, 0, 0, 1471, 1283, 0, 0, 0, 0, '', 0, 0, NULL);
 
 DELETE FROM `creature_formations` WHERE `leaderGUID` IN (31125, 31338, 31487, 31492);
-INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES
+REPLACE INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES
 (31125, 31125, 0, 0, 515, 0, 0),
 (31125, 31126, 3, 90, 515, 0, 0),
 (31338, 31338, 0, 0, 515, 0, 0),
@@ -299,14 +299,14 @@ INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, 
 (31492, 31493, 3, 90, 515, 0, 0);
 
 DELETE FROM `creature_addon` WHERE `guid` IN (31125, 31338, 31487, 31492, 34008, 34019);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
 (31125,  311250,  0, 0, 1, 0, 0, NULL),
 (31338,  313380,  0, 0, 1, 0, 0, NULL),
 (31487,  314870,  0, 0, 1, 0, 0, NULL),
 (31492,  314920,  0, 0, 1, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` IN (311250, 313380, 314870, 314920);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES
 --
 (311250, 1, -4929.12, -3419.79, 34.4845, 0, 0, 0, 0, 100, 0),
 (311250, 2, -4910.79, -3419.61, 35.3701, 0, 0, 0, 0, 100, 0),

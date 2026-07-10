@@ -13,7 +13,7 @@ UPDATE `creature_template` SET `npcflag` = 130 WHERE `entry` IN
 
 /* Demon Trainer with 20 items */
 DELETE FROM `npc_vendor` WHERE `entry` = 200001;
-INSERT INTO `npc_vendor` (`entry`, `item`, `VerifiedBuild`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `VerifiedBuild`) VALUES
 (200001, 16302 ,0), (200001, 16316 ,0), (200001, 16317 ,0), (200001, 16318 ,0), (200001, 16319 ,0),
 (200001, 16320 ,0), (200001, 16321 ,0), (200001, 16322 ,0), (200001, 16323 ,0), (200001, 16324 ,0),
 (200001, 16325 ,0), (200001, 16326 ,0), (200001, 16327 ,0), (200001, 16328 ,0), (200001, 16329 ,0),
@@ -21,7 +21,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `VerifiedBuild`) VALUES
 
 /* Demon Trainer with 46 items */
 DELETE FROM `npc_vendor` WHERE `entry` = 200002;
-INSERT INTO `npc_vendor` (`entry`, `item`, `VerifiedBuild`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `VerifiedBuild`) VALUES 
 (200002, 16346 ,0), (200002, 16347 ,0), (200002, 16348 ,0), (200002, 16349 ,0), (200002, 16350 ,0),
 (200002, 16351 ,0), (200002, 16352 ,0), (200002, 16353 ,0), (200002, 16354 ,0), (200002, 16355 ,0),
 (200002, 16356 ,0), (200002, 16357 ,0), (200002, 16358 ,0), (200002, 16359 ,0), (200002, 16360 ,0),
@@ -31,7 +31,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `VerifiedBuild`) VALUES
 
 /* Demon Trainer with 83 items for sale */
 DELETE FROM `npc_vendor` WHERE `entry` = 200003;
-INSERT INTO `npc_vendor` (`entry`, `item`, `VerifiedBuild`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `VerifiedBuild`) VALUES
 (200003, 16368 ,0), (200003, 16371 ,0), (200003, 16372 ,0), (200003, 16373 ,0), (200003, 16374 ,0),
 (200003, 16375 ,0), (200003, 16376 ,0), (200003, 16377 ,0), (200003, 16378 ,0), (200003, 16379 ,0),
 (200003, 16380 ,0), (200003, 16381 ,0), (200003, 16382 ,0), (200003, 16383 ,0), (200003, 16384 ,0),
@@ -43,7 +43,7 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `VerifiedBuild`) VALUES
 
 /* Add correct amount of grimoires to Demon Trainers */
 DELETE FROM `npc_vendor` WHERE `entry` IN (5520, 5749, 5750, 5753, 5815, 6027, 6328, 6373, 6374, 6376, 6382, 12776, 12807, 15494, 16267, 16649, 23535);
-INSERT INTO `npc_vendor` (`entry`, `item`, `VerifiedBuild`) VALUES 
+REPLACE INTO `npc_vendor` (`entry`, `item`, `VerifiedBuild`) VALUES 
  (5520, -200001 ,0), (5520, -200002 ,0), (5520, -200003 ,0),
  (5749, -200001 ,0),
  (5750, -200001 ,0), (5750, -200002 ,0),
@@ -63,105 +63,105 @@ INSERT INTO `npc_vendor` (`entry`, `item`, `VerifiedBuild`) VALUES
 (23535, -200001 ,0), (23535, -200002 ,0), (23535, -200003 ,0);
 
 -- learn dummy spells after using grimoires
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607799, `spelltrigger_2` = 6, `description` = 'Teaches Imp Firebolt (Rank 2).' WHERE `entry` = 16302;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607800, `spelltrigger_2` = 6, `description` = 'Teaches Imp Firebolt (Rank 3).' WHERE `entry` = 16316;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607801, `spelltrigger_2` = 6, `description` = 'Teaches Imp Firebolt (Rank 4).' WHERE `entry` = 16317;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607802, `spelltrigger_2` = 6, `description` = 'Teaches Imp Firebolt (Rank 5).' WHERE `entry` = 16318;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 611762, `spelltrigger_2` = 6, `description` = 'Teaches Imp Firebolt (Rank 6).' WHERE `entry` = 16319;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 611763, `spelltrigger_2` = 6, `description` = 'Teaches Imp Firebolt (Rank 7).' WHERE `entry` = 16320;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 627267, `spelltrigger_2` = 6, `description` = 'Teaches Imp Firebolt (Rank 8).' WHERE `entry` = 22179;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607799, `spelltrigger_2` = 6, `description` = '教会小鬼火焰箭（等级2）。' WHERE `entry` = 16302;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607800, `spelltrigger_2` = 6, `description` = '教会小鬼火焰箭（等级3）。' WHERE `entry` = 16316;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607801, `spelltrigger_2` = 6, `description` = '教会小鬼火焰箭（等级4）。' WHERE `entry` = 16317;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607802, `spelltrigger_2` = 6, `description` = '教会小鬼火焰箭（等级5）。' WHERE `entry` = 16318;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 611762, `spelltrigger_2` = 6, `description` = '教会小鬼火焰箭（等级6）。' WHERE `entry` = 16319;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 611763, `spelltrigger_2` = 6, `description` = '教会小鬼火焰箭（等级7）。' WHERE `entry` = 16320;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 627267, `spelltrigger_2` = 6, `description` = '教会小鬼火焰箭（等级8）。' WHERE `entry` = 22179;
 
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 606307, `spelltrigger_2` = 6, `description` = 'Teaches Imp Blood Pact (Rank 1).' WHERE `entry` = 16321;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607804, `spelltrigger_2` = 6, `description` = 'Teaches Imp Blood Pact (Rank 2).' WHERE `entry` = 16322;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607805, `spelltrigger_2` = 6, `description` = 'Teaches Imp Blood Pact (Rank 3).' WHERE `entry` = 16323;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 611766, `spelltrigger_2` = 6, `description` = 'Teaches Imp Blood Pact (Rank 4).' WHERE `entry` = 16324;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 611767, `spelltrigger_2` = 6, `description` = 'Teaches Imp Blood Pact (Rank 5).' WHERE `entry` = 16325;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 627268, `spelltrigger_2` = 6, `description` = 'Teaches Imp Blood Pact (Rank 6).' WHERE `entry` = 22180;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 606307, `spelltrigger_2` = 6, `description` = '教会小鬼血之契印（等级1）。' WHERE `entry` = 16321;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607804, `spelltrigger_2` = 6, `description` = '教会小鬼血之契印（等级2）。' WHERE `entry` = 16322;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607805, `spelltrigger_2` = 6, `description` = '教会小鬼血之契印（等级3）。' WHERE `entry` = 16323;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 611766, `spelltrigger_2` = 6, `description` = '教会小鬼血之契印（等级4）。' WHERE `entry` = 16324;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 611767, `spelltrigger_2` = 6, `description` = '教会小鬼血之契印（等级5）。' WHERE `entry` = 16325;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 627268, `spelltrigger_2` = 6, `description` = '教会小鬼血之契印（等级6）。' WHERE `entry` = 22180;
 
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 602947, `spelltrigger_2` = 6, `description` = 'Teaches Imp Fire Shield (Rank 1).' WHERE `entry` = 16326;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 608316, `spelltrigger_2` = 6, `description` = 'Teaches Imp Fire Shield (Rank 2).' WHERE `entry` = 16327;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 608317, `spelltrigger_2` = 6, `description` = 'Teaches Imp Fire Shield (Rank 3).' WHERE `entry` = 16328;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 611770, `spelltrigger_2` = 6, `description` = 'Teaches Imp Fire Shield (Rank 4).' WHERE `entry` = 16329;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 611771, `spelltrigger_2` = 6, `description` = 'Teaches Imp Fire Shield (Rank 5).' WHERE `entry` = 16330;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 627269, `spelltrigger_2` = 6, `description` = 'Teaches Imp Fire Shield (Rank 6).' WHERE `entry` = 22181;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 602947, `spelltrigger_2` = 6, `description` = '教会小鬼火焰之盾（等级1）。' WHERE `entry` = 16326;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 608316, `spelltrigger_2` = 6, `description` = '教会小鬼火焰之盾（等级2）。' WHERE `entry` = 16327;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 608317, `spelltrigger_2` = 6, `description` = '教会小鬼火焰之盾（等级3）。' WHERE `entry` = 16328;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 611770, `spelltrigger_2` = 6, `description` = '教会小鬼火焰之盾（等级4）。' WHERE `entry` = 16329;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 611771, `spelltrigger_2` = 6, `description` = '教会小鬼火焰之盾（等级5）。' WHERE `entry` = 16330;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 627269, `spelltrigger_2` = 6, `description` = '教会小鬼火焰之盾（等级6）。' WHERE `entry` = 22181;
 
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 604511, `spelltrigger_2` = 6, `description` = 'Teaches Imp Phase Shift.' WHERE `entry` = 16331;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 604511, `spelltrigger_2` = 6, `description` = '教会小鬼相位变换。' WHERE `entry` = 16331;
 
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607809, `spelltrigger_2` = 6, `description` = 'Teaches Voidwalker Torment (Rank 2).' WHERE `entry` = 16346;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607810, `spelltrigger_2` = 6, `description` = 'Teaches Voidwalker Torment (Rank 3).' WHERE `entry` = 16347;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607811, `spelltrigger_2` = 6, `description` = 'Teaches Voidwalker Torment (Rank 4).' WHERE `entry` = 16348;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 611774, `spelltrigger_2` = 6, `description` = 'Teaches Voidwalker Torment (Rank 5).' WHERE `entry` = 16349;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 611775, `spelltrigger_2` = 6, `description` = 'Teaches Voidwalker Torment (Rank 6).' WHERE `entry` = 16350;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 627270, `spelltrigger_2` = 6, `description` = 'Teaches Voidwalker Torment (Rank 7).' WHERE `entry` = 22182;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607809, `spelltrigger_2` = 6, `description` = '教会虚空行者折磨（等级2）。' WHERE `entry` = 16346;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607810, `spelltrigger_2` = 6, `description` = '教会虚空行者折磨（等级3）。' WHERE `entry` = 16347;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607811, `spelltrigger_2` = 6, `description` = '教会虚空行者折磨（等级4）。' WHERE `entry` = 16348;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 611774, `spelltrigger_2` = 6, `description` = '教会虚空行者折磨（等级5）。' WHERE `entry` = 16349;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 611775, `spelltrigger_2` = 6, `description` = '教会虚空行者折磨（等级6）。' WHERE `entry` = 16350;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 627270, `spelltrigger_2` = 6, `description` = '教会虚空行者折磨（等级7）。' WHERE `entry` = 22182;
 
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607812, `spelltrigger_2` = 6, `description` = 'Teaches Voidwalker Sacrifice (Rank 1).' WHERE `entry` = 16351;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 619438, `spelltrigger_2` = 6, `description` = 'Teaches Voidwalker Sacrifice (Rank 2).' WHERE `entry` = 16352;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 619440, `spelltrigger_2` = 6, `description` = 'Teaches Voidwalker Sacrifice (Rank 3).' WHERE `entry` = 16353;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 619441, `spelltrigger_2` = 6, `description` = 'Teaches Voidwalker Sacrifice (Rank 4).' WHERE `entry` = 16354;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 619442, `spelltrigger_2` = 6, `description` = 'Teaches Voidwalker Sacrifice (Rank 5).' WHERE `entry` = 16355;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 619443, `spelltrigger_2` = 6, `description` = 'Teaches Voidwalker Sacrifice (Rank 6).' WHERE `entry` = 16356;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 627273, `spelltrigger_2` = 6, `description` = 'Teaches Voidwalker Sacrifice (Rank 7).' WHERE `entry` = 22185;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607812, `spelltrigger_2` = 6, `description` = '教会虚空行者牺牲（等级1）。' WHERE `entry` = 16351;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 619438, `spelltrigger_2` = 6, `description` = '教会虚空行者牺牲（等级2）。' WHERE `entry` = 16352;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 619440, `spelltrigger_2` = 6, `description` = '教会虚空行者牺牲（等级3）。' WHERE `entry` = 16353;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 619441, `spelltrigger_2` = 6, `description` = '教会虚空行者牺牲（等级4）。' WHERE `entry` = 16354;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 619442, `spelltrigger_2` = 6, `description` = '教会虚空行者牺牲（等级5）。' WHERE `entry` = 16355;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 619443, `spelltrigger_2` = 6, `description` = '教会虚空行者牺牲（等级6）。' WHERE `entry` = 16356;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 627273, `spelltrigger_2` = 6, `description` = '教会虚空行者牺牲（等级7）。' WHERE `entry` = 22185;
 
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 617767, `spelltrigger_2` = 6, `description` = 'Teaches Voidwalker Consume Shadows (Rank 1).' WHERE `entry` = 16357;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 617850, `spelltrigger_2` = 6, `description` = 'Teaches Voidwalker Consume Shadows (Rank 2).' WHERE `entry` = 16358;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 617851, `spelltrigger_2` = 6, `description` = 'Teaches Voidwalker Consume Shadows (Rank 3).' WHERE `entry` = 16359;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 617852, `spelltrigger_2` = 6, `description` = 'Teaches Voidwalker Consume Shadows (Rank 4).' WHERE `entry` = 16360;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 617853, `spelltrigger_2` = 6, `description` = 'Teaches Voidwalker Consume Shadows (Rank 5).' WHERE `entry` = 16361;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 617854, `spelltrigger_2` = 6, `description` = 'Teaches Voidwalker Consume Shadows (Rank 6).' WHERE `entry` = 16362;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 627272, `spelltrigger_2` = 6, `description` = 'Teaches Voidwalker Consume Shadows (Rank 7).' WHERE `entry` = 22184;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 617767, `spelltrigger_2` = 6, `description` = '教会虚空行者吞噬暗影（等级1）。' WHERE `entry` = 16357;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 617850, `spelltrigger_2` = 6, `description` = '教会虚空行者吞噬暗影（等级2）。' WHERE `entry` = 16358;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 617851, `spelltrigger_2` = 6, `description` = '教会虚空行者吞噬暗影（等级3）。' WHERE `entry` = 16359;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 617852, `spelltrigger_2` = 6, `description` = '教会虚空行者吞噬暗影（等级4）。' WHERE `entry` = 16360;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 617853, `spelltrigger_2` = 6, `description` = '教会虚空行者吞噬暗影（等级5）。' WHERE `entry` = 16361;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 617854, `spelltrigger_2` = 6, `description` = '教会虚空行者吞噬暗影（等级6）。' WHERE `entry` = 16362;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 627272, `spelltrigger_2` = 6, `description` = '教会虚空行者吞噬暗影（等级7）。' WHERE `entry` = 22184;
 
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 617735, `spelltrigger_2` = 6, `description` = 'Teaches Voidwalker Suffering (Rank 1).' WHERE `entry` = 16363;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 617750, `spelltrigger_2` = 6, `description` = 'Teaches Voidwalker Suffering (Rank 2).' WHERE `entry` = 16364;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 617751, `spelltrigger_2` = 6, `description` = 'Teaches Voidwalker Suffering (Rank 3).' WHERE `entry` = 16365;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 617752, `spelltrigger_2` = 6, `description` = 'Teaches Voidwalker Suffering (Rank 4).' WHERE `entry` = 16366;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 627271, `spelltrigger_2` = 6, `description` = 'Teaches Voidwalker Suffering (Rank 5).' WHERE `entry` = 22183;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 633701, `spelltrigger_2` = 6, `description` = 'Teaches Voidwalker Suffering (Rank 6).' WHERE `entry` = 28068;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 617735, `spelltrigger_2` = 6, `description` = '教会虚空行者受难（等级1）。' WHERE `entry` = 16363;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 617750, `spelltrigger_2` = 6, `description` = '教会虚空行者受难（等级2）。' WHERE `entry` = 16364;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 617751, `spelltrigger_2` = 6, `description` = '教会虚空行者受难（等级3）。' WHERE `entry` = 16365;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 617752, `spelltrigger_2` = 6, `description` = '教会虚空行者受难（等级4）。' WHERE `entry` = 16366;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 627271, `spelltrigger_2` = 6, `description` = '教会虚空行者受难（等级5）。' WHERE `entry` = 22183;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 633701, `spelltrigger_2` = 6, `description` = '教会虚空行者受难（等级6）。' WHERE `entry` = 28068;
 
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607815, `spelltrigger_2` = 6, `description` = 'Teaches Succubus or Incubus Lash of Pain (Rank 2).' WHERE `entry` = 16368;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607816, `spelltrigger_2` = 6, `description` = 'Teaches Succubus or Incubus Lash of Pain (Rank 3).' WHERE `entry` = 16371;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 611778, `spelltrigger_2` = 6, `description` = 'Teaches Succubus or Incubus Lash of Pain (Rank 4).' WHERE `entry` = 16372;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 611779, `spelltrigger_2` = 6, `description` = 'Teaches Succubus or Incubus Lash of Pain (Rank 5).' WHERE `entry` = 16373;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 611780, `spelltrigger_2` = 6, `description` = 'Teaches Succubus or Incubus Lash of Pain (Rank 6).' WHERE `entry` = 16374;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 627274, `spelltrigger_2` = 6, `description` = 'Teaches Succubus or Incubus Lash of Pain (Rank 7).' WHERE `entry` = 22186;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607815, `spelltrigger_2` = 6, `description` = '教会魅魔或梦魇剧痛鞭笞（等级2）。' WHERE `entry` = 16368;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607816, `spelltrigger_2` = 6, `description` = '教会魅魔或梦魇剧痛鞭笞（等级3）。' WHERE `entry` = 16371;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 611778, `spelltrigger_2` = 6, `description` = '教会魅魔或梦魇剧痛鞭笞（等级4）。' WHERE `entry` = 16372;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 611779, `spelltrigger_2` = 6, `description` = '教会魅魔或梦魇剧痛鞭笞（等级5）。' WHERE `entry` = 16373;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 611780, `spelltrigger_2` = 6, `description` = '教会魅魔或梦魇剧痛鞭笞（等级6）。' WHERE `entry` = 16374;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 627274, `spelltrigger_2` = 6, `description` = '教会魅魔或梦魇剧痛鞭笞（等级7）。' WHERE `entry` = 22186;
 
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 606360, `spelltrigger_2` = 6, `description` = 'Teaches Succubus or Incubus Soothing Kiss (Rank 1).' WHERE `entry` = 16375;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607813, `spelltrigger_2` = 6, `description` = 'Teaches Succubus or Incubus Soothing Kiss (Rank 2).' WHERE `entry` = 16376;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 611784, `spelltrigger_2` = 6, `description` = 'Teaches Succubus or Incubus Soothing Kiss (Rank 3).' WHERE `entry` = 16377;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 611785, `spelltrigger_2` = 6, `description` = 'Teaches Succubus or Incubus Soothing Kiss (Rank 4).' WHERE `entry` = 16378;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 627275, `spelltrigger_2` = 6, `description` = 'Teaches Succubus or Incubus Soothing Kiss (Rank 5).' WHERE `entry` = 22187;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 606360, `spelltrigger_2` = 6, `description` = '教会魅魔或梦魇安抚之吻（等级1）。' WHERE `entry` = 16375;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607813, `spelltrigger_2` = 6, `description` = '教会魅魔或梦魇安抚之吻（等级2）。' WHERE `entry` = 16376;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 611784, `spelltrigger_2` = 6, `description` = '教会魅魔或梦魇安抚之吻（等级3）。' WHERE `entry` = 16377;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 611785, `spelltrigger_2` = 6, `description` = '教会魅魔或梦魇安抚之吻（等级4）。' WHERE `entry` = 16378;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 627275, `spelltrigger_2` = 6, `description` = '教会魅魔或梦魇安抚之吻（等级5）。' WHERE `entry` = 22187;
 
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 619731, `spelltrigger_2` = 6, `description` = 'Teaches Felhunter Devour Magic (Rank 2).' WHERE `entry` = 16381;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 619734, `spelltrigger_2` = 6, `description` = 'Teaches Felhunter Devour Magic (Rank 3).' WHERE `entry` = 16382;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 619736, `spelltrigger_2` = 6, `description` = 'Teaches Felhunter Devour Magic (Rank 4).' WHERE `entry` = 16383;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 627276, `spelltrigger_2` = 6, `description` = 'Teaches Felhunter Devour Magic (Rank 5).' WHERE `entry` = 22188;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 627277, `spelltrigger_2` = 6, `description` = 'Teaches Felhunter Devour Magic (Rank 6).' WHERE `entry` = 22189;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 619731, `spelltrigger_2` = 6, `description` = '教会地狱猎犬吞噬魔法（等级2）。' WHERE `entry` = 16381;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 619734, `spelltrigger_2` = 6, `description` = '教会地狱猎犬吞噬魔法（等级3）。' WHERE `entry` = 16382;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 619736, `spelltrigger_2` = 6, `description` = '教会地狱猎犬吞噬魔法（等级4）。' WHERE `entry` = 16383;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 627276, `spelltrigger_2` = 6, `description` = '教会地狱猎犬吞噬魔法（等级5）。' WHERE `entry` = 22188;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 627277, `spelltrigger_2` = 6, `description` = '教会地狱猎犬吞噬魔法（等级6）。' WHERE `entry` = 22189;
 
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 620429, `spelltrigger_2` = 6, `description` = 'Teaches Felhunter Tainted Blood (Rank 1).' WHERE `entry` = 16384;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 620430, `spelltrigger_2` = 6, `description` = 'Teaches Felhunter Tainted Blood (Rank 2).' WHERE `entry` = 16385;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 620431, `spelltrigger_2` = 6, `description` = 'Teaches Felhunter Tainted Blood (Rank 3).' WHERE `entry` = 16386;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 620432, `spelltrigger_2` = 6, `description` = 'Teaches Felhunter Tainted Blood (Rank 4).' WHERE `entry` = 16387;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 627497, `spelltrigger_2` = 6, `description` = 'Teaches Felhunter Tainted Blood (Rank 5).' WHERE `entry` = 22190;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 620429, `spelltrigger_2` = 6, `description` = '教会地狱猎犬污秽之血（等级1）。' WHERE `entry` = 16384;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 620430, `spelltrigger_2` = 6, `description` = '教会地狱猎犬污秽之血（等级2）。' WHERE `entry` = 16385;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 620431, `spelltrigger_2` = 6, `description` = '教会地狱猎犬污秽之血（等级3）。' WHERE `entry` = 16386;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 620432, `spelltrigger_2` = 6, `description` = '教会地狱猎犬污秽之血（等级4）。' WHERE `entry` = 16387;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 627497, `spelltrigger_2` = 6, `description` = '教会地狱猎犬污秽之血（等级5）。' WHERE `entry` = 22190;
 
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 619244, `spelltrigger_2` = 6, `description` = 'Teaches Felhunter Spell Lock (Rank 1).' WHERE `entry` = 16388;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 619647, `spelltrigger_2` = 6, `description` = 'Teaches Felhunter Spell Lock (Rank 2).' WHERE `entry` = 16389;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 619244, `spelltrigger_2` = 6, `description` = '教会地狱猎犬法术封锁（等级1）。' WHERE `entry` = 16388;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 619647, `spelltrigger_2` = 6, `description` = '教会地狱猎犬法术封锁（等级2）。' WHERE `entry` = 16389;
 
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 630154, `spelltrigger_2` = 6, `description` = 'Teaches Felguard Intercept (Rank 1).' WHERE `entry` = 23711;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 630199, `spelltrigger_2` = 6, `description` = 'Teaches Felguard Intercept (Rank 2).' WHERE `entry` = 23730;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 630200, `spelltrigger_2` = 6, `description` = 'Teaches Felguard Intercept (Rank 3).' WHERE `entry` = 23731;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 630154, `spelltrigger_2` = 6, `description` = '教会地狱守卫拦截（等级1）。' WHERE `entry` = 23711;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 630199, `spelltrigger_2` = 6, `description` = '教会地狱守卫拦截（等级2）。' WHERE `entry` = 23730;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 630200, `spelltrigger_2` = 6, `description` = '教会地狱守卫拦截（等级3）。' WHERE `entry` = 23731;
 
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 630214, `spelltrigger_2` = 6, `description` = 'Teaches Felguard Cleave (Rank 1).' WHERE `entry` = 23734;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 630222, `spelltrigger_2` = 6, `description` = 'Teaches Felguard Cleave (Rank 2).' WHERE `entry` = 23745;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 630224, `spelltrigger_2` = 6, `description` = 'Teaches Felguard Cleave (Rank 3).' WHERE `entry` = 23755;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 630214, `spelltrigger_2` = 6, `description` = '教会地狱守卫顺劈斩（等级1）。' WHERE `entry` = 23734;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 630222, `spelltrigger_2` = 6, `description` = '教会地狱守卫顺劈斩（等级2）。' WHERE `entry` = 23745;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 630224, `spelltrigger_2` = 6, `description` = '教会地狱守卫顺劈斩（等级3）。' WHERE `entry` = 23755;
 
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 633704, `spelltrigger_2` = 6, `description` = 'Teaches Felguard Anguish (Rank 1).' WHERE `entry` = 28071;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 633705, `spelltrigger_2` = 6, `description` = 'Teaches Felguard Anguish (Rank 2).' WHERE `entry` = 28072;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 633706, `spelltrigger_2` = 6, `description` = 'Teaches Felguard Anguish (Rank 3).' WHERE `entry` = 28073;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 633704, `spelltrigger_2` = 6, `description` = '教会地狱守卫苦难（等级1）。' WHERE `entry` = 28071;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 633705, `spelltrigger_2` = 6, `description` = '教会地狱守卫苦难（等级2）。' WHERE `entry` = 28072;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 633706, `spelltrigger_2` = 6, `description` = '教会地狱守卫苦难（等级3）。' WHERE `entry` = 28073;
 
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 606358, `spelltrigger_2` = 6, `description` = 'Teaches Succubus or Incubus Seduction.' WHERE `entry` = 16379;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607870, `spelltrigger_2` = 6, `description` = 'Teaches Succubus or Incubus Lesser Invisibility.' WHERE `entry` = 16380;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 619481, `spelltrigger_2` = 6, `description` = 'Teaches Felhunter Paranoia.' WHERE `entry` = 16390;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 632234, `spelltrigger_2` = 6, `description` = 'Teaches Felguard Avoidance.' WHERE `entry` = 25469;
-UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 632852, `spelltrigger_2` = 6, `description` = 'Teaches Felguard Demonic Frenzy.' WHERE `entry` = 25900;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 606358, `spelltrigger_2` = 6, `description` = '教会魅魔或梦魇诱惑。' WHERE `entry` = 16379;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 607870, `spelltrigger_2` = 6, `description` = '教会魅魔或梦魇次级隐形术。' WHERE `entry` = 16380;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 619481, `spelltrigger_2` = 6, `description` = '教会地狱猎犬多疑。' WHERE `entry` = 16390;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 632234, `spelltrigger_2` = 6, `description` = '教会地狱守卫规避。' WHERE `entry` = 25469;
+UPDATE `item_template` SET `spellid_1` = 483, `spellid_2` = 632852, `spelltrigger_2` = 6, `description` = '教会地狱守卫魔能狂热。' WHERE `entry` = 25900;
 
 DELETE FROM `spell_dbc` WHERE `ID` IN 
 (602947, 604511, 606307, 606358, 606360, 607799, 607800, 607801, 607802, 607804, 607805, 607809, 607810, 607811, 607812, 607813, 607815, 607816, 607870, 608316, 608317, 
@@ -169,7 +169,7 @@ DELETE FROM `spell_dbc` WHERE `ID` IN
  617853, 617854, 619244, 619438, 619440, 619441, 619442, 619443, 619481, 619647, 619731, 619734, 619736, 620429, 620430, 620431, 620432, 627267, 627268, 627269, 627270, 
  627271, 627272, 627273, 627274, 627275, 627276, 627277, 627497, 630154, 630199, 630200, 630214, 630222, 630224, 632234, 632852, 633701, 633704, 633705, 633706);
 
-INSERT INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attributes`, `AttributesEx`, `AttributesEx2`, `AttributesEx3`, `AttributesEx4`, `AttributesEx5`, `AttributesEx6`, `AttributesEx7`, `ShapeshiftMask`, 
+REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attributes`, `AttributesEx`, `AttributesEx2`, `AttributesEx3`, `AttributesEx4`, `AttributesEx5`, `AttributesEx6`, `AttributesEx7`, `ShapeshiftMask`, 
 `unk_320_2`, `ShapeshiftExclude`, `unk_320_3`, `Targets`, `TargetCreatureType`, `RequiresSpellFocus`, `FacingCasterFlags`, `CasterAuraState`, `TargetAuraState`, `ExcludeCasterAuraState`, `ExcludeTargetAuraState`, 
 `CasterAuraSpell`, `TargetAuraSpell`, `ExcludeCasterAuraSpell`, `ExcludeTargetAuraSpell`, `CastingTimeIndex`, `RecoveryTime`, `CategoryRecoveryTime`, `InterruptFlags`, `AuraInterruptFlags`, `ChannelInterruptFlags`, 
 `ProcTypeMask`, `ProcChance`, `ProcCharges`, `MaxLevel`, `BaseLevel`, `SpellLevel`, `DurationIndex`, `PowerType`, `ManaCost`, `ManaCostPerLevel`, `ManaPerSecond`, `ManaPerSecondPerLevel`, `RangeIndex`, `Speed`, 

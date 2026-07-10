@@ -3,21 +3,21 @@ DELETE FROM `disables` WHERE `entry` = 533;
 
 -- Add MapDifficulty DBC Override - https://wow.tools/dbc/?dbc=mapdifficulty&build=10.0.0.44895#page=1&search=533
 DELETE FROM `mapdifficulty_dbc` WHERE `ID` = 754;
-INSERT INTO `mapdifficulty_dbc` (`ID`, `MapID`, `Difficulty`, `Message_Lang_enUS`, `Message_Lang_Mask`, `RaidDuration`, `MaxPlayers`, `Difficultystring`) VALUES
+REPLACE INTO `mapdifficulty_dbc` (`ID`, `MapID`, `Difficulty`, `Message_Lang_enUS`, `Message_Lang_Mask`, `RaidDuration`, `MaxPlayers`, `Difficultystring`) VALUES
 (754, 533, 2, 'You must be level 60 and in a raid group to enter.', 16712190, 604800, 40, 'RAID_DIFFICULTY_40PLAYER');
 
 -- Remove exit teleport and replace with script
 DELETE FROM `areatrigger_teleport` WHERE `ID` IN (5196, 5197, 5198, 5199, 4156);
 
 DELETE FROM `areatrigger_scripts` WHERE `entry` IN (5196, 5197, 5198, 5199);
-INSERT INTO `areatrigger_scripts` (`entry`, `ScriptName`) VALUES
+REPLACE INTO `areatrigger_scripts` (`entry`, `ScriptName`) VALUES
 (5196, 'naxx_exit_trigger'),
 (5197, 'naxx_exit_trigger'),
 (5198, 'naxx_exit_trigger'),
 (5199, 'naxx_exit_trigger');
 
 DELETE FROM `areatrigger_scripts` WHERE `entry` IN (5191, 5192, 5193, 5194);
-INSERT INTO `areatrigger_scripts` (`entry`, `ScriptName`) VALUES
+REPLACE INTO `areatrigger_scripts` (`entry`, `ScriptName`) VALUES
 (5191, 'naxx_northrend_entrance'),
 (5192, 'naxx_northrend_entrance'),
 (5193, 'naxx_northrend_entrance'),
@@ -31,16 +31,16 @@ UPDATE `gameobject` SET `spawnMask` = 7 WHERE `spawnMask` = 3 AND `map` = 533; -
 UPDATE `gameobject` SET `spawnMask` = 3 WHERE `id` IN (202278, 202277);        -- Orb of Naxxramas does not exist in classic
 
 DELETE FROM `dungeon_access_template` WHERE `id` = 122;
-INSERT INTO `dungeon_access_template` (`id`, `map_id`, `difficulty`, `min_level`, `max_level`, `min_avg_item_level`, `comment`) VALUES 
+REPLACE INTO `dungeon_access_template` (`id`, `map_id`, `difficulty`, `min_level`, `max_level`, `min_avg_item_level`, `comment`) VALUES 
 (122, 533, 2, 60, 70, 0, 'Naxxramas - 40man');
 
 -- Naxx40 Dungeon DBC entries (helps Autobalance work correctly)
 DELETE FROM `lfgdungeons_dbc` WHERE `ID` = 1001;
-INSERT INTO `lfgdungeons_dbc` VALUES
+REPLACE INTO `lfgdungeons_dbc` VALUES
 (1001,"Naxxramas (Vanilla)","","","","","","","","","","","","","","","",16712190,60,83,60,60,83,533,2,0,2,-1,"",2,0,9,"","","","","","","","","","","","","","","","",16712188);
 
 DELETE FROM `dungeonencounter_dbc` WHERE `ID` BETWEEN 1001 AND 1015;
-INSERT INTO `dungeonencounter_dbc` (`ID`, `MapID`, `Difficulty`, `OrderIndex`, `Bit`, `Name_Lang_enUS`, `Name_Lang_enGB`, `Name_Lang_koKR`, `Name_Lang_frFR`, `Name_Lang_deDE`, `Name_Lang_enCN`, `Name_Lang_zhCN`, `Name_Lang_enTW`, `Name_Lang_zhTW`, `Name_Lang_esES`, `Name_Lang_esMX`, `Name_Lang_ruRU`, `Name_Lang_ptPT`, `Name_Lang_ptBR`, `Name_Lang_itIT`, `Name_Lang_Unk`, `Name_Lang_Mask`, `SpellIconID`) VALUES
+REPLACE INTO `dungeonencounter_dbc` (`ID`, `MapID`, `Difficulty`, `OrderIndex`, `Bit`, `Name_Lang_enUS`, `Name_Lang_enGB`, `Name_Lang_koKR`, `Name_Lang_frFR`, `Name_Lang_deDE`, `Name_Lang_enCN`, `Name_Lang_zhCN`, `Name_Lang_enTW`, `Name_Lang_zhTW`, `Name_Lang_esES`, `Name_Lang_esMX`, `Name_Lang_ruRU`, `Name_Lang_ptPT`, `Name_Lang_ptBR`, `Name_Lang_itIT`, `Name_Lang_Unk`, `Name_Lang_Mask`, `SpellIconID`) VALUES
 (1001, 533, 2, 0, 0, 'Anub''Rekhan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 16712190, 0),
 (1002, 533, 2, 1000, 1, 'Grand Widow Faerlina', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 16712190, 0),
 (1003, 533, 2, 2000, 2, 'Maexxna', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 16712190, 0),
@@ -58,7 +58,7 @@ INSERT INTO `dungeonencounter_dbc` (`ID`, `MapID`, `Difficulty`, `OrderIndex`, `
 (1015, 533, 2, 14000, 14, 'Kel''Thuzad', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 16712190, 0);
 
 DELETE FROM `instance_encounters` WHERE `entry` BETWEEN 1001 AND 1015;
-INSERT INTO `instance_encounters` (`entry`, `creditType`, `creditEntry`, `lastEncounterDungeon`, `comment`) VALUES
+REPLACE INTO `instance_encounters` (`entry`, `creditType`, `creditEntry`, `lastEncounterDungeon`, `comment`) VALUES
 (1001, 0, 351009, 0, 'Anub''Rekhan'),
 (1002, 0, 351007, 0, 'Grand Widow Faerlina'),
 (1003, 0, 351006, 0, 'Maexxna'),

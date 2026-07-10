@@ -1,25 +1,25 @@
 -- Summon Warhorse - Tome of Nobility (Paladin)
 DELETE FROM `creature_queststarter` WHERE `quest` IN (1661, 4485, 4486); 
-INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES (6171, 1661), (6179, 4485), (5149, 4486);
+REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES (6171, 1661), (6179, 4485), (5149, 4486);
 
 DELETE FROM `creature_questender` WHERE `id` = 6171 AND `quest` IN (1661, 4485, 4486);
-INSERT INTO `creature_questender` (`id`, `quest`) VALUES (6171, 1661), (6171, 4485), (6171, 4486);
+REPLACE INTO `creature_questender` (`id`, `quest`) VALUES (6171, 1661), (6171, 4485), (6171, 4486);
 
 -- Summon Warhorse - The Thalassian Warhorse (Paladin)
 DELETE FROM `creature_queststarter` WHERE `quest` IN (9712); 
-INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES (17717, 9712);
+REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES (17717, 9712);
 
 DELETE FROM `creature_questender` WHERE `id` = 17717 AND `quest` IN (9712);
-INSERT INTO `creature_questender` (`id`, `quest`) VALUES (17717, 9712);
+REPLACE INTO `creature_questender` (`id`, `quest`) VALUES (17717, 9712);
 
 -- Re-enable Summon Felsteed (Warlock)
 DELETE FROM `disables` WHERE `sourceType` = 1 AND `entry` IN (3631, 4487, 4488, 4489, 4490);
 
 DELETE FROM `creature_queststarter` WHERE `quest` IN (3631, 4487, 4488, 4489, 4490); 
-INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES (3326, 3631), (5172, 4487), (461, 4488), (4563, 4489), (6251, 4490);
+REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES (3326, 3631), (5172, 4487), (461, 4488), (4563, 4489), (6251, 4490);
 
 DELETE FROM `creature_questender` WHERE `id` = 6251 AND `quest` IN (3631, 4487, 4488, 4489, 4490);
-INSERT INTO `creature_questender` (`id`, `quest`) VALUES (6251, 3631), (6251, 4487), (6251, 4488), (6251, 4489), (6251, 4490);
+REPLACE INTO `creature_questender` (`id`, `quest`) VALUES (6251, 3631), (6251, 4487), (6251, 4488), (6251, 4489), (6251, 4490);
 
 -- Warlock Dreadsteed Quest Line
 UPDATE `quest_template` SET `RequiredItemCount1` = 10, `LogDescription` = "Bring 10 Elixirs of Shadow Power to Gorzeeki Wildeyes in the Burning Steppes." WHERE `ID` = 7626; -- Bell of Dethmoora
@@ -34,7 +34,7 @@ UPDATE `mail_level_reward` SET `level` = 71 WHERE `mailTemplateId` IN (285, 284)
 
 -- Riding Skills
 DELETE FROM `creature_default_trainer` WHERE `CreatureId` IN (3690, 4732, 4752, 4773, 7953);
-INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
+REPLACE INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
 --
 (3690, 37), -- Kar Stormsinger <Riding Trainer>
 (4732, 37), -- Randal Hunter <Riding Trainer>
@@ -48,7 +48,7 @@ UPDATE `trainer_spell` SET `ReqLevel`  = 70, `MoneyCost` = 8000000  WHERE `Spell
 
 -- Hide pre 1.6 epic mounts ater BWL is unlocked - Hide WotLK mounts on vanilla vendors
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 23 AND `SourceGroup` IN (384, 1261, 3362, 3685, 4730, 4731, 7952, 7955);
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 (23, 384,  12353, 0, 0, 8, 0, 66002, 0, 0, 1, 0, 0, '', 'Katie Hunter will not sell White Stallion Bridle after the player has completed PROGRESSION_ONYXIA'),
 (23, 384,  12354, 0, 0, 8, 0, 66002, 0, 0, 1, 0, 0, '', 'Katie Hunter will not sell Palomino Bridle after the player has completed PROGRESSION_ONYXIA'),
@@ -80,7 +80,7 @@ DELETE FROM `npc_vendor` WHERE `entry` = 4885 AND `item` IN (12353, 12354);
 DELETE FROM `npc_vendor` WHERE `entry` = 7952 AND `item` IN (8586, 13317);
 DELETE FROM `npc_vendor` WHERE `entry` = 7955 AND `item` IN (13326, 13327);
 
-INSERT INTO `npc_vendor` (`entry`, `item`, `maxcount`, `incrtime`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `item`, `maxcount`, `incrtime`) VALUES
 --
 (384, 12353, 0, 0),       -- Katie Hunter, White Stallion Bridle
 (384, 12354, 0, 0),       -- Katie Hunter, Palomino Bridle

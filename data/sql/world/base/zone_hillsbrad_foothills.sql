@@ -7,7 +7,7 @@ DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN
 (2240, 2241, 2244, 2249, 2260, 2261, 2264, 2265, 2266, 2267, 2268, 2269, 2270, 2304, 2305, 2319, 2335, 2344, 2345, 2346, 2348, 2349, 2350, 2351, 2354, 2356, 2360, 2368, 2369, 
 2370, 2371, 2372, 2373, 2374, 2375, 2376, 2377, 2385, 2387, 2403, 2404, 2427, 2428, 2448, 2449, 2450, 2451, 2503, 7068, 7069, 7070, 7071, 7072, 7073, 7075, 607068, 607069, 607070, 607071, 607072, 607075, 14278, 14280);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -167,7 +167,7 @@ UPDATE `creature_loot_template` SET `Chance` = 25 WHERE `Item` = 3693;
 
 -- Drop chance for Mountain Lion Blood was incorrectly set to 100%
 DELETE FROM `creature_loot_template` WHERE `Item` = 3496;
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
 (2384, 3496, 0, 40, 1, 1, 0, 1, 1, 'Starving Mountain Lion - Mountain Lion Blood'),
 (2385, 3496, 0, 80, 1, 1, 0, 1, 1, 'Feral Mountain Lion - Mountain Lion Blood'),
 (2406, 3496, 0, 80, 1, 1, 0, 1, 1, 'Mountain Lion - Mountain Lion Blood'),
@@ -178,7 +178,7 @@ UPDATE `quest_template_addon` SET `PrevQuestID` = 527 WHERE `ID` = 546;
 
 -- fix creature movement and spawn locations
 DELETE FROM `creature` WHERE `id` IN (232, 2403, 2427, 2428, 2450, 14275, 14276, 14277, 14280);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
 --
 (16520,  232, 0, 0, 0, 1, 1, 1, -341.604, 3.60308, 60.3681, 2.21657,        300, 0, 0, 617, 0, 0, 0, 0, 0, '', 0, 0, NULL),    -- Farmer Ray
@@ -206,7 +206,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (15839,  14280, 0, 0, 0, 1, 1, 0, -451.793, -1686.39, 85.5209, 1.55137,   43200, 5, 0, 1080, 0, 1, 0, 0, 0, '', 0, 0, NULL);   -- Big Samras
 
 DELETE FROM `pool_creature` WHERE `pool_entry` IN (601041, 601042, 601043, 601044, 601045, 601046);
-INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
+REPLACE INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALUES 
 (232,    601041, 0, 'Farmer Ray'),
 (695081, 601041, 0, 'Farmer Ray'),
 (695082, 601041, 0, 'Farmer Ray'),
@@ -225,7 +225,7 @@ INSERT INTO `pool_creature` (`guid`, `pool_entry`, `chance`, `description`) VALU
 (695090, 601046, 0, 'Jailor Marlgen');
 
 DELETE FROM `pool_template` WHERE `entry` IN (601041, 601042, 601043, 601044, 601045, 601046);
-INSERT INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
+REPLACE INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES 
 (601041, 1, 'Farmer Ray - Hillsbrad Foothills'),
 (601042, 1, 'Farmer Getz - Hillsbrad Foothills'),
 (601043, 1, 'Miner Hackett - Hillsbrad Foothills'),
@@ -234,11 +234,11 @@ INSERT INTO `pool_template` (`entry`, `max_limit`, `description`) VALUES
 (601046, 1, 'Jailor Marlgen - Hillsbrad Foothills');
 
 DELETE FROM `creature_addon` WHERE `guid` IN (16047);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (16047, 160470, 0, 0, 1, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` IN (160470);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (160470, 1, -1473.69, -1099.37, -4.31768, NULL, 0, 0, 0, 100, 0), -- Lady Zephris
 (160470, 2, -1478.49, -1077.97, -6.02324, NULL, 0, 0, 0, 100, 0),
@@ -277,7 +277,7 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 /* ---- Purgation Isle (896) ---- */
 
 DELETE FROM `creature_template` WHERE `entry` IN (607068, 607069, 607070, 607071, 607072, 607075);
-INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `name`, `subname`, `IconName`, `gossip_menu_id`, 
+REPLACE INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `name`, `subname`, `IconName`, `gossip_menu_id`, 
 `minlevel`, `maxlevel`, `exp`, `faction`, `npcflag`, `speed_walk`, `speed_run`, `speed_swim`, `speed_flight`, `detection_range`, `rank`, `dmgschool`, `DamageModifier`, 
 `BaseAttackTime`, `RangeAttackTime`, `BaseVariance`, `RangeVariance`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, 
 `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `HoverHeight`, `HealthModifier`, `ManaModifier`, `ArmorModifier`, `ExperienceModifier`, `RacialLeader`, `movementId`, 
@@ -291,12 +291,12 @@ INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entr
 (607075, 0, 0, 0, 0, 0, 'Writhing Mage', NULL, NULL, 0, 31, 32, 0, 16, 0, 1, 1.14286, 1, 1, 20, 0, 0, 0.75, 2000, 2000, 1, 1, 2, 32768, 2048, 0, 0, 6, 0, 7074, 0, 0, 0, 0, 397, 524, 'SmartAI', 0, 1, 1, 1, 0.2, 1, 0, 0, 1, -93, 0, '', 0);
 
 DELETE FROM `creature_template_addon` WHERE `entry` IN (607068, 607070);
-INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
+REPLACE INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
 (607068, 0, 0, 0, 1, 0, 0, ''),
 (607070, 0, 0, 0, 1, 0, 0, '');
 
 DELETE FROM `creature_template_locale` WHERE `entry` BETWEEN 607068 AND 607075;
-INSERT INTO `creature_template_locale` (`entry`, `locale`, `Name`, `Title`, `VerifiedBuild`) VALUES 
+REPLACE INTO `creature_template_locale` (`entry`, `locale`, `Name`, `Title`, `VerifiedBuild`) VALUES 
 (607068, 'deDE', 'Verurteilter Akolyth', '', 18019),
 (607068, 'esES', 'Acólito condenado', '', 18019),
 (607068, 'esMX', 'Acólito condenado', '', 18019),
@@ -363,7 +363,7 @@ INSERT INTO `creature_template_locale` (`entry`, `locale`, `Name`, `Title`, `Ver
 (607075, 'zhTW', '痛苦的法師', '', 18019);
 
 DELETE FROM `creature_template_model` WHERE `CreatureID` BETWEEN 607068 AND 607075;
-INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`, `DisplayScale`, `Probability`, `VerifiedBuild`) VALUES 
+REPLACE INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`, `DisplayScale`, `Probability`, `VerifiedBuild`) VALUES 
 (607068, 0, 5828, 1, 1, 12340),
 (607068, 1, 5829, 1, 1, 12340),
 (607069, 0, 5822, 1, 1, 12340),
@@ -382,7 +382,7 @@ INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`,
 (607075, 1, 5815, 1, 1, 12340);
 
 DELETE FROM `creature_template_spell` WHERE `CreatureID` BETWEEN 607068 AND 607075;
-INSERT INTO `creature_template_spell` (`CreatureID`, `Index`, `Spell`, `VerifiedBuild`) VALUES 
+REPLACE INTO `creature_template_spell` (`CreatureID`, `Index`, `Spell`, `VerifiedBuild`) VALUES 
 (607068, 0, 25058, 12340),
 (607068, 1, 15654, 12340),
 (607069, 0, 11978, 12340),
@@ -393,7 +393,7 @@ INSERT INTO `creature_template_spell` (`CreatureID`, `Index`, `Spell`, `Verified
 (607075, 1, 7322, 12340);
 
 DELETE FROM `creature_equip_template`  WHERE `CreatureID` BETWEEN 607068 AND 607075;
-INSERT INTO `creature_equip_template` (`CreatureID`, `ID`, `ItemID1`, `ItemID2`, `ItemID3`, `VerifiedBuild`) VALUES 
+REPLACE INTO `creature_equip_template` (`CreatureID`, `ID`, `ItemID1`, `ItemID2`, `ItemID3`, `VerifiedBuild`) VALUES 
 (607068, 1, 5281, 0, 0, 18019),
 (607069, 1, 5303, 0, 0, 18019),
 (607070, 1, 2182, 0, 0, 18019),
@@ -405,14 +405,14 @@ INSERT INTO `creature_equip_template` (`CreatureID`, `ID`, `ItemID1`, `ItemID2`,
 SET @CGUID    := 655000;
 
 DELETE FROM `creature_addon` WHERE `guid` IN (@CGUID+16, @CGUID+31, @CGUID+39, @CGUID+40);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (@CGUID+16, 148370, 0, 0, 1, 0, 0, NULL),
 (@CGUID+31, 148230, 0, 0, 1, 0, 0, NULL),
 (@CGUID+39, 148340, 0, 0, 1, 0, 0, NULL),
 (@CGUID+40, 148400, 0, 0, 1, 0, 0, NULL);
 
 DELETE FROM `creature` WHERE `guid` BETWEEN @CGUID+10 AND @CGUID+42;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
 --
 (@CGUID+10, 607068, 0, 0, 0, 1, 1, 1, -1262.56, 479.974, 10.5137, 5.06174,  600, 0, 0, 1, 1, 0, 0, 0, 0, '', 0, 0, NULL), -- Condemned Acolyte
@@ -450,7 +450,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (@CGUID+42, 7074,   0, 0, 0, 1, 1, 1, -1319.54, 554.931, 101.501, 4.222,    300, 0, 0, 1, 1, 0, 0, 0, 0, '', NULL, 0, NULL); -- Judge Thelgram
 
 DELETE FROM `creature_loot_template` WHERE `Entry` IN (7071, 7072, 7073, 7074, 7075) AND `Item` = 22229;
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
 (7071, 22229, 0, 20, 1, 1, 0, 1, 1, 'Cursed Paladin - Soul Ashes of the Banished'),
 (7072, 22229, 0, 20, 1, 1, 0, 1, 1, 'Cursed Justicar - Soul Ashes of the Banished'),
 (7073, 22229, 0, 20, 1, 1, 0, 1, 1, 'Arados the Damned - Soul Ashes of the Banished'),

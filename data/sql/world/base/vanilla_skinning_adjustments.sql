@@ -3,7 +3,7 @@ DELETE FROM `skinning_loot_template` WHERE `entry` IN (684, 768, 1713, 1817, 268
 7448, 7449, 8211, 8718, 8763, 8764, 8921, 8922, 9042,
 9416, 9690, 9694, 9696, 9697, 10151, 10221, 10807, 12418, 13036);
 
-INSERT INTO `skinning_loot_template` (`Entry`, `Item`, `Chance`, `GroupId`, `MinCount`, `MaxCount`) VALUES
+REPLACE INTO `skinning_loot_template` (`Entry`, `Item`, `Chance`, `GroupId`, `MinCount`, `MaxCount`) VALUES
 (684, 4234, 0, 1, 1, 1),
 (684, 4235, 2.8326, 1, 1, 1),
 (684, 4304, 19.8281, 1, 1, 1),

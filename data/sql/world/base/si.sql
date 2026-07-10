@@ -2,7 +2,7 @@ SET @IPPPHASE := 65536;
 
 /* Friendship Bread and Freshly-Squeezed Lemonade */
 DELETE FROM `npc_vendor` WHERE `entry` IN (2482, 3044, 4165, 5173, 5698, 15006) AND `item` IN (23160, 23161);
-INSERT INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `ExtendedCost`, `VerifiedBuild`) VALUES
+REPLACE INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `ExtendedCost`, `VerifiedBuild`) VALUES
 (2482, 0, 23160, 0, 0, 0, 0),  -- Zarena Cromwind
 (2482, 0, 23161, 0, 0, 0, 0),
 (3044, 0, 23160, 0, 0, 0, 0),  -- Miles Welsh
@@ -18,7 +18,7 @@ INSERT INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `Exte
 
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 23 AND `SourceGroup` IN (2482, 3044, 4165, 5173, 5698, 11038, 14450, 15006, 16543);
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 15 AND `SourceGroup` IN (4533, 4566, 4821, 6470, 8730);
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 --
 (23, 2482,  23160, 0, 0, 8, 0, 9301, 0, 0, 0, 0, 0, '', 'Zarena Cromwind will not sell Friendship Bread until the player has completed \'Envelope from the Front\''),
@@ -65,15 +65,15 @@ DELETE FROM `gossip_menu_option` WHERE `MenuID` = 4566 AND `OptionID` = 3;
 DELETE FROM `gossip_menu_option` WHERE `MenuID` = 4821 AND `OptionID` = 1;
 DELETE FROM `gossip_menu_option` WHERE `MenuID` = 5849 AND `OptionID` = 2;
 DELETE FROM `gossip_menu_option` WHERE `MenuID` IN (6470, 8730);
-INSERT INTO `gossip_menu_option` (`MenuID`, `OptionID`, `OptionIcon`, `OptionText`, `OptionBroadcastTextID`, `OptionType`, `OptionNpcFlag`, 
+REPLACE INTO `gossip_menu_option` (`MenuID`, `OptionID`, `OptionIcon`, `OptionText`, `OptionBroadcastTextID`, `OptionType`, `OptionNpcFlag`, 
 `ActionMenuID`, `ActionPoiID`, `BoxCoded`, `BoxMoney`, `BoxText`, `BoxBroadcastTextID`, `VerifiedBuild`) VALUES 
-(4533, 3, 1, 'Show me what you have for sale.', 29959, 3, 128, 0, 0, 0, 0, '', 0, 0),
-(4566, 3, 1, 'Show me what you have for sale.', 29959, 3, 128, 0, 0, 0, 0, '', 0, 0),
-(4821, 1, 1, 'Show me what you have for sale.', 29959, 3, 128, 0, 0, 0, 0, '', 0, 0),
-(5849, 2, 1, 'Show me what you have for sale.', 29959, 3, 128, 0, 0, 0, 0, '', 0, 0),
-(6470, 0, 9, 'I would like to go to the battleground.', 10355, 12, 1048576, 0, 0, 0, 0, '', 0, 0),
-(6470, 1, 1, 'Show me what you have for sale.', 29959, 3, 128, 0, 0, 0, 0, '', 0, 0),
-(8730, 0, 1, 'Show me what you have for sale.', 29959, 3, 128, 0, 0, 0, 0, '', 0, 0);
+(4533, 3, 1, '让我看看你出售的货物。', 29959, 3, 128, 0, 0, 0, 0, '', 0, 0),
+(4566, 3, 1, '让我看看你出售的货物。', 29959, 3, 128, 0, 0, 0, 0, '', 0, 0),
+(4821, 1, 1, '让我看看你出售的货物。', 29959, 3, 128, 0, 0, 0, 0, '', 0, 0),
+(5849, 2, 1, '让我看看你出售的货物。', 29959, 3, 128, 0, 0, 0, 0, '', 0, 0),
+(6470, 0, 9, '我想去战场。', 10355, 12, 1048576, 0, 0, 0, 0, '', 0, 0),
+(6470, 1, 1, '让我看看你出售的货物。', 29959, 3, 128, 0, 0, 0, 0, '', 0, 0),
+(8730, 0, 1, '让我看看你出售的货物。', 29959, 3, 128, 0, 0, 0, 0, '', 0, 0);
 
 
 /*-- Objects and NPCs --*/
@@ -120,7 +120,7 @@ DELETE FROM `creature_template` WHERE `entry` IN
  @NECROTIC_SHARD, @SHADOW_OF_DOOM, @CULTIST_ENGINEER, @GHOUL_BERSERKER, @SPECTRAL_SOLDIER, @SKELETAL_SHOCKTROOPER,
  @LUMBERING_HORROR, @SPIRIT_OF_THE_DAMNED, @BONE_WITCH, @SEVER, @BALZAPHON, @LADY_FALTHERESS, @REVANCHION, @SCORN, @LORD_BLACKWOOD);
  
-INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `name`, `subname`, `IconName`, `gossip_menu_id`, 
+REPLACE INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `name`, `subname`, `IconName`, `gossip_menu_id`, 
 `minlevel`, `maxlevel`, `exp`, `faction`, `npcflag`, `speed_walk`, `speed_run`, `speed_swim`, `speed_flight`, `detection_range`, `rank`, `dmgschool`, `DamageModifier`, 
 `BaseAttackTime`, `RangeAttackTime`, `BaseVariance`, `RangeVariance`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, 
 `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `HoverHeight`, `HealthModifier`, `ManaModifier`, `ArmorModifier`, `ExperienceModifier`, `RacialLeader`, `movementId`, 
@@ -160,7 +160,7 @@ INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entr
 
 DELETE FROM `creature_template_addon` WHERE `entry` IN 
 (@LORD_BLACKWOOD, @NECROTIC_SHARD, @CULTIST_ENGINEER, @LUMBERING_HORROR, @SPIRIT_OF_THE_DAMNED, @BONE_WITCH, @GHOUL_BERSERKER, @SPECTRAL_SOLDIER, @SKELETAL_SHOCKTROOPER);
-INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
+REPLACE INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES
 (@LORD_BLACKWOOD, 146950, 0, 0, 0, 0, 0, ''),
 (@NECROTIC_SHARD, 0, 0, 0, 0, 0, 3, ''),
 (@LUMBERING_HORROR, 0, 0, 0, 0, 0, 0, ''),
@@ -176,7 +176,7 @@ DELETE FROM `creature_template_locale` WHERE `entry` IN
  @COMMANDER_THOMAS, @LIEUTENANT_ORRIN, @LIEUTENANT_NEVELL, @LIEUTENANT_LISANDE, @LIEUTENANT_DAGEL, @LIEUTENANT_RUKAG, @LIEUTENANT_BEITHA,
  @NECROTIC_SHARD, @SHADOW_OF_DOOM, @CULTIST_ENGINEER, @GHOUL_BERSERKER, @SPECTRAL_SOLDIER, @SKELETAL_SHOCKTROOPER,
  @LUMBERING_HORROR, @SPIRIT_OF_THE_DAMNED, @BONE_WITCH, @SEVER, @BALZAPHON, @LADY_FALTHERESS, @REVANCHION, @SCORN, @LORD_BLACKWOOD);
-INSERT INTO `creature_template_locale` (`entry`, `locale`, `Name`, `Title`, `VerifiedBuild`) VALUES 
+REPLACE INTO `creature_template_locale` (`entry`, `locale`, `Name`, `Title`, `VerifiedBuild`) VALUES 
 (@ARGENT_RECRUITER, 'deDE', 'Argentumrekrutierungsoffizier', 'Die Argentumdämmerung', 18019),
 (@ARGENT_RECRUITER, 'esES', 'Reclutador Argenta', 'El Alba Argenta', 18019),
 (@ARGENT_RECRUITER, 'esMX', 'Reclutador Argenta', 'El Alba Argenta', 18019),
@@ -415,7 +415,7 @@ DELETE FROM `creature_template_model` WHERE `CreatureID` IN
  @COMMANDER_THOMAS, @LIEUTENANT_ORRIN, @LIEUTENANT_NEVELL, @LIEUTENANT_LISANDE, @LIEUTENANT_DAGEL, @LIEUTENANT_RUKAG, @LIEUTENANT_BEITHA,
  @NECROTIC_SHARD, @SHADOW_OF_DOOM, @CULTIST_ENGINEER, @GHOUL_BERSERKER, @SPECTRAL_SOLDIER, @SKELETAL_SHOCKTROOPER,
  @LUMBERING_HORROR, @SPIRIT_OF_THE_DAMNED, @BONE_WITCH, @SEVER, @BALZAPHON, @LADY_FALTHERESS, @REVANCHION, @SCORN, @LORD_BLACKWOOD);
-INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`, `DisplayScale`, `Probability`, `VerifiedBuild`) VALUES 
+REPLACE INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`, `DisplayScale`, `Probability`, `VerifiedBuild`) VALUES 
 (@ARGENT_RECRUITER, 0, 16131, 1, 1, 12340),
 (@ARGENT_SCOUT, 0, 10727, 1, 1, 12340),
 (@KEEPER_OF_THE_ROLLS, 0, 16105, 1, 1, 12340),
@@ -448,7 +448,7 @@ INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`,
 
 DELETE FROM `creature_template_spell` WHERE `CreatureID` IN 
 (@SEVER, @BALZAPHON, @REVANCHION, @SHADOW_OF_DOOM, @SKELETAL_SHOCKTROOPER, @SPIRIT_OF_THE_DAMNED, @BONE_WITCH);
-INSERT INTO `creature_template_spell` (`CreatureID`, `Index`, `Spell`, `VerifiedBuild`) VALUES
+REPLACE INTO `creature_template_spell` (`CreatureID`, `Index`, `Spell`, `VerifiedBuild`) VALUES
 (@SEVER, 0, 17745, 12340),
 (@SEVER, 1, 16508, 12340),
 (@BALZAPHON, 0, 12096, 12340),
@@ -478,7 +478,7 @@ UPDATE `creature_template` SET `HealthModifier` = 5 WHERE `entry` IN (@SPIRIT_OF
 UPDATE `creature_template` SET `HealthModifier` = 2.7 WHERE `entry` IN (@GHOUL_BERSERKER, @SPECTRAL_SOLDIER, @SKELETAL_SHOCKTROOPER);
 
 DELETE FROM `creature_loot_template` WHERE `Entry` IN (16141, 16298, 16299);
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 --
 (16141, 40110, 40110, 2, 0, 1, 1, 1, 1, 'Ghoul Berserker - Reference Loot - Haunted Memento'),
 (16141, 12841, 0, 35, 0, 1, 0, 1, 1,    'Ghoul Berserker - Invaders Scourgestone'),
@@ -513,7 +513,7 @@ INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `Q
 -- no epic drops from Shadow of Doom
 UPDATE `creature_template` SET `lootid` = @SHADOW_OF_DOOM WHERE `entry` = @SHADOW_OF_DOOM;
 DELETE FROM `creature_loot_template` WHERE `Entry` IN (@SHADOW_OF_DOOM);
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 (@SHADOW_OF_DOOM, 3356, 0, 0.02, 0, 1, 0, 1, 1,   'Shadow of Doom - Kingsblood'),
 (@SHADOW_OF_DOOM, 12843, 0, 100, 0, 1, 0, 1, 1,   'Shadow of Doom - Corruptors Scourgestone'),
 (@SHADOW_OF_DOOM, 22484, 0, 100, 0, 1, 0, 30, 30, 'Shadow of Doom - Necrotic Rune'),
@@ -527,7 +527,7 @@ UPDATE `creature_template` SET `lootid` = @LUMBERING_HORROR     WHERE `entry` = 
 UPDATE `creature_template` SET `lootid` = @SPIRIT_OF_THE_DAMNED WHERE `entry` = @SPIRIT_OF_THE_DAMNED;
 UPDATE `creature_template` SET `lootid` = @BONE_WITCH           WHERE `entry` = @BONE_WITCH;
 DELETE FROM `creature_loot_template` WHERE `Entry` IN (@LUMBERING_HORROR, @SPIRIT_OF_THE_DAMNED,  @BONE_WITCH);
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 (@LUMBERING_HORROR, 12841, 0, 35, 0, 1, 0, 1, 1,        'Lumbering Horror - Invaders Scourgestone'),
 (@LUMBERING_HORROR, 22484, 0, 50.68, 0, 1, 0, 1, 1,     'Lumbering Horror - Necrotic Rune'),
 (@LUMBERING_HORROR, 23090, 0, 18.81, 0, 1, 0, 1, 1,     'Lumbering Horror - Bracers of Undead Slaying'),
@@ -552,7 +552,7 @@ UPDATE `gameobject_template_addon` SET `flags` = 16 WHERE `entry` IN (181154, 18
 
 -- Reputation changes
 DELETE FROM `creature_onkill_reputation` WHERE `creature_id` IN (@GHOUL_BERSERKER, @SPECTRAL_SOLDIER, @SKELETAL_SHOCKTROOPER, @LUMBERING_HORROR, @SPIRIT_OF_THE_DAMNED, @BONE_WITCH, @SHADOW_OF_DOOM);
-INSERT INTO `creature_onkill_reputation` (`creature_id`, `RewOnKillRepFaction1`, `RewOnKillRepFaction2`, 
+REPLACE INTO `creature_onkill_reputation` (`creature_id`, `RewOnKillRepFaction1`, `RewOnKillRepFaction2`, 
 `MaxStanding1`, `IsTeamAward1`, `RewOnKillRepValue1`, `MaxStanding2`, `IsTeamAward2`, `RewOnKillRepValue2`, `TeamDependent`) VALUES 
 (@GHOUL_BERSERKER, 529, 0, 4, 0, 5, 0, 0, 0, 0),
 (@SPECTRAL_SOLDIER, 529, 0, 4, 0, 5, 0, 0, 0, 0),
@@ -573,7 +573,7 @@ DELETE FROM `smart_scripts` WHERE `source_type` = 9 AND `entryorguid` IN (616230
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN 
 (@CULTIST_ENGINEER, @GHOUL_BERSERKER, @SPECTRAL_SOLDIER, @SKELETAL_SHOCKTROOPER, @NECROTIC_SHARD, 16422, 16423, 16437, 16438,
  @SEVER, @BALZAPHON, @LADY_FALTHERESS, @REVANCHION, @SCORN, @LORD_BLACKWOOD, @LUMBERING_HORROR, @SPIRIT_OF_THE_DAMNED, @BONE_WITCH);
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, 
 `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
@@ -669,17 +669,17 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 
 
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 13 AND `SourceGroup` = 1 AND `SourceEntry` = 28032;
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`,
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`,
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES
 (13, 1, 28032, 0, 0, 31, 0, 3, 16136, 0, 0, 0, 0, '', 'target must be unit Necrotic Shard'),
 (13, 1, 28032, 0, 1, 31, 0, 3, @NECROTIC_SHARD, 0, 0, 0, 0, '', 'Set Necrotic Shard as target for Zap Crystal spell');
 
 DELETE FROM `creature_addon` WHERE `guid` IN (660595);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (660595, 146930, 0, 0, 0, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` IN (146930);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (146930, 1, 1798.01, 1312.39, 18.69,  NULL, 0, 0, 0, 100, 0),
 (146930, 2, 1805.39, 1323.66, 18.91,  NULL, 0, 0, 0, 100, 0),
@@ -702,7 +702,7 @@ UPDATE `creature_template` SET `npcflag` = 2 WHERE `entry` IN
 
 DELETE FROM `creature_queststarter` WHERE `quest` IN (9260, 9261, 9262, 9263, 9264, 9265) AND `id` IN 
 (@LIEUTENANT_ORRIN, @LIEUTENANT_NEVELL, @LIEUTENANT_LISANDE, @LIEUTENANT_DAGEL, @LIEUTENANT_RUKAG, @LIEUTENANT_BEITHA);
-INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES
+REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES
 (@LIEUTENANT_ORRIN, 9260),
 (@LIEUTENANT_NEVELL, 9261),
 (@LIEUTENANT_LISANDE, 9264),
@@ -712,7 +712,7 @@ INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES
 
 DELETE FROM `creature_questender` WHERE `quest` IN (9260, 9261, 9262, 9263, 9264, 9265) AND `id` IN 
 (@LIEUTENANT_ORRIN, @LIEUTENANT_NEVELL, @LIEUTENANT_LISANDE, @LIEUTENANT_DAGEL, @LIEUTENANT_RUKAG, @LIEUTENANT_BEITHA);
-INSERT INTO `creature_questender` (`id`, `quest`) VALUES
+REPLACE INTO `creature_questender` (`id`, `quest`) VALUES
 (@LIEUTENANT_ORRIN, 9260),
 (@LIEUTENANT_NEVELL, 9261),
 (@LIEUTENANT_LISANDE, 9264),
@@ -722,7 +722,7 @@ INSERT INTO `creature_questender` (`id`, `quest`) VALUES
 
 -- Hide Investigate the Scourge quests, until progression level 6, to prevent bots from picking it up
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 19 AND `ConditionTypeOrReference` = 8 AND `SourceEntry` IN (9260, 9261, 9262, 9263, 9264, 9265);
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 (19, 0, 9260, 0, 0, 8, 0, 66006, 0, 0, 0, 0, 0, '', 'Hide \'Investigate the Scourge\' until progression level 6'),
 (19, 0, 9261, 0, 0, 8, 0, 66006, 0, 0, 0, 0, 0, '', 'Hide \'Investigate the Scourge\' until progression level 6'),
@@ -735,7 +735,7 @@ SET @AGUID    := 6000;
 
 DELETE FROM `areatrigger` WHERE `entry` IN (@AGUID+1, @AGUID+2, @AGUID+3, @AGUID+4, @AGUID+5, @AGUID+6, @AGUID+7, @AGUID+8, @AGUID+9);
 /*
-INSERT INTO `areatrigger` (`entry`, `map`, `x`, `y`, `z`, `radius`) VALUES
+REPLACE INTO `areatrigger` (`entry`, `map`, `x`, `y`, `z`, `radius`) VALUES
 (@AGUID+1, 0, -9118.92, 330.1, 93.198, 10),     -- Stormwind
 (@AGUID+2, 0, -9061.46, 349.666, 93.1098, 10),  -- Stormwind
 (@AGUID+3, 0, -5163.2, -645.852, 396.992, 10),  -- Ironforge
@@ -749,7 +749,7 @@ INSERT INTO `areatrigger` (`entry`, `map`, `x`, `y`, `z`, `radius`) VALUES
 
 DELETE FROM `areatrigger_involvedrelation` WHERE `quest` IN (9260, 9261, 9262, 9263, 9264, 9265);
 /*
-INSERT INTO `areatrigger_involvedrelation` (`id`, `quest`) VALUES
+REPLACE INTO `areatrigger_involvedrelation` (`id`, `quest`) VALUES
 (@AGUID+1, 9260), -- Stormwind
 (@AGUID+2, 9260), -- Stormwind
 (@AGUID+3, 9261), -- Ironforge
@@ -763,17 +763,17 @@ INSERT INTO `areatrigger_involvedrelation` (`id`, `quest`) VALUES
 
 -- Necrotic Crystal item quests
 DELETE FROM `creature_questender` WHERE `quest` IN (9292, 9310) AND `id` IN (@LIEUTENANT_ORRIN, @LIEUTENANT_RUKAG);
-INSERT INTO `creature_questender` (`id`, `quest`) VALUES
+REPLACE INTO `creature_questender` (`id`, `quest`) VALUES
 (@LIEUTENANT_ORRIN, 9292),
 (@LIEUTENANT_RUKAG, 9310);
 
 DELETE FROM `creature_queststarter` WHERE `quest` = 9154 AND `id` IN (@ARGENT_RECRUITER, @ARGENT_SCOUT);
-INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES
+REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES
 (@ARGENT_RECRUITER, 9154),
 (@ARGENT_SCOUT, 9154);
 
 DELETE FROM `creature_questender` WHERE `quest` = 9154 AND `id` IN (@KEEPER_OF_THE_ROLLS);
-INSERT INTO `creature_questender` (`id`, `quest`) VALUES
+REPLACE INTO `creature_questender` (`id`, `quest`) VALUES
 (@KEEPER_OF_THE_ROLLS, 9154);
 
 -- Argent Quartermaster and Outfitter
@@ -784,14 +784,14 @@ UPDATE `creature_template` SET `npcflag` = 131 WHERE `entry` = @ARGENT_OUTFITTER
 DELETE FROM `creature_queststarter` WHERE `quest` IN
 (9094, 9317, 9318, 9321, 9337, 9341,  -- Alliance
  9333, 9334, 9335, 9336, 9320, 9343); -- Horde
-INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES
+REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES
 (@ARGENT_QUARTERMASTER, 9094), (@ARGENT_QUARTERMASTER, 9317), (@ARGENT_QUARTERMASTER, 9318), (@ARGENT_QUARTERMASTER, 9321), (@ARGENT_QUARTERMASTER, 9337), (@ARGENT_QUARTERMASTER, 9341),
 (@ARGENT_OUTFITTER, 9333), (@ARGENT_OUTFITTER, 9334), (@ARGENT_OUTFITTER, 9335), (@ARGENT_OUTFITTER, 9336), (@ARGENT_OUTFITTER, 9320), (@ARGENT_OUTFITTER, 9343);
 
 DELETE FROM `creature_questender` WHERE `quest` IN 
 (9094, 9317, 9318, 9321, 9337, 9341,  -- Alliance
  9320, 9333, 9334, 9335, 9336, 9343); -- Horde
-INSERT INTO `creature_questender` (`id`, `quest`) VALUES
+REPLACE INTO `creature_questender` (`id`, `quest`) VALUES
 (@ARGENT_QUARTERMASTER, 9094), (@ARGENT_QUARTERMASTER, 9317), (@ARGENT_QUARTERMASTER, 9318), (@ARGENT_QUARTERMASTER, 9321), (@ARGENT_QUARTERMASTER, 9337), (@ARGENT_QUARTERMASTER, 9341),
 (@ARGENT_OUTFITTER, 9333), (@ARGENT_OUTFITTER, 9334), (@ARGENT_OUTFITTER, 9335), (@ARGENT_OUTFITTER, 9336), (@ARGENT_OUTFITTER, 9320), (@ARGENT_OUTFITTER, 9343);
 
@@ -803,17 +803,17 @@ UPDATE `quest_template_addon` SET `SpecialFlags` = 1 WHERE `ID` IN -- make quest
  9333, 9334, 9335, 9336, 9320, 9343); -- Horde
 
 DELETE FROM `quest_request_items` WHERE `ID` IN (9295, 9299, 9300, 9301, 9302, 9304);
-INSERT INTO `quest_request_items` (`ID`, `EmoteOnComplete`, `EmoteOnIncomplete`, `CompletionText`, `VerifiedBuild`) VALUES
-(9295, 1, 0, 'Yes? What do you have there?', 12340),
-(9299, 1, 0, 'Yes? What do you have there?', 12340),
-(9300, 1, 0, 'Yes? What do you have there?', 12340),
-(9301, 1, 0, 'Yes? What do you have there?', 12340),
-(9302, 1, 0, 'Yes? What do you have there?', 12340),
-(9304, 1, 0, 'Yes? What do you have there?', 12340);
+REPLACE INTO `quest_request_items` (`ID`, `EmoteOnComplete`, `EmoteOnIncomplete`, `CompletionText`, `VerifiedBuild`) VALUES
+(9295, 1, 0, '什么事吗？你手里拿着的是什么？', 12340),
+(9299, 1, 0, '什么事吗？你手里拿着的是什么？', 12340),
+(9300, 1, 0, '什么事吗？你手里拿着的是什么？', 12340),
+(9301, 1, 0, '什么事吗？你手里拿着的是什么？', 12340),
+(9302, 1, 0, '什么事吗？你手里拿着的是什么？', 12340),
+(9304, 1, 0, '什么事吗？你手里拿着的是什么？', 12340);
 
 -- Keeper of the Rolls <The Argent Dawn>
 DELETE FROM `quest_mail_sender` WHERE `QuestId` IN (9295, 9299, 9300, 9301, 9302, 9304);
-INSERT INTO `quest_mail_sender` (`QuestId`, `RewardMailSenderEntry`) VALUES 
+REPLACE INTO `quest_mail_sender` (`QuestId`, `RewardMailSenderEntry`) VALUES 
 (9295, @KEEPER_OF_THE_ROLLS), -- Joanna Whitehall / Orphan Matron Nightingale
 (9299, @KEEPER_OF_THE_ROLLS), -- Alexander Calder / Deze Snowbane
 (9300, @KEEPER_OF_THE_ROLLS), -- Miles Welsh / Elissa Dumas
@@ -822,7 +822,7 @@ INSERT INTO `quest_mail_sender` (`QuestId`, `RewardMailSenderEntry`) VALUES
 (9304, @KEEPER_OF_THE_ROLLS); -- Caretaker Alen
 
 DELETE FROM `creature_questender` WHERE `id` = @KEEPER_OF_THE_ROLLS AND `quest` IN (9295, 9299, 9300, 9301, 9302, 9304);
-INSERT INTO `creature_questender` (`id`, `quest`) VALUES 
+REPLACE INTO `creature_questender` (`id`, `quest`) VALUES 
 (@KEEPER_OF_THE_ROLLS, 9295),
 (@KEEPER_OF_THE_ROLLS, 9299),
 (@KEEPER_OF_THE_ROLLS, 9300),
@@ -831,7 +831,7 @@ INSERT INTO `creature_questender` (`id`, `quest`) VALUES
 (@KEEPER_OF_THE_ROLLS, 9304);
 
 DELETE FROM `quest_template_addon` WHERE `ID` IN (9295, 9299, 9300, 9301, 9302, 9304);
-INSERT INTO `quest_template_addon` (`ID`, `MaxLevel`, `AllowableClasses`, `SourceSpellID`, `PrevQuestID`, `NextQuestID`, `ExclusiveGroup`, `RewardMailTemplateID`, `RewardMailDelay`, 
+REPLACE INTO `quest_template_addon` (`ID`, `MaxLevel`, `AllowableClasses`, `SourceSpellID`, `PrevQuestID`, `NextQuestID`, `ExclusiveGroup`, `RewardMailTemplateID`, `RewardMailDelay`, 
 `RequiredSkillID`, `RequiredSkillPoints`, `RequiredMinRepFaction`, `RequiredMaxRepFaction`, `RequiredMinRepValue`, `RequiredMaxRepValue`, `ProvidedItemCount`, `SpecialFlags`) VALUES
 (9295, 0, 0, 0, 0, 0, 0, 172, 604800, 0, 0, 0, 0, 0, 0, 1, 0), -- 7 days delay
 (9299, 0, 0, 0, 0, 0, 0, 173, 604800, 0, 0, 0, 0, 0, 0, 1, 0),
@@ -842,59 +842,59 @@ INSERT INTO `quest_template_addon` (`ID`, `MaxLevel`, `AllowableClasses`, `Sourc
 
 
 /**-- Text Updates --**/
-UPDATE `quest_request_items` SET `CompletionText` = 'Have you investigated the invasion yet? There\'s no time for dawdling!' WHERE `ID` IN 
+UPDATE `quest_request_items` SET `CompletionText` = '你调查过入侵行动了吗？没有时间可以浪费了！' WHERE `ID` IN 
 (9260, 9261, 9262, 9263, 9264, 9265);
 
-UPDATE `quest_request_items` SET `CompletionText` = 'You\'ve come to join our order, have you not?' WHERE `ID` = 9154;
+UPDATE `quest_request_items` SET `CompletionText` = '你是来加入保卫家园的行列吗？' WHERE `ID` = 9154;
 
 -- Alliance Quartermaster and Horde Outfitter Quests
-UPDATE `quest_template` SET `LogDescription` = 'Collect 30 Necrotic Runes.', `QuestDescription` = 'If you bring me thirty necrotic runes, I will give you your choice of hand protection in return. These should prove valuable in our fight against the undead Scourge.' WHERE `ID` IN (9094, 9333);
-UPDATE `quest_template` SET `LogDescription` = 'Collect 8 Necrotic Runes.',  `QuestDescription` = 'If you bring me eight necrotic runes from the Scourge invaders, I can give you a consecrated sharpening stone. It should be of great help in your battle against the minions of the Lich King.' WHERE `ID` IN (9317, 9335);
-UPDATE `quest_template` SET `LogDescription` = 'Collect 8 Necrotic Runes.',  `QuestDescription` = 'In exchange for the necrotic runes of the Scourge invaders, the Argent Dawn will give you one vial of blessed wizard oil.' WHERE `ID` IN (9318, 9334);
-UPDATE `quest_template` SET `LogDescription` = 'Collect 15 Necrotic Runes.', `QuestDescription` = 'In addition to our other supplies, we also have a number of major healing potions you may find useful. I will give you one in exchange for fifteen necrotic runes.' WHERE `ID` IN (9321, 9336);
-UPDATE `quest_template` SET `LogDescription` = 'Collect 15 Necrotic Runes.', `QuestDescription` = 'In addition to our other supplies, we also have a number of major mana potions you may find useful. I will give you one in exchange for fifteen necrotic runes.' WHERE `ID` IN (9320, 9337);
-UPDATE `quest_template` SET `LogDescription` = 'Collect 10 Necrotic Runes.', `QuestDescription` = 'You have aided our cause greatly, $N. If you wish, I can make available the tabard of the Argent Dawn. We are proud to have you among our allies.' WHERE `ID` IN (9341, 9343);
+UPDATE `quest_template` SET `LogDescription` = '收集30块死灵符文。', `QuestDescription` = '如果你带给我三十块死灵符文，我将让你挑选一件护手作为回报。这些应该在我们对抗天灾军团的战斗中很有价值。' WHERE `ID` IN (9094, 9333);
+UPDATE `quest_template` SET `LogDescription` = '收集8块死灵符文。',  `QuestDescription` = '如果你带给我八块从天灾入侵者身上获得的死灵符文，我可以给你一块圣化磨刀石。它应该能在你对抗巫妖王爪牙的战斗中提供很大的帮助。' WHERE `ID` IN (9317, 9335);
+UPDATE `quest_template` SET `LogDescription` = '收集8块死灵符文。',  `QuestDescription` = '作为交换天灾入侵者的死灵符文，银色黎明将给你一瓶祝福巫师之油。' WHERE `ID` IN (9318, 9334);
+UPDATE `quest_template` SET `LogDescription` = '收集15块死灵符文。', `QuestDescription` = '除了其他物资之外，我们还有一些特级治疗药水，你可能会觉得有用。我用它来交换你的十五块死灵符文。' WHERE `ID` IN (9321, 9336);
+UPDATE `quest_template` SET `LogDescription` = '收集15块死灵符文。', `QuestDescription` = '除了其他物资之外，我们还有一些特级法力药水，你可能会觉得有用。我用它来交换你的十五块死灵符文。' WHERE `ID` IN (9320, 9337);
+UPDATE `quest_template` SET `LogDescription` = '收集10块死灵符文。', `QuestDescription` = '你为我们的事业做出了巨大的贡献，$N。如果你愿意，我可以为你提供银色黎明的战袍。我们为有你这样的盟友而感到骄傲。' WHERE `ID` IN (9341, 9343);
 
 DELETE FROM `quest_offer_reward` WHERE `ID` IN
 (9094, 9317, 9318, 9321, 9337, 9341,  -- Alliance
  9320, 9333, 9334, 9335, 9336, 9343); -- Horde
-INSERT INTO `quest_offer_reward` (`ID`, `Emote1`, `Emote2`, `Emote3`, `Emote4`, `EmoteDelay1`, `EmoteDelay2`, `EmoteDelay3`, `EmoteDelay4`, `RewardText`, `VerifiedBuild`) VALUES 
-(9094, 0, 0, 0, 0, 0, 0, 0, 0, 'You\'ve done well, $N. Take your pick of hand protection in thanks for your efforts.', NULL),
-(9317, 0, 0, 0, 0, 0, 0, 0, 0, 'Thank you, $N. Here are your consecrated sharpening stones. Use them prudently.', NULL),
-(9318, 0, 0, 0, 0, 0, 0, 0, 0, 'I hope that you will find these items useful in future battles.', NULL),
-(9320, 0, 0, 0, 0, 0, 0, 0, 0, 'Here you are, $N. Be careful out there. Our numbers are not so large we can afford many battlefield casualties.', NULL),
-(9321, 0, 0, 0, 0, 0, 0, 0, 0, 'Here you are, $N. Be careful out there. Our numbers are not so large we can afford many battlefield casualties.', NULL),
-(9333, 0, 0, 0, 0, 0, 0, 0, 0, 'You\'ve done well, $N. Take your pick of hand protection in thanks for your efforts.', NULL),
-(9334, 0, 0, 0, 0, 0, 0, 0, 0, 'I hope that you will find these items useful in future battles.', NULL),
-(9335, 0, 0, 0, 0, 0, 0, 0, 0, 'Thank you, $N. Here are your consecrated sharpening stones. Use them prudently.', NULL),
-(9336, 0, 0, 0, 0, 0, 0, 0, 0, 'Here you are, $N. Be careful out there. Our numbers are not so large we can afford many battlefield casualties.', NULL),
-(9337, 0, 0, 0, 0, 0, 0, 0, 0, 'Here you are, $N. Be careful out there. Our numbers are not so large we can afford many battlefield casualties.', NULL),
-(9341, 0, 0, 0, 0, 0, 0, 0, 0, 'Take this tabard and wear it proudly. Perhaps your deeds might inspire others to take up arms in support of our fight against the Scourge.', NULL),
-(9343, 0, 0, 0, 0, 0, 0, 0, 0, 'Take this tabard and wear it proudly. Perhaps your deeds might inspire others to take up arms in support of our fight against the Scourge.', NULL);
+REPLACE INTO `quest_offer_reward` (`ID`, `Emote1`, `Emote2`, `Emote3`, `Emote4`, `EmoteDelay1`, `EmoteDelay2`, `EmoteDelay3`, `EmoteDelay4`, `RewardText`, `VerifiedBuild`) VALUES 
+(9094, 0, 0, 0, 0, 0, 0, 0, 0, '你做的很好，$N。收下你的护手装备感谢你的努力。', NULL),
+(9317, 0, 0, 0, 0, 0, 0, 0, 0, '谢谢你，$N。这是你的圣化磨刀石。谨慎地使用它们。', NULL),
+(9318, 0, 0, 0, 0, 0, 0, 0, 0, '我希望你在将来的战役中会发现这些物品很有用。', NULL),
+(9320, 0, 0, 0, 0, 0, 0, 0, 0, '拿去吧，$N。在那里要小心。我们的数量没有那么大，不能容许太多人阵亡。', NULL),
+(9321, 0, 0, 0, 0, 0, 0, 0, 0, '拿去吧，$N。在那里要小心。我们的数量没有那么大，不能容许太多人阵亡。', NULL),
+(9333, 0, 0, 0, 0, 0, 0, 0, 0, '你做的很好，$N。收下你的护手装备感谢你的努力。', NULL),
+(9334, 0, 0, 0, 0, 0, 0, 0, 0, '我希望你在将来的战役中会发现这些物品很有用。', NULL),
+(9335, 0, 0, 0, 0, 0, 0, 0, 0, '谢谢你，$N。这是你的圣化磨刀石。谨慎地使用它们。', NULL),
+(9336, 0, 0, 0, 0, 0, 0, 0, 0, '拿去吧，$N。在那里要小心。我们的数量没有那么大，不能容许太多人阵亡。', NULL),
+(9337, 0, 0, 0, 0, 0, 0, 0, 0, '拿去吧，$N。在那里要小心。我们的数量没有那么大，不能容许太多人阵亡。', NULL),
+(9341, 0, 0, 0, 0, 0, 0, 0, 0, '收下这件外袍并骄傲地穿上它。或许你的行为能激励其它人也加入我们对抗天灾军团的行列。', NULL),
+(9343, 0, 0, 0, 0, 0, 0, 0, 0, '收下这件外袍并骄傲地穿上它。或许你的行为能激励其它人也加入我们对抗天灾军团的行列。', NULL);
 
 DELETE FROM `npc_text` WHERE `ID` = 66000;
-INSERT INTO `npc_text` (`ID`, `text0_0`, `text0_1`) VALUES 
-(66000, 'The cultist is in a deep trance...', 'The cultist is in a deep trance...');
+REPLACE INTO `npc_text` (`ID`, `text0_0`, `text0_1`) VALUES 
+(66000, '这个邪教徒正处于深度冥想状态……', '这个邪教徒正处于深度冥想状态……');
 
 DELETE FROM `gossip_menu` WHERE `MenuID` = 66000;
-INSERT INTO `gossip_menu` (`MenuID`, `TextID`) VALUES (66000, 66000);
+REPLACE INTO `gossip_menu` (`MenuID`, `TextID`) VALUES (66000, 66000);
 
 DELETE FROM `gossip_menu_option` WHERE `MenuID` = 66000;
-INSERT INTO `gossip_menu_option` (`MenuID`, `OptionID`, `OptionIcon`, `OptionText`, `OptionBroadcastTextID`, `OptionType`, `OptionNpcFlag`, 
+REPLACE INTO `gossip_menu_option` (`MenuID`, `OptionID`, `OptionIcon`, `OptionText`, `OptionBroadcastTextID`, `OptionType`, `OptionNpcFlag`, 
 `ActionMenuID`, `ActionPoiID`, `BoxCoded`, `BoxMoney`, `BoxText`, `BoxBroadcastTextID`, `VerifiedBuild`) VALUES 
-(66000, 0, 0, 'Use 8 necrotic runes and disrupt his ritual.', 0, 1, 1, 0, 0, 0, 0, NULL, 0, 0); 
+(66000, 0, 0, '使用8块死灵符文打断他的仪式。', 0, 1, 1, 0, 0, 0, 0, NULL, 0, 0); 
 
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 15 AND `SourceGroup` = 66000;
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 (15, 66000, 0, 0, 0, 2, 0, 22484, 8, 0, 0, 0, 0, '', 'Cultist Engineer - Show gossip only if the player has 8 Necrotic Runes');
 
 DELETE FROM `creature_text` WHERE `CreatureID` = @CULTIST_ENGINEER AND `GroupID` = 1;
-INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
-(@CULTIST_ENGINEER, 1, 0, 'These heroics mean nothing, $c.  Your future is sealed and your soul is doomed to servitude!', 12, 0, 100, 0, 0, 0, 12421, 0, 'Cultist Engineer');
+REPLACE INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
+(@CULTIST_ENGINEER, 1, 0, '你的英雄气概在这里一无是处，$c。你的未来一面死寂，你的灵魂将颤栗着成为我的奴仆！', 12, 0, 100, 0, 0, 0, 12421, 0, 'Cultist Engineer');
 
 DELETE FROM `creature_text` WHERE `CreatureID` = @SHADOW_OF_DOOM AND `GroupID` = 0;
-INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES
+REPLACE INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES
 (@SHADOW_OF_DOOM, 0, 0, '', 12, 0, 0, 0, 0, 0, 12420, 0, 'Shadow of Doom Aggro 1'),
 (@SHADOW_OF_DOOM, 0, 1, '', 12, 0, 0, 0, 0, 0, 12421, 0, 'Shadow of Doom Aggro 2'),
 (@SHADOW_OF_DOOM, 0, 2, '', 12, 0, 0, 0, 0, 0, 12422, 0, 'Shadow of Doom Aggro 3'),

@@ -13,7 +13,7 @@ DELETE FROM `creature_loot_template` WHERE `Item` IN (40752, 40753, 45624, 47241
 31370, 31381, 31384, 31386, 31456, 31463, 31464, 31465, 31469, 31506, 31507, 31508, 31509, 31510, 31511, 31512, 31533, 31536, 31537, 31538, 31558, 31559, 31560, 31610, 
 31611, 31612, 31656, 31673, 31679, 31722, 32313, 35490, 36476, 36494, 36497, 36498, 36502, 36538, 36658, 36938, 37613, 37627, 37677, 38112, 38113, 38599, 38603);
 
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
 --
 (29932, 40752, 0, 100, 0, 1, 0, 1, 1, 'Eck the Ferocious - Emblem of Heroism'), 
 (29932, 40753, 0, 100, 0, 1, 0, 1, 1, 'Eck the Ferocious - Emblem of Valor'),
@@ -297,7 +297,7 @@ INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `Q
 (38603, 47241, 0, 100, 0, 1, 0, 2, 2, 'Marwyn (1) - Emblem of Triumph');
 
 DELETE FROM `gameobject_loot_template` WHERE `Item` IN (40752, 40753, 45624, 47241) AND `Entry` IN (24524, 24589, 26260, 27416, 27417);
-INSERT INTO `gameobject_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
+REPLACE INTO `gameobject_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
 (24524, 40752, 0, 100, 0, 1, 0, 1, 1, 'Cache of Eregos'),
 (24524, 40753, 0, 100, 0, 1, 0, 1, 1, 'Cache of Eregos'),
 (24524, 45624, 0, 100, 0, 1, 0, 1, 1, 'Cache of Eregos'),
@@ -320,7 +320,7 @@ INSERT INTO `gameobject_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, 
 (27417, 47241, 0, 100, 0, 1, 0, 1, 1, 'Confessor\'s Cache');
 
 DELETE FROM `item_loot_template` WHERE `Item` IN (40752, 40753, 45624, 47241) AND `Entry` = 52676;
-INSERT INTO `item_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
+REPLACE INTO `item_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 (52676, 40752, 0, 100, 0, 1, 0, 2, 2, 'Cache of the Ley-Guardian'),
 (52676, 40753, 0, 100, 0, 1, 0, 2, 2, 'Cache of the Ley-Guardian'),
 (52676, 45624, 0, 100, 0, 1, 0, 2, 2, 'Cache of the Ley-Guardian'),
@@ -333,7 +333,7 @@ DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 1 AND `SourceEntry` I
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 4 AND `SourceEntry` IN (40752, 40753, 45624, 47241) AND `SourceGroup` IN (24524, 24589, 26260, 27416, 27417);
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 5 AND `SourceEntry` IN (40752, 40753, 45624, 47241) AND `SourceGroup` IN (52676);
 
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 --
 (1, 28860, 40752, 0, 0, 8, 0, 66014, 0, 0, 1, 0, 0, '', 'Emblem of Heroism will only drop if the player has NOT completed PROGRESSION_WOTLK_TIER_1'),
@@ -810,7 +810,7 @@ UPDATE `creature_template` SET `lootid` = 30452 WHERE `entry` = 30452; -- tempor
 UPDATE `creature_template` SET `lootid` = 31534 WHERE `entry` = 31534; -- temporary
 
 DELETE FROM `creature_loot_template` WHERE `Item` IN (40752, 40753, 45624, 47241) AND `Entry` IN (28860, 30449, 30451, 30452, 31311, 31520, 31534, 31535);
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
 --
 (28860, 40752, 0, 100, 0, 1, 0, 1, 1, 'Sartharion - Emblem of Heroism'),
 (28860, 40753, 0, 100, 0, 1, 0, 1, 1, 'Sartharion - Emblem of Valor'),
@@ -843,7 +843,7 @@ INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `Q
 (31535, 47241, 0, 100, 0, 1, 0, 1, 1, 'Vesperon (1) - Emblem of Triump');
 
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 1 AND `SourceEntry` IN (40752, 40753, 45624, 47241) AND `SourceGroup` IN (28860, 30449, 30451, 30452, 31311, 31520, 31534, 31535);
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 --
 (1, 28860, 40752, 0, 0, 8, 0, 66014, 0, 0, 1, 0, 0, '', 'Emblem of Heroism will only drop if the player has NOT completed PROGRESSION_WOTLK_TIER_1'),
@@ -896,7 +896,7 @@ DELETE FROM `conditions` WHERE `SourceEntry` IN (40753, 45624, 47241) AND `Sourc
 DELETE FROM `creature_loot_template` WHERE `Item` IN (40753, 45624, 47241) AND `Entry` IN 
 (15928, 15931, 15932, 15936, 15952, 15953, 15954, 15956, 15989, 15990, 16011, 16028, 16060, 16061, 29249, 29268, 29278, 29324, 29373, 29417, 29448, 29615, 29701, 29718, 29940, 29955, 29991, 30061);
 
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
 --
 (15928, 40753, 0, 100, 0, 1, 0, 1, 1, 'Thaddius - Emblem of Valor'),
 (15928, 45624, 0, 100, 0, 1, 0, 1, 1, 'Thaddius - Emblem of Conquest'),
@@ -984,7 +984,7 @@ INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `Q
 (30061, 47241, 0, 100, 0, 1, 0, 2, 2, 'Kel\'Thuzad (1) - Emblem of Triumph');
 
 DELETE FROM `gameobject_loot_template` WHERE `Item` IN (40753, 45624, 47241) AND `Entry` IN (25192, 25193, 26094, 26097);
-INSERT INTO `gameobject_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
+REPLACE INTO `gameobject_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
 (25192, 40753, 0, 100, 0, 1, 0, 1, 1, 'Four Horsemen Chest'),
 (25192, 45624, 0, 100, 0, 1, 0, 1, 1, 'Four Horsemen Chest'),
 (25192, 47241, 0, 100, 0, 1, 0, 1, 1, 'Four Horsemen Chest'),
@@ -1002,7 +1002,7 @@ DELETE FROM `conditions` WHERE `SourceEntry` IN (40753, 45624, 47241) AND `Sourc
 (15928, 15931, 15932, 15936, 15952, 15953, 15954, 15956, 15989, 15990, 16011, 16028, 16060, 16061, 29249, 29268, 29278, 29324, 29373, 29417, 29448, 29615, 29701, 29718, 29940, 29955, 29991, 30061);
 DELETE FROM `conditions` WHERE `SourceEntry` IN (40753, 45624, 47241) AND `SourceGroup` IN (25192, 25193, 26094, 26097);
 
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 --
 (1, 15928, 40753, 0, 0, 8, 0, 66015, 0, 0, 1, 0, 0, '', 'Emblem of Valor will only drop if the player has NOT completed PROGRESSION_WOTLK_TIER_2'),
@@ -1140,7 +1140,7 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 DELETE FROM `creature_loot_template` WHERE `Item` IN (45624, 47241) AND `Entry` IN 
 (32857, 32867, 32927, 33118, 33186, 33190, 33271, 33288, 33293, 33449, 33515, 33692, 33693, 33694, 33724, 33885, 33955, 33993, 33994, 34175);
 
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
 --
 (32857, 45624, 0, 100, 0, 1, 0, 1, 1, 'Stormcaller Brundir - Emblem of Conquest'), -- Ulduar, Assembly of Iron
 (32857, 47241, 0, 100, 0, 1, 0, 1, 1, 'Stormcaller Brundir - Emblem of Triumph'),
@@ -1186,7 +1186,7 @@ INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `Q
 DELETE FROM `gameobject_loot_template` WHERE `Item` IN (45624, 47241) AND `Entry` IN 
 (26929, 26946, 26955, 26956, 26959, 26960, 26961, 26962, 26963, 26967, 26974, 27030, 27061, 27068, 27073, 27074, 27078, 27079, 27080, 27081, 27085, 27086);
 
-INSERT INTO `gameobject_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
+REPLACE INTO `gameobject_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
 (26929, 45624, 0, 100, 0, 1, 0, 1, 2, 'Cache of Living Stone'),
 (26929, 47241, 0, 100, 0, 1, 0, 1, 2, 'Cache of Living Stone'),
 (26946, 45624, 0, 100, 0, 1, 0, 1, 1, 'Cache of Winter'),
@@ -1233,7 +1233,7 @@ INSERT INTO `gameobject_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, 
 (27086, 47241, 0, 100, 0, 1, 0, 1, 1, 'Cache of Innovation');
 
 DELETE FROM `reference_loot_template` WHERE `Entry` = 34349;
-INSERT INTO `reference_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
+REPLACE INTO `reference_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
 (34349, 45624, 0, 100, 0, 1, 0, 1, 1, 'Emblem of Conquest'),
 (34349, 47241, 0, 100, 0, 1, 0, 1, 1, 'Emblem of Triumph');
 
@@ -1243,7 +1243,7 @@ DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 4  AND `SourceEntry` 
 (26929, 26946, 26955, 26956, 26959, 26960, 26961, 26962, 26963, 26967, 26974, 27030, 27061, 27068, 27073, 27074, 27078, 27079, 27080, 27081, 27085, 27086);
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 10 AND `SourceEntry` IN (45624, 47241) AND `SourceGroup` IN (34349);
 
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 --
 (1, 32857, 45624, 0, 0, 8, 0, 66016, 0, 0, 1, 0, 0, '', 'Emblem of Conquest will only drop if the player has NOT completed PROGRESSION_WOTLK_TIER_3'),

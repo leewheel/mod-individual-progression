@@ -155,7 +155,7 @@ std::array<AVDefenderChain, 6> constexpr AV_HORDE_DEFENDER_CHAINS = { {
     { { 0, 0, 0, 0 },                  false }, // patrols/bunkers/towers
 } };
 
-constexpr char const* AV_TIER_NAMES[4] = { "Regular", "Seasoned", "Veteran", "Champion" };
+constexpr char const* AV_TIER_NAMES[4] = { "普通", "老练", "老兵", "精锐" };
 
 struct AVSummonPos { float x, y, z, o; };
 AVSummonPos constexpr NPC_DRUIDS_POS_A = { 729.200f, -78.8120f, 51.6335f, 0.0f };

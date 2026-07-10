@@ -69,7 +69,7 @@ UPDATE `creature_template` SET `flags_extra` = 2, `ScriptName` = 'npc_ipp_tbc'  
 
 -- pvp officer room doors
 DELETE FROM `gameobject` WHERE `guid` IN (626262, 631660, 631661);
-INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `rotation0`, `rotation1`, `rotation2`, `rotation3`, `spawntimesecs`, `animprogress`, `state`, `ScriptName`, `VerifiedBuild`, `Comment`) VALUES 
 --
 (626262, 176576, 0, 1519, 1519, 1, 1, -8765.82, 403.164, 104.162, -0.898844, 0, 0, -0.434445, 0.900698, 900, 100, 1, 'gobject_ipp_pvp_closed', 0, NULL),

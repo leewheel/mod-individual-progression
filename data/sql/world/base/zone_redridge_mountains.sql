@@ -6,7 +6,7 @@ DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN
 (334, 335, 345, 422, 423, 424, 426, 428, 429, 430, 431, 432, 433, 434, 435, 436, 437, 440, 441, 442, 445, 446, 485, 486, 
 505, 518, 544, 545, 547, 548, 568, 580, 584, 615, 616, 703, 711, 712, 1083, 4064, 4065, 4462, 4463, 4464, 14271);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -171,7 +171,7 @@ UPDATE `creature` SET `spawntimesecs` = 900 WHERE `id` IN (334, 335, 436, 486, 4
 
 -- missing patrols
 DELETE FROM `creature` WHERE `guid` IN (17972, 18379, 18389, 18394, 18396, 18397, 18434, 18451, 18455, 26167, 28362, 31829);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, 
 `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
 --
 (18389, 4065, 0, 0, 0, 1, 1, 1, -9440.13, -3073.22, 136.855, 5.02655, 900, 0, 0, 521, 0,    0, 0, 0, 0, '', 0, 0, NULL), -- Blackrock Sentry
@@ -189,14 +189,14 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `p
 (31829, 436, 0, 0, 0, 1, 1, 1, -9421.56, -3059.08, 136.809, 0.669421, 900, 0, 1, 463, 1357, 2, 0, 0, 0, '', 0, 0, NULL); -- Blackrock Shadowcaster
 
 DELETE FROM `creature_formations` WHERE `leaderGUID` IN (18397);
-INSERT INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES
+REPLACE INTO `creature_formations` (`leaderGUID`, `memberGUID`, `dist`, `angle`, `groupAI`, `point_1`, `point_2`) VALUES
 (18397, 18397, 0, 0, 515, 0, 0),
 (18397, 18389, 4, 135, 515, 0, 0),
 (18397, 18394, 4, 180, 515, 0, 0),
 (18397, 18396, 4, 225, 515, 0, 0);
 
 DELETE FROM `creature_addon` WHERE `guid` IN (17972, 18379, 18397, 18434, 18451, 18455, 26167, 28362, 31829);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (17972, 179720, 0, 0, 1, 0, 0, NULL),
 (18379, 183790, 0, 0, 1, 0, 0, NULL),
 (18397, 183970, 0, 0, 1, 0, 0, NULL), -- Tharil'zun
@@ -208,7 +208,7 @@ INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `e
 (31829, 318290, 0, 0, 1, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` IN (179720, 183790, 183970, 184340, 184510, 184550, 261670, 283620, 318290);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 --
 (179720, 1, -9524.7, -2876.99, 93.2134, NULL, 0, 0, 0, 100, 0),
 (179720, 2, -9517.62, -2910.78, 104.548, NULL, 40000, 0, 0, 100, 0),

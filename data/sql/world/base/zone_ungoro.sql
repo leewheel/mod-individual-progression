@@ -7,7 +7,7 @@ DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN
 (-24081, 6498, 6500, 6501, 6502, 6503, 6504, 6505, 6506, 6507, 6508, 6509, 6510, 6511, 6512, 6513, 6514, 6516, 6517, 6518, 6519, 
 6520, 6521, 6527, 6551, 6552, 6553, 6554, 6555, 6560, 6581, 6582, 6583, 6584, 6585, 9162, 9163, 9164, 9165, 9166, 9167, 9376, 9622);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -91,7 +91,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 -- fix `Making Sense of It` quest credit issue. (not rewarding everyone in the party)
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` = 9117;
 DELETE FROM `smart_scripts` WHERE `source_type` = 9 AND `entryorguid` = 911700;
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -124,11 +124,11 @@ UPDATE `creature` SET`MovementType` = 1, `wander_distance` = 5 WHERE `id` IN (65
 UPDATE `creature` SET `MovementType` = 2, `currentwaypoint` = 1 WHERE `id` = 9622; -- U'cha
 
 DELETE FROM `creature_addon` WHERE `guid` IN (24254);
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (24254, 242540, 0, 0, 1, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` IN (242540);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 (242540, 1,  -6281.77, -2001.47, -263.794, NULL, 0, 0, 0, 100, 0),
 (242540, 2,  -6272.69, -2002.04, -264.302, NULL, 0, 0, 0, 100, 0),
 (242540, 3,  -6263.53, -1994.65, -264.302, NULL, 0, 0, 0, 100, 0),

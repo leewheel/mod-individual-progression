@@ -1,7 +1,7 @@
 /* Formula, Plans, Schematics */
 
 DELETE FROM `creature_loot_template` WHERE `Reference` = 50501 AND `Entry` BETWEEN 11980 AND 28132;
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
 --
 -- (7370, 50501, 50501, 0.04, 0, 1, 1, 1, 1, 'ReferenceTable - Formula, Plans, Schematics'), -- vanilla creature
 (11980, 50501, 50501, 0.2, 0, 1, 1, 1, 1, 'ReferenceTable - Formula, Plans, Schematics'),
@@ -1529,7 +1529,7 @@ DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 1 AND `SourceEntry` I
 
 -- add new contions for reference table 50501
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 10 AND `ConditionTypeOrReference` = 7 AND `SourceGroup` = 50501;
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 --
 (10, 50501, 24205, 0, 0, 7, 0, 755, 1, 0, 0, 0, 0, '', NULL),
@@ -1604,7 +1604,7 @@ UPDATE `creature_loot_template` SET `Chance` = 9     WHERE `Item` = 32428 AND `E
 UPDATE `creature_loot_template` SET `Chance` = 8     WHERE `Item` = 32428 AND `Entry` = 23374;
 
 DELETE FROM `creature_loot_template` WHERE `Item` = 32428 AND `Entry` IN (22960, 22963, 23147);
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
 (22960, 32428, 0, 4, 0, 1, 0, 1, 1, 'Dragonmaw Wyrmcaller - Heart of Darkness');
 
 -- fix drop rates for Mark of the Illidari
@@ -1706,7 +1706,7 @@ DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 1 AND `ConditionTypeO
 23018, 23028, 23030, 23047, 23049, 23147, 23172, 23196, 23222, 23223, 23232, 23235, 23236, 23237, 23239, 23330, 23337, 23339, 23374, 23394, 23397, 23400, 23402, 23403);
 
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 10 AND `ConditionTypeOrReference` = 7 AND `SourceGroup` IN (36197, 36199);
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 -- Hyjal
 (10, 36197, 32736, 0, 0, 7, 0, 164, 1, 0, 0, 0, 0, '', 'Plans: Swiftsteel Bracers'),
@@ -1724,7 +1724,7 @@ DELETE FROM `creature_loot_template` WHERE `Item` = 31952 AND `Entry` IN
 (22844, 22845, 22846, 22847, 22853, 22855, 22869, 22879, 22880, 22882, 22939, 22945, 22946, 22953, 22954, 22955, 22956, 22957, 22959, 22960, 22962, 22963, 22964, 22965, 
 23018, 23028, 23030, 23047, 23049, 23147, 23172, 23196, 23222, 23223, 23232, 23235, 23236, 23237, 23239, 23330, 23337, 23339, 23374, 23394, 23397, 23400, 23402, 23403);
 
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
 --
 (22844, 31952, 0, 0.4, 0, 1, 0, 1, 1, 'Khorium Lockbox'),
 (22845, 31952, 0, 0.4, 0, 1, 0, 1, 1, 'Khorium Lockbox'),
@@ -1778,7 +1778,7 @@ INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `Q
 DELETE FROM `creature_loot_template` WHERE `Reference` IN (36196, 36197) AND `Entry` IN
 (17895, 17897, 17898, 17899, 17905, 17906, 17907, 17908, 17916);
 
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
 --
 (17895, 36196, 36196, 1, 0, 1, 1, 1, 1, 'Hyjal - Trash loot - Epic Items'),
 (17897, 36196, 36196, 1, 0, 1, 1, 1, 1, 'Hyjal - Trash loot - Epic Items'),
@@ -1805,7 +1805,7 @@ DELETE FROM `creature_loot_template` WHERE `Reference` IN (34093, 36198, 36199) 
 (22844, 22845, 22846, 22847, 22853, 22855, 22869, 22873, 22874, 22875, 22876, 22877, 22878, 22879, 22880, 22881, 22882, 22884, 22885, 22939, 22945, 22946, 22953, 22954, 22955, 22956, 22957, 22959, 
  22960, 22962, 22963, 22964, 22965, 23018, 23028, 23030, 23047, 23049, 23147, 23172, 23196, 23222, 23223, 23232, 23235, 23236, 23237, 23239, 23330, 23337, 23339, 23374, 23394, 23397, 23400, 23402, 23403);
 
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
 --
 (22844, 34093, 34093, 15, 0, 1, 1, 1, 1, 'ReferenceTable - Epic Quality GEM'),
 (22845, 34093, 34093, 15, 0, 1, 1, 1, 1, 'ReferenceTable - Epic Quality GEM'),
@@ -1980,7 +1980,7 @@ INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `Q
 
 -- fix Black Temple boss loot tables
 DELETE FROM `creature_loot_template` WHERE `Entry` IN (22841, 22871, 22887, 22898, 22917, 22947, 22948);
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 --
 (22841, 29434, 0, 100, 0, 1, 0, 2, 2,     'Shade of Akama - Badge of Justice'),
 (22841, 34069, 34069, 10, 0, 1, 0, 1, 1,  'Shade of Akama - (ReferenceTable)'),
@@ -2029,7 +2029,7 @@ INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `Q
 
 -- hide Badge of Justice drops until TBC tier 5
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 1 AND `SourceEntry` = 29434 AND `ConditionTypeOrReference` = 8 AND `SourceGroup` IN (22841, 22871, 22887, 22898, 22917, 22947, 22948);
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 --
 (1, 22841, 29434, 0, 0, 8, 0, 66012, 0, 0, 0, 0, 0, '', 'Badge of Justice will only drop if the player has completed PROGRESSION_TBC_TIER_4'),
@@ -2043,7 +2043,7 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 
 -- fix Hyjal boss loot tables
 DELETE FROM `creature_loot_template` WHERE `Entry` IN (17767, 17808, 17888, 17842, 17968);
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 --
 (17767, 29434, 0, 100, 0, 1, 0, 2, 2,     'Rage Winterchill - Badge of Justice'),
 (17767, 32459, 0, 100, 1, 1, 0, 1, 1,     'Rage Winterchill - Time-Phased Phylactery'),
@@ -2079,7 +2079,7 @@ INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `Q
 
 -- hide Badge of Justice drops until TBC tier 5
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 1 AND `SourceEntry` = 29434 AND `ConditionTypeOrReference` = 8 AND `SourceGroup` IN (17767, 17808, 17842, 17888, 17968);
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 --
 (1, 17767, 29434, 0, 0, 8, 0, 66012, 0, 0, 0, 0, 0, '', 'Badge of Justice will only drop if the player has completed PROGRESSION_TBC_TIER_4'),
@@ -2110,7 +2110,7 @@ DELETE FROM `creature_loot_template` WHERE `item` IN (30021, 30022, 30023, 30025
 
 -- add reference loot table to trash creatures
 DELETE FROM `creature_loot_template` WHERE `Item` IN (34052, 36098);
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES 
 --
 (20031, 34052, 34052, 1.768, 0, 1, 1, 1, 1, 'T5 - Recipes'), --  The Eye
 (20032, 34052, 34052, 1.822, 0, 1, 1, 1, 1, 'T5 - Recipes'),
@@ -2199,7 +2199,7 @@ UPDATE `creature_loot_template` SET `Chance` = 2.913 WHERE `Reference` = 55500 A
 
 -- fix boss loot tables
 DELETE FROM `creature_loot_template` WHERE `Entry` IN (18805, 19516, 19622, 21212, 21213, 21214, 21215, 21216, 21217);
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 --
 (18805, 21877, 0, 18, 0, 1, 1, 3, 3,      'High Astromancer Solarian - Netherweave Cloth'),
 (18805, 29434, 0, 100, 0, 1, 0, 2, 2,     'High Astromancer Solarian - Badge of Justice'),
@@ -2266,7 +2266,7 @@ INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `Q
 
 -- hide Badge of Justice drops until TBC tier 5
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 1 AND `SourceEntry` = 29434 AND `ConditionTypeOrReference` = 8 AND `SourceGroup` IN (18805, 19516, 19622, 21212, 21213, 21214, 21215, 21216, 21217);
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 --
 (1, 18805, 29434, 0, 0, 8, 0, 66012, 0, 0, 0, 0, 0, '', 'Badge of Justice will only drop if the player has completed PROGRESSION_TBC_TIER_4'),

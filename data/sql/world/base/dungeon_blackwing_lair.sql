@@ -4,7 +4,7 @@ UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN 
 (12420, 12457, 12458, 12459, 12460, 12461, 12463, 12465, 12467, 12468, 13996);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -44,12 +44,12 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 UPDATE `creature_template` SET `flags_extra` = 32769 WHERE `entry` = 13020; -- was 1, now includes CREATURE_FLAG_EXTRA_GUARD
 
 DELETE FROM `spell_script_names` WHERE `spell_id` = 23310 AND `ScriptName` = 'spell_bwl_chromaggus_time_lapse';
-INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES
+REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES
 (23310, 'spell_bwl_chromaggus_time_lapse');
 
 -- Nefarian Loot
 DELETE FROM `creature_loot_template` WHERE `Entry` = 11583;
-INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`) VALUES
+REPLACE INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`) VALUES
 (11583, 19002, 0,     100.0, 0,  1, 0, 1, 1),
 (11583, 19003, 0,     100.0, 0,  1, 0, 1, 1),
 (11583, 21138, 0,     100.0, 1,  1, 0, 1, 1),
@@ -66,7 +66,7 @@ INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `Q
 (11583, 30551, 30551, 100.0, 0, 1, 0, 1, 1);
 
 DELETE FROM `reference_loot_template` WHERE `Entry` IN (34009, 30105, 30044, 30089, 30172, 30173, 30330, 30486, 30487, 30551, 30171);
-INSERT INTO `reference_loot_template`(`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`) VALUES
+REPLACE INTO `reference_loot_template`(`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`) VALUES
 (30044, 2564,  0,  0.0, 0, 1, 1, 1,1),
 (30044, 7734,  0,  0.0, 0, 1, 1, 1,1),
 (30044, 13009, 0,  0.0, 0, 1, 1, 1,1),

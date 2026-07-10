@@ -20,7 +20,7 @@ DELETE FROM `pool_gameobject` WHERE `guid` IN
 5330492, 5330493, 5330494, 5330495, 5330496, 5330500, 5330501, 5330502, 5330503,
 5330504, 5330505, 5330506, 5330507, 5330508);
 
-INSERT INTO `pool_gameobject` (`guid`, `pool_entry`, `chance`, `description`) VALUES
+REPLACE INTO `pool_gameobject` (`guid`, `pool_entry`, `chance`, `description`) VALUES
 (5330334, 47853, 0.0, 'Naxxramas - Frozen Rune - Spider Wing, left (181287)'),
 (5330333, 47853, 0.0, 'Naxxramas - Frozen Rune - Spider Wing, left (181287)'),
 (5330332, 47853, 0.0, 'Naxxramas - Frozen Rune - Spider Wing, left (181287)'),
@@ -190,7 +190,7 @@ DELETE FROM `gameobject` WHERE `guid` IN
 5330491, 5330492, 5330493, 5330494, 5330495, 5330496, 5330500, 5330501, 5330502,
 5330503, 5330504, 5330505, 5330506, 5330507, 5330508);
 
-INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, `rotation0`, `rotation1`, `rotation2`, `rotation3`, `spawntimesecs`, `animprogress`, `state`, `ScriptName`, `VerifiedBuild`) VALUES
+REPLACE INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, `rotation0`, `rotation1`, `rotation2`, `rotation3`, `spawntimesecs`, `animprogress`, `state`, `ScriptName`, `VerifiedBuild`) VALUES
 (5330450, 181287, 533, 0, 0, 2, 1, 3430.49, -3195.66, 297.557, 4.72984, 0.0, 0.0, -0.700909, 0.713251, 604800, 100, 1, '', 0),
 (5330447, 181287, 533, 0, 0, 2, 1, 3254.53, -2964.99, 298.207, 0.0174525, 0.0, 0.0, 0.00872612, 0.999962, 604800, 100, 1, '', 0),
 (5330446, 181287, 533, 0, 0, 2, 1, 3156.22, -2963.77, 271.041, 3.14159, 0.0, 0.0, -1.0, 0.0, 604800, 100, 1, '', 0),
@@ -342,7 +342,7 @@ INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, 
 (5330508, 181287, 533, 0, 0, 2, 1, 2635.7, -3015.73, 243.351, 3.90954, 0.0, 0.0, -0.927183, 0.374608, 604800, 100, 1, '', 0);
 
 DELETE FROM `pool_template` WHERE `entry` BETWEEN 47850 AND 47870;
-INSERT INTO `pool_template`
+REPLACE INTO `pool_template`
 (`entry`, `max_limit`, `description`)
 VALUES
 (47850, 1, 'Naxxramas - Frozen Rune - Anub''Rekhan (181287)'),

@@ -11,7 +11,7 @@ UPDATE `creature_template` SET `npcflag` = 81 WHERE `entry` IN (1246, 1466, 1703
 UPDATE `creature_template` SET `type_flags` = 134217728 WHERE `entry` IN (5157, 10276, 11029);
 
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 15 AND `SourceEntry` = 0 AND `ConditionTypeOrReference` = 7 AND `SourceGroup` IN (593, 2761, 4123, 4147, 4150, 4160, 4205, 4345);
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `ConditionTypeOrReference`, `ConditionValue1`, `ConditionValue2`, `Comment`) VALUES
+REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `ConditionTypeOrReference`, `ConditionValue1`, `ConditionValue2`, `Comment`) VALUES
 (15, 593,  0, 7, 164, 125, 'Show menu if blacksmithing is 125 or higher'), -- Bengus Deepforge <Artisan Blacksmith>
 (15, 2761, 0, 7, 164, 50,  'Show menu if blacksmithing is 50 or higher'),  -- Rotgath Stonebeard <Expert Blacksmith>
 (15, 4123, 0, 7, 171, 50,  'Show menu if alchemy is 50 or higher'),        -- Tally Berryfizz <Expert Alchemist>
@@ -23,7 +23,7 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 
 -- battlemasters
 DELETE FROM `creature` WHERE `id` IN (857, 5113, 5115, 6114, 12197, 14982, 19915, 34991, 35007, 35025, 35600) OR `guid` = 86263;
-INSERT INTO `creature` (`guid`, `id`, `map`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `curhealth`, `curmana`) VALUES 
+REPLACE INTO `creature` (`guid`, `id`, `map`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `curhealth`, `curmana`) VALUES 
 (600857, 857,   0, 1, -5039.19, -1266.88, 510.326, 3.92579,  120, 1, 0), -- Donal Osgood <Arathi Basin Battlemaster>
 (2019,   5113,  0, 1, -5047.54, -1269.69, 510.408, 6.24828,  540, 1, 0), -- Kelv Sternhammer <Warrior Trainer>
 (2020,   5115,  0, 1, -5043.84, -1274.68, 510.324, 1.33007,  490, 1, 0), -- Daera Brightspear <Hunter Trainer>

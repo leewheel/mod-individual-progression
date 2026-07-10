@@ -1,5 +1,5 @@
 DELETE FROM `command` WHERE `name` IN ('ip get', 'ip set', 'ip setbot', 'ip setrep', 'ip tele', 'ip pvp', 'ip attune');
-INSERT INTO `command` (`name`, `security`, `help`) VALUES
+REPLACE INTO `command` (`name`, `security`, `help`) VALUES
 ('ip get', 0, 'Syntax: .ip get [$player]\nShows the current progression level for yourself, your target, or a named player.'),
 ('ip set', 2, 'Syntax: .ip set $progressionLevel\nSets the player to the given progression level.'),
 ('ip setbot', 0, 'Syntax: .ip setbot\nSets all bots in the group to your progression level.'),

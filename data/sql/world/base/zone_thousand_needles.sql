@@ -7,7 +7,7 @@ DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN
 (4093, 4094, 4095, 4096, 4097, 4099, 4100, 4101, 4104, 4107, 4109, 4110, 4111, 4112, 4116, 4117, 4118, 4119, 4120, 4124, 4131, 4133, 4139, 
 4140, 4142, 4143, 4144, 4147, 4150, 4151, 4154, 4248, 4249, 4499, 5933, 5934, 5937, 7404, 9377, 10756, 10757, 10758, 10759, 10760, 10882, 10896, 14426, 14427);
 
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -110,12 +110,12 @@ UPDATE `creature` SET `MovementType` = 1, `wander_distance` = 10 WHERE `id` = 59
 UPDATE `creature` SET `MovementType` = 2, `currentwaypoint` = 1  WHERE `id` = 4499; -- Rok'Alim the Pounder, waypoints
 
 DELETE FROM `creature_addon` WHERE `guid` = 21591;
-INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
+REPLACE INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES 
 (21591, 215910, 0, 0, 0, 0, 0, NULL);
 
 DELETE FROM `waypoint_data` WHERE `id` IN (44990); -- previously used incorrect id
 DELETE FROM `waypoint_data` WHERE `id` IN (215910);
-INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
+REPLACE INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `position_z`, `orientation`, `delay`, `move_type`, `action`, `action_chance`, `wpguid`) VALUES 
 (215910, 1, -5204.92, -1565.98, -48.1972, 0, 0, 0, 0, 100, 0),
 (215910, 2, -5214.62, -1555.88, -49.2243, 0, 0, 0, 0, 100, 0),
 (215910, 3, -5230.7, -1546.65, -49.3283, 0, 0, 0, 0, 100, 0),

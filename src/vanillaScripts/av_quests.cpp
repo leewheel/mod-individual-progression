@@ -101,7 +101,7 @@ namespace
 
         bool isAlliance = team == TEAM_ALLIANCE;
         ChatHandler(player->GetSession()).PSendSysMessage("{}: {}/{}",
-            isAlliance ? "Ivus the Forest Lord" : "Lokholar the Ice Lord",
+            isAlliance ? "森林之王伊维斯" : "冰之王洛考拉尔",
             state.bossPoints[team], BossPointsRequired());
 
         if (state.ElementalSummoned[team] || state.bossPoints[team] < BossPointsRequired())
@@ -126,8 +126,8 @@ namespace
             quartermaster->RemoveNpcFlag(UNIT_NPC_FLAG_QUESTGIVER);
 
         ChatHandler(player->GetSession()).PSendSysMessage(
-            "Speak with {} to upgrade your troops to {}!",
-            team == TEAM_ALLIANCE ? "Murgot Deepforge" : "Smith Regzar",
+"与{}交谈，将你的部队升级为{}！",
+team == TEAM_ALLIANCE ? "穆尔戈特·深炉" : "铁匠雷格扎",
             AV_TIER_NAMES[state.defenderTier[team] + 1]);
     }
 
@@ -137,7 +137,7 @@ namespace
         uint32 required = sConfigMgr->GetOption<uint32>("IndividualProgression.AV.StablesTurnIns", 10);
         uint32 npcEntry = team == TEAM_ALLIANCE ? NPC_AV_STABLE_MASTER_A : NPC_AV_STABLE_MASTER_H;
 
-        ChatHandler(player->GetSession()).PSendSysMessage("Mount turn-ins: {}/{}", turnIns, required);
+        ChatHandler(player->GetSession()).PSendSysMessage("坐骑上缴: {}/{}", turnIns, required);
 
         if (turnIns < required)
             return;
@@ -146,7 +146,7 @@ namespace
 
         if (state.HarnessesCompleted[team] == false)
         {
-            ChatHandler(player->GetSession()).PSendSysMessage("We still need more harnesses, please help the Cavalry Commander.");
+            ChatHandler(player->GetSession()).PSendSysMessage("我们还需要更多马具，请帮助骑兵指挥官。");
             return;
         }
     }
@@ -156,7 +156,7 @@ namespace
         uint32 turnIns = ++state.harnessTurnIns[team];
         uint32 required = sConfigMgr->GetOption<uint32>("IndividualProgression.AV.StablesTurnIns", 10);
 
-        ChatHandler(player->GetSession()).PSendSysMessage("Harness turn-ins: {}/{}", turnIns, required);
+        ChatHandler(player->GetSession()).PSendSysMessage("马具上缴: {}/{}", turnIns, required);
 
         if (turnIns < required)
             return;
@@ -165,7 +165,7 @@ namespace
 
         if (state.StablesCompleted[team] == false)
         {
-            ChatHandler(player->GetSession()).PSendSysMessage("We still need more mounts, please help the stables.");
+            ChatHandler(player->GetSession()).PSendSysMessage("我们还需要更多坐骑，请帮助马厩。");
             return;
         }
 
@@ -192,7 +192,7 @@ namespace
     {
         uint8 tier = state.defenderTier[team];
         if (tier >= AV_DEFENDER_TIER_CHAMPION)
-            return "I cannot store any more supplies. I have all I can handle!";
+            return "我无法再储存更多物资了。我已经足够了！";
 
         uint32 next = ScrapsThreshold(tier + 1);
         uint32 prev = tier > 0 ? ScrapsThreshold(tier) : 0;
@@ -202,12 +202,12 @@ namespace
         uint32 remaining = next > turnIns ? next - turnIns : 0;
 
         if (remaining * 4 >= interval * 3)  // less than a quarter done
-            return "I barely have any supplies for upgrades.";
+            return "我几乎没有升级所需的物资。";
         if (remaining * 4 >= interval * 2)  // under halfway
-            return "I need many more supplies in order to upgrade our units.";
+            return "我还需要很多物资才能升级部队。";
         if (remaining * 4 <= interval * 2 && remaining * 4 >= interval * 3) // over halfway and under three-quarters
-            return "I have about half the supplies needed to upgrade our units.";
-        return "I almost have enough supplies for the next upgrade!"; // over three-quarters done
+            return "我已有大约一半升级部队所需的物资。";
+        return "我几乎有足够的物资进行下一次升级了！"; // over three-quarters done
     }
 
     void HandleAirStrikeTurnIn(Player* player, AVQuestState& state, AVAirFleet const& fleet)
@@ -218,7 +218,7 @@ namespace
         uint32 turnIns = ++state.airTurnIns[fleet.team][fleet.index];
         uint32 required = sConfigMgr->GetOption<uint32>("IndividualProgression.AV.AirStrikeTurnIns", 50);
 
-        ChatHandler(player->GetSession()).PSendSysMessage("{}'s Fleet: {}/{}", fleet.commanderName, turnIns, required);
+        ChatHandler(player->GetSession()).PSendSysMessage("{}的舰队: {}/{}", fleet.commanderName, turnIns, required);
 
         if (turnIns < required)
             return;
@@ -228,8 +228,8 @@ namespace
         if (player->GetReputationRank(repFaction) < REP_HONORED)
         {
             ChatHandler(player->GetSession()).PSendSysMessage(
-                "Wing Commander {} only entrusts the beacon to those Honored with the {}.",
-                fleet.commanderName, fleet.team == TEAM_HORDE ? "Frostwolf Clan" : "Stormpike Guard");
+                "空军指挥官{}只将信标交给在{}达到尊敬声望的人。",
+                fleet.commanderName, fleet.team == TEAM_HORDE ? "霜狼氏族" : "雷矛卫队");
             return;
         }
 
@@ -237,7 +237,7 @@ namespace
         if (player->CanStoreNewItem(NULL_BAG, NULL_SLOT, dest, fleet.beaconItem, 1) != EQUIP_ERR_OK)
         {
             ChatHandler(player->GetSession()).PSendSysMessage(
-                "Your bags are full! Make room and complete one more turn-in to receive the beacon.");
+                "您的背包已满！请腾出空间后再完成一次上缴以领取信标。");
             return;
         }
 
@@ -256,7 +256,7 @@ namespace
         }
 
         ChatHandler(player->GetSession()).PSendSysMessage(
-            "Wing Commander {} hands you his beacon and takes to the skies! Plant it at the target location.",
+            "空军指挥官{}将信标交给了你并已升空！请将其放置在目标位置。",
             fleet.commanderName);
     }
 
@@ -267,7 +267,7 @@ namespace
         if (UpgradeReady(state, team))
         {
             AddGossipItemFor(player, GOSSIP_ICON_CHAT,
-                Acore::StringFormat("Upgrade our troops to {}!", AV_TIER_NAMES[state.defenderTier[team] + 1]),
+                Acore::StringFormat("将部队升级为{}！", AV_TIER_NAMES[state.defenderTier[team] + 1]),
                 GOSSIP_SENDER_MAIN, AV_GOSSIP_ACTION_UPGRADE);
         }
         else if (state.defenderTier[team] < AV_DEFENDER_TIER_CHAMPION)
@@ -276,7 +276,7 @@ namespace
 
             if (sConfigMgr->GetOption<bool>("IndividualProgression.AV.GossipExactNumbers", false))
                 AddGossipItemFor(player, GOSSIP_ICON_CHAT,
-                    Acore::StringFormat("(Turn-ins: {}/{})", state.scrapTurnIns[team],
+                    Acore::StringFormat("(上缴次数: {}/{})", state.scrapTurnIns[team],
                         ScrapsThreshold(state.defenderTier[team] + 1)),
                     GOSSIP_SENDER_MAIN, 0);
         }
@@ -290,20 +290,26 @@ class ip_av_quests_player : public PlayerScript
 public:
     ip_av_quests_player() : PlayerScript("ip_av_quests_player") {}
 
+    // By leewheel 2026-07-08
+    // 修复: OnPlayerCanCastItemUseSpell 返回false会阻止所有物品使用(包括食物/药水等)
+    // 只有在AV战场内且条件匹配时才处理任务逻辑, 其余情况必须返回true允许物品使用
     bool OnPlayerCanCastItemUseSpell(Player* player, Item* item, SpellCastTargets const& /*targets*/, uint8 /*cast_count*/, uint32 /*glyphIndex*/) override
     {
         if (!player || !item)
-            return false;
+            return true;
 
         Battleground* bg = player->GetBattleground();
         if (!bg || bg->GetBgTypeID(true) != BATTLEGROUND_AV)
-            return false;
+            return true;
 
         Unit* selected = player->GetSelectedUnit();
-        Creature* creature = selected->ToCreature();
+        if (!selected)
+            return true;
 
+        Creature* creature = selected->ToCreature();
         if (!creature)
-            return false;
+            return true;
+        // End By leewheel
 
         if (item->GetEntry() == ITEM_FROSTWOLF_MUZZLE && creature->GetEntry() == NPC_AV_FROSTWOLF)
         {
