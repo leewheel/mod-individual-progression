@@ -203,7 +203,7 @@ public:
         
         if (!sIndividualProgression->EnableSetRepCommand)
         {
-            handler->SendSysMessage("The .ip setrep 命令目前已禁用。");
+            handler->SendSysMessage(".ip setrep 命令目前已禁用。");
             return false;
         }
         

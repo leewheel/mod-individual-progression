@@ -2,7 +2,7 @@
 UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN (15551);
 DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN (15551); 
 
-REPLACE INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
+INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, 
 `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, 
 `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, 
 `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
@@ -21,6 +21,17 @@ DELETE FROM `conditions` WHERE (`SourceTypeOrReferenceId` = 22) AND (`SourceGrou
 UPDATE `creature_loot_template` SET `Chance` = 5 WHERE `Item` IN (22559, 22561, 22545, 22560);
 
 -- make blackened urn unsellable and give as reward
-UPDATE `item_template` SET `Quality` = 1, `SellPrice` = 0, `description` = 'Used to summon Nightbane in Karazhan' WHERE (`entry` = 24140);
+UPDATE `item_template` SET `Quality` = 1, `SellPrice` = 0, `description` = '用于在卡拉赞召唤夜翼' WHERE (`entry` = 24140);
 UPDATE `quest_template` SET `StartItem` = 24140 WHERE `ID` = 9644;
 UPDATE `quest_template_addon` SET `ProvidedItemCount` = 1 WHERE (`ID` = 9644);
+
+-- fix boss reset with Midnight not respawning correctly
+UPDATE `creature_template` SET `ScriptName` = 'boss_midnight_ipp' WHERE `entry` = 16151;
+UPDATE `creature_template` SET `ScriptName` = 'boss_midnight' WHERE `entry` = 605; -- assigning old script to unused entry to avoid worldserver error about script not being assigned in database
+
+-- fix worldserver error when Midnight kills a player, Midnight needs the text as well for Attumen to say the line
+DELETE FROM `creature_text` WHERE `CreatureID` = 16151;
+INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES 
+(16151, 0, 0, '%s呼喊着她的主人！', 16, 0, 100, 0, 0, 0, 13439, 0, 'midnight EMOTE_CALL_ATTUMEN'),
+(16151, 1, 0, '%s冲过去帮助她的主人。', 16, 0, 100, 0, 0, 0, 13455, 0, 'midnight EMOTE_MOUNT_UP'),
+(16151, 3, 0, '干得好，午夜！', 14, 0, 100, 0, 0, 9173, 15334, 0, 'attumen SAY_MIDNIGHT_KILL');
