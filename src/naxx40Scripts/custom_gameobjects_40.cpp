@@ -104,11 +104,7 @@ public:
                         allowed = false;
                     }
 
-                    if (member->IsGameMaster())
-                    {
-                        handler.PSendSysMessage("|cff00ffff{}|r 是管理员。", member->GetName());
-                        allowed = true;
-                    }
+                    // GM也必须遵守进度限制
 
                     if (allowed)
                     {

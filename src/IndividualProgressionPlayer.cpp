@@ -170,7 +170,8 @@ public:
         if (!player || !player->IsInWorld())
             return false;
 
-        if (!sIndividualProgression->enabled || player->IsGameMaster() || !sIndividualProgression->isNormalAccount(player))
+        // GM也必须遵守进度限制，不再绕过检查
+        if (!sIndividualProgression->enabled || !sIndividualProgression->isNormalAccount(player))
             return true;
 
         if (mapid == MAP_BLACKWING_LAIR && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_MOLTEN_CORE))
