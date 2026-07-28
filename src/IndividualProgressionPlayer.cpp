@@ -965,7 +965,19 @@ public:
         }
         if (charClass == CLASS_DEATH_KNIGHT && sIndividualProgression->deathKnightProgressionLevel != 0)
         {
-            if (highestProgression < sIndividualProgression->deathKnightProgressionLevel)
+            // Level-based bypass: if any character on the account has reached the
+            // configured unlock level (default 60), the progression requirement is waived.
+            // This mirrors "NB-style" behavior: hitting the level cap on a vanilla
+            // character is enough to unlock DK creation.
+            bool bypassed = false;
+            if (sIndividualProgression->deathKnightUnlockLevel > 0)
+            {
+                uint8 accountMaxLevel = sIndividualProgression->GetAccountMaxLevel(accountId);
+                if (accountMaxLevel >= sIndividualProgression->deathKnightUnlockLevel)
+                    bypassed = true;
+            }
+
+            if (!bypassed && highestProgression < sIndividualProgression->deathKnightProgressionLevel)
                 allowed = false;
         }
         return allowed;

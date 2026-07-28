@@ -1029,71 +1029,17 @@ public:
     };
 };
 
-class gobject_crystalline_tear : public GameObjectScript
-{
-public:
-    gobject_crystalline_tear() : GameObjectScript("gobject_crystalline_tear") {}
-
-    bool OnQuestAccept(Player* player, GameObject* go, Quest const* quest) override
-    {
-        if (quest->GetQuestId() == QUEST_A_PAWN_ON_THE_ETERNAL_BOARD)
-        {
-            if (Creature* trigger = go->FindNearestCreature(15454, 100, player))
-            {
-                Unit* Merithra = trigger->SummonCreature(15378, -8034.535f, 1535.14f, 2.61f, 0, TEMPSUMMON_TIMED_OR_DEAD_DESPAWN, 220000);
-                Unit* Caelestrasz = trigger->SummonCreature(15379, -8032.767f, 1533.148f, 2.61f, 1.5f, TEMPSUMMON_TIMED_OR_DEAD_DESPAWN, 220000);
-                Unit* Arygos = trigger->SummonCreature(15380, -8034.52f, 1537.843f, 2.61f, 5.7f, TEMPSUMMON_TIMED_OR_DEAD_DESPAWN, 220000);
-                /* Unit* Fandral = */ trigger->SummonCreature(15382, -8028.462f, 1535.843f, 2.61f, 3.141592f, TEMPSUMMON_TIMED_OR_DEAD_DESPAWN, 220000);
-                Creature* Anachronos = trigger->SummonCreature(15381, -8028.75f, 1538.795f, 2.61f, 4, TEMPSUMMON_TIMED_OR_DEAD_DESPAWN, 220000);
-
-                if (Merithra)
-                {
-                    Merithra->ReplaceAllNpcFlags(UNIT_NPC_FLAG_NONE);
-                    Merithra->SetUInt32Value(UNIT_FIELD_BYTES_1, 0);
-                    Merithra->SetUInt32Value(UNIT_FIELD_DISPLAYID, 15420);
-                    Merithra->SetFaction(FACTION_FRIENDLY);
-                }
-
-                if (Caelestrasz)
-                {
-                    Caelestrasz->ReplaceAllNpcFlags(UNIT_NPC_FLAG_NONE);
-                    Caelestrasz->SetUInt32Value(UNIT_FIELD_BYTES_1, 0);
-                    Caelestrasz->SetUInt32Value(UNIT_FIELD_DISPLAYID, 15419);
-                    Caelestrasz->SetFaction(FACTION_FRIENDLY);
-                }
-
-                if (Arygos)
-                {
-                    Arygos->ReplaceAllNpcFlags(UNIT_NPC_FLAG_NONE);
-                    Arygos->SetUInt32Value(UNIT_FIELD_BYTES_1, 0);
-                    Arygos->SetUInt32Value(UNIT_FIELD_DISPLAYID, 15418);
-                    Arygos->SetFaction(FACTION_FRIENDLY);
-                }
-
-                if (Anachronos)
-                {
-                    if (npc_anachronos_the_ancient::npc_anachronos_the_ancientAI* anachronosAI = CAST_AI(npc_anachronos_the_ancient::npc_anachronos_the_ancientAI, Anachronos->AI()))
-                        anachronosAI->PlayerGUID = player->GetGUID();
-
-                    if (npc_anachronos_quest_trigger::npc_anachronos_quest_triggerAI* triggerAI = CAST_AI(npc_anachronos_quest_trigger::npc_anachronos_quest_triggerAI, trigger->AI()))
-                    {
-                        triggerAI->Failed = false;
-                        triggerAI->PlayerGUID = player->GetGUID();
-                        triggerAI->EventStarted = true;
-                        triggerAI->Announced = true;
-                    }
-                }
-            }
-        }
-        return true;
-    }
-};
+// By leewheel 2026-07-20 移除重复的 go_crystalline_tear 类
+// 该脚本已由主项目 src/server/scripts/Kalimdor/zone_silithus.cpp 中的 go_crystalline_tear 实现
+// 模块中保留会导致：1. 全局命名空间类名冲突(ODR违反) 2. 脚本重复注册
+// 原模块中注册名为 gobject_crystalline_tear 与数据库不匹配，会报错
+// End By leewheel
 
 void AddSC_aq_scripts()
 {
     new aq_gate();
     new gobject_scarab_gong();
-    new gobject_crystalline_tear();
+    // By leewheel 2026-07-20 移除重复注册，主项目 zone_silithus.cpp 已处理
     new npc_anachronos_quest_trigger();
     new npc_anachronos_the_ancient();
     new npc_qiraj_war_spawn();

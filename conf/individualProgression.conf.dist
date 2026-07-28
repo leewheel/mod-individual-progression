@@ -345,6 +345,21 @@ IndividualProgression.tbcRacesStartingProgression = 0
 #
 IndividualProgression.DeathKnightUnlockProgression = 13
 
+# IndividualProgression.DeathKnightUnlockLevel
+#
+#        Description: Level-based bypass for Death Knight creation.
+#                     If any character on the account reaches this level, the
+#                     DeathKnightUnlockProgression requirement is waived.
+#                     Set to 0 to disable the bypass (use progression-only check).
+#                     This mirrors the "NB-style" behavior: hitting the vanilla
+#                     level cap on any character is enough to unlock DK creation.
+#
+#        Default:     60 - Any account that has a level 60 character can create a DK
+#                     0  - Disable level bypass, progression requirement only
+#                     1-80 - Set a different required level
+#
+IndividualProgression.DeathKnightUnlockLevel = 60
+
 # IndividualProgression.DeathKnightStartingProgression
 #
 #        Description: The progression stage at which Death Knight characters will begin.
@@ -518,7 +533,9 @@ IndividualProgression.ExcludedAccountsRegex = ""
 #        Default:     0 - Disabled
 #                     1 - Enabled
 #
-IndividualProgression.EnableAllSpellRanks = 0
+# By leewheel 20250712: 解锁低等级技能在巫妖王之怒期间的使用限制
+IndividualProgression.EnableAllSpellRanks = 1
+# End By leewheel
 
 # IndividualProgression.EnableSetRepCommand
 #

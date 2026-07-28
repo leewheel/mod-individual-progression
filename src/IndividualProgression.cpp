@@ -151,6 +151,23 @@ uint8 IndividualProgression::GetAccountProgression(uint32 accountId)
     return progressionLevel;
 }
 
+// Return the highest character level of any character on the account.
+// Used as a level-based bypass for class creation restrictions (e.g. Death Knight at 60).
+uint8 IndividualProgression::GetAccountMaxLevel(uint32 accountId)
+{
+    if (!accountId)
+        return 0;
+
+    QueryResult result = CharacterDatabase.Query(
+        "SELECT IFNULL(MAX(`level`), 0) FROM `characters` WHERE `account` = {};",
+        accountId);
+
+    if (!result)
+        return 0;
+
+    return (*result)[0].Get<uint8>();
+}
+
 void IndividualProgression::UpdateAccountReputation(uint32 factionId, uint32 accountId, Player* player)
 {
     if (!factionId || !accountId || !player || !player->IsInWorld())
@@ -1079,6 +1096,7 @@ private:
         sIndividualProgression->tbcRacesProgressionLevel = sConfigMgr->GetOption<uint8>("IndividualProgression.TbcRacesUnlockProgression", 0);
         sIndividualProgression->tbcRacesStartingProgression = sConfigMgr->GetOption<uint8>("IndividualProgression.tbcRacesStartingProgression", 0);
         sIndividualProgression->deathKnightProgressionLevel = sConfigMgr->GetOption<uint8>("IndividualProgression.DeathKnightUnlockProgression", 13);
+        sIndividualProgression->deathKnightUnlockLevel = sConfigMgr->GetOption<uint8>("IndividualProgression.DeathKnightUnlockLevel", 60);
         sIndividualProgression->deathKnightStartingProgression = sConfigMgr->GetOption<uint8>("IndividualProgression.DeathKnightStartingProgression", 13);
         sIndividualProgression->RequiredZulGurubProgression = sConfigMgr->GetOption<uint8>("IndividualProgression.RequiredZulGurubProgression", 3);
         sIndividualProgression->RequiredZulAmanProgression = sConfigMgr->GetOption<uint8>("IndividualProgression.RequiredZulAmanProgression", 12);

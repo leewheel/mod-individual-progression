@@ -721,7 +721,8 @@ REPLACE INTO `creature_questender` (`id`, `quest`) VALUES
 (@LIEUTENANT_BEITHA, 9262);
 
 -- Hide Investigate the Scourge quests, until progression level 6, to prevent bots from picking it up
-DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 19 AND `ConditionTypeOrReference` = 8 AND `SourceEntry` IN (9260, 9261, 9262, 9263, 9264, 9265);
+-- By leewheel 20260712: 添加12816(银月城)和12817(埃索达)到进度限制条件
+DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 19 AND `ConditionTypeOrReference` = 8 AND `SourceEntry` IN (9260, 9261, 9262, 9263, 9264, 9265, 12816, 12817);
 REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, 
 `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
 (19, 0, 9260, 0, 0, 8, 0, 66006, 0, 0, 0, 0, 0, '', 'Hide \'Investigate the Scourge\' until progression level 6'),
@@ -729,7 +730,10 @@ REPLACE INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntr
 (19, 0, 9262, 0, 0, 8, 0, 66006, 0, 0, 0, 0, 0, '', 'Hide \'Investigate the Scourge\' until progression level 6'),
 (19, 0, 9263, 0, 0, 8, 0, 66006, 0, 0, 0, 0, 0, '', 'Hide \'Investigate the Scourge\' until progression level 6'),
 (19, 0, 9264, 0, 0, 8, 0, 66006, 0, 0, 0, 0, 0, '', 'Hide \'Investigate the Scourge\' until progression level 6'),
-(19, 0, 9265, 0, 0, 8, 0, 66006, 0, 0, 0, 0, 0, '', 'Hide \'Investigate the Scourge\' until progression level 6');
+(19, 0, 9265, 0, 0, 8, 0, 66006, 0, 0, 0, 0, 0, '', 'Hide \'Investigate the Scourge\' until progression level 6'),
+(19, 0, 12816, 0, 0, 8, 0, 66006, 0, 0, 0, 0, 0, '', 'Hide \'Investigate the Scourge\' until progression level 6'),
+(19, 0, 12817, 0, 0, 8, 0, 66006, 0, 0, 0, 0, 0, '', 'Hide \'Investigate the Scourge\' until progression level 6');
+-- End By leewheel
 
 SET @AGUID    := 6000;
 
@@ -747,7 +751,9 @@ REPLACE INTO `areatrigger` (`entry`, `map`, `x`, `y`, `z`, `radius`) VALUES
 (@AGUID+9, 0, 1980.01, 305.231, 41.1893, 10);   -- Undercity
 */
 
-DELETE FROM `areatrigger_involvedrelation` WHERE `quest` IN (9260, 9261, 9262, 9263, 9264, 9265);
+-- By leewheel 20260712: 注释掉此DELETE，避免删除2025_08_08_01.sql插入的标准areatrigger条目
+-- End By leewheel
+-- DELETE FROM `areatrigger_involvedrelation` WHERE `quest` IN (9260, 9261, 9262, 9263, 9264, 9265);
 /*
 REPLACE INTO `areatrigger_involvedrelation` (`id`, `quest`) VALUES
 (@AGUID+1, 9260), -- Stormwind
