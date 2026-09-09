@@ -440,15 +440,30 @@ public:
         case BANG_A_GONG:
         case SIMPLY_BANG_A_GONG:
             if (!sIndividualProgression->disableDefaultProgression)
-                 sIndividualProgression->UpdateProgressionState(player, PROGRESSION_PRE_AQ);
+            {
+                sIndividualProgression->UpdateProgressionState(player, PROGRESSION_PRE_AQ);
+                //By leewheel 2026-09-09 修复：完成开门任务后原地刷新相位，立刻看到解锁后的NPC，无需切区域
+                sIndividualProgression->checkIPPhasing(player, player->GetAreaId());
+                //End By leewheel
+            }
             break;
         case CHAOS_AND_DESTRUCTION:
             if (!sIndividualProgression->disableDefaultProgression)
-                 sIndividualProgression->UpdateProgressionState(player, PROGRESSION_AQ_WAR);
+            {
+                sIndividualProgression->UpdateProgressionState(player, PROGRESSION_AQ_WAR);
+                //By leewheel 2026-09-09 修复：完成开门任务后原地刷新相位，立刻看到解锁后的NPC，无需切区域
+                sIndividualProgression->checkIPPhasing(player, player->GetAreaId());
+                //End By leewheel
+            }
             break;
         case INTO_THE_BREACH:
             if (!sIndividualProgression->disableDefaultProgression)
-                 sIndividualProgression->UpdateProgressionState(player, PROGRESSION_PRE_TBC);
+            {
+                sIndividualProgression->UpdateProgressionState(player, PROGRESSION_PRE_TBC);
+                //By leewheel 2026-09-09 修复：完成开门任务后原地刷新相位，立刻看到解锁后的NPC，无需切区域
+                sIndividualProgression->checkIPPhasing(player, player->GetAreaId());
+                //End By leewheel
+            }
             break;
         case QUEST_MORROWGRAIN:
         case QUEST_TROLL_NECKLACE:
