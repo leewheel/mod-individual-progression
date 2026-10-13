@@ -210,11 +210,21 @@ public:
 
         void JustSummoned(Creature* summon) override
         {
-            if (summon->GetEntry() == NPC_ONYXIAN_WHELP || summon->GetEntry() == NPC_ONYXIAN_LAIR_GUARD)
+            // By leewheel 2026-10-13 叠加 60 级雏龙 entry：
+            //   本函数原先只认 NPC_ONYXIAN_WHELP(11262) 与 NPC_ONYXIAN_LAIR_GUARD(36561)，
+            //   而 60 级副本实际召唤的是 NPC_ONYXIAN_WHELP_40(301001)（见 HandleWhelpSpam），
+            //   于是 60 级雏龙既不会被 DoZoneInCombat，也不会被 summons.Summon 记账，
+            //   战斗结束后无法随 BossAI 一并清除。此处只补上这一路 entry，原两路行为不变。
+            if (summon->GetEntry() == NPC_ONYXIAN_WHELP || summon->GetEntry() == NPC_ONYXIAN_LAIR_GUARD
+                || summon->GetEntry() == NPC_ONYXIAN_WHELP_40)
+            // End By leewheel
             {
                 if (Unit* target = summon->SelectNearestTarget(300.0f))
                 {
-                    summon->AI()->AttackStart(target);
+                    // By leewheel 2026-10-13 叠加 AI() 判空（原代码直接解引用）
+                    if (summon->AI())
+                        summon->AI()->AttackStart(target);
+                    // End By leewheel
                     DoZoneInCombat(summon);
                 }
 
@@ -291,7 +301,11 @@ public:
                             // Find the nearest player and attack
                             if (Unit* target = whelp->SelectNearestTarget(300.0f))
                             {
-                                whelp->AI()->AttackStart(target);
+                                // By leewheel 2026-10-13 叠加 AI() 判空：SummonCreature 之后
+                                //   生物 AI 已建立，但这里仍显式判空，避免任何时序下解引用空 AI。
+                                if (whelp->AI())
+                                    whelp->AI()->AttackStart(target);
+                                // End By leewheel
                             }
                         }
 
@@ -480,6 +494,14 @@ public:
                 }
                 case EVENT_PHASE_2_STEP_ACROSS:
                 {
+                    // By leewheel 2026-10-13 叠加 CurrentWP 边界守卫（不改变 1..8 的原有行为）：
+                    //   CurrentWP 是 int8，正常由 MovementInform 置为 1..8；一旦状态错位落到 0，
+                    //   OnyxiaMoveData[0].spellId 为 0，DoCastAOE(0) 会去取不存在的法术。这里直接跳过。
+                    if (CurrentWP < 1 || CurrentWP > 8)
+                    {
+                        break;
+                    }
+                    // End By leewheel
                     Talk(EMOTE_BREATH);
                     me->SetFacingTo(OnyxiaMoveData[CurrentWP].o);
                     DoCastAOE(OnyxiaMoveData[CurrentWP].spellId);
@@ -488,6 +510,12 @@ public:
                 }
                 case EVENT_SPELL_BREATH:
                 {
+                    // By leewheel 2026-10-13 同上：CurrentWP 越界时不去索引 OnyxiaMoveData。
+                    if (CurrentWP < 1 || CurrentWP > 8)
+                    {
+                        break;
+                    }
+                    // End By leewheel
                     uint8 newWP = OnyxiaMoveData[CurrentWP].DestId;
                     me->SetSpeed(MOVE_RUN, 2.95f, false);
                     me->GetMotionMaster()->MovePoint(newWP, OnyxiaMoveData[newWP].x, OnyxiaMoveData[newWP].y, OnyxiaMoveData[newWP].z);
