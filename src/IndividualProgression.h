@@ -413,6 +413,14 @@ public:
     // progression is derived from rewarded hidden quests (IDs 66000 + progression)
     uint8 GetPlayerProgressionFromQuests(Player* player) const;
 
+    //By leewheel 20261101: 把进度枚举值翻译成玩家能看懂的中文阶段名。
+    //  背景(bug_95)：进本被拦时只提示「所需进度等级 = 12」这种裸数字，而玩家面板
+    //  /NPC 菜单里的「Tier 12」指的是另一套编号（菜单序号），于是玩家把「12」误认成
+    //  「要打完奥杜尔」，把 TBC 副本的门槛理解成 WotLK 内容。所有面向玩家的提示
+    //  一律改走这里，不再直接打印枚举值。
+    std::string GetProgressionName(uint8 state) const;
+    //End By leewheel
+
     bool hasPassedProgression(Player* player, ProgressionState state) const;
     static bool isBeforeProgression(Player* player, ProgressionState state) ;
     void UpdateProgressionState(Player* player, ProgressionState newState) const;

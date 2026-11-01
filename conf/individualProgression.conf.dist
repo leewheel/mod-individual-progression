@@ -382,8 +382,17 @@ IndividualProgression.RequiredZulGurubProgression = 3
 #
 #        Description: The progression stage at which Zul'Aman will be available
 #
-#        Default:     12 - Zul'Aman opens after Black Temple (Default, Blizzlike)
-#        Suggested:   9  - Zul'Aman opens after Karazhan / Prince Malchezaar.
+#                     By leewheel 20261101: 阶段编号与数值的对应关系（bug_95）。
+#                     上游 #1216 把 PROGRESSION_TBC_TIER_3(11) 从 ProgressionState 里删掉了，
+#                     祖阿曼不再是一个独立阶段，于是后面的值虽然没变但含义整体前移：
+#                       9  = 毒蛇神殿 / 风暴要塞已完成
+#                       10 = 海加尔山之战 / 黑暗神殿可用
+#                       12 = 打通黑暗神殿（伊利丹）之后  <- 祖阿曼的默认门槛
+#                       13 = 太阳之井高地已完成
+#                     注意：12 不是「太阳之井已通」，别再按字面理解。
+#
+#        Default:     12 - Zul'Aman opens after Black Temple / Illidan (Blizzlike, 2.3 晚于 2.1)
+#        Suggested:   9  - Zul'Aman opens after Serpentshrine Cavern / Tempest Keep
 #                     0-18 - Set a different required progression stage for Zul'Aman
 #
 IndividualProgression.RequiredZulAmanProgression = 12

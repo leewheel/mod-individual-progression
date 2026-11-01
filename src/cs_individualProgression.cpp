@@ -121,7 +121,9 @@ public:
 
         uint32 progressionLevel = sIndividualProgression->GetPlayerProgressionFromQuests(target);
 
-        handler->PSendSysMessage("|cff00ffff{}|r 的进度等级 = |cff00ffff{}|r", playername, progressionLevel);
+        //By leewheel 20261101: 附带阶段名，避免裸数字误读（bug_95）
+        handler->PSendSysMessage("|cff00ffff{}|r 的进度等级 = |cff00ffff{}|r（{}）", playername, progressionLevel,
+            sIndividualProgression->GetProgressionName(static_cast<uint8>(progressionLevel)));
         return true;
     }
 
@@ -150,7 +152,9 @@ public:
         sIndividualProgression->ForceUpdateProgressionState(target, static_cast<ProgressionState>(progressionLevel));
         sIndividualProgression->checkIPPhasing(target, currentArea);
 
-        handler->PSendSysMessage("已更新 |cff00ffff{}|r 的进度等级 = |cff00ffff{}|r", playername, progressionLevel);
+        //By leewheel 20261101: 附带阶段名，避免裸数字误读（bug_95）
+        handler->PSendSysMessage("已更新 |cff00ffff{}|r 的进度等级 = |cff00ffff{}|r（{}）", playername, progressionLevel,
+            sIndividualProgression->GetProgressionName(static_cast<uint8>(progressionLevel)));
         return true;
     }
 

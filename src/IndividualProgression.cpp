@@ -28,6 +28,35 @@ uint8 IndividualProgression::GetPlayerProgressionFromQuests(Player* player) cons
     return progressionLevel;
 }
 
+//By leewheel 20261101: 进度枚举值 -> 玩家可读阶段名（见 bug_95）
+std::string IndividualProgression::GetProgressionName(uint8 state) const
+{
+    switch (state)
+    {
+        case PROGRESSION_START:          return "起始阶段（尚未打通任何团队副本）";
+        case PROGRESSION_MOLTEN_CORE:    return "熔火之心已完成";
+        case PROGRESSION_ONYXIA:         return "奥妮克希亚已完成";
+        case PROGRESSION_BLACKWING_LAIR: return "黑翼之巢已完成";
+        case PROGRESSION_PRE_AQ:         return "安其拉废墟已完成";
+        case PROGRESSION_AQ_WAR:         return "安其拉开门战役进行中";
+        case PROGRESSION_AQ:             return "安其拉神殿已完成";
+        case PROGRESSION_NAXX40:         return "纳克萨玛斯（40人）已完成";
+        case PROGRESSION_PRE_TBC:        return "卡拉赞 / 格鲁尔 / 玛瑟里顿已完成";
+        case PROGRESSION_TBC_TIER_1:     return "毒蛇神殿 / 风暴要塞已完成";
+        case PROGRESSION_TBC_TIER_2:     return "海加尔山之战 / 黑暗神殿已完成";
+        //PROGRESSION_TBC_TIER_3（祖阿曼）已从进度链移除，不复存在
+        case PROGRESSION_TBC_TIER_4:     return "太阳之井高地已完成";
+        case PROGRESSION_TBC_TIER_5:     return "纳克萨玛斯WotLK / 永恒之眼 / 黑曜石圣殿已完成";
+        case PROGRESSION_WOTLK_TIER_1:   return "奥杜尔已完成";
+        case PROGRESSION_WOTLK_TIER_2:   return "十字军的试炼已完成";
+        case PROGRESSION_WOTLK_TIER_3:   return "冰冠堡垒已完成";
+        case PROGRESSION_WOTLK_TIER_4:   return "红玉圣殿已完成";
+        case PROGRESSION_WOTLK_TIER_5:   return "全部团队内容已完成";
+        default:                         return "未知阶段";
+    }
+}
+//End By leewheel
+
 bool IndividualProgression::hasPassedProgression(Player* player, ProgressionState state) const
 {
     if (!enabled || !state || !player || !player->IsInWorld())

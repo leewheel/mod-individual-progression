@@ -2,6 +2,24 @@
 #include "naxxramas_40.h"
 // #include "Spell.h"
 
+//By leewheel 20261101: 统一的「进度不足」提示（bug_95）
+//  历史上这里一律打印裸枚举值（如「所需进度等级 = 12」），而玩家在 NPC 菜单里
+//  看到的「Tier 12」是另一套菜单序号（= 奥杜尔），于是玩家把「进祖阿曼要求 12」
+//  理解成「要先打通奥杜尔」。改为打印阶段名 + 玩家当前阶段，消除歧义。
+static void SendProgressionRequirement(Player* player, uint32 requiredState)
+{
+    if (!player)
+        return;
+
+    uint8 current = sIndividualProgression->GetPlayerProgressionFromQuests(player);
+
+    ChatHandler(player->GetSession()).PSendSysMessage(
+        "需要个人进度：|cff00ffff{}|r   ｜   您当前：|cff33ff99{}|r",
+        sIndividualProgression->GetProgressionName(static_cast<uint8>(requiredState)),
+        sIndividualProgression->GetProgressionName(current));
+}
+//End By leewheel
+
 class IndividualPlayerProgression : public PlayerScript
 {
 
@@ -176,7 +194,7 @@ public:
 
         if (mapid == MAP_BLACKWING_LAIR && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_MOLTEN_CORE))
         {
-            ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_MOLTEN_CORE);
+            SendProgressionRequirement(player, PROGRESSION_MOLTEN_CORE);
             return false;
         }
         if (mapid == MAP_ONYXIAS_LAIR)
@@ -203,18 +221,18 @@ public:
 
             if (PLAYER_PROGRESSION < REQUIRED_ZG_PROGRESSION)
             {
-                ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", REQUIRED_ZG_PROGRESSION);
+                SendProgressionRequirement(player, REQUIRED_ZG_PROGRESSION);
                 return false;
             }
         }
         if (mapid == MAP_AHN_QIRAJ_TEMPLE && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_PRE_AQ))
         {
-            ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_PRE_AQ);
+            SendProgressionRequirement(player, PROGRESSION_PRE_AQ);
             return false;
         }
         if (mapid == MAP_RUINS_OF_AHN_QIRAJ && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_PRE_AQ))
         {
-            ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_PRE_AQ);
+            SendProgressionRequirement(player, PROGRESSION_PRE_AQ);
             return false;
         }
         if (mapid == MAP_OUTLAND)
@@ -226,7 +244,7 @@ public:
 
                 if ((highestProgression < sIndividualProgression->tbcRacesProgressionLevel) && (player->getRace() != RACE_DRAENEI && player->getRace() != RACE_BLOODELF))
                 {
-                    ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", sIndividualProgression->tbcRacesProgressionLevel);
+                    SendProgressionRequirement(player, sIndividualProgression->tbcRacesProgressionLevel);
                     return false;
                 }
                 else
@@ -238,7 +256,7 @@ public:
 
             if (!sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_4) && zoneId == AREA_ISLE_OF_QUEL_DANAS)
             {
-                ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_TBC_TIER_4);
+                SendProgressionRequirement(player, PROGRESSION_TBC_TIER_4);
                 return false;
             }
         }
@@ -249,7 +267,7 @@ public:
 
             if (PLAYER_PROGRESSION < REQUIRED_ZA_PROGRESSION)
             {
-                ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", REQUIRED_ZA_PROGRESSION);
+                SendProgressionRequirement(player, REQUIRED_ZA_PROGRESSION);
                 return false;
             }
         }
@@ -293,45 +311,45 @@ public:
                 break;
             }
 
-            ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_TBC_TIER_5);
+            SendProgressionRequirement(player, PROGRESSION_TBC_TIER_5);
             return false;
         }
         if (mapid == MAP_ULDUAR && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_WOTLK_TIER_1))
         {
-            ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_WOTLK_TIER_1);
+            SendProgressionRequirement(player, PROGRESSION_WOTLK_TIER_1);
             return false;
         }
         if ((mapid == MAP_TRIAL_OF_THE_CHAMPION || mapid == MAP_TRIAL_OF_THE_CRUSADER) && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_WOTLK_TIER_2))
         {
-            ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_WOTLK_TIER_2);
+            SendProgressionRequirement(player, PROGRESSION_WOTLK_TIER_2);
             return false;
         }
         // This will also restrict other Frozen Halls dungeons, because Forge of Souls must be completed first to access them
         if ((mapid == MAP_ICECROWN_CITADEL || mapid == MAP_THE_FORGE_OF_SOULS) && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_WOTLK_TIER_3))
         {
-            ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_WOTLK_TIER_3);
+            SendProgressionRequirement(player, PROGRESSION_WOTLK_TIER_3);
             return false;
         }
         if (mapid == MAP_THE_RUBY_SANCTUM && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_WOTLK_TIER_4))
         {
-            ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_WOTLK_TIER_4);
+            SendProgressionRequirement(player, PROGRESSION_WOTLK_TIER_4);
             return false;
         }
         if (mapid == MAP_MAGISTERS_TERRACE && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_4))
         {
-            ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_TBC_TIER_4);
+            SendProgressionRequirement(player, PROGRESSION_TBC_TIER_4);
             return false;
         }
         if (mapid == MAP_THE_SUNWELL && !sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_4))
         {
-            ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_TBC_TIER_4);
+            SendProgressionRequirement(player, PROGRESSION_TBC_TIER_4);
             return false;
         }
         if (mapid == MAP_TEMPEST_KEEP)
         {
             if (!sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_1))
             {
-                ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_TBC_TIER_1);
+                SendProgressionRequirement(player, PROGRESSION_TBC_TIER_1);
                 return false;
             }
  			else if (!player->HasItemCount(ITEM_TEMPEST_KEY))
@@ -349,7 +367,7 @@ public:
         {
             if (!sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_1))
             {
-                ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_TBC_TIER_1);
+                SendProgressionRequirement(player, PROGRESSION_TBC_TIER_1);
                 return false;
             }
  			else if (player->GetQuestStatus(CUDGEL_OF_KARDESH) != QUEST_STATUS_REWARDED)
@@ -362,7 +380,7 @@ public:
         {
             if (!sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_2))
             {
-                ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_TBC_TIER_2);
+                SendProgressionRequirement(player, PROGRESSION_TBC_TIER_2);
                 return false;
             }
  			else if (player->GetQuestStatus(VIALS_OF_ETERNITY) != QUEST_STATUS_REWARDED)
@@ -375,7 +393,7 @@ public:
         {
             if (!sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_2))
             {
-                ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_TBC_TIER_2);
+                SendProgressionRequirement(player, PROGRESSION_TBC_TIER_2);
                 return false;
             }
  			else if (!player->HasItemCount(ITEM_MEDALLION_OF_KARABOR) && !player->HasItemCount(ITEM_BLESSED_MEDALLION_OF_KARABOR))
@@ -842,7 +860,7 @@ ChatHandler(player->GetSession()).SendSysMessage("|cff00ff00强制组队规则�
             {
                 if (!sIndividualProgression->hasPassedProgression(player, PROGRESSION_TBC_TIER_4) && newArea == 4087) // Sun's Reach Harbor
                 {
-                    ChatHandler(player->GetSession()).PSendSysMessage("所需进度等级 = |cff00ffff{}|r", PROGRESSION_TBC_TIER_4);
+                    SendProgressionRequirement(player, PROGRESSION_TBC_TIER_4);
 
                     TeamId teamId = player->GetTeamId(true);
                     if (teamId == TEAM_ALLIANCE)

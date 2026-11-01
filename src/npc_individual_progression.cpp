@@ -31,6 +31,11 @@ enum IndividualProgressionGossipActions
 
 // 进度 Tier 选项：将用户可选项映射到 C++ ProgressionState
 // 注意：跳过 PROGRESSION_AQ_WAR(5) 中间状态和已注释的 PROGRESSION_TBC_TIER_3(11, 祖阿曼)
+//
+//By leewheel 20261101: 去掉选项文本里的「Tier N」序号（bug_95）。
+//  菜单序号与 ProgressionState 枚举值本来是两套编号（菜单第 12 项 = 奥杜尔，
+//  而枚举 12 = 太阳之井），玩家把进本提示里的裸数字 12 当成菜单的「Tier 12」，
+//  于是误以为 TBC 的祖阿曼要求先打通奥杜尔。改成纯阶段描述后不再产生错位。
 struct ProgressionTierInfo
 {
     ProgressionState state;
@@ -41,22 +46,23 @@ struct ProgressionTierInfo
 static const ProgressionTierInfo tierOptions[] =
 {
     { PROGRESSION_START,         "|TInterface\\icons\\inv_helmet_74:45:45:-40|t|cff8b0000",       "起始阶段 - 无任何进度（60级）|r" },
-    { PROGRESSION_MOLTEN_CORE,   "|TInterface\\icons\\achievement_boss_ragnaros:45:45:-40|t|cff8b0000",    "Tier 1 - 熔火之心已完成（60级）|r" },
-    { PROGRESSION_ONYXIA,        "|TInterface\\icons\\achievement_boss_onyxia:45:45:-40|t|cff8b0000",      "Tier 2 - 奥妮克希亚已完成（60级）|r" },
-    { PROGRESSION_BLACKWING_LAIR,"|TInterface\\icons\\achievement_boss_nefarion:45:45:-40|t|cff8b0000",    "Tier 3 - 黑翼之巢已完成（60级）|r" },
-    { PROGRESSION_PRE_AQ,        "|TInterface\\icons\\achievement_zone_silithus_01:45:45:-40|t|cff8b0000", "Tier 4 - 安其拉废墟已完成（60级）|r" },
-    { PROGRESSION_AQ,            "|TInterface\\icons\\achievement_boss_cthun:45:45:-40|t|cff8b0000",       "Tier 5 - 安其拉神殿已完成（60级）|r" },
-    { PROGRESSION_NAXX40,        "|TInterface\\icons\\achievement_boss_kelthuzad_01:45:45:-40|t|cff8b0000","Tier 6 - 纳克萨玛斯40人已完成（60级）|r" },
-    { PROGRESSION_PRE_TBC,       "|TInterface\\icons\\achievement_boss_princemalchezaar_02:45:45:-40|t|cff006400", "Tier 7 - 卡拉赞、格鲁尔、玛瑟里顿已完成（70级）|r" },
-    { PROGRESSION_TBC_TIER_1,    "|TInterface\\icons\\achievement_character_bloodelf_male:45:45:-40|t|cff006400", "Tier 8 - 毒蛇神殿、风暴要塞已完成（70级）|r" },
-    { PROGRESSION_TBC_TIER_2,    "|TInterface\\icons\\achievement_boss_illidan:45:45:-40|t|cff006400",     "Tier 9 - 海加尔山之战、黑暗神殿已完成（70级）|r" },
-    { PROGRESSION_TBC_TIER_4,    "|TInterface\\icons\\achievement_boss_kiljaedan:45:45:-40|t|cff006400",   "Tier 10 - 太阳之井高地已完成（70级）|r" },
-    { PROGRESSION_TBC_TIER_5,    "|TInterface\\icons\\achievement_boss_kelthuzad_01:45:45:-40|t|cff00008b","Tier 11 - 纳克萨玛斯WotLK、永恒之眼、黑曜石圣殿已完成（80级）|r" },
-    { PROGRESSION_WOTLK_TIER_1,  "|TInterface\\icons\\achievement_boss_algalon_01:45:45:-40|t|cff00008b",  "Tier 12 - 奥杜尔已完成（80级）|r" },
-    { PROGRESSION_WOTLK_TIER_2,  "|TInterface\\icons\\achievement_reputation_argentcrusader:45:45:-40|t|cff00008b", "Tier 13 - 十字军的试炼已完成（80级）|r" },
-    { PROGRESSION_WOTLK_TIER_3,  "|TInterface\\icons\\achievement_boss_lichking:45:45:-40|t|cff00008b",   "Tier 14 - 冰冠堡垒已完成（80级）|r" },
-    { PROGRESSION_WOTLK_TIER_4,  "|TInterface\\icons\\spell_shadow_twilight:45:45:-40|t|cff00008b",       "Tier 15 - 红玉圣殿已完成（80级）|r" },
+    { PROGRESSION_MOLTEN_CORE,   "|TInterface\\icons\\achievement_boss_ragnaros:45:45:-40|t|cff8b0000",    "熔火之心已完成（60级）|r" },
+    { PROGRESSION_ONYXIA,        "|TInterface\\icons\\achievement_boss_onyxia:45:45:-40|t|cff8b0000",      "奥妮克希亚已完成（60级）|r" },
+    { PROGRESSION_BLACKWING_LAIR,"|TInterface\\icons\\achievement_boss_nefarion:45:45:-40|t|cff8b0000",    "黑翼之巢已完成（60级）|r" },
+    { PROGRESSION_PRE_AQ,        "|TInterface\\icons\\achievement_zone_silithus_01:45:45:-40|t|cff8b0000", "安其拉废墟已完成（60级）|r" },
+    { PROGRESSION_AQ,            "|TInterface\\icons\\achievement_boss_cthun:45:45:-40|t|cff8b0000",       "安其拉神殿已完成（60级）|r" },
+    { PROGRESSION_NAXX40,        "|TInterface\\icons\\achievement_boss_kelthuzad_01:45:45:-40|t|cff8b0000","纳克萨玛斯40人已完成（60级）|r" },
+    { PROGRESSION_PRE_TBC,       "|TInterface\\icons\\achievement_boss_princemalchezaar_02:45:45:-40|t|cff006400", "卡拉赞、格鲁尔、玛瑟里顿已完成（70级）|r" },
+    { PROGRESSION_TBC_TIER_1,    "|TInterface\\icons\\achievement_character_bloodelf_male:45:45:-40|t|cff006400", "毒蛇神殿、风暴要塞已完成（70级）|r" },
+    { PROGRESSION_TBC_TIER_2,    "|TInterface\\icons\\achievement_boss_illidan:45:45:-40|t|cff006400",     "海加尔山之战、黑暗神殿已完成（70级）|r" },
+    { PROGRESSION_TBC_TIER_4,    "|TInterface\\icons\\achievement_boss_kiljaedan:45:45:-40|t|cff006400",   "太阳之井高地已完成（70级）|r" },
+    { PROGRESSION_TBC_TIER_5,    "|TInterface\\icons\\achievement_boss_kelthuzad_01:45:45:-40|t|cff00008b","纳克萨玛斯WotLK、永恒之眼、黑曜石圣殿已完成（80级）|r" },
+    { PROGRESSION_WOTLK_TIER_1,  "|TInterface\\icons\\achievement_boss_algalon_01:45:45:-40|t|cff00008b",  "奥杜尔已完成（80级）|r" },
+    { PROGRESSION_WOTLK_TIER_2,  "|TInterface\\icons\\achievement_reputation_argentcrusader:45:45:-40|t|cff00008b", "十字军的试炼已完成（80级）|r" },
+    { PROGRESSION_WOTLK_TIER_3,  "|TInterface\\icons\\achievement_boss_lichking:45:45:-40|t|cff00008b",   "冰冠堡垒已完成（80级）|r" },
+    { PROGRESSION_WOTLK_TIER_4,  "|TInterface\\icons\\spell_shadow_twilight:45:45:-40|t|cff00008b",       "红玉圣殿已完成（80级）|r" },
 };
+//End By leewheel
 
 static constexpr uint8 tierOptionCount = sizeof(tierOptions) / sizeof(tierOptions[0]);
 
