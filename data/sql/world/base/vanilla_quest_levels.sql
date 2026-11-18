@@ -253,7 +253,12 @@ UPDATE quest_template SET RequiredItemId1 = 5062, RequiredItemId2 = 0, RequiredI
 UPDATE quest_template SET MinLevel = 11 WHERE ID=895;
 
 /*  Crown of the Earth  */
-UPDATE quest_template SET RequiredItemId1 = 0, RequiredItemCount1 = 0 WHERE ID=934;
+/* By leewheel 2026-09-21 恢复被本文件清零的目标：清零后该任务接到即可交，
+   跳过"用月亮井的水装满紫水晶瓶，然后把它交给多兰纳尔的科瑞萨斯·月怒"整步。
+   获取通道实证：物品 5623 紫水晶瓶 spellid_1=6611（装水）、月亮井 GO 19259/19260/19549-19551。
+   同步修复件：data/sql/updates/db_world/2026_09_21_00_restore_ip_zeroed_quest_objectives.sql */
+UPDATE quest_template SET RequiredItemId1 = 5646, RequiredItemCount1 = 1 WHERE ID=934;
+/* End By leewheel */
 
 /*  Luck Be With You  */
 UPDATE `quest_template` SET `RequiredItemCount1` = 10, `LogDescription` = "Collect 4 Frostmaul Shards for Witch Doctor Mau'ari in Everlook.", `QuestDescription` = "Ah, I can tell just by lookin' at ya -- you be wantin' to make a lucky charm. Mau'ari always knows!$B$BTo da south. you'll find a canyon, an' giants made a' solid ice. The giants sometimes be carryin' dem, but ya can always gather da shards yerself from da canyon. These shards have a powerful reflective quality.$B$BBring back 10 frostmaul shards, and my lucky charm will be yours." WHERE `ID`=969;
@@ -460,7 +465,12 @@ UPDATE quest_template SET QuestLevel = 39, MinLevel = 33 WHERE ID=5501;
 UPDATE quest_template SET RequiredItemId1 = 18540, RequiredItemId2 = 0, RequiredItemCount1 = 1, RequiredItemCount2 = 0 WHERE ID=5526;
 
 /*  The Battle of Darrowshire  */
-UPDATE quest_template SET RequiredNpcOrGo1 = 0, RequiredNpcOrGoCount1 = 0 WHERE ID=5721;
+/* By leewheel 2026-09-21 恢复被本文件清零的目标：目标清零后该任务一接就判定为"完成"，
+   玩家不需要摆遗物包裹、不需要打保卫战 —— 玩家反馈"没过场，保卫达隆郡直接就完成了"。
+   credit 通道实证存在：10936 约瑟夫·雷德帕斯 SmartAI EVENT_GOSSIP_HELLO(64) -> action 33。
+   同步修复件：data/sql/updates/db_world/2026_09_21_00_restore_ip_zeroed_quest_objectives.sql */
+UPDATE quest_template SET RequiredNpcOrGo1 = 10936, RequiredNpcOrGoCount1 = 1 WHERE ID=5721;
+/* End By leewheel */
 
 /*  To Kill With Purpose  */
 UPDATE quest_template SET RequiredItemId1 = 15448, RequiredItemId2 = 0, RequiredItemCount1 = 1, RequiredItemCount2 = 0 WHERE ID=6022;
@@ -901,10 +911,14 @@ UPDATE quest_template SET RequiredNpcOrGoCount2 = 5 WHERE ID=8740;
 UPDATE quest_template SET RewardItem1 = 21175, RewardAmount1 = 1 WHERE ID=8742;
 
 /*  Dead Man's Plea  */
-UPDATE quest_template SET RequiredNpcOrGo1 = 0, RequiredNpcOrGoCount1 = 0 WHERE ID=8945;
+/* By leewheel 2026-09-21 同上：清零会让"死人的请求"一接就完成，跳过斯坦索姆救人（credit: 16031 伊思达·哈尔蒙）*/
+UPDATE quest_template SET RequiredNpcOrGo1 = 16031, RequiredNpcOrGoCount1 = 1 WHERE ID=8945;
+/* End By leewheel */
 
 /*  The Challenge  */
-UPDATE quest_template SET RequiredNpcOrGo1 = 0, RequiredNpcOrGoCount1 = 0 WHERE ID=9015;
+/* By leewheel 2026-09-21 同上：清零会让"挑战"一接就完成，跳过塞尔德林小队（credit: 16166，blackrock_depths.cpp:384）*/
+UPDATE quest_template SET RequiredNpcOrGo1 = 16166, RequiredNpcOrGoCount1 = 1 WHERE ID=9015;
+/* End By leewheel */
 
 /*  The Savage Guard - Arcanum of Protection  */
 UPDATE quest_template SET MinLevel = 60 WHERE ID=9208;
